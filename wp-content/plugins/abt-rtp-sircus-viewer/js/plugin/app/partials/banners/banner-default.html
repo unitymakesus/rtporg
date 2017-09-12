@@ -1,0 +1,9 @@
+<!-- Banner Default -->
+<div class="featured-banner {{item.apply_type}}  {{item.apply_theme}} {{item.apply_graphic_class}}" style="{{item.apply_graphic}}">
+    <h1>{{item.title}} <small ng-show="item.subtitle">{{item.subtitle}}</small></h1>
+    <p ng-show="item.apply_description" ng-bind-html="renderHtml(item.apply_description)"></p>
+    <div class="site-info" ng-show="item.tagline">
+        <small class="site-name" ng-bind-html="renderHtml(item.blog.name)"></small>
+        <small class="site-tagline" ng-bind-html="renderHtml(item.blog.description)"></small>
+    </div>
+</div>

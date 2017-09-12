@@ -1,0 +1,85 @@
+//==================================================================
+// Filters Partial
+// Styles for the social grid filters.
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+// Filters
+// =================================================================
+.tag-filter {
+  margin: 0; border-bottom: 1px solid $color_light_grey; box-shadow: 0 0 3px rgba(0,0,0,.25); text-align: center;
+  @include rem(border-width, 1px);
+
+  @include media($desktop) {
+    position: fixed; border: 0; z-index: 999;
+    @include rem(top, 20px);
+    @include rem(right, 20px);
+    @include rem(width, 200px);
+  }
+  @include media(1666px) {
+    right: auto;
+    @include rem(left, 1446px);
+  }
+
+  // Toggle
+  // -------------------------------------------------------------
+  .toggle {
+    margin: 0; background-color: #fff; text-transform: uppercase; cursor: pointer;
+    @include rem(padding, 10px);
+    @include rem(font-size, 16px);
+    transition: all .25s ease-in-out;
+
+    .svg {
+      position: relative;
+      @include rem(top, 2px);
+      @include rem(width, 16px);
+      @include rem(height, 16px);
+      @include rem(margin-right, 10px);
+    }
+    .svg * {
+      fill: darken($color_dark_cyan, 15%);
+      transition: all .25s ease-in-out;
+    }
+
+    &:hover {
+      background-color: darken($color_dark_cyan, 15%); color: #fff;
+    }
+    &:hover .svg * {
+      fill: #fff;
+    }
+
+  }
+
+  // Options
+  // -------------------------------------------------------------
+  .options {
+    padding: 0; margin: 0; background-color: #fff; list-style: none;
+
+    li {
+      border-top: 1px solid $color_light_grey;
+    }
+    li a {
+      display: block; cursor: pointer;
+      @include rem(padding, 10px);
+      transition: all .25s ease-in-out;
+    }
+    li:hover a {
+      background-color: lighten($color_turquoise, 45%);
+    }
+    li.current-cat a,
+    li.active a {
+      font-family: $font_bold;
+    }
+
+  }
+
+  // Hover
+  // -------------------------------------------------------------
+  &:hover .toggle {
+    background-color: darken($color_dark_cyan, 15%); color: #fff;
+  }
+  &:hover .svg * {
+    fill: #fff;
+  }
+
+}

@@ -1,0 +1,21 @@
+//==================================================================
+// Global Partial
+// Styles for global layout.
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+// Global Layout
+// =================================================================
+html, body { height: 100% !important; }
+body {
+	-webkit-overflow-scrolling: touch;
+	overflow-scrolling: touch;
+}
+
+.header-container,
+.content-container,
+.footer-container {}
+
+.wrapper {
+	@include rem(padding, 10px);
+}

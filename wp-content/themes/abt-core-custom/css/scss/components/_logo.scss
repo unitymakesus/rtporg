@@ -1,0 +1,60 @@
+//==================================================================
+// Logo Partial
+// Styles for the site logo.
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+
+// Logo
+// =================================================================
+.logo {
+  width: 100%; height: auto; text-align: center; overflow: hidden;
+  transition: all $animation_speed ease-in-out;
+
+  @include media($desktop) {
+    position: absolute; top: 0; left: 0; display: table; z-index: 1002;
+    @include rem(height, 150px);
+  }
+
+  a {
+    display: block; width: 100%; height: 100%; background-color: #fff; color: $color_dark_grey; overflow: hidden;
+    @include rem(padding, 16px);
+    transition: all $animation_speed ease-in-out;
+
+    @include media($desktop) {
+      display: table-cell; vertical-align: middle;
+    }
+  }
+  .svg {
+    display: inline-block; margin: 0; vertical-align: sub;
+    @include rem(width, 100px);
+    @include rem(height, 45px);
+    transition: all $animation_speed ease-in-out;
+
+    @include media($desktop) {
+      @include rem(width, 150px);
+      @include rem(height, 60px);
+    }
+  }
+  .label {
+    display: block; width: 100%; font-family: $font_semibold; text-transform: uppercase; opacity: 1;
+    @include rem(height, 20px);
+    @include rem(font-size, 14px);
+    transition: opacity $animation_speed ease-in-out;
+  }
+
+  // Hover
+  a:hover {
+    background-color: $color_off_white;
+  }
+
+}
+
+// Sponsor (Events)
+// =================================================================
+.logo-sponsor {
+  background-color: #fff; border: 1px solid $color_light_grey;
+  @include rem(padding, 20px);
+  @include rem(margin-bottom, 24px);
+  @include rem(border-width, 1px);
+}

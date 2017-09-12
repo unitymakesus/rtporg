@@ -1,0 +1,71 @@
+//==================================================================
+// Buttons Partial
+// Styles for various traditional actions.
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+
+// Variables
+// =================================================================
+$button_text_color: #fff;
+
+
+// Button
+// =================================================================
+input[type="submit"], button, a.button {
+
+  display: block; width: 100%; color: $button_text_color; font-weight: normal; font-family: $font_semibold; line-height: 1.3; vertical-align: middle; white-space: nowrap; text-align: center;
+  @include rem(padding, 10px 20px);
+  @include rem(margin, 0 0 10px);
+  transition: all .25s ease-in-out;
+
+  // Apply top margin to buttons that follow buttons on mobile devices.
+  & + input[type="submit"],
+  & + button,
+  & + a.button {
+    @include rem(margin, 10px 0 10px);
+    @include media($tablet) {
+      @include rem(margin, 0 0 10px);
+    }
+  }
+
+  @include media($tablet) {
+    display: inline-block; width: auto;
+  }
+
+  // Color Variations
+  //--------------------------------------------------------------
+  &.primary, &.gform_button { background-color: $color_orange; }
+  &.secondary { background-color: $color_turquoise; }
+  &.ghost { background: none; border: 2px solid #fff; }
+
+  // Hover States
+  //--------------------------------------------------------------
+  &:hover { color: #fff; }
+  &.primary:hover, &.gform_button:hover { background-color: $color_state_red; }
+  &.secondary:hover { background-color: $color_dark_cyan; }
+  &.ghost:hover { background-color: #fff; color: $color_duke_blue; }
+
+  // Focus States
+  //--------------------------------------------------------------
+  &:focus { outline: 0; }
+
+}
+
+
+// Override for Mail Poet Plugin
+// =================================================================
+.wysija-submit {
+  display: block; width: 100%; background-color: $color_orange; color: $button_text_color; font-weight: normal; font-family: $font_semibold; line-height: 1.3; vertical-align: middle; white-space: nowrap; text-align: center;
+  @include rem(padding, 10px 20px);
+  @include rem(margin, 0 0 10px);
+  transition: background-color .25s ease-in-out;
+
+  @include media($tablet) {
+    display: inline-block; width: auto; text-align: left;
+  }
+
+  &:hover { background-color: $color_state_red; color: #fff; }
+  &:focus { outline: 0; }
+
+}

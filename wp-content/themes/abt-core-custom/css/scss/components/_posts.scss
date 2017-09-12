@@ -1,0 +1,95 @@
+//==================================================================
+// Posts Partial
+// Styles for blog posts.
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+// Posts
+// =================================================================
+.post {
+
+	// Categories
+	//--------------------------------------------------------------
+	.cat-links {
+		@include rem(margin, 0 0 20px);
+
+		a {
+			color: $color_grey; border-bottom: 1px solid $color_light_grey;
+			@include rem(border-width, 1px);
+		}
+		a:hover {
+			color: $color_dark_grey;
+		}
+	}
+
+	// Title
+	//--------------------------------------------------------------
+	.entry-title {
+		line-height: 1.2;
+		@include rem(margin, 5px 0);
+		@include rem(font-size, 24px);
+
+		@include media($desktop) {
+			@include rem(font-size, 33px);
+		}
+	}
+
+	// Meta Data
+	//--------------------------------------------------------------
+	.meta {
+		color: $color_grey; font-family: $font_semibold; text-transform: uppercase;
+
+		> span {
+			display: block;
+
+			@include media($tablet) {
+				display: inline;
+			}
+		}
+		.timestamp:before {
+			@include media($tablet) {
+				content: '\a0\b7\a0';
+			}
+		}
+		a {
+			color: $color_grey;
+		}
+		a:hover {
+			color: $color_dark_grey;
+		}
+	}
+
+}
+
+
+// Single Post
+// =================================================================
+.single-post .meta, .single-event .meta {
+	@include rem(margin, 0 0 20px);
+}
+
+.single .post {
+	@include rem(padding, 20px 0);
+
+	@include media($tablet) {
+		@include rem(padding, 40px 0);
+	}
+	@include media($desktop) {
+		padding: 0;
+	}
+}
+
+
+// Newsletter Signup
+// =================================================================
+.newsletter-signup {
+	border-top: 1px solid $color_light_grey; border-bottom: 1px solid $color_light_grey;
+	@include rem(padding, 20px 0);
+	@include rem(border-width, 1px);
+}
+
+// Comments
+// =================================================================
+.disqus-thread {
+	@include rem(margin-top, 20px);
+}

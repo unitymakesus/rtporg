@@ -1,0 +1,405 @@
+//==================================================================
+// Banner Partial
+// Styles for banners.
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+// Featured Banner
+// =================================================================
+.featured-banner {
+  position: relative; margin: 0; background-repeat: no-repeat; background-position: 50% 50%; background-size: cover;
+  @include rem(padding, 36px 20px);
+  @include rem(margin, 0 -20px);
+
+  @include media($tablet) {
+    @include rem(padding, 80px 40px);
+    @include rem(margin, 0 -40px);
+  }
+  @include media($desktop) {
+    margin: 0;
+    @include rem(padding, 150px 40px);
+  }
+
+  * {
+    position: relative; z-index: 1;
+  }
+
+  // Photo
+  //--------------------------------------------------------------
+  .photo {
+    margin: 0 auto; background: #fff no-repeat 50% 50%; background-size: cover; overflow: hidden; text-align: center;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(#fff, .2);
+    @include rem(width, 72px);
+    @include rem(height, 72px);
+    @include rem(margin-bottom, 20px);
+    @include transition(all .25s ease-in-out);
+
+    @include media($tablet) {
+      @include rem(width, 118px);
+      @include rem(height, 118px);
+      box-shadow: 0 0 0 6px rgba(#fff, .2);
+    }
+    @include media($desktop) {
+      display: inline-block; vertical-align: middle;
+      @include rem(width, 150px);
+      @include rem(height, 150px);
+      @include rem(margin, 0 20px 0 8px);
+      box-shadow: 0 0 0 8px rgba(#fff, .2);
+    }
+    @include media($desktop_wide) {
+      @include rem(width, 200px);
+      @include rem(height, 200px);
+      @include rem(margin-right, 40px);
+    }
+
+    .svg {
+      position: absolute; top: 50%; left: 50%;
+      @include rem(width, 76px);
+      @include rem(height, 76px);
+      @include rem(margin, -38px 0 0 -38px);
+
+      @include media($tablet) {
+        @include rem(width, 130px);
+        @include rem(height, 130px);
+        @include rem(margin, -65px 0 0 -65px);
+      }
+    }
+    .svg * {
+      fill: $color_grey;
+    }
+
+  }
+
+  // Headings
+  //--------------------------------------------------------------
+  h1 {
+    margin: 0; color: #fff; font-family: $font_semibold; line-height: 1;
+
+    @include media($desktop) {
+      display: inline-block; vertical-align: middle;
+      @include rem(font-size, 59px);
+    }
+    @include media($desktop_wide) {
+      @include rem(font-size, 78px);
+    }
+
+    small {
+      display: block; color: $color_beige; font-family: $font_regular; line-height: 1.2; text-transform: uppercase;
+      @include rem(margin-top, 10px);
+      @include rem(font-size, 16px);
+
+      @include media($desktop) {
+        @include rem(font-size, 24px);
+      }
+      @include media($desktop_wide) {
+        @include rem(font-size, 32px);
+      }
+    }
+  }
+  &.theme-frosty h1 {
+    color: darken($color_dark_cyan, 15%);
+
+    small {
+      color: $color_cool_grey;
+    }
+  }
+
+  // Content
+  //--------------------------------------------------------------
+  p {
+    @include rem(margin, 16px 0 0);
+  }
+  &.theme-frosty p {
+    color: $color_cool_grey;
+  }
+
+  // Events
+  //--------------------------------------------------------------
+  &.type-event {
+  }
+
+  // Quotes
+  //--------------------------------------------------------------
+  &.type-quote {
+    text-align: center;
+  }
+  q {
+    display: block; color: #fff; line-height: 1.2;
+    @include rem(font-size, 20px);
+
+    @include media($tablet) {
+      @include rem(font-size, 24px);
+    }
+    @include media($desktop) {
+      @include rem(font-size, 39px);
+    }
+  }
+
+  // Name & Tagline
+  //--------------------------------------------------------------
+  .site-info {
+    border-top: 1px solid rgba(#fff, .5); text-align: center;
+    @include rem(padding-top, 20px);
+    @include rem(margin-top, 20px);
+    @include rem(border-width, 1px);
+
+    small {
+      display: block; color: rgba(#fff, .5); font-size: 100%; line-height: 1.2;
+
+      @include media($tablet) {
+        display: inline-block;
+      }
+    }
+    .site-name {
+      text-transform: uppercase;
+      @include rem(font-size, 14px);
+
+      @include media($desktop) {
+        @include rem(font-size, 20px);
+      }
+    }
+    .site-tagline {
+      font-family: $font_semibold;
+      @include rem(font-size, 16px);
+
+      @include media($tablet) {
+        border-left: 1px solid rgba(#fff, .5);
+        @include rem(padding-left, 10px);
+        @include rem(margin-left, 6px);
+        @include rem(border-width, 1px);
+      }
+      @include media($desktop) {
+        @include rem(font-size, 24px);
+      }
+    }
+
+  }
+
+  // Overlay
+  //--------------------------------------------------------------
+  &:before {
+    content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: .75;
+  }
+  &.theme-ocean:before {
+    @include linear-gradient($color_dark_cyan, $color_turquoise);
+  }
+  &.theme-forest:before {
+    @include linear-gradient($color_dark_green, $color_light_green);
+  }
+  &.theme-creamsicle:before {
+    @include linear-gradient($color_orange, $color_beige);
+  }
+  &.theme-dark-forest:before {
+    @include linear-gradient(rgba(darken($color_dark_cyan, 20%), .95), rgba($color_dark_cyan, .95));
+  }
+  &.theme-midnight:before {
+    @include linear-gradient(rgba(#000, .95), rgba(#777, .25));
+  }
+  &.theme-frosty:before {
+    opacity: .85;
+    @include linear-gradient(rgba($color_light_grey, .95), rgba($color_off_white, .25));
+  }
+  &.theme-ncsu:before {
+    @include linear-gradient(rgba(#960217, .95), rgba(#d41a36, .25));
+  }
+  &.theme-duke:before {
+    @include linear-gradient(rgba(#013563, .95), rgba(#075293, .25));
+  }
+  &.theme-unc:before {
+    @include linear-gradient(rgba(#115da0, .95), rgba(#5ba2d3, .25));
+  }
+  &.theme-ibm:before {
+    @include linear-gradient(rgba(#376bfb, .95), rgba(#86a1ef, .25));
+  }
+  &.theme-arctic:before {
+    opacity: .85;
+    @include linear-gradient($color_dark_cyan, $color_duke_blue);
+  }
+
+  // No Theme & No Graphic
+  //--------------------------------------------------------------
+  &.no-theme.no-graphic {
+
+    &:before {
+      display: none;
+    }
+    h1 {
+      color: $color_dark_cyan;
+    }
+    h1 small {
+      color: $color_orange;
+    }
+    q {
+      color: $color_turquoise;
+    }
+    .site-info {
+      border-color: rgba(darken($color_dark_cyan, 20%), .25);
+    }
+    .site-info small {
+      color: rgba(darken($color_dark_cyan, 20%), .25);
+    }
+
+  }
+
+	// Banner in content on single column templates
+	//--------------------------------------------------------------
+  .page-template-page-onecolumn .content &,
+	.page-template-page-stem .content & {
+    margin-left: -20px;
+    margin-right: -20px;
+		position: relative;
+		overflow: hidden;
+		background-attachment: fixed;
+		background-repeat: no-repeat;
+		background-position: top center;
+		background-size: cover;
+
+		@include media($tablet) {
+      margin-left: -40px;
+      margin-right: -40px;
+		}
+
+    .banner-caption {
+      background-color: rgba(#fff, .5);
+      box-shadow: 0 0 0 36px rgba(#fff, .5);
+      @include transition(all $animation_speed ease-in-out);
+
+      &:hover {
+        background-color: rgba(#fff, .75);
+        box-shadow: 0 0 0 36px rgba(#fff, .75);
+      }
+    }
+
+		&.dark {
+			.banner-caption {
+				background-color: rgba(darken($color_dark_cyan, 15%), .7);
+        box-shadow: 0 0 0 36px rgba(darken($color_dark_cyan, 15%), .7);
+
+        &:hover {
+          background-color: rgba(darken($color_dark_cyan, 15%), .85);
+          box-shadow: 0 0 0 36px rgba(darken($color_dark_cyan, 15%), .85);
+        }
+
+				&, h2, a:not(.button) {
+					color: white;
+				}
+
+				a:not(.button) {
+					&:hover, &:focus, &:active {
+						text-decoration: underline;
+					}
+				}
+			}
+		}
+
+		&.align-center {
+			.banner-caption {
+				background: none;
+				box-shadow: none;
+				color: white;
+				text-align: center;
+
+				p {
+					line-height: 1.2;
+					@include rem(font-size, 20px);
+
+					@include media($tablet) {
+						@include rem(font-size, 24px);
+					}
+					@include media($desktop) {
+						@include rem(font-size, 39px);
+					}
+
+					&:first-child {
+						border-bottom: 1px solid rgba(white, .5);
+						@include rem(padding, 0 0 32px);
+					}
+				}
+			}
+		}
+
+		h1, p {
+			opacity: 1;
+		}
+
+		h2 {
+			margin-top: 0;
+		}
+
+    p {
+      @include rem(margin, 32px 0);
+
+			&:last-child {
+				margin: 0;
+			}
+    }
+
+		a:last-of-type {
+			margin: 0;
+		}
+
+		@include media($tablet) {
+	    &.align-left {
+	      padding-left: 10%;
+	      padding-right: 50%;
+	    }
+
+	    &.align-right {
+	      padding-left: 50%;
+	      padding-right: 10%;
+	    }
+
+			a:last-of-type {
+				margin-bottom: 10px;
+			}
+		}
+  }
+}
+
+
+// Person Bio - Featured Banner
+// =================================================================
+.single-people .featured-banner {
+  text-align: center;
+
+  @include media($desktop) {
+    text-align: left;
+  }
+}
+
+
+
+// Gradient Container (similar to except expands with content and gradient is in background)
+// =================================================================
+.gradient-container {
+	clear: both;
+
+	position: relative;
+	padding-left: 20px;
+	padding-right: 20px;
+
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: flex;
+	flex-flow: row wrap;
+	align-items: top;
+	justify-content: space-around;
+
+	& > * {
+		flex: 0 1 auto;
+	}
+
+	@include linear-gradient($color_dark_cyan, $color_turquoise);
+
+	@include media($tablet) {
+    margin-left: 0px;
+    margin-right: 0px;
+	}
+
+	@include media($desktop) {
+		flex-flow: row nowrap;
+	  margin-left: -40px;
+	  margin-right: -40px;
+	}
+}

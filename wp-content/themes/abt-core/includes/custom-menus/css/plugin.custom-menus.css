@@ -1,0 +1,11 @@
+/*
+CSS Name: ABT Core Breadcrumbs CSS
+Plugin URI: http://www.atlanticbt.com
+Version: 1.0
+Author: Atlantic BT - Mark Caron & JRS
+Author URI: http://www.atlanticbt.com/
+*/
+
+.access { position: absolute; left: -9000em; top: 0; height: 0; line-height: 0em; }
+.breadcrumbs li, .breadcrumbs ul { display: inline; margin: 0; padding: 0; list-style: none; background: none; }
+/* You can take care of everything else in your css... */

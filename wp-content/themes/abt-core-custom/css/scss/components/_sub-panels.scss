@@ -1,0 +1,68 @@
+//==================================================================
+// Sub Panels Partial
+// Styles for the sub panels.
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+// Sub Panel
+// =================================================================
+.sub-panel {
+  @include media($desktop) {
+    position: absolute; top: 0; height: 100%; padding: 0; background: $color_off_white; color: #fff; overflow: hidden; z-index: 100;
+    @include rem(left, -195px);
+    @include rem(width, 195px);
+    transition: width $animation_speed ease-in-out;
+  }
+
+  & > * {
+    @include rem(width, 195px);
+  }
+  h2 {
+    display: none;
+    @include media($desktop) {
+      display: block; color: darken($color_dark_cyan, 20%); font-family: $font_regular;
+      @include rem(padding, 20px 20px 0);
+      @include rem(margin, 42px 0 0);
+      @include rem(font-size, 24px);
+    }
+  }
+  > .description {
+    display: none;
+    @include media($desktop) {
+      display: block; color: $color_grey; line-height: 1.2;
+      @include rem(padding, 10px 20px 0);
+      @include rem(margin, 0 0 20px);
+      @include rem(font-size, 12px);
+    }
+  }
+  ul {
+    width: 100%; padding: 0; margin: 0; font-family: $font_semibold; list-style: none;
+    @include rem(font-size, 12px);
+
+    @include media($desktop) {
+      @include rem(width, 195px);
+    }
+
+    li a {
+      display: block; box-shadow: inset 0 -1px rgba(0,0,0,0.2);
+      @include rem(padding, 20px);
+
+      @include media($desktop) {
+        color: darken($color_dark_cyan, 20%);
+      }
+    }
+    li:first-child a {
+      border-top: 1px solid rgba($color_dark_grey, .5);
+      @include rem(border-width, 1px);
+
+      @include media($desktop) {
+        border-color: rgba($color_dark_grey, .1);
+      }
+    }
+    li a:hover {
+      background-color: #fff;
+    }
+
+  }
+
+}

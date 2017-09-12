@@ -1,0 +1,80 @@
+//==================================================================
+// Content Partial
+// Styles for content layout.
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+// Content
+// =================================================================
+.content-container {
+	@include rem(padding, 0 20px 20px);
+
+	@include media($tablet) {
+		@include rem(padding, 0 40px 40px);
+	}
+	@include media($desktop) {
+		padding: 0;
+		@include rem(margin-bottom, 56px);
+		@include row();
+	}
+
+	.content-wrapper {
+		@include media($desktop) {
+			@include display(flex);
+			@include align-items(stretch);
+		}
+	}
+
+	.content {
+		overflow: hidden;
+		@include media($desktop) {
+			@include span-columns(7);
+			float: right;
+			@include rem(padding, 40px);
+			@include order(2);
+		}
+		@include media($desktop_wide) {
+			@include span-columns(12);
+			float: right;
+		}
+	}
+	.aside {
+		background-color: $color_off_white; clear: both;
+		@include rem(padding, 20px);
+		@include rem(margin, 20px -20px -20px);
+	
+		@include media($tablet) {
+			@include rem(padding, 40px);
+			@include rem(margin, 40px -40px -40px);
+		}
+		@include media($desktop) {
+			margin: 0; clear: none; word-break: break-word;
+			@include span-columns(5);
+			@include rem(padding, 40px);
+			@include order(1);
+		}
+		@include media($desktop_wide) {
+			@include span-columns(4);
+		}
+
+		h3 {
+			color: $color_turquoise; text-transform: uppercase;
+			@include rem(margin, 32px 0 0);
+			@include rem(font-size, 16px);
+		}
+		h3:first-of-type {
+			margin: 0;
+			@include media($desktop) {
+				@include rem(margin-top, 24px);
+			}
+		}
+
+	}
+
+}
+
+// Content - One Column Specific
+// =================================================================
+.layout-one-column .content {
+	width: 100%; margin-right: 0;
+}

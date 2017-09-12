@@ -1,0 +1,19 @@
+//==================================================================
+// Badges Partial
+// Styles for various badges.
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+// Badge
+// =================================================================
+.badge {
+	display: inline-block; color: #fff; background-color: $color_grey; font-family: $font_semibold; text-transform: uppercase; white-space: nowrap;
+	@include rem(padding, 0 10px);
+	@include rem(font-size, 14px);
+	@include rem(border-radius, 3px);
+	transition: all .25s ease-in-out;
+
+	@include media($tablet) {
+		@include rem(margin-left, 4px);
+	}
+}

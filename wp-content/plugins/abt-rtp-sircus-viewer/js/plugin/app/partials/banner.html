@@ -1,0 +1,21 @@
+<div class="featured-banner type-{{item.type}} theme-{{item.theme}}" style="background-image: url({{item.thumb}});">
+    <h1>{{item.title}} <small>{{item.subtitle}}</small></h1>
+    <p><a class="button primary" href="#">Discover Our Passion</a> <a class="button secondary" href="#">Explore Upcoming Events</a></p>
+</div>
+
+<div class="featured-banner {{item.apply_type}}  {{item.apply_theme}} {{item.apply_graphic_class}}" ng-style="{{item.apply_graphic}}">
+    <?php if (is_singular('people')) : ?>
+        <div class="photo" ng-class="getBannerImageClass(item)" ng-style="getBannerImageStyle(item)"></div>
+        <h1><?php the_title(); ?> <?php if ($job_title) : ?><small><?php echo $job_title; ?></small><?php endif; ?></h1>
+    <?php else : ?>
+        <q ng-show="item.type == 'quote'">{{item.quote}}</q>
+        <h1><?php echo $banner_title; ?> <?php echo $apply_subtitle; ?></h1>
+        <?php echo $apply_description; ?>
+        <?php if (is_home() && $banner_tagline == "yes") : ?>
+            <div class="site-info">
+                <small class="site-name"><?php bloginfo('name'); ?></small>
+                <small class="site-tagline"><?php bloginfo('description'); ?></small>
+            </div>
+        <?php endif; ?>
+    <?php endif; ?>
+</div>

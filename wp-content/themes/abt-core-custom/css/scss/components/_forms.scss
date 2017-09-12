@@ -1,0 +1,179 @@
+//==================================================================
+// Forms Partial
+// Styles for various forms and form elements.
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+// Variables
+// =================================================================
+$input_border_color: lighten($color_dark_grey, 50%);
+
+
+// Wrappers
+// =================================================================
+form {}
+
+
+  // Legend
+  //--------------------------------------------------------------
+  legend {}
+
+
+  // Fieldsets / Wrappers
+  //--------------------------------------------------------------
+  fieldset { padding: 0; margin: 0; border: 0; }
+  .gform_fields {
+    padding: 0; margin: 0; list-style: none;
+  }
+  .gfield, .wysija-paragraph {
+    @include rem(margin, 0 0 16px);
+
+    @include media($desktop_wide) {
+      max-width: 50%;
+    }
+  }
+  .gfield_description {
+    color: $color_grey;
+  }
+  .gfield_description.validation_message {
+    color: $color_state_red;
+  }
+
+  .ginput_complex {
+    overflow: hidden;
+    @include clearfix;
+  }
+
+  .ginput_full {
+    display: block;
+    width: 100%;
+    @include clearfix;
+  }
+
+  .ginput_left, .ginput_right {
+    @include span-columns(5);
+    display: block;
+  }
+
+  .ginput_left {
+    clear: left;
+  }
+
+  .ginput_right {
+    margin-right: 0;
+    @include clearfix;
+  }
+
+
+
+  // Checkboxes & Radios
+  //--------------------------------------------------------------
+  .checkboxes, .radios {
+
+    ul { padding: 0; list-style: none; }
+    input + label { display: inline; }
+
+  }
+
+
+  // Labels
+  //--------------------------------------------------------------
+  label {}
+
+    // Fieldgroup Label
+    .fieldgroup-label {}
+
+    // Checkbox, Radio Labels
+    .fieldgroup-label + ul,
+    .fieldgroup-label + ol {}
+    .fieldgroup-label + ul li,
+    .fieldgroup-label + ol li,
+    .fieldgroup-label + ul label,
+    .fieldgroup-lable + ol label {}
+
+
+  // Fields
+  //--------------------------------------------------------------
+  input, select {
+    width: 100%; background-color: #fff; border: 1px solid $input_border_color;
+    @include rem(padding, 10px);
+    transition: all .25s ease-in-out;
+
+    // Checkbox & Radio
+    &[type="checkbox"], &[type="radio"] { width: auto; }
+    &[type="checkbox"]:focus, &[type="radio"]:focus {}
+
+    // Search
+    &[type="search"] {
+      -webkit-appearance: none;
+      @include border-top-radius(0);
+      @include border-bottom-radius(0);
+      @include border-left-radius(0);
+      @include border-right-radius(0);
+    }
+    &[type="search"]::-ms-clear {
+      display: none;
+    }
+
+    // File
+    &[type="file"] {}
+
+    // Focus
+    &:focus { background-color: lighten($color_duke_blue, 67%); border-color: $color_duke_blue; }
+
+  }
+  textarea {
+    width: 100%; background-color: #fff; border: 1px solid $input_border_color;
+    @include rem(padding, 10px);
+    transition: all .25s ease-in-out;
+
+    // Focus
+    &:focus { background-color: lighten($color_duke_blue, 67%); border-color: $color_duke_blue; }
+  }
+
+  .gform_validation_container, .gform_wrapper .gform_validation_container, body .gform_wrapper .gform_body ul.gform_fields li.gfield.gform_validation_container, body .gform_wrapper li.gform_validation_container, body .gform_wrapper ul.gform_fields li.gfield.gform_validation_container {
+    display: none!important;
+    position: absolute!important;
+    left: -9000px;
+  }
+
+
+  // Override for MailChimp forms
+  //--------------------------------------------------------------
+  .content-container #mc_embed_signup form {
+    padding: 0;
+    @include rem(font-size, 16px);
+
+    .mc-field-group {
+      @extend .gfield;
+      padding: 0;
+    }
+    .mc-field-group label {
+      display: inline-block;
+    }
+    .mc-field-group .asterisk, .indicates-required .asterisk {
+      position: static;
+      font-size: 100%;
+    }
+    input[type="radio"], input[type="checkbox"] {
+      @include rem(margin-right, 10px);
+    }
+    .indicates-required {
+      text-align: left;
+      font-style: italic;
+      @include rem(margin, 15px 0 30px);
+      @include rem(font-size, 14px);
+    }
+    .button {
+      @extend .gform_button;
+      border-radius: 0;
+    }
+
+    // validation
+    input.mce_inline_error {
+      border-color: $color_state_red;
+    }
+    div.mce_inline_error {
+      background-color: $color_state_red;
+    }
+  }

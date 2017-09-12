@@ -1,0 +1,226 @@
+//==================================================================
+// Footer Partial
+// Styles for footer layout.
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+// Footer
+// =================================================================
+.footer-container {
+	border-top: 1px solid $color_light_grey; text-align: center;
+	@include rem(padding, 20px);
+	@include rem(border-width, 1px);
+
+	@include media($tablet) {
+		@include rem(padding, 40px);
+	}
+	@include media($desktop) {
+		position: fixed; bottom: 0; left: 0; width: 100%; background-color: #fff; z-index: 1000;
+		@include rem(max-width, 1665px);
+		@include rem(padding, 16px 0 15px 65px);
+	}
+
+	// Copyright
+	// -------------------------------------------------------------
+	.copyright {
+		font-size: 24px;
+
+		@include media($desktop) {
+			display: inline-block; margin: 0; border-right: 1px solid $color_light_grey;
+			@include rem(padding-right, 14px);
+			@include rem(border-width, 1px);
+		}
+
+		small {
+			font-size: 100%; color: $color_grey;
+		}
+
+	}
+	
+}
+
+// Footer - Touch Support
+// =================================================================
+html.touch .footer-container {
+	@include media($desktop) {
+		position: static;
+	}
+}
+
+
+.footer-container-new {
+
+	@include media($desktop) {
+		position: fixed;
+		z-index: 0;
+		bottom: 0;
+		width: 100%;
+	}
+
+	.contact-footer {
+		color: white;
+		text-align: center;
+		display: table;
+		margin: 95px auto 85px;
+		position: relative;
+
+		@include media($phone_wide){
+			margin: 185px auto 164px;
+		}
+
+		@include media($desktop){
+			margin: 200px auto 155px;
+		}
+
+		@include media($desktop_wide){
+			margin: 220px auto 175px;
+		}
+
+		p {
+			font-size: 20px;
+			margin-bottom: 0;
+			font-family: $font_light;
+
+			@include media($phone_wide){
+				font-size: 30px;
+			}
+
+			@include media($desktop){
+				font-size: 36px;
+				line-height: 1;
+			}
+		}
+
+		strong {
+			display: inline-block;
+			font-size: 28px;
+			position: relative;
+
+
+			@include media($phone_wide){
+				font-size: 40px;
+				font-weight: $font_bold;
+			}
+
+			@include media($desktop){
+				font-size: 48px;
+			}
+
+			&:before {
+				position: absolute;
+				content: "";
+				width: 100%;
+				height: 1px;
+				border-bottom: 1px solid rgba(255,255,255,.65);
+				bottom: 5px;
+			}
+		}
+
+		img {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			opacity: .25;
+			width: 200px;
+			height: 200px;
+			
+			@include media($phone_wide){
+				width: 280px;
+				height: 280px;
+			}
+
+			@include media($desktop){
+				width: 312px;
+				height: 330px;
+			}
+		}
+	}
+
+	.copyright {
+		text-align: center;
+		font-size: 14px;
+		font-weight: bold;
+
+		@include media($phone_wide){
+			font-size: 16px;
+		}
+
+		@include media($desktop){
+			float: left;
+			margin-top: 0;
+
+			br {
+				display: none;
+			}
+		}
+	}
+
+	.menu {
+		text-align: center;
+		margin: 0 auto 20px;
+		padding: 0;
+		list-style: none;
+
+		@include media($phone_wide){
+			margin-bottom: 20px;
+			font-size: 24px;
+		}
+
+		@include media($desktop_wide){
+			font-size: 16px;
+			//clear: none;
+		}
+
+		&:nth-child(2) {
+			@include media($desktop_wide){
+				//float: left;
+				margin-bottom: 40px;
+			}
+		}
+
+		&:last-child() {
+			@include media($desktop_wide){
+				//float: right;
+				//clear: none;
+				//margin-bottom: 40px;
+			}
+		}
+
+		li {
+			display: inline-block;
+
+			a {
+				font-size: 14px;
+				color: white;
+				font-weight: bold;
+
+				@include media($phone_wide){
+					font-size: 16px;
+				}
+
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+
+			&:after {
+				content: "/";
+				position: relative;
+				display: inline-block;
+				margin-left: 10px;
+				margin-right: 5px;
+				line-height: 20px;
+				font-size: 17px;
+				font-weight: bold;
+				vertical-align: baseline;
+			}
+
+			&:last-child {
+				&:after {
+					display: none;
+				}
+			}
+		}
+	}
+}

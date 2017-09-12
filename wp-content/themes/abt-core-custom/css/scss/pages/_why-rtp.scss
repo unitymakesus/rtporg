@@ -1,0 +1,756 @@
+//==================================================================
+// Why RTP Page Partial
+// Styles for the Why RTP custom page.
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+// Page
+// =================================================================
+.page-template-page-why-rtp-php {
+
+  // Global
+  // -------------------------------------------------------------
+  color: #fff;
+
+  .content-container,
+  .content-container .content {
+    padding: 0;
+  }
+
+  .knockout * {
+    fill: #fff;
+  }
+
+  // Banners
+  // -------------------------------------------------------------
+  .featured-banner {
+    margin: 0; text-align: center;
+    @include rem(padding, 60px 20px);
+
+    @include media($tablet) {
+      @include rem(padding, 120px 100px);
+    }
+    @include media($desktop) {
+      background-attachment: fixed;
+      @include rem(padding, 100px);
+    }
+    @include media($desktop_wide) {
+      @include rem(padding, 200px);
+    }
+    @include media($desktop_xl_wide) {
+      @include rem(padding, 400px 200px);
+    }
+    @include media($desktop_xl_wide_short) {
+      @include rem(padding, 200px);
+    }
+
+    .flex-container {
+      @include media($desktop) {
+        position: relative; height: 100%; z-index: 1;
+        @include display(flex);
+      }
+    }
+    .flex-content {
+      @include media($desktop) {
+        width: 100%;
+        @include align-self(center);
+      }
+    }
+
+    h1 {
+      text-transform: uppercase;
+      @include rem(font-size, 24px);
+
+      @include media($tablet) {
+        @include rem(font-size, 36px);
+      }
+      @include media($desktop) {
+        padding: 0 14%; opacity: 0;
+        @include rem(font-size, 48px);
+      }
+      @include media($desktop_wide) {
+        //padding: 0 25%;
+      }
+    }
+    h1 small {
+      color: #fff;
+      @include rem(margin, 0 0 10px);
+      @include rem(font-size, 16px);
+    }
+    hr {
+      @include rem(margin, 40px 0);
+      transform: scale(0, 1);
+      transition: width .25s ease-in-out;
+    }
+    p {
+      font-family: $font_semibold; text-shadow: 0 1px 2px rgba(0,0,0,.25);
+      @include rem(margin, 32px 0);
+
+      @include media($desktop) {
+        //opacity: 0;
+        @include rem(font-size, 18px);
+      }
+      @include media($desktop_wide) {
+        font-family: $font_regular;
+        @include rem(font-size, 20px);
+      }
+    }
+    p strong {
+      font-style: italic; line-height: 1.2;
+      @include rem(font-size, 20px);
+
+      @include media($desktop) {
+        @include rem(font-size, 24px);
+      }
+    }
+
+    // Override Section Foundation Gradient
+    &.section-foundation:before {
+      background: darken($color_dark_cyan, 20%); opacity: .95;
+    }
+
+    // Animate Section
+    &.animate-section {
+
+      h1 {
+        @include media($desktop) {
+          opacity: 1;
+          @include animation(fadeInFromTop 3s ease-in-out);
+        }
+      }
+      hr {
+        @include media($desktop) {
+          transform: scale(1);
+          @include animation(growFromCenter 3s ease-in-out);
+        }
+      }
+      p {
+        @include media($desktop) {
+          //opacity: 1;
+          //@include animation(reveal 3s 1s ease-in-out);
+        }
+      }
+
+    }
+
+  }
+
+  // Universities
+  // -------------------------------------------------------------
+  .universities {
+    padding: 0; margin: 0; list-style: none;
+
+    li {
+      @include rem(padding, 10px);
+
+      @include media($tablet) {
+        display: inline-block;
+      }
+      @include media($desktop) {
+        position: relative; opacity: .4; cursor: pointer;
+        transition: all .25s ease-in-out;
+      }
+    }
+    li span {
+      @include media($desktop) {
+        position: absolute; left: 50%; display: block; background-color: #fff; box-shadow: 0 0 0 0 rgba(255,255,255,.5); border-radius: 50%;
+        @include rem(bottom, -16px);
+        @include rem(width, 16px);
+        @include rem(height, 16px);
+        @include rem(margin-left, -8px);
+        transition: all .25s ease-in-out;
+        @include animation(pulse 1.25s cubic-bezier(0.66, 0, 0, 1) infinite);
+      }
+    }
+    li .svg {
+      width: auto;
+      @include rem(height, 64px);
+    }
+    li:hover {
+      @include media($desktop) {
+        opacity: 1;
+        transform: scale(1.1);
+      }
+    }
+    li:hover span {
+      @include media($desktop) {
+        @include animation(none);
+      }
+    }
+    li[data-ref="university-duke"]:hover span {
+      @include media($desktop) {
+        background-color: $color_duke_blue;
+      }
+    }
+    li[data-ref="university-ncsu"]:hover span {
+      @include media($desktop) {
+        background-color: $color_state_red;
+      }
+    }
+    li[data-ref="university-unc"]:hover span {
+      @include media($desktop) {
+        background-color: $color_carolina_blue;
+      }
+    }
+  }
+  .university-scene {
+    display: none;
+
+    @include media($desktop) {
+      position: absolute; top: 0; left: 0; display: block; width: 100%; height: 100%; background-repeat: no-repeat; background-position: 50% 50%; background-size: cover; background-attachment: initial; opacity: 0; z-index: 0;
+      transition: opacity .25s ease-in-out;
+    }
+
+    &.active {
+      @include media($desktop) {
+        opacity: 1;
+      }
+    }
+  }
+
+  // Sectors
+  // -------------------------------------------------------------
+  .sectors {
+    @include media($tablet) {
+      position: relative;
+      @include rem(height, 124px);
+    }
+    @include media($desktop) {
+      @include rem(height, 176px);
+    }
+
+    ul {
+      padding: 0; margin: 0; list-style: none;
+
+      @include media($tablet) {
+        position: relative; height: 100%; z-index: 2;
+      }
+      @include media($desktop) {
+        //margin: 0 auto;
+        //@include rem(width, 608px);
+      }
+    }
+    li {
+      margin: 0 auto; box-shadow: 0 0 0 4px rgba(#fff, .5); border-radius: 50%;
+      @include rem(width, 128px);
+      @include rem(height, 128px);
+      @include rem(padding, 20px 10px 10px);
+      @include rem(margin-top, -4px);
+      transition: box-shadow 1s ease-in-out;
+
+      @include media($tablet) {
+        position: relative; top: 50%; display: inline-block; padding: 0; box-shadow: none; vertical-align: middle;
+        @include rem(width, 70px);
+        @include rem(height, 58px);
+        @include rem(margin-top, -40px);
+      }
+      @include media($desktop) {
+        opacity: 0;
+        @include rem(width, 150px);
+        @include rem(height, 100px);
+        @include rem(margin-top, -58px);
+        transition: all 1s ease-in-out;
+      }
+    }
+    li:first-child {
+      margin-top: 0;
+
+      @include media($tablet) {
+        @include rem(left, -102px);
+        @include rem(height, 48px);
+        @include rem(margin-top, -24px);
+      }
+      @include media($desktop) {
+        opacity: 0;
+        @include rem(margin-top, -44px);
+      }
+    }
+    li:first-child .svg {
+      @include media($tablet) {
+        @include rem(height, 40px);
+      }
+      @include media($desktop) {
+        width: 100%; height: 100%;
+      }
+    }
+    li:last-child {
+      @include media($tablet) {
+        @include rem(left, 102px);
+        @include rem(height, 48px);
+        @include rem(margin-top, -24px);
+      }
+      @include media($desktop) {
+        opacity: 0;
+        @include rem(margin-top, -44px);
+      }
+    }
+    li:last-child .svg {
+      @include media($tablet) {
+        @include rem(height, 40px);
+      }
+      @include media($desktop) {
+        width: 100%; height: 100%;
+      }
+    }
+    li .svg {
+      width: auto;
+      @include rem(height, 48px);
+
+      @include media($tablet) {
+        @include rem(height, 58px);
+      }
+      @include media($desktop) {
+        width: 100%; height: 100%;
+      }
+    }
+    li span {
+      display: block; font-family: $font_semibold; text-transform: uppercase;
+      @include rem(font-size, 12px);
+
+      @include media($tablet) {
+        position: absolute; top: 0; left: -9000em;
+      }
+    }
+    .dna {
+      display: none;
+
+      @include media($tablet) {
+        position: absolute; top: 50%; left: 50%; display: block; z-index: 1;
+        @include rem(width, 400px);
+        @include rem(height, 124px);
+        @include rem(margin, -62px 0 0 -200px);
+      }
+      @include media($desktop) {
+        overflow: hidden;
+        @include rem(width, 600px);
+        @include rem(height, 176px);
+        @include rem(margin, -88px 0 0 -300px);
+        transition: all 2s ease-in-out;
+      }
+
+      &.strand-top {
+        @include media($desktop) {
+          width: 0;
+        }
+      }
+      &.strand-middle {
+        @include media($tablet) {
+          width: 0; opacity: .25;
+        }
+      }
+      &.strand-bottom {
+        @include media($desktop) {
+          width: 0;
+        }
+      }
+      .svg {
+        @include media($desktop) {
+          @include rem(width, 600px);
+          @include rem(height, 176px);
+        }
+      }
+      .svg * {
+        @include media($tablet) {
+          fill: #fff;
+        }
+      }
+
+    }
+
+    &.animate-sectors li {
+      @include media($desktop) {
+        opacity: 1;
+      }
+    }
+    &.animate-sectors li:first-child {
+      @include media($desktop) {
+        opacity: 1;
+      }
+    }
+    &.animate-sectors li:last-child {
+      @include media($desktop) {
+        opacity: 1;
+      }
+    }
+    &.animate-sectors .dna.strand-top {
+      @include media($desktop) {
+        @include rem(width, 600px);
+      }
+    }
+    &.animate-sectors .dna.strand-middle {
+      @include media($desktop) {
+        @include rem(width, 600px);
+      }
+    }
+    &.animate-sectors .dna.strand-bottom {
+      @include media($desktop) {
+        @include rem(width, 600px);
+      }
+    }
+
+  }
+
+  // Incubator Chart
+  // -------------------------------------------------------------
+  .incubator-chart {
+    position: relative; padding: 0; margin: 0 auto; border: 1px solid rgba(#fff, .25); border-radius: 50%;
+    @include rem(width, 260px);
+    @include rem(height, 260px);
+    @include rem(border-width, 1px);
+
+    span {
+      display: block; border: 4px solid rgba(#fff, .5); box-shadow: 0 0 0 0 rgba(255,255,255,.25); border-radius: 50%;
+      @include rem(width, 68px);
+      @include rem(height, 68px);
+      @include rem(border-width, 4px);
+      transition: all .25s ease-in-out;
+
+      &:hover {
+        @include media($desktop) {
+          @include animation-play-state(paused);
+        }
+      }
+    }
+    .hub {
+      position: absolute; top: 50%; left: 50%; margin: 0 auto; background-color: #fff; border-color: #fff;
+      @include rem(width, 128px);
+      @include rem(height, 128px);
+      @include rem(margin, -64px 0 0 -64px);
+
+      .svg {
+        @include rem(top, 34px);
+      }
+
+    }
+    .resources {
+      position: absolute; left: 50%;
+      @include rem(top, -32px);
+      @include rem(margin-left, -32px);
+
+      @include media($desktop) {
+        @include transform-origin(20px 160px);
+        @include animation(orbit 8s linear infinite reverse);
+      }
+
+      .svg {
+        @include rem(top, 8px);
+      }
+      &:hover {
+        @include media($desktop) {
+          background-color: darken($color_dark_cyan, 15%); border-color: #fff;
+        }
+      }
+
+    }
+    .services {
+      position: absolute;
+      @include rem(bottom, 20px);
+      @include rem(left, -20px);
+
+      @include media($desktop) {
+        @include transform-origin(140px -40px);
+        @include animation(orbit 14s linear infinite);
+      }
+
+      .svg {
+        @include rem(top, 14px);
+      }
+      &:hover {
+        @include media($desktop) {
+          background-color: darken($color_dark_cyan, 15%); border-color: #fff;
+        }
+      }
+
+    }
+    .network {
+      position: absolute; bottom: 0; right: 0;
+      @include rem(bottom, 20px);
+      @include rem(right, -20px);
+
+      @include media($desktop) {
+        @include transform-origin(-76px -30px);
+        @include animation(orbit 24s linear infinite reverse);
+      }
+
+      .svg {
+        @include rem(top, 18px);
+      }
+      &:hover {
+        @include media($desktop) {
+          background-color: darken($color_dark_cyan, 15%); border-color: #fff;
+        }
+      }
+
+    }
+
+  }
+
+  // Stats - Education
+  // -------------------------------------------------------------
+  .stats-education {
+    padding: 0; margin: 0; list-style: none; font-size: 0; line-height: 0;
+
+    @include media($desktop) {
+      @include rem(margin-bottom, 40px);
+    }
+
+    li {
+      position: relative; margin: 0 auto;
+      @include rem(margin, 32px 0 0);
+      @include rem(font-size, 16px);
+
+      @include media($tablet) {
+        display: inline-block;
+        @include rem(margin, 0 0 0 10px);
+      }
+      @include media($desktop_wide) {
+        @include rem(margin-left, 64px);
+      }
+
+      canvas {
+        display: block; margin: 0 auto;
+        @include rem(max-width, 88px);
+        @include rem(max-height, 88px);
+      }
+      strong {
+        position: absolute; top: 0; left: 0; width: 100%;
+        @include rem(height, 88px);
+        @include rem(line-height, 88px);
+        @include animation(reveal 1s ease-in-out);
+
+        @include media($desktop) {
+          opacity: 0;
+        }
+      }
+      span {
+        display: block; font-family: $font_bold; font-style: italic;
+        @include rem(margin, 10px 0 0);
+      }
+
+    }
+    li:first-child {
+      margin: 0;
+    }
+
+  }
+  .section-education.animate-section {
+
+    .stats-education strong {
+      @include media($desktop) {
+        opacity: 1;
+      }
+    }
+
+  }
+
+  // Stats - Recognition
+  // -------------------------------------------------------------
+  .stats-recognition {
+    padding: 0; margin: 0; list-style: none;
+
+    li {
+      @include rem(margin, 78px 0 0);
+
+      @include media($tablet) {
+        display: inline-block; width: 30%; margin: 0 0 0 2.5%; vertical-align: top;
+      }
+      @include media($desktop_wide) {
+        text-align: left;
+      }
+    }
+    li:first-child {
+      margin-top: 0;
+
+      @include media($tablet) {
+        margin: 0;
+      }
+    }
+    strong {
+      line-height: 1; font-style: italic;
+      @include rem(font-size, 78px);
+
+      @include media($tablet) {
+        @include rem(font-size, 60px);
+      }
+      @include media($desktop_wide) {
+        @include rem(font-size, 80px);
+      }
+      @include media($desktop_xl_wide) {
+        @include rem(font-size, 100px);
+      }
+    }
+    hr {
+      @include rem(margin, 20px 0);
+    }
+    .svg {
+      display: block; margin: 0 auto;
+      @include rem(width, 40px);
+      @include rem(height, 40px);
+      @include rem(margin-bottom, 10px);
+
+      @include media($desktop_wide) {
+        float: left;
+        @include rem(margin-right, 10px);
+      }
+    }
+    span {
+      font-family: $font_semibold;
+
+      @include media($desktop_wide) {
+        @include rem(line-height, 40px);
+      }
+    }
+
+  }
+
+  // Metro Locations
+  // -------------------------------------------------------------
+  .metro-locations {
+    display: none;
+
+    @include media($desktop) {
+      position: relative; display: block; padding: 0; margin: 0 auto; background: url('../img/g_logo-rtp-boundary.svg') no-repeat 50% 50%; background-size: 100% auto; list-style: none; opacity: 0;
+      @include rem(width, 600px);
+      @include rem(height, 300px);
+      @include rem(margin-top, 40px);
+      @include rem(margin-bottom, 40px);
+    }
+
+    li {
+      @include media($desktop) {
+        position: absolute; background-color: rgba(#fff, .25); box-shadow: 0 0 0 0 rgba(255,255,255,.25); border-radius: 50%;
+        @include rem(width, 30px);
+        @include rem(height, 30px);
+        transition: all .25s ease-in-out;
+        @include animation(pulse 1.25s cubic-bezier(0.66, 0, 0, 1) infinite);
+      }
+    }
+    li span {
+      display: none;
+
+      @include media($desktop) {
+        position: absolute; display: block; white-space: nowrap; z-index: 100;
+        transition: all .25s ease-in-out;
+      }
+    }
+    li[data-ref="location-raleigh"] {
+      @include media($desktop) {
+        @include rem(top, 278px);
+        @include rem(left, 580px);
+      }
+    }
+    li[data-ref="location-raleigh"] span {
+      @include media($desktop) {
+        top: 0;
+        @include rem(left, 40px);
+      }
+    }
+    li[data-ref="location-durham"] {
+      @include media($desktop) {
+        @include rem(top, -8px);
+        @include rem(left, 192px);
+      }
+    }
+    li[data-ref="location-durham"] span {
+      @include media($desktop) {
+        top: 0;
+        @include rem(left, 40px);
+      }
+    }
+    li[data-ref="location-chapel-hill"] {
+      @include media($desktop) {
+        @include rem(top, 238px);
+        @include rem(left, -10px);
+      }
+    }
+    li[data-ref="location-chapel-hill"] span {
+      @include media($desktop) {
+        left: 0;
+        @include rem(top, 40px);
+      }
+    }
+    li:hover {
+      @include media($desktop) {
+        background-color: #fff;
+        @include animation(none);
+      }
+    }
+    li:hover span {
+      @include media($desktop) {
+        opacity: 0;
+      }
+    }
+
+  }
+  .animate-section .metro-locations {
+    @include media($desktop) {
+      opacity: 1;
+      @include animation(reveal 1s 1s ease-in-out);
+    }
+  }
+  .metro-scene {
+    display: none;
+
+    @include media($desktop) {
+      position: absolute; top: 0; left: 0; display: block; width: 100%; height: 100%; background-repeat: no-repeat; background-position: 50% 50%; background-size: cover; background-attachment: initial; opacity: 0; z-index: 0;
+      transition: opacity .25s ease-in-out;
+    }
+
+    &.active {
+      @include media($desktop) {
+        opacity: 1;
+      }
+    }
+  }
+
+  // RTP Brand
+  // -------------------------------------------------------------
+  .rtp-brand {
+    position: relative;
+    @include rem(margin, 0 0 32px);
+
+    .icon {
+      @include rem(width, 150px);
+      @include rem(height, 100px);
+
+      @include media($desktop) {
+        @include rem(width, 350px);
+        @include rem(height, 150px);
+      }
+      // @include media($desktop_wide) {
+      //  @include rem(width, 450px);
+      //  @include rem(height, 220px);
+      // }
+    }
+    .boundary {
+      display: none;
+
+      @include media($desktop) {
+        position: absolute; top: 0; left: 50%; display: block;
+        @include rem(width, 370px);
+        @include rem(height, 184px);
+        @include rem(margin, -16px 0 0 -188px);
+        @include transform-origin(40% 60%);
+      }
+    }
+
+  }
+  .animate-section .rtp-brand {
+    .icon {
+      @include media($desktop) {
+        @include animation(reveal 1s 1s ease-in-out);
+      }
+    }
+    .boundary {
+      @include media($desktop) {
+        @include animation(ripple 2s 2s linear infinite);
+      }
+    }
+    .boundary + .boundary {
+      @include media($desktop) {
+        @include animation-delay(3s);
+      }
+    }
+  }
+
+}

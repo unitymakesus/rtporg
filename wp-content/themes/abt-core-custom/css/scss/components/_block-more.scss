@@ -1,0 +1,77 @@
+.block-more {
+  text-transform: uppercase;
+  font-size: 24px;
+  font-family: $font_light;
+  line-height: 1;
+  display: inline-block;
+  font-size: 16px;
+
+  @include media($phone_wide) {
+    font-size: 22px;
+  }
+
+  @include media($tablet) {
+    font-size: 30px;
+  }
+
+  @include media($desktop) {
+    font-size: 20px;
+  }
+
+  @include media($desktop_wide){
+    font-size: 26px;
+  }
+
+
+  a {
+    // padding: 30px;
+    // padding-bottom: 80px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &:hover, &:active, &:focus {
+      .block-more-wrapper:after {
+        margin-left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  }
+
+  strong {
+    display: block;
+    font-family: $font_semibold;
+  }
+}
+
+.block-more-wrapper {
+  &:after {
+    // position: absolute;
+    @include transition(all .15s ease-in-out);
+    padding-top: 10px;
+    @extend .icon:before;
+    @extend .icon-i_arrow:before;
+  }
+}
+.block-more-blue {
+  span,
+  :after {
+    @extend .text-gradient-blue;
+    display: block !important;
+  }
+}
+
+.block-more-orange {
+  span,
+  :after {
+    @extend .text-gradient-orange;
+    display: block !important;
+  }
+}

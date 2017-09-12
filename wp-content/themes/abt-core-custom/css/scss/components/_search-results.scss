@@ -1,0 +1,124 @@
+//==================================================================
+// Search Results Partial
+// Styles for the search results.
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+// Search Results
+// =================================================================
+.search-results, .search-no-results {
+
+	// Global
+	// -------------------------------------------------------------
+	.content-container {
+		padding-left: 0; padding-right: 0;
+	}
+	.featured-banner {
+		@include media($desktop) {
+			margin: 0;
+			@include rem(padding, 80px 40px);
+		}
+	}
+	.ng-scope .social-grid {
+		@include media($desktop) {
+			height: 100% !important;
+			@include rem(min-height, 200px);
+		}
+	}
+
+	// Featured Banner
+	// -------------------------------------------------------------
+	.featured-banner {
+		text-align: center;
+	
+		// Banner Title
+		h1 {
+			@include rem(margin, 0 0 10px);
+		}
+
+		// Site Search
+		.site-search {
+			position: static; margin: 0 auto;
+			@include rem(margin-bottom, 20px);
+			
+			@include media($desktop) {
+				width: 60%;
+			}
+		}
+		.site-search label {
+			position: absolute; top: 0; left: 0; height: 100%; margin: 0; background-color: darken($color_dark_cyan, 20%); z-index: 100;
+			@include rem(width, 48px);
+		}
+		.site-search label .svg {
+			position: relative; top: 50%; left: 50%; display: block;
+			@include rem(width, 16px);
+			@include rem(height, 16px);
+			@include rem(margin, -8px 0 0 -8px);
+		}
+		.site-search label .svg * {
+			fill: $color_grey;
+		}
+		.site-search input[type="search"] {
+			background-color: #fff; border: 0;
+			@include rem(padding, 10px 20px 10px 68px);
+		}
+	}
+
+	// Results Count
+	// -------------------------------------------------------------
+	.results-count {
+		color: #fff;
+
+		@include media($tablet) {
+			@include rem(font-size, 20px);
+		}
+		@include media($desktop) {
+			@include rem(font-size, 24px);
+		}
+
+		p {
+			border-bottom: 1px solid rgba(#fff, .25);
+			@include rem(padding-bottom, 16px);
+			@include rem(margin-bottom, 16px);
+			@include rem(border-width, 1px);
+		
+			@include media($desktop) {
+				@include rem(padding-bottom, 8px);
+				@include rem(margin-bottom, 8px);
+			}
+		}
+		ul {
+			padding: 0; margin: 0; list-style: none; font-family: $font_regular;
+		}
+		ul li {
+			@include media($tablet) {
+				display: inline-block;
+			}
+		}
+		ul li:before {
+			@include media($tablet) {
+				content: "\2022";
+			}
+		}
+		ul li:first-child:before {
+			@include media($tablet) {
+				display: none;
+			}	
+		}
+	
+	}
+
+	// Pagination
+	// -------------------------------------------------------------
+	.pagination {
+		
+	}
+
+}
+.search-results {
+
+	.content {
+		padding: 0;
+	}
+
+}

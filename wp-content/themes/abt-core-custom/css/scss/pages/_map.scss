@@ -1,0 +1,426 @@
+//==================================================================
+// Map Page Partial
+// Styles for the map page.
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+// Map Page
+// =================================================================
+.page-template-page-map-php {
+
+  // Page container
+  //--------------------------------------------------------------
+  .st-container {
+    height: 100%;
+  }
+	.st-trigger-effects {
+		z-index: 10000;
+	}
+  .st-content {
+    height: 100%;
+  }
+	.st-content-inner {
+		height: 100%;
+		@include media($desktop) {
+			height: 100%; overflow-y: hidden;
+		}
+	}
+
+
+	// Footer
+	//--------------------------------------------------------------
+	.footer-container {
+		display: none;
+
+		@include media($desktop) {
+			display: block;
+		}
+	}
+
+
+	// Content
+	//--------------------------------------------------------------
+	.content-container:after {
+		display: none;
+	}
+	.content-container,
+	.content-container .content {
+		padding: 0;
+    height: 100%;
+	}
+
+
+  // Mapbox GL
+	//--------------------------------------------------------------
+  .map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+  }
+  .mapboxgl-ctrl-bottom-right .mapboxgl-ctrl { margin-bottom: rem(70); }
+  .mapboxgl-ctrl-group > button { margin: 0; }
+  .map-instructions {
+    padding: rem(16);
+    margin: 0;
+    text-align: center;
+  }
+
+
+  // Mapbox GL - listing/search
+	//--------------------------------------------------------------
+  .map-overlay {
+    position: absolute;
+    width: 400px;
+    top: rem(10);
+    left: rem(10);
+    display: flex;
+    flex-direction: column;
+    font-size: rem(14);
+    line-height: rem(20);
+    max-height: calc(100% - 76px);
+    box-shadow: 0px 0px 0px 2px rgba(0,0,0,0.1);
+    border-radius: 3px;
+    overflow: hidden;
+
+    fieldset {
+      background: #02444d;
+      border: none;
+      border-bottom: rem(3) solid $color_turquoise;
+      padding: rem(5);
+      margin: 0;
+    }
+    input {
+      display: block;
+      border: none;
+      width: 100%;
+      height: rem(44);
+      margin: 0;
+      transition: background $animation_speed * 4 ease-in-out;
+
+      &:disabled {
+        background-color: $color_light_grey;
+        cursor: not-allowed;
+      }
+    }
+
+    .feature-count.active {
+      padding: rem(12);
+      background-color: $color_light_grey;
+      font-size: rem(14);
+      font-family: $font_regular;
+      color: $color_cool_grey;
+    }
+    .feature-count.active strong {
+      padding: rem(4) rem(8);
+      margin-right: rem(2);
+      background-color: $color_turquoise;
+      border-radius: rem(3);
+      color: #fff;
+    }
+
+    .listing {
+      overflow: auto;
+      height: 100%;
+      background-color: #fff;
+    }
+    .listing article {
+      padding: rem(16);
+      border-top: 1px solid $color_light_grey;
+      cursor: pointer;
+    }
+    .listing article:hover {
+      background-color: lighten($color_duke_blue, 67%);
+    }
+    .listing article:first-child {
+      border-top: 0;
+    }
+    .listing article .entry-title {
+      margin: 0;
+      font-size: rem(16);
+      font-family: $font_regular;
+    }
+    .listing article .adr {
+      color: $color_cool_grey;
+      font-size: rem(14);
+    }
+  }
+
+
+  // Mapbox GL - popups
+	//--------------------------------------------------------------
+  .mapboxgl-popup {
+    max-width: 300px;
+    font: 14px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+
+    + .mapboxgl-popup {
+      display: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .marker-photo {
+      margin: rem(-16) rem(-16) rem(16);
+      border-radius: rem(3) rem(3) 0 0;
+      overflow: hidden;
+    }
+    .marker-category {
+      text-transform: uppercase;
+      font-size: rem(14);
+      font-family: $font_semibold;
+      color: $color_turquoise;
+      margin-bottom: rem(8);
+    }
+    .marker-title {
+      margin: 0 0 rem(16);
+      font-size: rem(24);
+      font-family: $font_regular;
+    }
+    .marker-address,
+    .marker-site-number,
+    .marker-acres,
+    .marker-space,
+    .marker-sqft {
+      margin: 0 0 rem(16);
+      color: $color_cool_grey;
+
+      strong { color: $color_dark_grey; }
+    }
+    .marker-site-number,
+    .marker-space {
+      margin: 0;
+    }
+    .marker-address strong {
+      display: block;
+    }
+    .button {
+      width: 100%;
+      margin: 0;
+    }
+  }
+  .mapboxgl-popup-content {
+    padding: rem(16);
+
+    .control-group .location { display: none; }
+    .control-group .location.active { display: block; }
+  }
+  .mapboxgl-popup-controls {
+    button {
+      position: absolute;
+      top: 50%;
+      width: rem(36);
+      height: rem(36);
+      padding: 0;
+      margin: 0;
+      background-color: #fff;
+      border: rem(1) solid $color_light_grey;
+      border-radius: 50%;
+      font-size: 0;
+      line-height: 0;
+      transform: translateY(-50%);
+    }
+    .control-prev {
+      left: rem(-24);
+
+      &:before {
+        content: '\2039';
+        color: $color_turquoise;
+        font-family: $font_bold;
+        font-size: rem(18);
+        line-height: 1;
+      }
+    }
+    .control-next {
+      right: rem(-24);
+
+      &:before {
+        content: '\203A';
+        color: $color_turquoise;
+        font-family: $font_bold;
+        font-size: rem(18);
+        line-height: 1;
+      }
+    }
+  }
+
+
+  // Mapbox GL - preloader
+	//--------------------------------------------------------------
+  @keyframes rotate {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+  }
+  .preloader:after,
+  .preloader:before {
+    content:'';
+    display:block;
+    position:absolute;
+    z-index:10;
+    }
+  .preloader:before {
+    background:transparent;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    }
+  .preloader:after {
+    background:rgba(0,0,0,.2) url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhLS0gQ3JlYXRlZCB3aXRoIElua3NjYXBlIChodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy8pIC0tPgoKPHN2ZwogICB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iCiAgIHhtbG5zOmNjPSJodHRwOi8vY3JlYXRpdmVjb21tb25zLm9yZy9ucyMiCiAgIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIKICAgeG1sbnM6c3ZnPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICB4bWxuczpzb2RpcG9kaT0iaHR0cDovL3NvZGlwb2RpLnNvdXJjZWZvcmdlLm5ldC9EVEQvc29kaXBvZGktMC5kdGQiCiAgIHhtbG5zOmlua3NjYXBlPSJodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy9uYW1lc3BhY2VzL2lua3NjYXBlIgogICBpZD0ic3ZnMzEyMiIKICAgdmVyc2lvbj0iMS4xIgogICBpbmtzY2FwZTp2ZXJzaW9uPSIwLjQ4LjUgcjEwMDQwIgogICB3aWR0aD0iMjQiCiAgIGhlaWdodD0iMjQiCiAgIHNvZGlwb2RpOmRvY25hbWU9ImxvYWRzb3VyY2UyLnN2ZyI+CiAgPG1ldGFkYXRhCiAgICAgaWQ9Im1ldGFkYXRhMzEyOCI+CiAgICA8cmRmOlJERj4KICAgICAgPGNjOldvcmsKICAgICAgICAgcmRmOmFib3V0PSIiPgogICAgICAgIDxkYzpmb3JtYXQ+aW1hZ2Uvc3ZnK3htbDwvZGM6Zm9ybWF0PgogICAgICAgIDxkYzp0eXBlCiAgICAgICAgICAgcmRmOnJlc291cmNlPSJodHRwOi8vcHVybC5vcmcvZGMvZGNtaXR5cGUvU3RpbGxJbWFnZSIgLz4KICAgICAgICA8ZGM6dGl0bGUgLz4KICAgICAgPC9jYzpXb3JrPgogICAgPC9yZGY6UkRGPgogIDwvbWV0YWRhdGE+CiAgPGRlZnMKICAgICBpZD0iZGVmczMxMjYiIC8+CiAgPHNvZGlwb2RpOm5hbWVkdmlldwogICAgIHBhZ2Vjb2xvcj0iI2ZmZmZmZiIKICAgICBib3JkZXJjb2xvcj0iIzY2NjY2NiIKICAgICBib3JkZXJvcGFjaXR5PSIxIgogICAgIG9iamVjdHRvbGVyYW5jZT0iMTAiCiAgICAgZ3JpZHRvbGVyYW5jZT0iMTAiCiAgICAgZ3VpZGV0b2xlcmFuY2U9IjEwIgogICAgIGlua3NjYXBlOnBhZ2VvcGFjaXR5PSIwIgogICAgIGlua3NjYXBlOnBhZ2VzaGFkb3c9IjIiCiAgICAgaW5rc2NhcGU6d2luZG93LXdpZHRoPSIxMTgyIgogICAgIGlua3NjYXBlOndpbmRvdy1oZWlnaHQ9IjcwOCIKICAgICBpZD0ibmFtZWR2aWV3MzEyNCIKICAgICBzaG93Z3JpZD0idHJ1ZSIKICAgICBpbmtzY2FwZTpzbmFwLWJib3g9InRydWUiCiAgICAgaW5rc2NhcGU6b2JqZWN0LW5vZGVzPSJ0cnVlIgogICAgIGlua3NjYXBlOnpvb209IjE2IgogICAgIGlua3NjYXBlOmN4PSI4Ljk3Nzk0NzciCiAgICAgaW5rc2NhcGU6Y3k9IjEwLjczMjQ3NiIKICAgICBpbmtzY2FwZTp3aW5kb3cteD0iNDgyIgogICAgIGlua3NjYXBlOndpbmRvdy15PSIxMjciCiAgICAgaW5rc2NhcGU6d2luZG93LW1heGltaXplZD0iMCIKICAgICBpbmtzY2FwZTpjdXJyZW50LWxheWVyPSJzdmczMTIyIgogICAgIHNob3dndWlkZXM9ImZhbHNlIgogICAgIGlua3NjYXBlOmd1aWRlLWJib3g9InRydWUiCiAgICAgaW5rc2NhcGU6b2JqZWN0LXBhdGhzPSJ0cnVlIgogICAgIGZpdC1tYXJnaW4tdG9wPSIwIgogICAgIGZpdC1tYXJnaW4tbGVmdD0iMCIKICAgICBmaXQtbWFyZ2luLXJpZ2h0PSIwIgogICAgIGZpdC1tYXJnaW4tYm90dG9tPSIwIj4KICAgIDxpbmtzY2FwZTpncmlkCiAgICAgICB0eXBlPSJ4eWdyaWQiCiAgICAgICBpZD0iZ3JpZDMxMzIiCiAgICAgICBlbXBzcGFjaW5nPSI1IgogICAgICAgdmlzaWJsZT0idHJ1ZSIKICAgICAgIGVuYWJsZWQ9InRydWUiCiAgICAgICBzbmFwdmlzaWJsZWdyaWRsaW5lc29ubHk9InRydWUiCiAgICAgICBvcmlnaW54PSItMTQ4cHgiCiAgICAgICBvcmlnaW55PSItMzU4cHgiIC8+CiAgICA8c29kaXBvZGk6Z3VpZGUKICAgICAgIG9yaWVudGF0aW9uPSItMC43MDcxMDY3OCwwLjcwNzEwNjc4IgogICAgICAgcG9zaXRpb249IjEyLDEyIgogICAgICAgaWQ9Imd1aWRlNDEwNSIgLz4KICA8L3NvZGlwb2RpOm5hbWVkdmlldz4KICA8cGF0aAogICAgIHN0eWxlPSJjb2xvcjojMDAwMDAwO2ZpbGw6I2ZmZmZmZjtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6bm9uemVybztzdHJva2U6bm9uZTtzdHJva2Utd2lkdGg6MTI7bWFya2VyOm5vbmU7dmlzaWJpbGl0eTp2aXNpYmxlO2Rpc3BsYXk6aW5saW5lO292ZXJmbG93OnZpc2libGU7ZW5hYmxlLWJhY2tncm91bmQ6YWNjdW11bGF0ZSIKICAgICBkPSJNIDEyIDAgTCAxMiA1IEMgMTUuODY1OTkzIDUgMTkgOC4xMzQwMDY3IDE5IDEyIEwgMjQgMTIgQyAyNCA1LjM3MjU4MyAxOC42Mjc0MTcgMCAxMiAwIHogIgogICAgIGlkPSJwYXRoMzk1NiIgLz4KICA8cGF0aAogICAgIGlua3NjYXBlOmNvbm5lY3Rvci1jdXJ2YXR1cmU9IjAiCiAgICAgc3R5bGU9Im9wYWNpdHk6MC40O2NvbG9yOiMwMDAwMDA7ZmlsbDojZmZmZmZmO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpub256ZXJvO3N0cm9rZTpub25lO3N0cm9rZS13aWR0aDoxMjttYXJrZXI6bm9uZTt2aXNpYmlsaXR5OnZpc2libGU7ZGlzcGxheTppbmxpbmU7b3ZlcmZsb3c6dmlzaWJsZTtlbmFibGUtYmFja2dyb3VuZDphY2N1bXVsYXRlIgogICAgIGQ9Ik0gMTIsMCBDIDUuMzcyNTgzLDAgMCw1LjM3MjU4MyAwLDEyIGMgMCwzLjE4MjU5OCAxLjI0OTU2Myw2LjI0OTU2MyAzLjUsOC41IDIuMjUwNDM3LDIuMjUwNDM3IDUuMzE3NDAyLDMuNSA4LjUsMy41IDMuMTgyNTk4LDAgNi4yNDk1NjMsLTEuMjQ5NTYzIDguNSwtMy41IEMgMjIuNzUwNDM3LDE4LjI0OTU2MyAyNCwxNS4xODI1OTggMjQsMTIgbCAtNSwwIGMgMCwzLjg2NTk5MyAtMy4xMzQwMDcsNyAtNyw3IEMgOC4xMzQwMDY4LDE5IDUsMTUuODY1OTkzIDUsMTIgNSw4LjEzNDAwNjcgOC4xMzQwMDY4LDUgMTIsNSB6IgogICAgIGlkPSJwYXRoMzE3NCIKICAgICBzb2RpcG9kaTpub2RldHlwZXM9ImNjY2NjY2NjY2NjIiAvPgo8L3N2Zz4K) 50% 50% no-repeat;
+    left:50%;
+    top:50%;
+    margin:-20px 0 0 -20px;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    -webkit-animation: rotate .5s linear infinite;
+       -moz-animation: rotate .5s linear infinite;
+        -ms-animation: rotate .5s linear infinite;
+            animation: rotate .5s linear infinite;
+    }
+
+
+    // Mapbox GL - filter group
+  	//--------------------------------------------------------------
+    .filter-group {
+      font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+      font-weight: 600;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 1;
+      border-radius: 3px;
+      width: 120px;
+      color: #fff;
+
+      input[type=checkbox]:first-child + label {
+        border-radius: 3px 3px 0 0;
+      }
+      label:last-child {
+        border-radius: 0 0 3px 3px;
+        border: none;
+      }
+      input[type=checkbox] {
+        display: none;
+      }
+      input[type=checkbox] + label {
+        background-color: #3386c0;
+        display: block;
+        cursor: pointer;
+        padding: 10px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+      }
+      input[type=checkbox] + label {
+        background-color: #3386c0;
+        text-transform: capitalize;
+      }
+      input[type=checkbox] + label:hover,
+      input[type=checkbox]:checked + label {
+        background-color: #4ea0da;
+      }
+      input[type=checkbox]:checked + label:before {
+        content: '✔';
+        margin-right: 5px;
+      }
+    }
+
+
+    // Mapbox GL - menu
+  	//--------------------------------------------------------------
+    .map-menu {
+      background: #fff;
+      position: absolute;
+      z-index: 1000;
+      top: rem(10);
+      right: rem(10);
+      border-radius: rem(3);
+      width: rem(300);
+      max-height: 50vh;
+      box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+      overflow: auto;
+
+      div {
+        position: relative;
+        border-top: 1px solid $color_light_grey;
+
+        a {
+          position: relative;
+          font-size: 13px;
+          display: block;
+          margin: 0;
+          padding: rem(12) rem(10) rem(10) rem(32);
+          text-decoration: none;
+          text-align: left;
+          font-family: $font_semibold;
+          cursor: pointer;
+
+          &:first-child { border: none; }
+          &:hover { background-color: lighten($color_duke_blue, 67%); }
+          &:focus { outline: 0; }
+
+          &:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: rem(10);
+            width: rem(12);
+            height: rem(12);
+            background-color: transparent;
+            border: rem(2) solid $color_duke_blue;
+            border-radius: 50%;
+            transform: translateY(-50%);
+          }
+        }
+
+        // nested levels
+        div {
+          background-color: rgba($color_light_grey, .5);
+          border-color: darken($color_light_grey, 2%);
+        }
+        div a {
+          font-family: $font_regular;
+        }
+        div a:before {
+          left: rem(12);
+          width: rem(8);
+          height: rem(8);
+          border-width: rem(1);
+          border-color: $color_duke_blue;
+        }
+      }
+
+      // inactive state
+      div[data-layer="poi-partner"] > a:before { border-color: $color_duke_blue; }
+      div[data-layer="poi-amenity"] > a:before { border-color: $color_twitter_blue; }
+      div[data-layer="poi-space"] > a:before { border-color: $color_dark_green; }
+      div[data-layer="poi-site"] > a:before { border-color: $color_orange; }
+      div[data-layer="poi-space"] > a:before { border-color: $color_turquoise; }
+
+      // active state
+      div.active > a:before { background-color: $color_duke_blue; }
+      div.active[data-layer="poi-partner"] > a:before { background-color: $color_duke_blue; }
+      div.active[data-layer="poi-amenity"] > a:before { background-color: $color_twitter_blue; }
+      div.active[data-layer="poi-space"] > a:before { background-color: $color_dark_green; }
+      div.active[data-layer="poi-site"] > a:before { background-color: $color_orange; }
+      div.active[data-layer="poi-space"] > a:before { background-color: $color_turquoise; }
+
+    }
+
+
+    // Mapbox GL - debugger
+  	//--------------------------------------------------------------
+    // .debugger {
+    //   position: absolute;
+    //   top: 0;
+    //   right: 0;
+    //   bottom: 0;
+    //   width: 300px;
+    //   overflow: auto;
+    //   background: rgba(255, 255, 255, 0.8);
+    //   z-index: 1001;
+    // }
+
+
+}

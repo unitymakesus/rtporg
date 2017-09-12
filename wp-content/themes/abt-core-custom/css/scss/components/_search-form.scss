@@ -1,0 +1,71 @@
+//==================================================================
+// Search Form Partial
+// Styles for the search form.
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+// Search Form
+// =================================================================
+.site-search {
+  position: relative; width: 100%; overflow: hidden;
+  transition: all .25s ease-in-out;
+
+  @include media($desktop) {
+    position: absolute; left: 0; z-index: 1002;
+    @include rem(top, 150px);
+  }
+
+  ::-webkit-input-placeholder {
+    color: $color_grey;
+  }
+  :-moz-placeholder { /* Firefox 18- */
+    color: $color_grey;
+  }
+  ::-moz-placeholder {  /* Firefox 19+ */
+    color: $color_grey;
+  }
+  :-ms-input-placeholder {
+    color: $color_grey;
+  }
+  label {
+    position: absolute; top: 50%; cursor: pointer;
+    @include rem(left, 20px);
+    @include rem(width, 24px);
+    @include rem(height, 24px);
+    @include rem(margin, -12px 0 0);
+    transition: all .25s ease-in-out;
+  }
+  label .svg {
+    display: inline-block; width: auto; height: percentage(2/3); vertical-align: sub;
+  }
+  label .svg path {
+    fill: $color_grey;
+  }
+  input[type="search"] {
+    background-color: darken($color_dark_cyan, 20%); border: 0; border-top: 1px solid #fff;
+    @include rem(padding, 10px 40px 10px 60px);
+    @include rem(border-width, 1px);
+  }
+  input[type="submit"] {
+    position: absolute; top: 0; right: 0; height: 100%; background: url('../img/icons/i_search-submit.svg') no-repeat 50% 50%; font-size: 0; line-height: 0;
+    @include rem(width, 24px);
+    -webkit-transform: translate3d(40px, 0, 0);
+    transform: translate3d(40px, 0, 0);
+    -webkit-transition: -webkit-transform .25s ease-in-out;
+    transition: transform .25s ease-in-out;
+  }
+
+  // Focus
+  input[type="search"]:focus {
+    background-color: #fff; border-color: $color_light_grey;
+  }
+  input[type="search"]:focus + input[type="submit"] {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.menu-minimized .site-search input[type="search"]:focus + input[type="submit"] {
+  -webkit-transform: translate3d(40px, 0, 0);
+  transform: translate3d(40px, 0, 0);
+}

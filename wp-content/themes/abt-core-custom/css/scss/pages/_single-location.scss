@@ -1,0 +1,107 @@
+//==================================================================
+// Location Page Partial
+// Styles for the location detail page.
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+// Location Page
+// =================================================================
+.single-location {
+
+	.content-container {
+		padding-bottom: 0;
+	}
+	.content-wrapper {
+		display: flex;
+		@include flex-direction(column);
+
+		@include media($desktop) {
+			display: block;
+		}
+
+		.content {
+			order: 2;
+		}
+		.aside {
+			order: 1;
+		}
+	}
+	.entry-content .owl-carousel {
+		@include media($desktop_wide) {
+			//float: left; width: 40%;
+			//@include rem(margin-right, 40px);
+		}
+	}
+	.supplemental, .social-grid {
+		border-top: 1px solid $color_light_grey;
+		@include rem(padding-top, 40px);
+		@include rem(margin-top, 40px);
+		@include rem(border-width, 1px);
+	}
+	.meta.links {
+		@extend .group;
+
+		.button {
+			@include media($tablet) {
+				float: left;
+				width: 49%;
+			}
+			@include media($desktop) {
+				width: 100%;
+			}
+			@include media($desktop_xl_wide) {
+				width: 49%;
+			}
+		}
+		.button + .button {
+			@include media($tablet) {
+				float: right;
+			}
+		}
+
+	}
+
+}
+.sub-locations {
+	&.company-list {
+		.vcard.has-profile {
+			@include media($desktop) {
+					width: percentage((98/2)/100);
+			}
+			@include media($desktop_wide) {
+				width: percentage((97/3)/100);
+
+			}
+			&:first-child {
+				margin-bottom: 1%;
+			}
+			&:nth-child(odd) {
+				@include media($tablet) {
+					float: left; clear: none;
+				}
+				@include media($tablet_wide) {
+					clear: none;
+				}
+				@include media($desktop) {
+					margin-left: 0 !important;
+				}
+				@include media($desktop_wide) {
+					margin-left: 1% !important;
+				}
+			}
+			&:nth-child(3n-2) {
+				@include media($tablet_wide) {
+					clear: none;
+				}
+				@include media($desktop) {
+					margin-left: 1%; 
+				}
+			}
+			&:nth-child(4n-3) {
+				@include media($desktop_wide) {
+					margin-left: 1%; clear: none;
+				}
+			}
+		}
+	}
+}

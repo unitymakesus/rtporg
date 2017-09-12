@@ -1,0 +1,58 @@
+.quote-band {
+  text-align: center;
+
+  blockquote {
+    font-size: 32px;
+    font-family: $font_ostrich;
+    line-height: 1.1;
+    color: #fff;
+    border: none;
+    font-style: normal;
+    text-transform: uppercase;
+    padding: 0;
+
+    @include media($tablet){
+      font-size: 48px;
+    }
+
+
+    &:before,
+    &:after {
+      content: '';
+    }
+
+    .cite {
+      display: block;
+      font-size: 16px;
+      font-family: $font_light;
+      margin-top: 30px;
+      
+      @include media($tablet){
+        font-size: 24px;
+      }
+
+      strong {
+        font-family: $font_semibold;
+        display: block;
+      }
+    }
+    p {
+      margin: 0;
+    }
+  }
+  img {
+    display: none;
+    z-index: 3;
+  }
+
+  @include media($desktop) {
+    text-align: left;
+    img {
+      margin-top: -130px;
+      display: block;
+    }
+    blockquote {
+      padding-right: 30px;
+    }
+  }
+}

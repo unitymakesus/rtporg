@@ -1,0 +1,46 @@
+//==================================================================
+// Alerts Partial
+// Styles that help communicate success, warnings, failures, etc.
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+// Chrome Frame - for unsupported versions of IE
+// =================================================================
+.chromeframe {
+	position: fixed; top: 0; left: 0; width: 100%; height: auto; margin: 0; background-color: $color_duke_blue; color: #fff; z-index: 10000;
+	@include rem(padding, 20px);
+
+	a {
+		color: #fff; font-family: $font_semibold; text-decoration: underline;
+
+		&:hover {
+			color: rgba(#fff, .75);
+		}
+	}
+}
+
+
+// Alerts
+// =================================================================
+.alert-box {
+	color: #fff; text-align: center;
+	@include rem(padding, 20px);
+
+	&.info { background-color: $color_orange; }
+	&.error {}
+	&.success {}
+
+}
+
+
+// Form Alerts
+// =================================================================
+.gfield_required,
+.wysija-required {
+	color: $color_state_red; font-weight: normal;
+}
+.validation_error {
+	background-color: $color_state_red; color: #fff;
+	@include rem(padding, 10px 20px);
+	@include rem(margin, 0 0 16px);
+}

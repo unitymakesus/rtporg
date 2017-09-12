@@ -1,0 +1,110 @@
+// STEM
+// Specific Styles to the STEM in the Park Microsite
+
+// STEM Header
+//--------------------------------------------------------------
+.stem-header {
+  @extend .frontier-header;
+
+  @include media($desktop) {
+    position: fixed;
+    right: 0;
+    left: 4.0625rem;
+    z-index: 999;
+  }
+
+  li.current-menu-item {
+    background-color: inherit;
+  }
+  li.active {
+    background-color: darken($color_dark_cyan, 15%);
+  }
+  li.active a {
+    color: #fff;
+  }
+
+  ul.menu {
+    .donate-button {
+      width: 100%;
+      float: none;
+
+      @include media($tablet) {
+        display: inline-block;
+        width: auto;
+      }
+    }
+  }
+
+  .follow {
+    display: flex;
+
+    @media only screen and (min-width: 960px) and (max-width: 1100px) {
+      li a {
+        @include rem(padding, 20px 8px);
+      }
+
+      .svg {
+    		@include rem(width, 18px);
+    		@include rem(height, 18px);
+      }
+    }
+  }
+
+  .donate-button {
+    float: right;
+    display: block;
+
+    .button {
+      height: 100%;
+      margin-bottom: 0;
+      display: block;
+      line-height: 1.5;
+      @include rem(font-size, 16px);
+      @include rem(padding, 20px);
+
+      @include media($desktop_wide) {
+        @include rem(padding, 20px 30px);
+      }
+      @include media($desktop_xl_wide) {
+        @include rem(padding, 20px 40px);
+      }
+    }
+
+    img {
+      display: inline-block;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  }
+}
+
+// STEM page styles
+//--------------------------------------------------------------
+.page-template-page-stem {
+
+  .content {
+    overflow: visible;
+    @include rem(padding-top, 80px);
+  }
+
+  .aligncenter {
+    display: block;
+    margin: 5px auto;
+  }
+
+  hr {
+    background: $color_turquoise;
+    height: 2px;
+    max-width: 550px;
+    margin: 1em auto;
+  }
+
+  .featured-banner + p {
+    margin: 0;
+  }
+}
+
+.simcal-events {
+  padding-left: 0;
+}

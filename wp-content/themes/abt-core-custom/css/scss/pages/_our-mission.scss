@@ -1,0 +1,125 @@
+//==================================================================
+// Our Mission Page Partial
+// Styles for the our mission page
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+// Our Mission
+// =================================================================
+.page-template-page-our-mission-php {
+
+  // Global
+  // -------------------------------------------------------------
+  color: #fff;
+
+  .content-container,
+  .content-container .content {
+    padding: 0;
+  }
+
+  // Banners
+  // -------------------------------------------------------------
+  .featured-banner {
+    margin: 0; text-align: center;
+    @include rem(padding, 60px 20px);
+
+    @include media($tablet) {
+      @include rem(padding, 120px 100px);
+    }
+    @include media($desktop) {
+      background-attachment: fixed;
+      @include rem(padding, 240px 100px);
+    }
+    @include media($desktop_wide) {
+      @include rem(padding, 360px 200px);
+    }
+
+    .flex-container {
+      @include media($desktop) {
+        position: relative; height: 100%; z-index: 1;
+        @include display(flex);
+      }
+    }
+    .flex-content {
+      @include media($desktop) {
+        width: 100%;
+        @include align-self(center);
+      }
+    }
+
+    h1 {
+      @include rem(font-size, 24px);
+
+      @include media($tablet) {
+        @include rem(font-size, 36px);
+      }
+      @include media($desktop) {
+        @include rem(font-size, 48px);
+      }
+    }
+    h1 small {
+      color: #fff;
+      @include rem(margin, 0 0 10px);
+      @include rem(font-size, 16px);
+
+      @include media($tablet) {
+        @include rem(margin-bottom, 20px);
+      }
+      @include media($desktop) {
+        @include rem(margin-bottom, 30px);
+      }
+    }
+    h1 + div {
+      @include rem(margin, 32px 0 0);
+    }
+
+    .source {
+      @include media($desktop) {
+        position: absolute; bottom: 0; right: 0; margin: 0; color: rgba(#fff, .75); line-height: 1; text-align: right;
+        @include rem(padding, 10px);
+        transition: all .25s ease-in-out;
+      }
+
+      &:hover {
+        @include media($desktop) {
+          background-color: rgba(#000, .5); color: #fff;
+        }
+      }
+    }
+
+  }
+
+  // Pagination
+  // -------------------------------------------------------------
+  .pagination {
+    display: none;
+
+    @include media($desktop) {
+      position: fixed; right: 0; display: block; text-align: right; z-index: 1000;
+      @include rem(top, 100px);
+      @include rem(width, 70px);
+      @include rem(right, 20px);
+    }
+    @include media(1665px) {
+      right: auto;
+      @include rem(left, 1595px);
+    }
+
+    a {
+      @include media($desktop) {
+        display: block; padding: 0; margin: 0; background: none; border-right: 0 solid #fff; color: rgba(#fff, .35); font-family: $font_semibold;
+        @include rem(padding, 0 10px);
+        @include rem(margin, 10px 0);
+        transition: all .25s ease-in-out;
+      }
+    }
+    a:hover, a.active {
+      @include media($desktop) {
+        color: #fff; border-right: 20px solid #fff;
+        @include rem(border-width, 20px);
+      }
+    }
+
+  }
+
+}

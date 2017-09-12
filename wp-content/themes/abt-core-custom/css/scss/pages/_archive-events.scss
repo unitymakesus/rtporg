@@ -1,0 +1,80 @@
+//==================================================================
+// Archive Events Partial
+// Styles for events archive page.
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+// Content
+// =================================================================
+.page-template-page-events-php {
+	
+	.content-container {
+		padding-left: 0; padding-right: 0;
+	}
+	.content-container .content {
+		padding: 0;
+	}
+	.featured-banner {
+		margin: 0;
+	}
+	
+}
+
+.events-toolbar {
+	//background-color: darken($color_dark_cyan, 15%);
+	border-bottom: 2px solid $color_light_grey;
+	text-align: center;
+	@include rem(padding, 10px);
+
+	.events-display-toggle {
+		display: inline-block;
+		border: 1px solid $color_light_grey;
+		font-size: 0;
+		line-height: 0;
+
+		button {
+			display: inline-block;
+			margin: 0;
+			background-color: $color_light_grey;
+			vertical-align: middle;
+			line-height: 1;
+			text-align: center;
+			color: $color_cool_grey;
+			@include rem(width, 150px);
+			@include rem(font-size, 16px);
+		}
+		button .svg {
+			vertical-align: middle;
+			@include rem(width, 24px);
+			@include rem(height, 24px);
+			@include rem(margin-right, 10px);
+		}
+		button .svg * {
+			fill: $color_cool_grey;
+		}
+		button span {
+			display: inline-block;
+			vertical-align: middle;
+		}
+
+		// Hover
+		button:hover {
+			background-color: darken($color_light_grey, 10%);
+			color: darken($color_cool_grey, 10%);
+		}
+		button:hover .svg * {
+			fill: darken($color_cool_grey, 10%);
+		}
+
+		// Active
+		button.active {
+			background-color: $color_turquoise;
+			color: #fff;
+		}
+		button.active .svg * {
+			fill: #fff;
+		}
+
+	}
+
+}

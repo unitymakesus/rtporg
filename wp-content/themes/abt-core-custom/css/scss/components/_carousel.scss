@@ -1,0 +1,64 @@
+.owl-carousel {
+  .caption {
+    border-bottom: 1px solid $color_light_grey;
+    @include rem(padding, 20px);
+
+    @include media($tablet) {
+      @include rem(padding, 40px);
+    }
+    @include media($desktop) {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 100%;
+      background-color: rgba(#000, .75);
+      border: 0;
+      color: #fff;
+      z-index: 2;
+      @include rem(padding, 20px 40px);
+      transition: all $animation_speed ease-in-out;
+    }
+    @include media($desktop_wide) {
+      top: 20%;
+      bottom: auto;
+      right: 10%;
+      width: 50%;
+      @include rem(padding, 40px);
+    }
+
+    h3 {
+      @include media($desktop) {
+        color: #fff;
+      }
+    }
+  }
+  .caption:hover {
+    @include media($desktop) {
+      background-color: rgba(#000, .85);
+    }
+  }
+
+  .owl-item.active .caption {
+    @include media($desktop) {
+      @include animation(fadeInFromTop 1s ease-in-out);
+      a {
+        color: #fff;
+      }
+    }
+
+    a {
+      text-decoration: underline;
+    }
+  }
+
+  img {
+    margin: 0;
+    width: 100%;
+  }
+
+  .content > & {
+    margin-left: -2.5rem;
+    margin-right: -2.5rem;
+    width: auto;
+  }
+}

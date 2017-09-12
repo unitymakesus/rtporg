@@ -1,0 +1,122 @@
+
+html,
+body,
+.st-content { background: $color_light_grey; }
+.st-content, .st-content-inner { position: relative; }
+.st-content-inner {
+  background: #fff;
+  @include media($desktop) {
+    @include rem(max-width, 1600px);
+  }
+}
+.st-container {
+  position: relative;
+  overflow: hidden;
+  transition: all .25s ease-in-out;
+}
+.st-pusher {
+  position: relative;
+  left: 0;
+  z-index: 99;
+  height: 100%;
+  transition: all $animation_speed ease-in-out;
+
+  @include media($desktop) {
+    @include rem(margin-left, 260px);
+  }
+}
+.st-pusher::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  background: rgba(darken($color_dark_cyan, 20%), 0.8);
+  content: '';
+  opacity: 0;
+  z-index: 1000;
+  transition: opacity $animation_speed ease-in-out;
+}
+.st-menu-open .st-pusher::after {
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  transition: opacity $animation_speed ease-in-out;
+}
+
+.st-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  visibility: hidden;
+  height: 100%;
+  background: $color_dark_grey;
+  @include linear-gradient($color_turquoise, $color_dark_cyan);
+  transition: all $animation_speed ease-in-out;
+  @include rem(width, 260px);
+
+  @include media($tablet) {
+    @include rem(padding-bottom, 56px);
+  }
+}
+
+.st-menu::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.2);
+  content: '';
+  opacity: 1;
+  transition: opacity $animation_speed ease-in-out;
+}
+
+.st-menu-open .st-menu::after {
+  width: 0;
+  height: 0;
+  opacity: 0;
+  transition: opacity $animation_speed ease-in-out;
+}
+
+.st-trigger-effects {
+  @include media($desktop) {
+    display: none;
+  }
+}
+
+.st-toggle.st-menu-open .st-pusher {
+  -webkit-transform: translate3d(260px, 0, 0);
+  transform: translate3d(260px, 0, 0);
+}
+
+.st-toggle.st-menu {
+  z-index: 1;
+  transform: translate3d(-50%, 0, 0);
+
+  @include media($desktop) {
+    z-index: 1000;
+    // overflow-x:hidden;
+    visibility: visible;
+    transform: translate3d(0,0,0);
+  }
+}
+
+.st-toggle.st-menu-open .st-toggle.st-menu {
+  overflow-y: auto;
+  overflow-x: hidden;
+  visibility: visible;
+  transition: all $animation_speed ease-in-out;
+  transform: translate3d(0,0,0);
+}
+
+.st-toggle.st-menu::after {
+  display: none;
+}
+
+/* Fallback example for browsers that don't support 3D transforms (and no JS fallback) */
+.no-csstransforms3d .st-pusher,
+.no-js .st-pusher {
+  @include rem(padding-left, 260px);
+}

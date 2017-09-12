@@ -1,0 +1,485 @@
+// TheLab
+// Specific Styles to The TheLab Microsite
+
+// TheLab Header
+//--------------------------------------------------------------
+.thelab-header {
+  background-color: $color_orange;
+  @include rem(margin, 0 -20px);
+
+  @include media($tablet) {
+    @include rem(margin, 0 -40px);
+  }
+  @include media($desktop) {
+    margin: 0;
+  }
+
+  h2 {
+    position: relative;
+    margin: 0;
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+    cursor: pointer;
+    @include rem(padding, 20px);
+    @include rem(font-size, 16px);
+    transition: all $animation_speed ease-in-out;
+
+    @include media($tablet) {
+      display: none;
+    }
+
+    .svg {
+      position: absolute;
+      top: 50%;
+      @include rem(right, 20px);
+      @include rem(width, 24px);
+      @include rem(height, 24px);
+      @include rem(margin-top, -12px);
+      transition: all $animation_speed ease-in-out;
+    }
+
+    &:hover {
+      background-color: darken($color_dark_cyan, 5%);
+    }
+  }
+  nav {
+    @include media($desktop) {
+      display: inline-block;
+    }
+  }
+  nav ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+
+    @include media($tablet) {
+      font-size: 0;
+      line-height: 0;
+    }
+
+    li {
+      border-top: 1px solid darken($color_dark_cyan, 5%);
+      transition: all $animation_speed ease-in-out;
+
+      @include media($tablet) {
+        display: inline-block;
+        border: 0;
+        line-height: 1.5;
+        @include rem(font-size, 16px);
+      }
+    }
+    li a {
+      display: block;
+      color: rgba(#fff, .75);
+      font-family: $font_semibold;
+      @include rem(padding, 20px);
+
+      @include media($desktop) {
+        display: inline-block;
+      }
+      @include media($desktop_wide) {
+        @include rem(padding, 20px 30px);
+      }
+      @include media($desktop_xl_wide) {
+        @include rem(padding, 20px 40px);
+      }
+    }
+    li:hover {
+      background-color: darken($color_orange, 5%);
+    }
+    li:hover a {
+      color: #fff;
+    }
+    li.current-menu-item {
+      background-color: darken($color_orange, 20%);
+    }
+    li.current-menu-item a {
+      color: #fff;
+    }
+  }
+
+  .follow {
+    @include media($tablet) {
+      position: static;
+      font-size: $base_font_size;
+      line-height: $base_line_height;
+    }
+    @include media($desktop) {
+      float: right;
+      display: inline-block;
+      width: auto;
+      background: none;
+    }
+
+    li {
+
+      a {
+        @include media($desktop) {
+          @include rem(padding, 20px);
+        }
+      }
+
+    }
+    .svg path {
+      @include media($desktop) {
+        fill: #fff;
+      }
+    }
+  }
+
+  &.active h2 .svg {
+    transform: rotate(45deg);
+  }
+}
+// Frontier Video
+.thelab-featured {
+  position: relative;
+  background-image: url('../img/bg_thelab-home.jpg');
+  color: #fff;
+  text-align: center;
+  overflow: hidden;
+
+  @include media($desktop) {
+    padding-left: 25%;
+    padding-right: 25%;
+  }
+
+  &:before {
+    z-index: 2;
+  }
+  .overlay {
+    position: relative;
+    z-index: 3;
+
+    @include media($desktop) {
+      @include animation(fadeInFromTop 1s ease-in-out);
+    }
+
+    img {
+      @include rem(max-width, 250px);
+
+      @include media($desktop) {
+        @include rem(max-width, 350px);
+      }
+    }
+    p {
+      @include rem(margin, 32px 0);
+    }
+  }
+}
+// Frontier Innovate
+.thelab-companies {
+  background-image: url('../img/bg_thelab-companies.jpg');
+
+  @include media($desktop) {
+    padding-left: 10%;
+    padding-right: 50%;
+    background-attachment: fixed;
+  }
+
+  div {
+    @include media($desktop) {
+      background-color: rgba(#fff, .5);
+      box-shadow: 0 0 0 36px rgba(#fff, .5);
+      transition: all $animation_speed ease-in-out;
+    }
+  }
+  div:hover {
+    @include media($desktop) {
+      background-color: rgba(#fff, .75);
+      box-shadow: 0 0 0 36px rgba(#fff, .75);
+    }
+  }
+
+  p {
+    @include rem(margin, 32px 0);
+  }
+}
+.thelab-space {
+  background-image: url('../img/bg_thelab-home-space.jpg');
+
+}
+// Frontier Innovate Intro
+.thelab-space-intro {
+  background-image: url('../img/bg_thelab-available-space.jpg');
+  &.featured-banner.theme-frosty p {
+    color:$color_dark_grey;
+    line-height: 1.5;
+  }
+  @include media($desktop) {
+    padding-left: 10%;
+    padding-right: 30%;
+    background-attachment: fixed;
+  }
+
+  div {
+    @include media($desktop) {
+      background-color: rgba(#fff, .5);
+      box-shadow: 0 0 0 36px rgba(#fff, .5);
+      transition: all $animation_speed ease-in-out;
+    }
+  }
+  div:hover {
+    @include media($desktop) {
+      background-color: rgba(#fff, .75);
+      box-shadow: 0 0 0 36px rgba(#fff, .75);
+    }
+  }
+}
+// Frontier About Links
+.thelab-about-links {
+  background-image: url('../img/bg_thelab-about.jpg');
+  color: #fff;
+
+  @include media($desktop) {
+    padding-left: 10%;
+    padding-right: 50%;
+    background-attachment: fixed;
+  }
+
+  div {
+    @include media($desktop) {
+      background-color: rgba(#fff, .5);
+      box-shadow: 0 0 0 36px rgba(#fff, .5);
+      transition: all $animation_speed ease-in-out;
+    }
+  }
+  div:hover {
+    @include media($desktop) {
+      background-color: rgba(#fff, .75);
+      box-shadow: 0 0 0 36px rgba(#fff, .75);
+    }
+  }
+
+  p {
+    @include rem(margin, 32px 0);
+  }
+  .button {
+    margin: 0;
+  }
+}
+
+.company-list {
+  @extend .people;
+
+  .vcard.has-profile {
+    @include media($tablet) {
+      @include rem(height, 220px);
+    }
+    @include media($desktop) {
+      @include rem(height, 326px);
+    }
+
+    a {
+      display: flex;
+      height: 100%;
+      @include rem(padding, 20px 68px 20px 20px);
+      @include align-items(center);
+
+      @include media($tablet) {
+        padding: 0;
+        @include flex-direction(column);
+        @include justify-content(center);
+      }
+    }
+    .fn {
+      margin: 0;
+      font-family: $font_light;
+      text-align: left;
+      @include flex-grow(2);
+
+      @include media($tablet) {
+        display: flex;
+        width: 100%;
+        text-align: center;
+        background-color: lighten($color_off_white, 2%);
+        @include flex-direction(column);
+        @include justify-content(center);
+        @include align-items(center);
+        @include rem(padding, 20px);
+        @include rem(font-size, 18px);
+      }
+    }
+    .photo {
+      position: relative;
+      display: block;
+      background-color: transparent;
+      border-radius: 0;
+      left: 0;
+      top:0;
+      background-size: contain;
+      margin: 0;
+      box-shadow: none;
+      @include rem(width, 64px);
+      @include rem(height, 64px);
+      @include rem(min-width, 64px);
+      @include rem(margin-right, 10px);
+
+      @include media($tablet) {
+        width: 100%;
+        @include rem(height, 128px);
+        @include rem(padding, 20px);
+        margin-right: 0;
+      }
+      @include media($desktop) {
+        position: relative;
+        @include rem(height, 224px);
+      }
+
+      &.placeholder {
+        background-image: url('../img/icons/i_photo.svg');
+
+        @include media($tablet) {
+          background-size: auto 25%;
+        }
+      }
+    }
+    &:hover {
+      background-color: darken($color_off_white, 10%);
+    }
+    &:hover .fn {
+      margin: 0;
+      color: darken($color_off_white, 50%);
+      @include media($tablet) {
+        background-color: darken($color_off_white, 5%);
+      }
+    }
+    &:hover .photo {
+      transform: none;
+    }
+  }
+
+}
+
+// TheLab About Map
+.thelab-about-map {
+  background-image: url('../img/bg_rtp-thelab-map.jpg');
+  color: #fff;
+
+
+  @include media($desktop) {
+    padding-left: 50%;
+    padding-right: 10%;
+    //background-attachment: fixed;
+  }
+
+  div {
+    background-color: rgba(darken($color_dark_cyan, 10%), .75);
+    @include rem(padding, 20px);
+    @include media($desktop) {
+      padding: 0;
+      box-shadow: 0 0 0 36px rgba(darken($color_dark_cyan, 10%), .75);
+      transition: all $animation_speed ease-in-out;
+    }
+  }
+  div:hover {
+    @include media($desktop) {
+      background-color: rgba(darken($color_dark_cyan, 10%), .85);
+      box-shadow: 0 0 0 36px rgba(darken($color_dark_cyan, 10%), .85);
+    }
+  }
+
+  h2 {
+    color: #fff;
+  }
+  p + p {
+    @include rem(margin-top, 32px);
+  }
+
+
+}
+.thelab-banner-right {
+
+  @include media($desktop) {
+    padding-left: 50%;
+    padding-right: 10%;
+    //background-attachment: fixed;
+  }
+
+  div {
+    @include media($desktop) {
+      background-color: rgba(#fff, .5);
+      box-shadow: 0 0 0 36px rgba(#fff, .5);
+      transition: all $animation_speed ease-in-out;
+    }
+  }
+  div:hover {
+    @include media($desktop) {
+      background-color: rgba(#fff, .75);
+      box-shadow: 0 0 0 36px rgba(#fff, .75);
+    }
+  }
+
+  h2 {
+    // color: #fff;
+  }
+  p {
+    @include rem(margin, 32px 0);
+  }
+}
+.thelab-banner-left {
+
+  @include media($desktop) {
+    padding-left: 10%;
+    padding-right: 50%;
+    background-attachment: fixed;
+  }
+
+  div {
+    @include media($desktop) {
+      background-color: rgba(#fff, .5);
+      box-shadow: 0 0 0 36px rgba(#fff, .5);
+      transition: all $animation_speed ease-in-out;
+    }
+  }
+  div:hover {
+    @include media($desktop) {
+      background-color: rgba(#fff, .75);
+      box-shadow: 0 0 0 36px rgba(#fff, .75);
+    }
+  }
+
+  p {
+    @include rem(margin, 32px 0);
+  }
+}
+.thelab-space-pricing {
+  @extend .frontier-innovate-pricing;
+  h2 {
+    @include rem(margin-bottom, 20px);
+  }
+  p {
+    @include rem(font-size, 14px);
+    display: inline-block;
+    @include rem(margin-bottom, 80px);
+  }
+  svg {
+    @include rem(margin-bottom, 20px);
+    width: 70px;
+    height: 70px;
+
+    path {
+      fill: #fff;
+    }
+
+
+  }
+}
+.thelab-space-band1 {
+  background-image: url('../img/bg_thelab-tubes.jpg');
+  background-attachment: initial;
+}
+.thelab-space-band2 {
+  background-image: url('../img/bg_thelab-space.jpg');
+  background-attachment: initial;
+  &.featured-banner.theme-frosty p {
+    color:$color_dark_grey;
+  }
+
+}
+.thelab-space-band3 {
+  background-image: url('../img/bg_thelab-lableaf.jpg');
+  background-attachment: initial;
+}

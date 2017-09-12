@@ -1,0 +1,26 @@
+.theme-orange {
+  background: linear-gradient(75deg, #c7202c, #ef4e22);
+  color: #fff;
+}
+
+.theme-gray {
+  background-color: #f4f4f4;
+}
+
+.theme-white {
+  background-color: #fff;
+
+}
+
+.theme-dark {
+  background-color: $color_black;
+  color: #fff;
+}
+
+.theme-gray-mobile {
+	@extend .theme-gray;
+
+	@include media($desktop){
+		background: #fff;
+	}
+}

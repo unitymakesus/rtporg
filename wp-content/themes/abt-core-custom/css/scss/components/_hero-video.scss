@@ -1,0 +1,285 @@
+// Hero Video
+//
+// <div class="band hero-video">
+//   <div class="wrapper">
+//
+
+
+.hero-video {
+  padding: 60px 0;
+  background-position: center;
+  background-size: cover;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  background-image: url('../img/hero-bg.jpg');
+  height: 100vh;
+
+  @supports (background-blend-mode: multiply) {
+    background-color: lighten($color_duke_blue, 15%);
+    background-blend-mode: multiply;
+  }
+  
+
+  @include media($tablet){
+    min-height: 950px;
+  }
+
+  @include media($desktop){
+    min-height: 600px;
+    text-align: left;
+    background-image: none;
+  }
+
+
+  h1 {
+    text-transform: uppercase;
+    font-size: 16px;
+    color: $color_turquoise;
+    margin-bottom: 0;
+
+    @include media($desktop){
+      font-size: 24px;
+    }
+  }
+  header {
+    p {
+      font-size: 38px;
+      font-family: $font_bold;
+      line-height: 1;
+      margin: 0 auto;
+
+      @include media($phone_wide){
+        font-size: 36px;
+      }
+
+      @include media($tablet){
+        font-size: 65px;
+        max-width: 470px;
+        max-width: 310px;
+      }
+
+      @include media($desktop){
+        font-size: 75px;
+        max-width: none;
+      }
+
+      @include media($desktop_wide){
+        font-size: 96px;
+      }
+
+      br {
+        display: none;
+        @include media($desktop){
+          display: block;
+        }
+      }
+    }
+  }
+  p {
+    font-size: 16px;
+    font-family: $font_thin;
+    margin-top: 5px;
+
+    @include media($phone_wide) {
+      font-size: 22px;
+      margin-bottom: 5px;
+    }
+
+    @include media($tablet) {
+      font-size: 30px;
+    }
+
+    @include media($desktop) {
+      font-size: 24px;
+    }
+
+    @include media($desktop_wide) {
+      font-size: 30px;
+    }
+
+    br {
+        display: none;
+        @include media($desktop){
+          display: block;
+        }
+      }
+  }
+
+    &:before {
+      position: absolute;
+      content: '';
+      display: block;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 2;
+      background-color: rgba(shade($color_duke_blue, 15%), .7);
+      
+
+      @supports not (background-blend-mode: multiply) {
+        background-color: rgba(shade($color_duke_blue, 15%), .9);
+      }
+  }
+}
+.hero-video-button {
+  width: 50px;
+  height: 50px;
+  margin: 20px 0 60px;
+  padding: 0;
+  display: inline-block;
+  color: transparent;
+  position: relative;
+  background:none;
+  background-image: url(../img/button-play.png);
+  background-size: 38%;
+  background-position: 55% center;
+  background-repeat: no-repeat;
+  position: relative;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  backface-visibility: hidden;
+
+  @include media($phone_wide){
+    margin: 0;
+  }
+
+  @include media($tablet){
+    background-size: auto;
+    width: 80px;
+    height: 80px;
+    margin: 40px 0;
+  }
+
+  @include media($desktop) {
+    width: 118px;
+    height: 118px;
+    background-size: 30%;
+    margin-right: 20px;
+
+    &:before {
+    content: '';
+    width: 178px;
+    height: 178px;
+    top: -31px;
+    left: -31px;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    animation: pulseRing infinite 2.5s;
+    position: absolute;
+    background: rgba(255,255,255,0);
+    @include transition(background .5s ease-in-out);
+  }
+
+  &:after {
+    content: '';
+    width: 266px;
+    height: 266px;
+    top: -75px;
+    left: -75px;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    animation: pulseRing infinite 2.5s .5s;
+    position: absolute;
+    background: rgba(255,255,255,0);
+    @include transition(background .5s ease-in-out);
+    }
+  }
+
+  @include media($desktop_wide) {
+    margin-right: 0;
+  }
+
+  &:hover {
+    color: transparent;
+    background-color: rgba(255,255,255,.05);
+  }
+}
+
+
+
+@keyframes pulseRing {
+  0% {
+    opacity: .05;
+  }
+
+  50% {
+    opacity: .3;
+  }
+
+  100% {
+    opacity: .05;
+  }
+}
+
+.wrapper.hero-video-meta {
+  z-index: 3;
+  padding: 0 20px;
+
+  @include media($tablet){
+    padding: 0 80px;
+  }
+}
+.bg-video {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  max-width: initial;
+
+
+  @supports (background-blend-mode: multiply) {
+    background-color: $color_duke_blue;
+    background-blend-mode: color;
+  }
+
+  @include media($desktop) {
+    display: block;
+
+    @supports (background-blend-mode: multiply) {
+      background-color: $color_duke_blue;
+      mix-blend-mode: multiply;
+    }
+  }
+}
+
+.blue-triangle {
+  background-color: #0d2545;
+  opacity: .95;
+  position: absolute;
+  bottom: -70vw;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  padding-top: 100%;
+  @include transform(rotate(45deg));
+
+  @include media($tablet){
+    display: none;
+  }
+}
+
+@media all and (-ms-high-contrast:none) {
+    .bg-video {
+      display: none !important;
+    }
+    .hero-video {
+      background-image: url(../img/hero-bg.jpg) !important;
+    }
+    .text-gradient-blue,
+    .block-more-blue span,
+    .block-more-blue :after,
+    .text-gradient-orange,
+    .block-more-orange span,
+    .block-more-orange :after {
+       background: none !important;
+    }
+}

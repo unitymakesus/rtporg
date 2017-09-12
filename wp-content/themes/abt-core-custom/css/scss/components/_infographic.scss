@@ -1,0 +1,62 @@
+
+
+
+.infographic-brain {
+  text-align: center;
+  position: relative;
+  font-size: 0;
+
+  img {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__left {
+    float: right;
+    margin-right: 5px;
+    width: 49%;
+  }
+
+  &__right {
+    float: left;
+    margin-left: 5px;
+    margin-bottom: -18%;
+    width: 65%;
+
+  }
+
+  .panel-left,
+  .panel-right {
+    display: inline-block;
+    width: 50%;
+    position: relative;
+  }
+  .panel-right {
+    margin-left: -10px;
+
+    @include media($tablet) {
+      margin-left: -20px;
+    }
+
+    @include media($desktop) {
+      margin-left: -30px;
+    }
+  }
+
+
+  .infographic-brain-absolute {
+    position: absolute;
+    width: 55%;
+    height: 80%;
+    top: 10%;
+    left: 0;
+    z-index: 0;
+
+    &.infographic-barcode {
+      width: 47%;
+      top: 20%;
+      right: 0;
+      left: auto;
+    }
+  }
+}

@@ -1,0 +1,872 @@
+// Frontier
+// Specific Styles to The Frontier Microsite
+
+// Frontier Header
+//--------------------------------------------------------------
+.frontier-header {
+  background-color: $color_dark_cyan;
+  @include rem(margin, 0 -20px);
+
+  @include media($tablet) {
+    @include rem(margin, 0 -40px);
+  }
+  @include media($desktop) {
+    margin: 0;
+  }
+
+  h2 {
+    position: relative;
+    margin: 0;
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+    cursor: pointer;
+    @include rem(padding, 20px);
+    @include rem(font-size, 16px);
+    transition: all $animation_speed ease-in-out;
+
+    @include media($tablet) {
+      display: none;
+    }
+
+    .svg {
+      position: absolute;
+      top: 50%;
+      @include rem(right, 20px);
+      @include rem(width, 24px);
+      @include rem(height, 24px);
+      @include rem(margin-top, -12px);
+      transition: all $animation_speed ease-in-out;
+    }
+
+    &:hover {
+      background-color: darken($color_dark_cyan, 5%);
+    }
+  }
+  nav {
+    @include media($desktop) {
+      display: inline-block;
+    }
+  }
+  nav ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+
+    @include media($tablet) {
+      font-size: 0;
+      line-height: 0;
+    }
+
+    li {
+      border-top: 1px solid darken($color_dark_cyan, 5%);
+      transition: all $animation_speed ease-in-out;
+
+      @include media($tablet) {
+        display: inline-block;
+        border: 0;
+        line-height: 1.5;
+        @include rem(font-size, 16px);
+      }
+    }
+    li a {
+      display: block;
+      color: rgba(#fff, .75);
+      font-family: $font_regular;
+      @include rem(padding, 20px);
+
+      @include media($desktop) {
+        display: inline-block;
+      }
+      @include media($desktop_wide) {
+        @include rem(padding, 20px 30px);
+      }
+      @include media($desktop_xl_wide) {
+        @include rem(padding, 20px 40px);
+      }
+    }
+    li:hover {
+      background-color: darken($color_dark_cyan, 5%);
+    }
+    li:hover a {
+      color: #fff;
+    }
+    li.current-menu-item {
+      background-color: darken($color_dark_cyan, 15%);
+    }
+    li.current-menu-item a {
+      color: #fff;
+    }
+  }
+
+  .follow {
+    @include media($tablet) {
+      position: static;
+      font-size: $base_font_size;
+      line-height: $base_line_height;
+    }
+    @include media($desktop) {
+      float: right;
+      display: inline-block;
+      width: auto;
+      background: none;
+    }
+
+    li {
+
+      a {
+        @include media($desktop) {
+          @include rem(padding, 20px);
+        }
+      }
+
+    }
+    .svg path {
+      @include media($desktop) {
+        fill: #fff;
+      }
+    }
+  }
+
+  &.active h2 .svg {
+    transform: rotate(45deg);
+  }
+}
+
+
+// Frontier Home Sections
+//--------------------------------------------------------------
+
+// Frontier Video
+.frontier-video {
+  position: relative;
+  background-image: url('../img/bg_frontier-home.jpg');
+  color: #fff;
+  text-align: center;
+  overflow: hidden;
+
+  @include media($desktop) {
+    width: 100%;
+    padding-left: 25%;
+    padding-right: 25%;
+  }
+
+  &:before {
+    z-index: 2;
+  }
+  .overlay {
+    position: relative;
+    z-index: 3;
+
+    @include media($desktop) {
+      @include animation(fadeInFromTop 1s ease-in-out);
+    }
+
+    img {
+      @include rem(max-width, 250px);
+
+      @include media($desktop) {
+        @include rem(max-width, 350px);
+      }
+    }
+    p {
+      @include rem(margin, 32px 0);
+    }
+  }
+  video {
+    display: none;
+
+    @include media($desktop) {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: 100%;
+      max-width: none;
+      z-index: 1;
+    }
+  }
+}
+
+// Frontier Innovate
+.frontier-innovate {
+  background-image: url('../img/bg_frontier-innovate.jpg');
+
+  @include media($desktop) {
+    padding-left: 10%;
+    padding-right: 50%;
+    background-attachment: fixed;
+  }
+
+  div {
+    @include media($desktop) {
+      background-color: rgba(#fff, .5);
+      box-shadow: 0 0 0 36px rgba(#fff, .5);
+      transition: all $animation_speed ease-in-out;
+    }
+  }
+  div:hover {
+    @include media($desktop) {
+      background-color: rgba(#fff, .75);
+      box-shadow: 0 0 0 36px rgba(#fff, .75);
+    }
+  }
+
+  p {
+    @include rem(margin, 32px 0);
+  }
+}
+
+// Frontier Events
+.frontier-events {
+  background-image: url('../img/bg_frontier-events.jpg');
+  color: #fff;
+
+  @include media($desktop) {
+    padding-left: 50%;
+    padding-right: 10%;
+    background-attachment: fixed;
+  }
+
+  div {
+    @include media($desktop) {
+      background-color: rgba(darken($color_dark_cyan, 10%), .75);
+      box-shadow: 0 0 0 36px rgba(darken($color_dark_cyan, 10%), .75);
+      transition: all $animation_speed ease-in-out;
+    }
+  }
+  div:hover {
+    @include media($desktop) {
+      background-color: rgba(darken($color_dark_cyan, 10%), .85);
+      box-shadow: 0 0 0 36px rgba(darken($color_dark_cyan, 10%), .85);
+    }
+  }
+  h2 {
+    color: #fff;
+  }
+  p {
+    @include rem(margin, 32px 0);
+  }
+  .button {
+    margin: 0;
+  }
+}
+
+// Frontier About
+.frontier-about {
+  background-image: url('../img/bg_frontier-about.jpg');
+
+  @include media($desktop) {
+    padding-left: 10%;
+    padding-right: 50%;
+    background-attachment: fixed;
+  }
+
+  div {
+    @include media($desktop) {
+      background-color: rgba(#fff, .5);
+      box-shadow: 0 0 0 36px rgba(#fff, .5);
+      transition: all $animation_speed ease-in-out;
+    }
+  }
+  div:hover {
+    @include media($desktop) {
+      background-color: rgba(#fff, .75);
+      box-shadow: 0 0 0 36px rgba(#fff, .75);
+    }
+  }
+  p {
+    @include rem(margin, 32px 0);
+  }
+}
+
+
+// Frontier Collaborate Sections
+//--------------------------------------------------------------
+
+// Frontier Collaborate Intro
+.frontier-collaborate-intro {
+  background-image: url('../img/bg_frontier-collaborate-intro.jpg');
+
+  @include media($desktop) {
+    padding-left: 10%;
+    padding-right: 50%;
+    background-attachment: fixed;
+  }
+
+  div {
+    @include media($desktop) {
+      background-color: rgba(#fff, .5);
+      box-shadow: 0 0 0 36px rgba(#fff, .5);
+      transition: all $animation_speed ease-in-out;
+    }
+  }
+  div:hover {
+    @include media($desktop) {
+      background-color: rgba(#fff, .75);
+      box-shadow: 0 0 0 36px rgba(#fff, .75);
+    }
+  }
+}
+
+// Frontier Rooms
+.frontier-rooms {
+  text-align: center;
+  @include rem(padding, 20px);
+
+  @include media($tablet) {
+    overflow: hidden;
+    @include rem(padding, 40px);
+  }
+  @include media($desktop) {
+    padding: 10%;
+  }
+
+  h2 {
+    @include rem(margin, 0 0 32px);
+
+    @include media($desktop) {
+      @include rem(margin, 0 0 84px);
+    }
+  }
+
+  .room {
+    padding: 0;
+    margin: 0 0 2%;
+    background: none !important;
+    border: 1px solid darken($color_light_grey, 10%);
+    overflow: hidden;
+    text-align: center;
+
+    @include media($tablet) {
+      float: left;
+      width: 48%;
+    }
+    @include media($desktop) {
+      width: 32%;
+      margin-left: 2%;
+    }
+
+    h3 {
+      margin: 0;
+    }
+    h3 small {
+      display: block;
+      color: $color_cool_grey;
+      font-family: $font_light;
+      @include rem(margin-top, 8px);
+      @include rem(font-size, 16px);
+    }
+    .thumbnail {
+      padding-top: 75%;
+      width: 100%;
+      position: relative;
+      img {
+        position: absolute;
+        height: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+    }
+    .info {
+      @include rem(padding, 40px 20px);
+    }
+    .svg {
+      display: inline-block;
+      vertical-align: middle;
+      @include rem(width, 32px);
+      @include rem(height, 32px);
+      @include rem(margin-right, 16px);
+
+      @include media($desktop) {
+        margin: 0;
+      }
+    }
+    .svg * {
+      fill: darken($color_dark_cyan, 20%);
+    }
+    .features {
+      padding: 0;
+      border-top: 1px solid $color_light_grey;
+      border-bottom: 1px solid $color_light_grey;
+      list-style: none;
+      text-align: left;
+      @include rem(padding, 32px 0);
+      @include rem(margin, 32px 0);
+
+      @include media($desktop) {
+        text-align: center;
+      }
+    }
+    .features li {
+      @include rem(margin, 32px 0 0);
+
+      @include media($desktop) {
+        display: inline-block;
+        @include rem(margin, 0 10px);
+      }
+    }
+    .features li:first-child {
+      margin: 0;
+
+      @include media($desktop) {
+        @include rem(margin, 0 10px);
+      }
+    }
+    .features li span {
+      display: inline-block;
+      line-height: 32px;
+      vertical-align: middle;
+
+      @include media($desktop) {
+        display: none;
+      }
+    }
+    .button {
+      margin: 0;
+    }
+
+    &:first-child {
+      @include media($desktop) {
+        margin-left: 0;
+      }
+    }
+    &:nth-child(odd) {
+      @include media($tablet) {
+        margin-right: 4%;
+        clear: left;
+      }
+      @include media($desktop) {
+        margin-right: 0;
+        clear: none;
+      }
+    }
+    &.medium {
+      @include media($desktop) {
+        width: 49%;
+        margin-left: 0;
+        clear: left;
+      }
+    }
+    &.large {
+      @include media($desktop) {
+        width: 49%;
+      }
+    }
+
+  }
+
+}
+
+
+// Frontier Innovate Sections
+//--------------------------------------------------------------
+
+// Frontier Innovate Intro
+.frontier-innovate-intro {
+  background-image: url('../img/bg_frontier-innovate-intro.jpg');
+
+  @include media($desktop) {
+    padding-left: 10%;
+    padding-right: 50%;
+    background-attachment: fixed;
+  }
+
+  div {
+    @include media($desktop) {
+      background-color: rgba(#fff, .5);
+      box-shadow: 0 0 0 36px rgba(#fff, .5);
+      transition: all $animation_speed ease-in-out;
+    }
+  }
+  div:hover {
+    @include media($desktop) {
+      background-color: rgba(#fff, .75);
+      box-shadow: 0 0 0 36px rgba(#fff, .75);
+    }
+  }
+}
+
+// Frontier Innovate Gallery
+.frontier-innovate-gallery {
+  @include rem(margin, 0 -20px);
+
+  @include media($tablet) {
+    @include rem(margin, 0 -40px);
+  }
+  @include media($desktop) {
+    margin: 0;
+    @include rem(margin-bottom, 40px);
+  }
+}
+
+// Frontier Innovate Pricing
+.frontier-innovate-pricing {
+  text-align: center;
+
+  @include media($desktop) {
+    padding-left: 10%;
+    padding-right: 10%;
+    font-size: 0;
+    line-height: 0;
+  }
+
+  h2 {
+    @include rem(margin, 0 0 32px);
+
+    @include media($desktop) {
+      @include rem(margin, 0 0 128px);
+    }
+  }
+
+  .tier {
+    background: $color_off_white;
+    @include rem(margin, 0 0 32px);
+
+    @include media($desktop) {
+      display: inline-block;
+      width: 32%;
+      margin-left: 2%;
+      line-height: 1.5;
+      vertical-align: top;
+      @include rem(font-size, 16px);
+    }
+
+    &:first-child {
+      @include media($desktop) {
+        margin-left: 0;
+      }
+    }
+
+    .most-popular {
+      background-color: $color_turquoise;
+      color: #fff;
+      font-family: $font_semibold;
+      text-transform: uppercase;
+      @include rem(padding, 10px);
+
+      @include media($desktop) {
+        @include rem(margin-top, -44px);
+      }
+    }
+
+    .summary {
+      background-color: darken($color_dark_cyan, 20%);
+      color: #fff;
+      @include rem(padding, 20px);
+
+      @include media($desktop) {
+        @include rem(padding, 80px 20px);
+      }
+    }
+    .summary h2 {
+      margin: 0;
+      color: #fff;
+      text-transform: uppercase;
+      @include rem(font-size, 18px);
+    }
+    .summary .price {
+      font-family: $font_light;
+      line-height: 1;
+      @include rem(margin-top, 16px);
+      @include rem(font-size, 36px);
+    }
+
+    .info ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+    .info li {
+      border-top: 1px solid darken($color_off_white, 10%);
+      @include rem(padding, 20px);
+    }
+    .info li:first-child {
+      border: 0;
+    }
+    .info hr {
+      width: 75%;
+      margin: 16px auto;
+    }
+
+    .action {
+      border-top: 1px solid darken($color_off_white, 10%);
+      @include rem(padding, 20px);
+    }
+    .action .button {
+      margin: 0;
+    }
+
+  }
+}
+
+// Frontier Events Sections
+//--------------------------------------------------------------
+
+// Frontier Event Events
+.frontier-event-events {
+  text-align: center;
+
+  @include rem(padding, 20px 0);
+
+  @include media($tablet) {
+    @include rem(padding, 40px 0);
+  }
+  @include media($desktop) {
+    @include rem(padding, 60px 0);
+  }
+
+  h2 {
+    @include rem(margin, 20px 0);
+
+    @include media($tablet) {
+      @include rem(margin, 40px 0);
+    }
+    @include media($desktop) {
+      @include rem(margin, 60px 0);
+    }
+  }
+
+  .social-grid {
+    text-align: left;
+    @include rem(margin-bottom, 20px);
+
+    @include media($tablet) {
+      @include rem(margin-bottom, 40px);
+    }
+    @include media($desktop) {
+      @include rem(margin-bottom, 60px);
+    }
+  }
+}
+
+// Frontier About Sections
+//--------------------------------------------------------------
+
+// Frontier About Intro
+.frontier-about-intro {
+  background-image: url('../img/bg_frontier-about-intro.jpg');
+
+  @include media($desktop) {
+    padding-left: 10%;
+    padding-right: 50%;
+    background-attachment: fixed;
+  }
+
+  div {
+    @include media($desktop) {
+      background-color: rgba(#fff, .5);
+      box-shadow: 0 0 0 36px rgba(#fff, .5);
+      transition: all $animation_speed ease-in-out;
+    }
+  }
+  div:hover {
+    @include media($desktop) {
+      background-color: rgba(#fff, .75);
+      box-shadow: 0 0 0 36px rgba(#fff, .75);
+    }
+  }
+
+  p {
+    @include rem(margin, 32px 0);
+  }
+}
+
+// Frontier About Map
+.frontier-about-map {
+  background-image: url('../img/bg_rtp-map.jpg');
+  color: #fff;
+
+
+  @include media($desktop) {
+    padding-left: 50%;
+    padding-right: 10%;
+    //background-attachment: fixed;
+  }
+
+  div {
+    background-color: rgba(darken($color_dark_cyan, 10%), .75);
+    @include rem(padding, 20px);
+    @include media($desktop) {
+      padding: 0;
+      box-shadow: 0 0 0 36px rgba(darken($color_dark_cyan, 10%), .75);
+      transition: all $animation_speed ease-in-out;
+    }
+  }
+  div:hover {
+    @include media($desktop) {
+      background-color: rgba(darken($color_dark_cyan, 10%), .85);
+      box-shadow: 0 0 0 36px rgba(darken($color_dark_cyan, 10%), .85);
+    }
+  }
+
+  h2 {
+    color: #fff;
+  }
+  p + p {
+    @include rem(margin-top, 32px);
+  }
+}
+
+// Frontier About Links
+.frontier-about-links {
+  background-image: url('../img/bg_frontier-about-links.jpg');
+  color: #fff;
+
+  @include media($desktop) {
+    padding-left: 10%;
+    padding-right: 50%;
+    background-attachment: fixed;
+  }
+
+  div {
+    @include media($desktop) {
+      background-color: rgba(#fff, .5);
+      box-shadow: 0 0 0 36px rgba(#fff, .5);
+      transition: all $animation_speed ease-in-out;
+    }
+  }
+  div:hover {
+    @include media($desktop) {
+      background-color: rgba(#fff, .75);
+      box-shadow: 0 0 0 36px rgba(#fff, .75);
+    }
+  }
+
+  p {
+    @include rem(margin, 32px 0);
+  }
+
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    font-size: 0;
+    line-height: 0;
+    text-align: center;
+
+    li {
+      position: relative;
+      display: block;
+      border-top: 1px solid rgba(#fff, .5);
+      line-height: 1.5;
+      @include rem(padding, 16px 0 0);
+      @include rem(margin, 16px 0 0);
+      @include rem(font-size, 16px);
+
+      @include media($tablet) {
+        display: inline-block;
+        width: 32%;
+        padding: 0;
+        margin: 0 0 0 2%;
+        border: 0;
+      }
+      @include media($desktop) {
+        position: relative;
+        @include rem(max-width, 250px);
+      }
+    }
+    li:first-child {
+      padding-top: 0;
+      border: 0;
+    }
+    li a {
+      display: block;
+      height: 100%;
+      font-family: $font_semibold;
+      font-size: 0;
+      line-height: 0;
+
+      @include media($desktop) {
+        @include rem(font-size, 24px);
+      }
+    }
+    li .svg {
+      display: inline-block;
+      width: 25%;
+      margin: 0;
+      vertical-align: middle;
+
+      @include media($tablet) {
+        display: block;
+        width: 100%;
+        box-shadow: 10px 10px 0 rgba(#000, .1);
+      }
+    }
+    li span {
+      display: inline-block;
+      width: 50%;
+      padding: 10%;
+      color: #fff;
+      vertical-align: middle;
+      @include rem(font-size, 18px);
+
+      @include media($tablet) {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        color: #fff;
+        text-transform: uppercase;
+        z-index: 2;
+        @include rem(padding, 20px);
+        @include rem(font-size, 18px);
+      }
+      @include media($desktop) {
+        @include rem(font-size, 24px);
+      }
+    }
+
+    li:first-child {
+      margin: 0;
+    }
+    li.about-location {
+      @include media($desktop) {
+        @include animation(fadeInFromTop 1s ease-in-out);
+      }
+    }
+    li.about-contact {
+      @include media($desktop) {
+        @include animation(fadeInFromTop 1.5s ease-in-out);
+      }
+    }
+    li.about-blog {
+      @include media($desktop) {
+        @include animation(fadeInFromTop 2s ease-in-out);
+      }
+    }
+  }
+}
+
+// Frontier About Team
+.frontier-about-team {
+  text-align: center;
+
+  @include media($desktop) {
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+
+  h2 {
+    @include rem(margin, 0 0 32px);
+
+    @include media($desktop) {
+      @include rem(margin, 0 0 84px);
+    }
+  }
+  .people {
+    @include media($tablet_wide) {
+      text-align: center;
+    }
+
+    .vcard.has-profile {
+      @include media($tablet_wide) {
+        float: none;
+        display: inline-block;
+      }
+    }
+  }
+}

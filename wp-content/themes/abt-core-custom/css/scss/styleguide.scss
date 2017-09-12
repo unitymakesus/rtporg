@@ -1,0 +1,347 @@
+/*==================================================================
+ * Style Guide
+ * Styles for the project's style guide/documentation
+ * (c) Atlantic BT. All Rights Reserved.
+ *==================================================================*/
+
+// Global Imports
+//==================================================================*/
+
+  // 1. Import Configurations               (Required)
+  //--------------------------------------------------------------*/
+  @import "bourbon";
+  @import "neat";
+
+  // 2. Import Grid, Functions & Settings         (Required)
+  //--------------------------------------------------------------*/
+  @import "utilities/functions";
+  @import "utilities/settings";
+
+
+// Variables
+//==================================================================*/
+$styleguide_bg_color: $color_light_grey;
+$styleguide_title_color: $color_duke_blue;
+
+$styleguide_menu_bg_color: darken(#133464, 5%);
+$styleguide_menu_bg_color_hover: darken(#133464, 10%);
+$styleguide_menu_text_color: rgba(255,255,255,.5);
+$styleguide_menu_active_color: $color_duke_blue;
+
+$styleguide_code_text_color: $color_grey;
+
+
+// Global
+//==================================================================*/
+body { background-color: $styleguide_bg_color; }
+.st-content-inner { background-color: lighten($styleguide_bg_color, 1%); }
+.wrapper { width: 960px; margin: 0 auto; }
+.section { clear: both; }
+
+
+// Menu
+//==================================================================*/
+
+  // Primary
+  //--------------------------------------------------------------*/
+  nav.style-guide-primary {
+    float: left; width: 100%; background-color: $styleguide_menu_bg_color;
+
+    h1 {
+      float: left; margin: 0; color: #fff; font-family: $font_light;
+      @include rem(padding, 0 20px);
+      @include rem(font-size, 24px);
+      @include rem(line-height, 64px);
+    }
+    ul {
+      float: right; padding: 0; margin: 0; list-style: none;
+
+      li {
+        float: left;
+        transition: all .25s ease-in-out;
+      }
+      li a {
+        display: block; color: $styleguide_menu_text_color;
+        @include rem(padding, 20px);
+      }
+
+      // Hover
+      li:hover {
+        background-color: $styleguide_menu_bg_color_hover;
+      }
+
+      // Active
+      li.active {
+        background-color: $styleguide_menu_active_color;
+      }
+      li.active a {
+        color: #fff;
+      }
+
+      // Secondary menu
+      ul {
+        position: absolute; left: 0; display: none; width: 100%; background-color: $styleguide_menu_active_color;
+        @include rem(top, 64px);
+      }
+      li.active ul {
+        display: block;
+      }
+      li.active ul li {
+        float: right;
+      }
+      li.active ul li a {
+        color: rgba(#fff, .5);
+        @include rem(padding, 10px 20px);
+      }
+      li.active ul li:hover {
+        background: none;
+      }
+      li.active ul li:hover a {
+        color: #fff;
+      }
+      li.active ul li.active a {
+        color: #fff;
+      }
+
+    }
+
+  }
+
+
+  // Secondary
+  //--------------------------------------------------------------*/
+  // nav.style-guide-secondary {
+  //  float: left; width: 100%; background-color: #fff; border-top: 4px solid $color_duke_blue;
+  //  @include rem(border-width, 4px);
+
+  //  h1 { display: none; }
+  //  ul {
+  //    float: right; padding: 0; margin: 0; list-style: none;
+
+  //    li a {
+  //      color: $color_carolina_blue;
+  //    }
+
+  //    li {
+  //      float: left;
+  //      transition: all .25s ease-in-out;
+  //    }
+  //    li a {
+  //      display: block; color: $color_duke_blue;
+  //      @include rem(padding, 20px);
+  //    }
+
+  //    // Hover
+  //    li:hover a {
+  //      color: $color_turquoise;
+  //    }
+
+  //  }
+
+  // }
+
+
+
+
+// Sections
+//==================================================================*/
+.section {
+  text-align: center;
+  @include rem(padding, 50px 0);
+
+  .title {
+    color: $styleguide_title_color; font-family: $font_semibold; font-weight: normal; text-align: center;
+    @include rem(font-size, 47px);
+  }
+  .subtitle {
+    display: inline-block; background-color: darken($styleguide_bg_color, 5%); font-family: $font_light; text-align: center; text-transform: uppercase;
+    @include rem(padding, 6px 14px);
+    @include rem(margin, 0 0 10px);
+    @include rem(font-size, 14px);
+    @include border-top-radius(3px);
+    @include border-bottom-radius(3px);
+    @include border-left-radius(3px);
+    @include border-right-radius(3px);
+  }
+}
+section.colors {
+  background-color: #133464;
+  @include rem(padding, 100px 0 150px);
+
+  .title { margin: 0; color: #fff; }
+  .subtitle {
+    color: rgba(255,255,255,.5); background-color: rgba(0,0,0,.25);
+    @include rem(margin, 40px 0 10px);
+  }
+}
+section.type {
+
+  section { padding: 0; }
+  .swatches {
+    @include rem(margin-bottom, 50px);
+  }
+  .type-info {
+    display: block; color: #647687; font-weight: bold;
+    @include rem(margin-bottom, -10px);
+  }
+}
+section.base-elements {
+  text-align: left;
+}
+section[data-content="components"] {
+  @include rem(padding-top, 114px);
+}
+
+
+// Color Swatches
+//==================================================================*/
+.swatches {
+  font-size: 0; line-height: 0; text-align: center;
+
+  .swatch {
+    position: relative; display: inline-block; line-height: 1.5; overflow: hidden;
+
+    @include rem(width, 140px);
+    @include rem(height, 220px);
+    @include rem(margin, 4px);
+    @include rem(font-size, 11px);
+    @include border-top-radius(3px);
+    @include border-bottom-radius(3px);
+    @include border-left-radius(3px);
+    @include border-right-radius(3px);
+
+    .preview {
+      @include rem(padding-top, 52px);
+      @include rem(font-size, 40px);
+    }
+    p {
+      position: absolute; bottom: 0; left: 0; width: 100%; margin: 0; background: #fff; color: #647687;
+      @include rem(padding, 20px 10px);
+    }
+    span { display: block; text-transform: uppercase; }
+    span.swatch-name {
+      font-weight: bold; line-height: 2.5; text-transform: uppercase;
+    }
+    span.swatch-variable {
+      display: inline-block; background-color: $styleguide_bg_color; font-family: $font_regular; line-height: 1; text-transform: lowercase;
+      @include rem(padding, 4px 10px);
+      @include rem(margin-bottom, 8px);
+      @include border-top-radius(20px);
+      @include border-bottom-radius(20px);
+      @include border-left-radius(20px);
+      @include border-right-radius(20px);
+    }
+
+  }
+  &.primary .swatch {
+    @include rem(width, 180px);
+    @include rem(height, 250px);
+  }
+
+}
+
+// Icons
+//==================================================================*/
+.icons {
+
+  text-align: center;
+
+  .icon {
+    display: inline-block; background-color: $color_off_white; border: 1px solid lighten($color_grey, 10%); vertical-align: top;
+    @include rem(width, 100px);
+    @include rem(height, 100px);
+    @include rem(margin, 0 10px 40px);
+    @include rem(border-width, 1px);
+    transition: background-color .25s ease-in-out;
+
+    .svg {
+      @include rem(width, 24px);
+      @include rem(height, 24px);
+      @include rem(margin, 38px 0);
+    }
+    .svg * {
+      fill: $color_duke_blue;
+    }
+    div {
+      color: $color_grey; text-transform: uppercase;
+      @include rem(font-size, 12px);
+      transition: color .25s ease-in-out;
+    }
+
+    &:hover {
+      background-color: #fff;
+    }
+    &:hover div {
+      color: $color_dark_grey;
+    }
+
+  }
+
+}
+
+// Code Snippets
+//==================================================================*/
+code {
+  font-family: "Inconsolata";
+}
+
+
+// Component
+//==================================================================*/
+.component {
+  background-color: #fff; overflow: hidden; text-align: left;
+  @include rem(margin-bottom, 20px);
+  @include border-top-radius(3px);
+  @include border-bottom-radius(3px);
+  @include border-left-radius(3px);
+  @include border-right-radius(3px);
+
+  .title {
+    margin: 0; border-bottom: 1px solid #eceef0; text-align: left;
+    @include rem(padding, 14px 18px);
+    @include rem(font-size, 24px);
+    @include rem(border-width, 1px);
+  }
+  .description {
+    margin: 0; color: #647687;
+    @include rem(padding, 14px 18px);
+    @include rem(font-size, 14px);
+
+  }
+  .preview {
+    position: relative; background-color: #f9fbfc; border-top: 1px solid darken(#eceef0, 5%); border-bottom: 1px solid darken(#eceef0, 5%); overflow: hidden;
+    @include rem(padding, 62px 18px 28px);
+    @include rem(border-width, 1px);
+
+    &:before {
+      content: "Example"; position: absolute; top: 0; left: 0; color: rgba(#647687, .4); font-family: $font_semibold; text-transform: uppercase;
+      @include rem(top, 18px);
+      @include rem(left, 18px);
+      transition: color .25s ease-in-out;
+    }
+
+    &:hover:before {
+      color: rgba(#647687, .8);
+    }
+  }
+  pre {
+    position: relative; margin: 0;
+    @include rem(padding-top, 30px);
+
+    &:before {
+      content: "Code"; position: absolute; top: 0; left: 0; color: rgba(#647687, .4); font-family: $font_semibold; text-transform: uppercase;
+      @include rem(top, 18px);
+      @include rem(left, 18px);
+      transition: color .25s ease-in-out;
+    }
+
+    &:hover:before {
+      color: rgba(#647687, .8);
+    }
+  }
+  code {
+    background: #fff; color: $styleguide_code_text_color;
+    @include rem(padding, 0 18px);
+  }
+
+}

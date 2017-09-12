@@ -1,0 +1,86 @@
+
+.band-header {
+  text-align: center;
+  font-family: $font_light;
+  margin-bottom: 60px;
+  padding: 0 10px;
+
+  @include media($phone_wide){
+    padding: 0 60px;
+  }
+
+  @include media($desktop) {
+    padding: 0;
+    margin-bottom: 30px;
+  }
+
+  h1,h2 {
+    font-family: $font_light;
+    font-size: 24px;
+    color: $color_dark_blue;
+    margin: 0;
+
+    @include media($tablet) {
+      font-size: 32px;
+    }
+
+    @include media($desktop) {
+      font-size: 48px;
+    }
+
+    & + p {
+      font-size: 16px;
+      max-width: 860px;
+      margin-right: auto;
+      margin-left: auto;
+      line-height: 1.4;
+
+      @include media($tablet) {
+        font-size: 20px;
+      }
+
+      @include media($desktop) {
+        font-size: 24px;
+      }
+    }
+  }
+  
+  p {
+    color: $color_grey;
+    font-size: 24px;
+    margin: 0;
+  }
+
+  &.pad-none {
+    margin-bottom: 0;
+  }
+  &.pad-less {
+    margin-bottom: 60px;
+  }
+
+  &.pad-more {
+    margin-bottom: 60px;
+    @include media($desktop) {
+      margin-bottom: 120px;
+    }
+  }
+}
+
+.band-header-left {
+  // text-align: left;
+}
+
+.band-header-right {
+  text-align: right;
+}
+
+.band-header-inline {
+
+  &.band-header-left {
+    @include media($desktop) {
+      margin-bottom: 0;
+      text-align: left;
+      padding-left: 60px;
+    }
+  }
+}

@@ -1,0 +1,56 @@
+%block {
+  width: 50%;
+  padding-bottom: 50%;
+  float: left;
+  position: relative;
+}
+
+.block {
+  @extend %block;
+
+  .block-quarter & {
+    @include media($desktop) {
+      width: 25%;
+      padding-bottom: 25%;
+    }
+  }
+}
+
+.block-logo {
+
+  img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    max-width: 80%;
+    max-height: 25%;
+  }
+}
+
+.block-grid {
+  display: block;
+}
+
+.logo-set-alternate {
+  .block {
+    &:nth-child(4n-1),
+    &:nth-child(4n-2) {
+      //background-color: $color_light_grey;
+      background-color: #fff;
+    }
+    @include media($desktop) {
+      &:nth-child(4n-1),
+      &:nth-child(4n-2) {
+        background-color: transparent;
+      }
+
+      &:nth-child(-2n+4),
+      &:nth-child(2n+5):nth-child(-2n+7),
+      &:nth-child(2n+10):nth-child(-2n+12) {
+        //background-color: $color_light_grey;
+      background-color: #fff;
+      }
+    }
+  }
+}

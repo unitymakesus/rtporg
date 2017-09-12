@@ -1,0 +1,53 @@
+//==================================================================
+// Tables Partial
+// Styles for tables and table componenets.
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+// Variables
+// =================================================================
+$table_cell_border_color: lighten($color_dark_grey, 50%);
+
+
+// Tables
+// =================================================================
+table {
+	width: 100%;
+
+	// Global
+	// -------------------------------------------------------------
+	tr {}
+	th, td {
+		border-top: 1px solid $table_cell_border_color; border-bottom: 1px solid $table_cell_border_color; text-align: left;
+		@include rem(padding, 10px);
+		@include rem(border-width, 1px);
+	}
+	th { font-weight: normal; font-family: $font_bold; }
+
+
+	// Header Cells
+	// -------------------------------------------------------------
+	thead {}
+	thead th {}
+
+
+	// Body Cells
+	// -------------------------------------------------------------
+	tbody tr:nth-child(even) {}
+
+		// Hover
+		tbody tr:hover {}
+		tbody tr:nth-child(even):hover {}
+
+
+	// Footer Cells
+	// -------------------------------------------------------------
+	tfoot {}
+	tfoot td {}
+
+		// Hover
+		tfoot tr:hover {}
+		tfoot tr:nth-child(even):hover {}
+
+
+}

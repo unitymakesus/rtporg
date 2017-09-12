@@ -1,0 +1,34 @@
+/* =Additional Admin Styles
+==================================================================================================================*/
+#cpt_info_box,
+#wpcf-marketing { display: none; }
+
+	/* ABT Core Dashboard Widget
+	------------------------------------------------------------------------ */
+	#dashboard-widgets-wrap #custom_help_widget .inside { height: 165px; padding: 0; margin: 0; }
+	#dashboard-widgets-wrap #custom_help_widget .core-logo { float: left; width: 100%; height: 130px; background: url('../img/bg_admin-core-widget.png') no-repeat 50% 100%; text-align: center; }
+	#dashboard-widgets-wrap #custom_help_widget .core-logo span { position: relative; top: 20px; display: inline-block; width: 202px; height: 91px; background: url('../img/l_core-logo.png') no-repeat 0 0; text-indent: -9000em; }
+	#dashboard-widgets-wrap #custom_help_widget .info { float: left; width: 100%; height: 35px; background: #fff url('../img/bg_admin-core-widget-info.png') repeat 0 0; color: #2b3a42; }
+	#dashboard-widgets-wrap #custom_help_widget .version { float: left; width: 50%; padding: 0 1em; line-height: 35px; text-align: center;
+		-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+	}
+	#dashboard-widgets-wrap #custom_help_widget .support { float: left; width: 50%; padding: 0 1em; border-left: 1px solid #ddd; line-height: 35px; text-align: center;
+		-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+	}
+
+#adminmenu .wp-menu-image img { max-width: 18px; }
+
+
+.postbox .inside table {
+	border-collapse: collapse;
+}
+.postbox .inside table th,
+.postbox .inside table td {
+	padding: 10px;
+	border: 1px solid #ccc;
+}
+.postbox .inside table th {
+	background-color: #222;
+	border-color: #555;
+	color: #fff;
+}

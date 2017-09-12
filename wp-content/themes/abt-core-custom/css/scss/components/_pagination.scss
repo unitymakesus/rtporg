@@ -1,0 +1,82 @@
+//==================================================================
+// Pagination Partial
+// Styles for the pagination component.
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+// Pagination Navigation
+// =================================================================
+.pagination {
+  position: relative; font-size: 0; line-height: 0; text-align: center; clear: both;
+  @include rem(padding, 20px 0);
+  @include rem(margin, 0 0 40px);
+}
+
+.pagination span, .pagination a {
+  display: inline-block; width: auto; background-color: $color_light_grey; color:$color_dark_grey; line-height: 1.3; white-space: nowrap;
+  @include rem(padding, 10px 20px);
+  @include rem(margin, 2px);
+  @include rem(font-size, 16px);
+}
+// .pagination span:first-child {
+//   display: block; padding-left: 0; padding-right: 0; margin-left: 0; background: none;
+
+//   @include media($desktop) {
+//     display: inline-block;
+//     @include rem(padding, 10px 20px);
+//   }
+// }
+
+.pagination a:hover{
+  background-color: $color_turquoise; color: #fff;
+
+}
+
+.pagination span.current{
+  background-color: darken($color_dark_cyan, 15%); color: #fff;
+}
+
+// Pagination
+// =================================================================
+.pagination-vertical {
+  display: none;
+
+  @include media($desktop) {
+    position: fixed; right: 0; display: block; /*background-color: rgba(#000, .25);*/ text-align: right; z-index: 1000;
+    @include rem(top, 100px);
+    @include rem(width, 70px);
+    @include rem(right, 15px);
+  }
+  @include media(1665px) {
+    right: auto;
+    @include rem(left, 1595px);
+  }
+
+  a {
+    @include media($desktop) {
+      display: block; padding: 0; margin: 0; background: none; border-right: 0 solid #fff; color: rgba(#fff, .35); font-family: $font_semibold;
+      @include rem(padding, 0 10px);
+      @include rem(margin, 10px 0);
+      transition: all .25s ease-in-out;
+    }
+  }
+  a:hover, a.active {
+    @include media($desktop) {
+      color: #fff; border-right: 20px solid #fff;
+      @include rem(border-width, 20px);
+    }
+  }
+
+  // Inverted theme
+  &.inverted a {
+    @include media($desktop) {
+      color: rgba(darken($color_dark_cyan, 15%), .35);
+    }
+  }
+  &.inverted a:hover, &.inverted a.active {
+    @include media($desktop) {
+      color: darken($color_dark_cyan, 15%); border-color: darken($color_dark_cyan, 15%);
+    }
+  }
+
+}

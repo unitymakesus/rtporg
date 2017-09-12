@@ -1,0 +1,423 @@
+//==================================================================
+// Animations Partial
+// Custom keyframed animations to be used in the site/application
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+// Fade In Left
+// =================================================================
+@-webkit-keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(-20px);
+    transform: translateX(-20px);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(-20px);
+    -ms-transform: translateX(-20px);
+    transform: translateX(-20px);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+    -ms-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+
+// Grow
+// =================================================================
+@-webkit-keyframes grow {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes grow {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+// Grow from Center
+// =================================================================
+@-webkit-keyframes growFromCenter {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes growFromCenter {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+// Fade In From Top
+// =================================================================
+@-webkit-keyframes fadeInFromTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInFromTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Appear from Bottom
+// =================================================================
+@-webkit-keyframes appearFromBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes appearFromBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Pulse
+// =================================================================
+@-webkit-keyframes pulse {
+  to {
+    box-shadow: 0 0 0 15px rgba(255,255,255,0);
+  }
+}
+
+@keyframes pulse {
+  to {
+    box-shadow: 0 0 0 15px rgba(255,255,255,0);
+  }
+}
+
+// Pulse
+// =================================================================
+@-webkit-keyframes super_pulse {
+  to {
+    box-shadow: 0 0 0 250px rgba(255,255,255,0);
+  }
+}
+
+@keyframes super_pulse {
+  to {
+    box-shadow: 0 0 0 250px rgba(255,255,255,0);
+  }
+}
+
+// Converge Left
+// =================================================================
+@-webkit-keyframes convergeLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+@keyframes convergeLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+// Converge Right
+// =================================================================
+@-webkit-keyframes convergeRight {
+  0% {
+    opacity: 0;
+    transform: translateX(200px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+@keyframes convergeRight {
+  0% {
+    opacity: 0;
+    transform: translateX(200px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+// Converge Background
+// =================================================================
+@-webkit-keyframes convergeBackground {
+  0% {
+    background-size: 0 0;
+  }
+
+  100% {
+    background-size: auto 208px;
+  }
+}
+
+@keyframes convergeRight {
+  0% {
+    background-size: 0 0;
+  }
+
+  100% {
+    background-size: auto 208px;
+  }
+}
+
+// Swing Vertical
+// =================================================================
+@-webkit-keyframes swingVertical {
+  0% {
+    transform: rotate(90deg) translateX(-10px);
+  }
+  50% {
+    transform: rotate(90deg) translateX(0px);
+  }
+  100% {
+    transform: rotate(90deg) translateX(-10px);
+  }
+}
+
+@keyframes swingVertical {
+  0% {
+    transform: rotate(90deg) translateX(-10px);
+  }
+  50% {
+    transform: rotate(90deg) translateX(10px);
+  }
+  100% {
+    transform: rotate(90deg) translateX(-10px);
+  }
+}
+
+// Reveal
+// =================================================================
+@-webkit-keyframes reveal {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes reveal {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+// Peek a Boo
+// =================================================================
+@-webkit-keyframes peek_a_boo {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes peek_a_boo {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+// Highlight Dots
+// =================================================================
+@-webkit-keyframes highlight_dots {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes highlight_dots {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+// Ripple
+// =================================================================
+@-webkit-keyframes ripple {
+  0% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.25);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.25);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}
+
+// Orbit
+// =================================================================
+@-webkit-keyframes orbit {
+  0% {
+    transform: rotate(0deg);
+  }
+  33% {
+    transform: rotate(120deg);
+  }
+  66% {
+    transform: rotate(240deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbit {
+  0% {
+    transform: rotate(0deg);
+  }
+  33% {
+    transform: rotate(120deg);
+  }
+  66% {
+    transform: rotate(240deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+// Spring
+// =================================================================
+@-webkit-keyframes spring {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes spring {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

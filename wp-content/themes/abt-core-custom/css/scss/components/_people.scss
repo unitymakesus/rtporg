@@ -1,0 +1,249 @@
+//==================================================================
+// People Partial
+// Styles for people components.
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+// People Category
+// =================================================================
+.people-category {
+  color: darken($color_dark_cyan, 15%); line-height: 1.2;
+  @include rem(margin, 40px 0 20px);
+  @include rem(font-size, 24px);
+
+  @include media($tablet) {
+    @include rem(font-size, 24px);
+  }
+}
+
+
+// People List
+// =================================================================
+.people {
+  padding: 0; margin: 0; list-style: none;
+
+  @include media($tablet) {
+    font-size: 0; line-height: 0; overflow: hidden;
+  }
+
+}
+
+
+// Individual Person
+// =================================================================
+.people .vcard {
+  position: relative; background-color: $color_off_white;
+  @include rem(padding, 20px 20px 20px 112px);
+  @include rem(margin, 2px 0 0);
+  @include rem(border-radius, 5px);
+
+  @include media($tablet) {
+    float: right; width: 49.5%; margin: 0 0 1%; text-align: center; vertical-align: top;
+    @include rem(padding, 177px 30px 36px);
+  }
+  @include media($tablet_wide) {
+    float: left; width: percentage((98/3)/100); margin: 0 0 1% 1%;
+  }
+  @include media($desktop_wide) {
+    width: percentage((97/4)/100);
+  }
+
+  &:first-child {
+    margin: 0;
+  }
+  &:nth-child(odd) {
+    @include media($tablet) {
+      float: left; clear: both;
+    }
+    @include media($tablet_wide) {
+      clear: none;
+    }
+  }
+  &:nth-child(3n-2) {
+    @include media($tablet_wide) {
+      margin-left: 0; clear: both;
+    }
+    @include media($desktop_wide) {
+      margin-left: 1%; clear: none;
+    }
+  }
+  &:nth-child(4n-3) {
+    @include media($desktop_wide) {
+      margin-left: 0; clear: both;
+    }
+  }
+
+  // Photo
+  //--------------------------------------------------------------
+  .photo {
+    position: absolute; top: 50%; background: #fff no-repeat 50% 50%; background-size: cover; overflow: hidden; text-align: center; z-index: 2;
+    border-radius: 50%;
+    @include rem(left, 20px);
+    @include rem(width, 72px);
+    @include rem(height, 72px);
+    @include rem(margin, -36px 0 0);
+    transition: all .25s ease-in-out;
+
+    @include media($tablet) {
+      left: 50%;
+      @include rem(top, 41px);
+      @include rem(width, 118px);
+      @include rem(height, 118px);
+      @include rem(margin, 0 0 0 -59px);
+    }
+
+    &.placeholder {
+      opacity: .25;
+    }
+
+    .svg, img {
+      position: relative; z-index: 1;
+      transition: all .25s ease-in-out;
+    }
+    .svg {
+      position: absolute; top: 50%; left: 50%;
+      @include rem(width, 76px);
+      @include rem(height, 76px);
+      @include rem(margin, -38px 0 0 -38px);
+
+      @include media($tablet) {
+        @include rem(width, 130px);
+        @include rem(height, 130px);
+        @include rem(margin, -65px 0 0 -65px);
+      }
+    }
+    .svg * {
+      fill: $color_grey;
+    }
+
+  }
+
+  // Full Name
+  //--------------------------------------------------------------
+  .fn {
+    color: darken($color_dark_cyan, 15%); font-family: $font_regular; line-height: 1.2;
+    @include rem(margin, 0 0 12px);
+    @include rem(font-size, 18px);
+    transition: all .25s ease-in-out;
+
+    @include media($tablet) {
+      @include rem(margin, 0 0 16px);
+      @include rem(font-size, 24px);
+    }
+  }
+  .fn + h4 {
+    color: $color_orange; line-height: 1.2;
+    @include rem(margin, -4px 0 12px);
+    @include rem(font-size, 16px);
+  }
+
+  // Role
+  //--------------------------------------------------------------
+  .role {
+    color: $color_dark_cyan; font-family: $font_regular; line-height: 1.2;
+    @include rem(margin, 0 0 4px);
+    @include rem(font-size, 16px);
+    transition: all .25s ease-in-out;
+
+    @include media($tablet) {
+      border-top: 1px solid $color_grey;
+      @include rem(padding-top, 16px);
+      @include rem(border-width, 1px);
+      @include rem(font-size, 16px);
+    }
+  }
+
+  // Organization
+  //--------------------------------------------------------------
+  .org {
+    margin: 0; color: $color_grey; font-family: $font_regular; line-height: 1.2;
+    @include rem(font-size, 16px);
+    transition: all .25s ease-in-out;
+
+    @include media($tablet) {
+      @include rem(font-size, 16px);
+    }
+  }
+
+  // Has Profile
+  //--------------------------------------------------------------
+  &.has-profile {
+    padding: 0;
+    transition: all .25s ease-in-out;
+
+    a {
+      display: block; height: 100%;
+      @include rem(padding, 20px 68px 20px 112px);
+
+      @include media($tablet) {
+        @include rem(padding, 177px 30px 36px);
+      }
+    }
+    .more {
+      position: absolute; top: 50%;
+      @include rem(right, 24px);
+      @include rem(width, 24px);
+      @include rem(height, 24px);
+      @include rem(margin, -12px 0 0);
+
+      @include media($tablet) {
+        display: none;
+      }
+    }
+    .more * {
+      fill: darken($color_light_grey, 5%);
+    }
+
+    // Hover
+    &:hover {
+      background-color: $color_turquoise;
+    }
+    &:hover .photo {
+      @include media($tablet) {
+        transform: scale(1.1);
+        @include backface-visibility(hidden);
+        @include transform-style(preserve-3d);
+      }
+    }
+    &:hover .fn {
+      color: #fff;
+      @include rem(margin, 8px 0 0);
+
+      @include media($tablet) {
+        @include rem(margin, 16px 0 0);
+      }
+    }
+    &:hover .role {
+      border: 0; padding: 0; color: lighten($color_turquoise, 25%);
+    }
+    &:hover .org {
+      color: lighten($color_turquoise, 25%);
+    }
+
+  }
+
+}
+
+// Contact Information
+// =================================================================
+.contact-info {
+
+  .svg {
+    position: relative;
+    @include rem(top, 5px);
+    @include rem(width, 24px);
+    @include rem(height, 24px);
+    @include rem(margin-right, 10px);
+
+    * {
+      fill: darken($color_dark_cyan, 15%);
+    }
+  }
+  span, a {
+    font-family: $font_semibold;
+  }
+  span {
+    color: darken($color_dark_cyan, 15%);
+  }
+
+}

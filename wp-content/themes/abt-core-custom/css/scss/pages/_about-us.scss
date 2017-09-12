@@ -1,0 +1,645 @@
+//==================================================================
+// About Us Page Partial
+// Styles for the About Us custom page.
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+// Page
+// =================================================================
+.page-template-page-about-us-php, .page-template-page-full-background-php {
+
+  // Global
+  // -------------------------------------------------------------
+  color: #fff;
+
+  .content-container,
+  .content-container .content {
+    padding: 0;
+  }
+
+  .knockout * {
+    fill: #fff;
+  }
+
+  // Banners
+  // -------------------------------------------------------------
+  .featured-banner {
+    margin: 0; text-align: center;
+    @include rem(padding, 60px 20px);
+
+    @include media($tablet) {
+      @include rem(padding, 120px 100px);
+    }
+    @include media($desktop) {
+      background-attachment: fixed;
+      @include rem(padding, 240px 100px);
+    }
+    @include media($desktop_wide) {
+      @include rem(padding, 360px 200px);
+    }
+
+    .flex-container {
+      @include media($desktop) {
+        position: relative; height: 100%; z-index: 1;
+        @include display(flex);
+      }
+    }
+    .flex-content {
+      @include media($desktop) {
+        width: 100%;
+        @include align-self(center);
+      }
+    }
+
+    h1 {
+      text-transform: uppercase;
+      @include rem(font-size, 24px);
+
+      @include media($tablet) {
+        @include rem(font-size, 36px);
+      }
+      @include media($desktop) {
+        padding: 0 14%; opacity: 0;
+        @include rem(font-size, 48px);
+      }
+      @include media($desktop_wide) {
+        padding: 0 25%;
+      }
+    }
+    h1 small {
+      color: #fff;
+      @include rem(margin, 0 0 10px);
+      @include rem(font-size, 16px);
+    }
+    hr {
+      @include rem(margin, 40px 0);
+      transition: width .25s ease-in-out;
+
+      @include media($desktop) {
+        transform: scale(0, 1);
+      }
+    }
+    p {
+      font-family: $font_semibold; text-shadow: 0 1px 2px rgba(0,0,0,.25);
+      @include rem(margin, 32px 0);
+
+      @include media($desktop) {
+        opacity: 0;
+        @include rem(font-size, 18px);
+        @include backface-visibility(hidden);
+      }
+      @include media($desktop_wide) {
+        font-family: $font_regular;
+        @include rem(font-size, 20px);
+      }
+    }
+    p strong {
+      font-style: italic; line-height: 1.2;
+      @include rem(font-size, 20px);
+
+      @include media($desktop) {
+        @include rem(font-size, 24px);
+      }
+    }
+
+    // Override Theme Frosty
+    &.theme-frosty h1 small {
+      color: $color_cool_grey;
+    }
+    &.theme-frosty p {
+      text-shadow: none;
+    }
+
+    // Override Section Foundation Gradient
+    &.section-foundation:before {
+      background: darken($color_dark_cyan, 20%); opacity: .95;
+    }
+
+    // Animate Section
+    &.animate-section {
+
+      h1 {
+        @include media($desktop) {
+          opacity: 1;
+          @include animation(fadeInFromTop 3s ease-in-out);
+        }
+      }
+      hr {
+        @include media($desktop) {
+          transform: scale(1);
+          @include animation(growFromCenter 3s ease-in-out);
+        }
+      }
+      p {
+        @include media($desktop) {
+          opacity: 1;
+          @include animation(reveal 3s ease-in-out);
+        }
+      }
+
+    }
+
+  }
+
+  // Tobacco
+  // -------------------------------------------------------------
+  .tobacco {
+    position: relative; margin: 0 auto; border: 4px solid #fff; border-radius: 50%;
+    @include rem(width, 200px);
+    @include rem(height, 200px);
+    @include rem(padding, 28px);
+    @include rem(border-width, 4px);
+
+    &.animate-tobbaco {
+      @include animation(spring .5s cubic-bezier(0.66, 0, 0, 1));
+    }
+    img {
+      position: absolute; top: 50%; left: 50%; opacity: 0;
+      @include rem(width, 140px);
+      @include rem(height, 140px);
+      @include rem(margin, -70px 0 0 -70px);
+    }
+    // img.active {
+    //  opacity: 1;
+    // }
+  }
+
+  // Orbiting Potential
+  // -------------------------------------------------------------
+  .orbiting-potential {
+    display: none;
+
+    @include media($desktop) {
+      display: block; margin: 0 auto;
+      @include rem(width, 600px);
+      @include rem(height, 300px);
+    }
+
+    .svg {
+      display: none;
+
+      @include media($desktop) {
+        display: block; width: 100%; height: 100%;
+      }
+    }
+    .orbit {
+      display: none;
+
+      @include media($desktop) {
+        position: absolute; display: block; z-index: 2;
+        @include rem(width, 200px);
+        @include rem(height, 200px);
+      }
+    }
+    .orbit.orbit-raleigh {
+      @include media($desktop) {
+        @include rem(bottom, -88px);
+        @include rem(right, -98px);
+      }
+    }
+    .orbit.orbit-durham {
+      @include media($desktop) {
+        @include rem(top, -98px);
+        @include rem(left, 106px);
+      }
+    }
+    .orbit.orbit-chapel-hill {
+      @include media($desktop) {
+        @include rem(bottom, -50px);
+        @include rem(left, -94px);
+      }
+    }
+    i {
+      @include media($desktop) {
+        position: absolute; border-radius: 50%; z-index: 3;
+        @include rem(width, 40px);
+        @include rem(height, 40px);
+      }
+    }
+    i.plot-raleigh {
+      @include media($desktop) {
+        background-color: rgba($color_state_red, .3);
+        @include rem(bottom, -12px);
+        @include rem(right, -18px);
+      }
+    }
+    i.plot-durham {
+      @include media($desktop) {
+        background-color: rgba($color_duke_blue, .3);
+        @include rem(top, -16px);
+        @include rem(left, 186px);
+      }
+    }
+    i.plot-chapel-hill {
+      @include media($desktop) {
+        background-color: rgba($color_carolina_blue, .3);
+        @include rem(bottom, 28px);
+        @include rem(left, -16px);
+      }
+    }
+
+  }
+
+  // Community
+  // -------------------------------------------------------------
+  .community {
+    display: none;
+
+    @include media($desktop) {
+      display: block; margin: 0 auto;
+      @include rem(width, 600px);
+      @include rem(height, 300px);
+    }
+
+    .svg.logo {
+      @include media($desktop) {
+        position: absolute; top: 50%; left: 50%; z-index: 3;
+        @include rem(width, 160px);
+        @include rem(height, 50px);
+        @include rem(margin, -25px 0 0 -112px);
+      }
+    }
+    .svg.dots {
+      @include media($desktop) {
+        position: absolute; left: 0; top: 0; width: 100%; height: 100%; z-index: 2;
+        @include transform-origin(250px 150px);
+        transform: scale(0);
+        transition: all 3s ease-in-out;
+      }
+    }
+    .svg.knockout {
+      @include media($desktop) {
+        width: 100%; height: 100%;
+        @include rem(padding, 40px);
+      }
+    }
+    i {
+      @include media($desktop) {
+        position: absolute; border-radius: 50%; z-index: 3;
+        @include rem(width, 40px);
+        @include rem(height, 40px);
+      }
+    }
+    i.plot-raleigh {
+      @include media($desktop) {
+        background-color: rgba($color_state_red, .3);
+        @include rem(bottom, 18px);
+        @include rem(right, 52px);
+      }
+    }
+    i.plot-durham {
+      @include media($desktop) {
+        background-color: rgba($color_duke_blue, .3);
+        @include rem(top, 14px);
+        @include rem(left, 210px);
+      }
+    }
+    i.plot-chapel-hill {
+      @include media($desktop) {
+        background-color: rgba($color_carolina_blue, .3);
+        @include rem(bottom, 48px);
+        @include rem(left, 44px);
+      }
+    }
+  }
+  .section-generosity.animate-section .community .svg.dots {
+    @include media($desktop) {
+      transform: scale(1);
+    }
+  }
+
+
+  // Fields of Expertise
+  // -------------------------------------------------------------
+  .fields-expertise {
+    text-align: center;
+
+    h2 {
+      color: rgba(#fff, .25); text-transform: uppercase;
+      @include rem(font-size, 16px);
+
+      @include media($desktop) {
+        margin: 0;
+      }
+    }
+    ul {
+      padding: 0; margin: 0; list-style: none;
+
+      @include media($desktop) {
+        position: relative;
+        @include rem(padding-top, 60px);
+      }
+    }
+    li {
+      @include rem(margin, 32px 0 0);
+
+      @include media($tablet) {
+        display: inline-block; width: 30%;
+      }
+      @include media($desktop) {
+        position: static; width: auto;
+        @include rem(width, 66px);
+        @include rem(height, 66px);
+        @include rem(margin, 0 10px);
+        transition: all .5s ease-in-out;
+      }
+    }
+    li:first-child {
+      margin: 0;
+    }
+    strong {
+      display: block; font-style: italic; text-transform: uppercase;
+      @include rem(margin, 0 0 16px);
+
+      @include media($desktop) {
+        position: absolute; left: 0; width: 100%; opacity: 0;
+        @include rem(top, 20px);
+        @include rem(font-size, 24px);
+        transition: all .25s ease-in-out;
+      }
+    }
+    .svg {
+      @include media($desktop) {
+        box-shadow: inset 0 0 0 0 darken($color_dark_cyan, 20%); opacity: .35; border-radius: 50%;
+        transition: all .25s ease-in-out;
+      }
+    }
+
+    // Active
+    li.active {
+      @include media($desktop) {
+
+      }
+    }
+    li.active strong {
+      @include media($desktop) {
+        top: 0; opacity: 1;
+      }
+    }
+    li.active .svg {
+      @include media($desktop) {
+        box-shadow: inset 0 0 0 66px darken($color_dark_cyan, 20%); opacity: 1;
+      }
+    }
+
+  }
+
+  // Stats - Recognition
+  // -------------------------------------------------------------
+  .stats-recognition {
+    padding: 0; list-style: none; font-size: 0; line-height: 0;
+    @include rem(margin, 0 0 64px);
+
+    li {
+      line-height: 1.5;
+      @include rem(margin, 78px 0 0);
+      @include rem(font-size, 16px);
+
+      @include media($tablet) {
+        display: inline-block; width: 48.75%; margin: 0 0 0 2.5%; vertical-align: top;
+      }
+    }
+    li:first-child {
+      margin-top: 0;
+
+      @include media($tablet) {
+        margin: 0;
+      }
+    }
+    strong {
+      line-height: 1; font-style: italic;
+      @include rem(font-size, 78px);
+
+      @include media($tablet) {
+        @include rem(font-size, 62px);
+      }
+      @include media($desktop_wide) {
+        @include rem(font-size, 100px);
+      }
+    }
+    hr {
+      @include rem(margin, 20px 0);
+    }
+    .svg {
+      display: inline-block; margin: 0 auto; vertical-align: middle;
+      @include rem(width, 40px);
+      @include rem(height, 40px);
+      @include rem(margin-bottom, 10px);
+
+      @include media($tablet) {
+        margin-bottom: 0;
+      }
+      @include media($desktop_wide) {
+        @include rem(margin-right, 10px);
+      }
+    }
+    span {
+      display: inline-block; font-family: $font_semibold; vertical-align: middle;
+
+      @include media($desktop_wide) {
+        @include rem(line-height, 40px);
+      }
+    }
+
+  }
+
+  // Section Purpose
+  // -------------------------------------------------------------
+  .section-purpose {
+
+    .flex-content * {
+      @include media($desktop) {
+        color: rgba(#fff, .2); text-shadow: none;
+        transition: all 6s ease-in-out;
+      }
+    }
+    .flex-content hr {
+      @include media($desktop) {
+        opacity: .2;
+        transition: all 6s ease-in-out;
+      }
+    }
+    .flex-content em {
+      @include media($desktop) {
+        color: #fff; opacity: 1;
+      }
+    }
+    &.animate-section .flex-content * {
+      @include media($desktop) {
+        color: #fff;
+      }
+    }
+    &.animate-section .flex-content hr {
+      @include media($desktop) {
+        opacity: 1;
+      }
+    }
+    &.animate-section .flex-content p {
+      @include media($desktop) {
+        text-shadow: 0 1px 2px rgba(#000, .25);
+      }
+    }
+
+  }
+
+}
+
+.page-template-page-about-us-php,
+.page-template-page-full-background-php,
+.page-template-page-one-column-animation-php {
+
+  .featured-banner {
+    @include media($desktop) {
+      @include rem(padding, 100px 100px 50px);
+    }
+    @include media($desktop_wide) {
+      @include rem(padding, 100px 200px 50px);
+    }
+
+    h1, p {
+      opacity: 1;
+    }
+  }
+
+  // State Vision
+  // -------------------------------------------------------------
+  .state-vision {
+    display: none;
+
+    @include media($desktop) {
+      display: block; margin: 0 auto;
+      @include rem(width, 600px);
+      @include rem(height, 300px);
+    }
+
+    .logo {
+      @include media($desktop) {
+        position: absolute; background-color: darken($color_dark_cyan, 20%); box-shadow: 0 0 0 0 rgba(255,255,255,.5); border-radius: 50%; z-index: 3;
+        @include rem(top, 66px);
+        @include rem(left, 336px);
+        @include rem(width, 80px);
+        @include rem(height, 80px);
+        @include animation(super_pulse 3s cubic-bezier(0.66, 0, 0, 1) infinite);
+      }
+    }
+    .logo .svg.knockout {
+      @include media($desktop) {
+        position: relative;
+        @include rem(top, -3px);
+        @include rem(width, 80px);
+        @include rem(height, 80px);
+        @include rem(padding, 14px);
+      }
+    }
+    .logo .svg.knockout * {
+      @include media($desktop) {
+        fill: #fff;
+      }
+    }
+    .svg.knockout {
+      @include media($desktop) {
+        width: 100%; height: 100%; opacity: .35;
+      }
+    }
+    .svg.knockout.dots {
+      @include media($desktop) {
+        position: absolute; top: 0; left: 0; opacity: 0; z-index: 2;
+        @include animation(highlight_dots 3s ease-in-out infinite);
+      }
+    }
+
+    // Hover
+    .logo:hover {
+      @include media($desktop) {
+        @include animation(none);
+      }
+    }
+  }
+
+  // Service Categories
+  // -------------------------------------------------------------
+  .service-categories {
+    .state-vision {
+      display: block;
+      margin: 50px auto;
+
+      @include media($desktop) {
+        position: relative;
+        left: -60px;
+        margin: 0 auto;
+      }
+    }
+
+    .service-category {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 0.7s ease;
+
+      &.is-active {
+        opacity: 1;
+      }
+
+      .svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .state {
+      opacity: 0.35;
+      width: 100%;
+      height: 100%;
+    }
+
+    .switcher {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      li {
+        opacity: 0.35;
+        color: black;
+        display: inline-block;
+        font-weight: bold;
+        font-size: 2em;
+        border-radius: 50%;
+        margin: 0;
+
+        @include media($desktop) {
+          margin: 0 20px;
+        }
+
+        @include media($tablet) {
+          margin: 0 20px;
+        }
+
+        &:hover .svg, &.is-active {
+          transform: scale(1.1);
+        }
+
+        .svg {
+          width: 75px;
+          height: 75px;
+          transition: all 0.3s ease;
+        }
+
+        span {
+          position: absolute;
+          left: 50%;
+          display: block;
+          background-color: #fff;
+          box-shadow: 0 0 0 0 rgba(255,255,255,.5);
+          border-radius: 50%;
+          @include rem(bottom, -16px);
+          @include rem(width, 16px);
+          @include rem(height, 16px);
+          @include rem(margin-left, -8px);
+          transition: all .25s ease-in-out;
+          @include animation(pulse 1.25s cubic-bezier(0.66, 0, 0, 1) infinite);
+        }
+      }
+    }
+  }
+}

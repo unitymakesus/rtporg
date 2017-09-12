@@ -1,0 +1,129 @@
+//==================================================================
+// Typography Partial
+// Styles for overall typography and misc. content components.
+// (c) Atlantic BT. All Rights Reserved.
+//==================================================================
+
+
+// Custom Fonts
+// =================================================================
+@include declare-font-face('Proxima Nova Thin', 'proxima-nova/proxima-nova-thin-webfont');
+@include declare-font-face('Proxima Nova Light', 'proxima-nova/proxima-nova-light-webfont');
+@include declare-font-face('Proxima Nova Regular', 'proxima-nova/proxima-nova-reg-webfont');
+@include declare-font-face('Proxima Nova Semibold', 'proxima-nova/proxima-nova-sbold-webfont');
+@include declare-font-face('Proxima Nova Bold', 'proxima-nova/proxima-nova-bold-webfont');
+
+@include declare-font-face('Ostrich Sans Medium', 'ostrich/OstrichSans-Medium');
+
+
+
+// Global
+// =================================================================
+html, body { color: $base_font_color; font: #{$base_font_size}/#{$base_line_height} $base_font_family; }
+hr {
+  border: 0; background-color: lighten($color_dark_grey, 60%);
+  @include rem(height, 1px);
+}
+
+
+// Headings
+// =================================================================
+h1, h2, h3, h4, h5, h6 {
+  color: darken($color_dark_cyan, 15%); line-height: 1.2;
+  @include rem(margin, 10px 0 20px);
+}
+  h1 {
+    font-family: $font_semibold;
+    @include rem(font-size, 39px);
+  }
+  h2 {
+    font-family: $font_regular;
+    @include rem(font-size, 33px);
+  }
+  h3 {
+    font-family: $font_regular;
+    @include rem(font-size, 24px);
+  }
+  h4 {
+    font-family: $font_regular;
+    @include rem(font-size, 20px);
+  }
+  h5 {
+    font-family: $font_regular;
+    @include rem(font-size, 16px);
+  }
+  h6 {
+    font-family: $font_regular;
+    @include rem(font-size, 16px);
+  }
+
+
+// Paragraphs
+// =================================================================
+p {}
+strong { font-weight: normal; font-family: $font_bold; }
+
+
+// Links
+// =================================================================
+a {
+  color: $color_link; text-decoration: none;
+  transition: all .25s ease-in-out;
+
+  &:hover {
+    color: $color_link_hover;
+  }
+}
+
+
+// Lists
+// =================================================================
+ul, ol, dl {}
+
+
+  // Unordered
+  //--------------------------------------------------------------
+  ul {}
+  ul li {}
+
+
+  // Ordered
+  //--------------------------------------------------------------
+  ol {}
+  ol li {}
+
+
+  // Definition
+  //--------------------------------------------------------------
+  dl {}
+  dt {
+    font-family: $font_bold;
+    @include rem(margin-top, 16px);
+
+    &:first-of-type { margin: 0; }
+  }
+  dd { margin: 0; }
+
+
+// Blockquotes
+// =================================================================
+blockquote {
+  color: $color_orange; font-family: $font_regular; font-style: italic; border-left: 2px solid $color_orange;
+  @include rem(padding-left, 20px);
+  @include rem(margin, 20px 0);
+  @include rem(border-width, 2px);
+  @include rem(font-size, 20px);
+
+  @include media($desktop) {
+    @include rem(padding, 20px 0 20px 40px);
+    @include rem(border-width, 4px);
+    @include rem(font-size, 24px);
+  }
+
+  &:before {
+    content: "\201C";
+  }
+  &:after {
+    content: "\201D";
+  }
+}

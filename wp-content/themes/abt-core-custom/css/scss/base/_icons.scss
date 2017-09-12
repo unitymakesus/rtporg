@@ -1,0 +1,297 @@
+@font-face {
+	font-family: "customIcons";
+	src: url('../fonts/icons/customIcons.eot');
+	src: url('../fonts/icons/customIcons.eot?#iefix') format('eot'),
+		url('../fonts/icons/customIcons.woff') format('woff'),
+		url('../fonts/icons/customIcons.ttf') format('truetype'),
+		url('../fonts/icons/customIcons.svg#customIcons') format('svg');
+}
+
+.icon:before {
+	font-family: "customIcons";
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	/* speak: none; only necessary if not using the private unicode range (firstGlyph option) */
+	text-decoration: none;
+	text-transform: none;
+}
+
+
+.icon-i_about-us:before {
+	content: "\E001";
+}
+
+.icon-i_arrow:before {
+	content: "\E002";
+}
+
+.icon-i_blog:before {
+	content: "\E003";
+}
+
+.icon-i_book:before {
+	content: "\E004";
+}
+
+.icon-i_box-frame:before {
+	content: "\E005";
+}
+
+.icon-i_building:before {
+	content: "\E006";
+}
+
+.icon-i_clock:before {
+	content: "\E007";
+}
+
+.icon-i_coffee:before {
+	content: "\E008";
+}
+
+.icon-i_collapse:before {
+	content: "\E009";
+}
+
+.icon-i_contact-us:before {
+	content: "\E00A";
+}
+
+.icon-i_education:before {
+	content: "\E00B";
+}
+
+.icon-i_events:before {
+	content: "\E00C";
+}
+
+.icon-i_expand-alt:before {
+	content: "\E00D";
+}
+
+.icon-i_expand:before {
+	content: "\E00E";
+}
+
+.icon-i_eye:before {
+	content: "\E00F";
+}
+
+.icon-i_facebook:before {
+	content: "\E010";
+}
+
+.icon-i_favorite-active:before {
+	content: "\E011";
+}
+
+.icon-i_favorite:before {
+	content: "\E012";
+}
+
+.icon-i_food:before {
+	content: "\E013";
+}
+
+.icon-i_formal:before {
+	content: "\E014";
+}
+
+.icon-i_furniture:before {
+	content: "\E015";
+}
+
+.icon-i_google:before {
+	content: "\E016";
+}
+
+.icon-i_government:before {
+	content: "\E017";
+}
+
+.icon-i_graduation:before {
+	content: "\E018";
+}
+
+.icon-i_grid:before {
+	content: "\E019";
+}
+
+.icon-i_group:before {
+	content: "\E01A";
+}
+
+.icon-i_hdmi:before {
+	content: "\E01B";
+}
+
+.icon-i_heart:before {
+	content: "\E01C";
+}
+
+.icon-i_home:before {
+	content: "\E01D";
+}
+
+.icon-i_industries:before {
+	content: "\E01E";
+}
+
+.icon-i_info:before {
+	content: "\E01F";
+}
+
+.icon-i_instagram:before {
+	content: "\E020";
+}
+
+.icon-i_layers:before {
+	content: "\E021";
+}
+
+.icon-i_layouts:before {
+	content: "\E022";
+}
+
+.icon-i_left-arrow:before {
+	content: "\E023";
+}
+
+.icon-i_linkedin:before {
+	content: "\E024";
+}
+
+.icon-i_location:before {
+	content: "\E025";
+}
+
+.icon-i_map:before {
+	content: "\E026";
+}
+
+.icon-i_marker:before {
+	content: "\E027";
+}
+
+.icon-i_menu-close:before {
+	content: "\E028";
+}
+
+.icon-i_menu:before {
+	content: "\E029";
+}
+
+.icon-i_monitor:before {
+	content: "\E02A";
+}
+
+.icon-i_networking:before {
+	content: "\E02B";
+}
+
+.icon-i_options-right:before {
+	content: "\E02C";
+}
+
+.icon-i_patents:before {
+	content: "\E02D";
+}
+
+.icon-i_phone:before {
+	content: "\E02E";
+}
+
+.icon-i_photo:before {
+	content: "\E02F";
+}
+
+.icon-i_play:before {
+	content: "\E030";
+}
+
+.icon-i_print:before {
+	content: "\E031";
+}
+
+.icon-i_privacy:before {
+	content: "\E032";
+}
+
+.icon-i_resources:before {
+	content: "\E033";
+}
+
+.icon-i_ribbon:before {
+	content: "\E034";
+}
+
+.icon-i_right-arrow:before {
+	content: "\E035";
+}
+
+.icon-i_rocket:before {
+	content: "\E036";
+}
+
+.icon-i_rtp:before {
+	content: "\E037";
+}
+
+.icon-i_schoolhouse:before {
+	content: "\E038";
+}
+
+.icon-i_search-submit:before {
+	content: "\E039";
+}
+
+.icon-i_search:before {
+	content: "\E03A";
+}
+
+.icon-i_services:before {
+	content: "\E03B";
+}
+
+.icon-i_share:before {
+	content: "\E03C";
+}
+
+.icon-i_sofa:before {
+	content: "\E03D";
+}
+
+.icon-i_source:before {
+	content: "\E03E";
+}
+
+.icon-i_trademark:before {
+	content: "\E03F";
+}
+
+.icon-i_tv:before {
+	content: "\E040";
+}
+
+.icon-i_twitter:before {
+	content: "\E041";
+}
+
+.icon-i_video:before {
+	content: "\E042";
+}
+
+.icon-i_why-rtp:before {
+	content: "\E043";
+}
+
+.icon-i_wifi:before {
+	content: "\E044";
+}
+
+.icon-i_youtube:before {
+	content: "\E045";
+}

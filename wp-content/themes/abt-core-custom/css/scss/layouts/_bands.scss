@@ -1,0 +1,142 @@
+.band {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 0;
+
+  @include media($tablet) {
+    padding: 60px 0;
+  }
+
+  @include media($desktop) {
+    padding: 120px 0;
+  }
+
+
+  .wrapper {
+    max-width: 1280px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 10px;
+
+    @include media($tablet) {
+      padding: 0 20px;
+    }
+  }
+
+  &.pad-none {
+    padding: 0;
+  }
+
+  &.pad-top {
+    padding-bottom: 0;
+
+    @include media($tablet) {
+      padding-bottom: 0;
+    }
+
+    @include media($desktop) {
+      padding-bottom: 0;
+    }
+  }
+
+  &.pad-bottom {
+    padding-top: 0;
+
+    @include media($tablet) {
+      padding-top: 0;
+    }
+
+    @include media($desktop) {
+      padding-top: 0;
+    }
+  }
+
+  &.pad-less {
+    @include media($tablet) {
+      padding: 60px 0;
+    }
+  }
+
+  &.pad-large-bottom {
+    padding-bottom: 120px;
+  }
+
+  &.pad-top-mobile {
+    @include media($below_desktop) {
+      padding-top: 120px;
+    }
+  }
+
+  &.pad-none-desktop {
+    @include media($desktop) {
+      padding: 0;
+    }
+  }
+}
+
+.band-center {
+  text-align: center;
+
+}
+.band-bg-right {
+  background-position: center right;
+  background-repeat: no-repeat;
+  background-size: 50% auto;
+  @include media($below_desktop) {
+    background-image: none !important;
+  }
+}
+
+.band-stretch-first {
+
+  @include media($desktop) {
+    display: flex;
+    justify-content: space-between;
+
+    & > * {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+
+    & > *:nth-child(odd) {
+      flex-basis: auto;
+    }
+    & > *:nth-child(even) {
+    }
+  }
+}
+.band-half {
+  @include media($desktop) {
+    display: flex;
+    justify-content: space-between;
+    & > * {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    & > *:nth-child(odd) {
+      flex: 1;
+    }
+    & > *:nth-child(even) {
+      flex: 1;
+    }
+  }
+}
+.band-reverse-desktop {
+  @include media($desktop) {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    & > * {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+  }
+}

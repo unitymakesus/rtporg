@@ -1,0 +1,8 @@
+<!-- Banner Quote -->
+<div class="featured-banner type-{{item.apply_type}}  {{item.apply_theme}} {{item.apply_graphic_class}}" style="{{item.apply_graphic}}">
+    <q>{{item.quote}}</q>
+    <div class="site-info" ng-show="item.tagline">
+        <small class="site-name" ng-bind-html="renderHtml(item.blog.name)"></small>
+        <small class="site-tagline" ng-bind-html="renderHtml(item.blog.description)"></small>
+    </div>
+</div>

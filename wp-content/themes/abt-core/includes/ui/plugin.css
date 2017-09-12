@@ -1,0 +1,114 @@
+/*
+ABT Core Admin CSS - plugin only
+
+This stylesheet is used only on ABT Core theme pages.
+Put global core-related styles in other files like admin.css or public.css
+
+Author: Atlantic BT
+Author URI: http://www.atlanticbt.com/
+Version: 0.9.3
+Last Modified: 2011-10-11
+
+*/
+
+
+/* =Forms
+==================================================================================================================*/
+
+.postbox .abtcore-buttons { padding: 10px; }
+
+.field { margin-bottom: 10px; }
+.field strong { font-weight: normal; background: #efefef; }
+.field label, .fieldset legend { font-weight: bold; font-size: 12px; } .widget-inside .field label { font-weight: normal; }
+
+.fieldgroup { margin-bottom: 10px; }
+.fieldgroup .field { display: inline-inline; margin-right: 40px; }
+.address-combo .field { display: inline-block; }
+
+.fieldset legend { padding: 10px 0; }
+.field .summary, .fieldset .summary { display: block; padding: 5px; font-size: 11px; line-height: 1.2em; font-style: normal; color: #777; }
+.fieldset { margin: 0 0 10px; padding: 10px; background: #fff; border: 1px solid #ccc; -moz-border-radius: 6px; -webkit-border-radius: 6px; -o-border-radius: 6px; border-radius: 6px; }
+.fieldset label { display: block; padding: 0 0 5px; }
+
+.radios legend, .checkboxes legend { padding-bottom: 10px; font-weight: bold; font-size: 12px; }
+.radios li, .checkboxes li { margin-bottom: 5px; }
+.radios label, .checkboxes label { display: inline; margin-left: 5px; padding: 0; font-weight: normal; font-size: 11px; }
+
+.postbox input.long-text { width: 460px; }
+.postbox input.short-text { width: 5em; }
+
+textarea.message-body { width: 90%; height: 12em; }
+
+.abtcore-option-message { margin: 10px 0; padding: 5px 5px 5px 24px; background: #fffbcc url(../images/i_warning-sm.png) no-repeat 5px 5px; border: 1px solid #e6db55; -moz-border-radius: 4px; -webkit-border-radius: 4px; -o-border-radius: 4px; border-radius: 4px; }
+#poststuff .postbox .note { margin: 0 0 10px; padding: 5px 5px 5px 24px; background: #dfe4f0 url(../images/i_info-sm.png) no-repeat 5px 5px; border: 1px solid #cacfe2; -moz-border-radius: 4px; -webkit-border-radius: 4px; -o-border-radius: 4px; border-radius: 4px; }
+#poststuff .abtcore-option-message p { margin: 0 0 8px; }
+.abtcore-logo-display { margin: 10px 0; }
+
+.abtcore-errors, .abtcore-error { margin: 5px 0 15px; padding: 0 0.6em; background-color: #ffebe8; border: 1px solid #c00; -moz-border-radius: 3px; -webkit-border-radius: 3px; -o-border-radius: 3px; border-radius: 3px; font-weight: bold; }
+.abtcore-errors ul { margin-top: 6px; }
+
+.inline-summaries .summary { display: inline; padding: 0; margin-left: 10px; line-height: normal; }
+
+
+/* =Menus/Options
+==================================================================================================================*/
+
+/* Shortcodes */
+.abtcore-shortcode-message { margin: 0 0 10px; padding: 5px 5px 5px 24px; background: #fffbcc url(../images/i_warning-sm.png) no-repeat 5px 10px; border: 1px solid #e6db55; }
+#available-shortcodes { width: 100%; }
+#available-shortcodes td, #available-shortcodes th { text-align: left; padding: 10px; line-height: 1.5em; -moz-border-radius: 6px; -webkit-border-radius: 6px; -o-border-radius: 6px; border-radius: 6px; }
+#available-shortcodes tbody th, #available-shortcodes td { border: 1px solid #dedede; }
+#available-shortcodes thead th { background: #dedede; }
+#available-shortcodes th strong { font-size: 14px; }
+#available-shortcodes .summary { margin-top: .5em; font-weight: normal; color: #777; }
+
+td[headers~="th-example"] .required { padding: 2px; background: #fffbcc; }
+
+
+
+/* =Tabs
+==================================================================================================================*/
+
+.abtcore-options { position: relative; margin: 26px 0 1em; padding: 20px 20px 10px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;
+	border: 1px solid #d9d9d9;
+}
+
+.abtcore-tabs { position: absolute; left: 20px; top: -28px; margin: 0; padding: 0; list-style: none; }
+.abtcore-tabs li { float: left; margin: 0 5px 0 0; padding: 0; }
+.abtcore-tabs li a { float: left; padding: 0 15px; color: #999; font-weight: bold; text-decoration: none; line-height: 26px; background: #f1f1f1; border: 1px solid #dfdfdf; border-bottom: 0; -webkit-border-top-left-radius: 3px; -webkit-border-top-right-radius: 3px; -moz-border-radius-topleft: 3px; -moz-border-radius-topright: 3px; border-top-left-radius: 3px; border-top-right-radius: 3px; }
+.abtcore-tabs li.ui-tabs-selected a { position: relative; margin-bottom: -1px; padding-bottom: 1px; background: #fff; color: #333; }
+
+.abtcore-version { position: absolute; right: 20px; top: -20px; z-index: 5000; font-weight: bold; font-size: 1.6em; color: #fff; padding-top: 30px; line-height: 1.1em; width: 100px; height: 70px; text-align: center;
+	-webkit-transform: rotate(15deg); -moz-transform: rotate(15deg); transform: rotate(15deg);
+	background: url(../images/g_badge100.png) no-repeat center center;
+}
+.abtcore-version span { font-size: .6em; line-height: 1.1em; display: block; }
+
+
+
+
+/* =People Plugin
+==================================================================================================================*/
+
+#websites-meta { margin: 10px; padding: 10px; background: #f2f2f2; border: 1px solid #ccc; -moz-border-radius: 6px; -webkit-border-radius: 6px; -o-border-radius: 6px; border-radius: 6px; }
+#websites-meta .fieldgroup { position: relative; float: left; margin: 0 0 20px; padding: 10px 0; width: 100%; background: #fff; border: 1px solid #ccc; -moz-border-radius: 6px; -webkit-border-radius: 6px; -o-border-radius: 6px; border-radius: 6px; }
+
+#websites-meta .tip { position: absolute; left: -18px; top: -1px; width: 18px; height: 18px; background: #fff url(../../plugins/people/images/i_chain-sm.png) no-repeat 50% 50%; border: 1px solid #ccc; border-right: 0; -moz-border-radius: 6px; -webkit-border-radius: 6px; -o-border-radius: 6px; border-radius: 6px; }
+#websites-meta .delete { position: absolute; right: 5px; top: 5px; width: 18px; height: 18px; background: url(../../plugins/people/images/i_delete.png) no-repeat 50% 50%; text-indent: -9000em; }
+
+#websites-meta .field { float: left; margin: 0 10px 10px; }
+#websites-meta .field label { display: block; margin-bottom: 3px; }
+
+body.post-type-people #icon-edit, body.post-type-people #icon-post, body.post-type-people #icon-options-general { 
+		background:transparent url(../../plugins/people/images/i_people24.png) no-repeat 50% 50%;
+	}
+
+/* =Locations Plugin
+==================================================================================================================*/
+
+
+/* =Clubhouse Plugin
+==================================================================================================================*/
+
+.email-messages legend { font-size: 14px; }
+
