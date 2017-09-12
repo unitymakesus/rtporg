@@ -1,9 +1,0 @@
-<span ng-hide="feedService.getPageCount() < 2">Page {{page}} of {{feedService.getPageCount()}}</span>
-<a
-        ng-repeat="t in getPagesArray()"
-        ng-class="{inactive:(page != t), current:(page == t)}"
-        ng-href="{{getPaginationUrl(t)}}"
-        ng-show="feedService.getPageCount()>1"
->
-    {{t}}
-</a>

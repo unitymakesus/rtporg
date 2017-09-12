@@ -1,1 +1,0 @@
-angular.module('SircusFeedViewer').directive('randomTweetColors', function() {})
