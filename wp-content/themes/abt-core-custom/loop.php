@@ -228,7 +228,7 @@
 		</article>
 
 	<?php
-		// For Posts from Locations Post Type
+		// For Posts from Post Post Type
 		// -------------------------------------------
 		elseif ( $post->post_type == "post" ) :
 	?>
