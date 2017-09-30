@@ -20,9 +20,8 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
     <div class="content-container">
         <section id="hero-video" class="band hero-video">
             <video autoplay loop class="bg-video">
-                <!-- <source src="https://www.atlanticbt.com/content/themes/rabt-theme/img/ABT_homeblur.webm" type="video/webm"> -->
-                <source src="<?php echo get_stylesheet_directory_uri();?>/img/RTPExportforWeb.mp4" type="video/mp4">
-                <source src="<?php echo get_stylesheet_directory_uri();?>/img/RTPExportforWeb.ogv" type="video/ogg">
+                <source src="//files.rtp.org/videos/RTPExportforWeb.mp4" type="video/mp4">
+                <source src="//files.rtp.org/videos/RTPExportforWeb.ogv" type="video/ogg">
             </video>
             <div class="wrapper band-stretch-first hero-video-meta">
                 <div class="load-fade-in-left">
@@ -292,7 +291,7 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
                         $postPermalinks[] = get_permalink( $recent["ID"] );
                         $postTitles[] = $recent["post_title"];
                         $postDates[] = date("M d", strtotime($recent['post_date']));
-                        
+
                         $cats = get_the_category($recent["ID"]);
                         $postCatNames[] = $cats[0]->name;
                     }
@@ -305,7 +304,7 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
                             <span class="icon icon-i_instagram"></span>
                             <img src="' . $instaPostImg[0] . '" />
                         </a>'; ?>
-                        
+
                         <!-- Instagram Post 2 -->
                         <?php echo '<a href="' . $instaPostLink[1] . '" target="blank" class="block-social__instagram-item fade-in-up-staggered">
                             <span class="icon icon-i_instagram"></span>
@@ -343,7 +342,7 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
                             </div>
                         </a>
                     </div>
-                    
+
 
 
 
@@ -394,7 +393,7 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
                             </div>
                         </a>
                     </div>
-                        
+
 
 
                 </div>
