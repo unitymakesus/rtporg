@@ -469,7 +469,7 @@ function shortcode_card_container( $atts, $content = null ) {
     'style' => ''
   ), $atts ) );
 
-  $card_container = '<div class="card-container ' . $style . ' ' . $type . '">' . do_shortcode($content) . '</div>';
+  $card_container = '<div class="card-container '.$style.' '.$type.'">' . do_shortcode($content) . '</div>';
 
   return $card_container;
 
