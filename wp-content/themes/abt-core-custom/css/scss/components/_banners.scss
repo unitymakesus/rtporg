@@ -104,6 +104,9 @@
       color: $color_cool_grey;
     }
   }
+  &.theme-midnight h2 {
+    color: white;
+  }
 
   // Content
   //--------------------------------------------------------------
@@ -112,6 +115,9 @@
   }
   &.theme-frosty p {
     color: $color_cool_grey;
+  }
+  &.theme-midnight p {
+    color: white;
   }
 
   // Events

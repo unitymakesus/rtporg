@@ -481,9 +481,10 @@ function shortcode_card( $atts, $content = null ) {
 
   extract( shortcode_atts( array(
     'width' => 'full',
+    'style' => ''
   ), $atts ) );
 
-  $card = '<div class="card width-'.$width.'">' . do_shortcode($content) . '</div>';
+  $card = '<div class="card width-'.$width.' '.$style.'">' . do_shortcode($content) . '</div>';
 
   return $card;
 

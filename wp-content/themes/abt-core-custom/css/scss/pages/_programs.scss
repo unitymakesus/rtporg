@@ -1,0 +1,27 @@
+.page-id-238 {
+  .card-container {
+    .card {
+      color: white;
+
+      &.dark-cyan {
+        background: $color_dark_cyan;
+      }
+
+      &.orange {
+        background: $color_orange;
+      }
+
+      &.green {
+        background: $color_dark_green;
+      }
+    }
+  }
+}
+
+.program-brand {
+  color: white;
+
+  strong, b {
+    color: $color_dark_grey;
+  }
+}
