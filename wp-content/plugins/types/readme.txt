@@ -6,8 +6,8 @@ Text Domain: wpcf
 Domain Path: /embedded/locale
 License: GPLv2
 Requires at least: 3.7
-Tested up to: 4.8
-Stable tag: 2.2.13
+Tested up to: 4.8.1
+Stable tag: 2.2.16
 
 The complete and reliable plugin for managing custom post types, custom taxonomies and custom fields.
 
@@ -157,6 +157,21 @@ Additionally, Types is the only plugin that lets you define parent/child relatio
 10. Bulk editing child content using Field Tables
 
 == Changelog ==
+
+= 2.2.16 =
+* Fixed a bug with numeric validation used a different decimal sign than a dot.
+* Fixed a compatibility issue with the The7 theme.
+* Display an admin message if there are other Toolset plugins that are not registered. This should not affect local and staging sites.
+
+= 2.2.15.1 =
+* Fixed a bug that caused WCML to request registration in order to receive updates.
+
+= 2.2.15 =
+* Fixed a bug that caused Types to request registration in order to receive updates.
+
+= 2.2.14 =
+* Improved translations
+* Fixed notice in term listing page when image field URL is not valid
 
 = 2.2.13 =
 * Fixed an issue between the Image field and databases using utf8mb4 character set
