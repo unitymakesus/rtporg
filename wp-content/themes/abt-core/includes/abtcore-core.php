@@ -201,7 +201,7 @@ class ABTCore {
 }//-- class ABTCore
 
 
-include_once('settings_helper_functions.inc.php');	// functions like v() or abtcore_get_option()
+include_once(plugin_dir_path(__FILE__) . 'settings_helper_functions.inc.php');	// functions like v() or abtcore_get_option()
 
 new ABTCore();
 

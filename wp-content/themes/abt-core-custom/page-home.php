@@ -20,9 +20,8 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
     <div class="content-container">
         <section id="hero-video" class="band hero-video">
             <video autoplay loop class="bg-video">
-                <!-- <source src="https://www.atlanticbt.com/content/themes/rabt-theme/img/ABT_homeblur.webm" type="video/webm"> -->
-                <source src="<?php echo get_stylesheet_directory_uri();?>/img/RTPExportforWeb.mp4" type="video/mp4">
-                <source src="<?php echo get_stylesheet_directory_uri();?>/img/RTPExportforWeb.ogv" type="video/ogg">
+                <source src="//files.rtp.org/videos/RTPExportforWeb.mp4" type="video/mp4">
+                <source src="//files.rtp.org/videos/RTPExportforWeb.ogv" type="video/ogg">
             </video>
             <div class="wrapper band-stretch-first hero-video-meta">
                 <div class="load-fade-in-left">
@@ -268,35 +267,40 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
                     $tweetObjects = json_decode(json_encode($tweets), FALSE);
                     $instaPosts = getLatestInstagramForRTP(4);
 
-                    foreach ($tweetObjects as $tweet) {
-                        $tweetText[] = $tweet->full_text;
-                        $tweetId[] = $tweet->id_str;
-                        $tweetScreenName[] = $tweet->user->screen_name;
+                    if (!empty($tweetObjects)) {
+                      foreach ($tweetObjects as $tweet) {
+                          $tweetText[] = $tweet->full_text;
+                          $tweetId[] = $tweet->id_str;
+                          $tweetScreenName[] = $tweet->user->screen_name;
 
-                        // echo '<pre>';
-                        // echo print_r($tweet);
-                        // echo '</pre>';
+                          // echo '<pre>';
+                          // echo print_r($tweet);
+                          // echo '</pre>';
+                      }
                     }
 
-                    foreach ($instaPosts as $instaPost) {
-                        $instaPostLink[] = $instaPost->link;
-                        $instaPostImg[] = $instaPost->images->standard_resolution->url;
+                    if (!empty($instaPosts)) {
+                      foreach ($instaPosts as $instaPost) {
+                          $instaPostLink[] = $instaPost->link;
+                          $instaPostImg[] = $instaPost->images->standard_resolution->url;
+                      }
                     }
 
 
                     // recent posts
                     $blogPostArgs = array( 'numberposts' => '4', 'order' => 'DESC','post_status' => 'publish' );
                     $recentBlogPosts = wp_get_recent_posts( $blogPostArgs );
-                    foreach( $recentBlogPosts as $recent ) {
+                    if (!empty($recentBlogPosts)) {
+                      foreach( $recentBlogPosts as $recent ) {
 
-                        $postPermalinks[] = get_permalink( $recent["ID"] );
-                        $postTitles[] = $recent["post_title"];
-                        $postDates[] = date("M d", strtotime($recent['post_date']));
-                        
-                        $cats = get_the_category($recent["ID"]);
-                        $postCatNames[] = $cats[0]->name;
+                          $postPermalinks[] = get_permalink( $recent["ID"] );
+                          $postTitles[] = $recent["post_title"];
+                          $postDates[] = date("M d", strtotime($recent['post_date']));
+
+                          $cats = get_the_category($recent["ID"]);
+                          $postCatNames[] = $cats[0]->name;
+                      }
                     }
-
                     ?>
 
                     <div class="block-socials__col">
@@ -305,7 +309,7 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
                             <span class="icon icon-i_instagram"></span>
                             <img src="' . $instaPostImg[0] . '" />
                         </a>'; ?>
-                        
+
                         <!-- Instagram Post 2 -->
                         <?php echo '<a href="' . $instaPostLink[1] . '" target="blank" class="block-social__instagram-item fade-in-up-staggered">
                             <span class="icon icon-i_instagram"></span>
@@ -343,7 +347,7 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
                             </div>
                         </a>
                     </div>
-                    
+
 
 
 
@@ -394,7 +398,7 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
                             </div>
                         </a>
                     </div>
-                        
+
 
 
                 </div>
