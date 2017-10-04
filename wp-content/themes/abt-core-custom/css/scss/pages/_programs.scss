@@ -3,16 +3,36 @@
     .card {
       color: white;
 
+      a {
+        text-decoration: underline;
+
+        &:hover, &:focus, &:active {
+          color: white !important;
+        }
+      }
+
       &.dark-cyan {
         background: $color_dark_cyan;
+
+        a {
+          color: lighten($color_turquoise, 20%);
+        }
       }
 
       &.orange {
         background: $color_orange;
+
+        a {
+          color: $color_beige;
+        }
       }
 
       &.green {
         background: $color_dark_green;
+
+        a {
+          color: $color_light_green;
+        }
       }
     }
   }

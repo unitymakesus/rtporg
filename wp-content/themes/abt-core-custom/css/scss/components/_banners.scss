@@ -104,7 +104,7 @@
       color: $color_cool_grey;
     }
   }
-  &.theme-midnight h2 {
+  &.theme-midnight h2, &.theme-midnight h3 {
     color: white;
   }
 
@@ -250,6 +250,7 @@
 
 	// Banner in content on single column templates
 	//--------------------------------------------------------------
+  .page-template-page-full-width-notitle .content &,
   .page-template-page-onecolumn .content &,
 	.page-template-page-stem .content & {
     margin-left: -20px;

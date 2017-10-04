@@ -4231,7 +4231,7 @@ div.line {
     color: #02444d; }
     .featured-banner.theme-frosty h1 small {
       color: #7c898a; }
-  .featured-banner.theme-midnight h2 {
+  .featured-banner.theme-midnight h2, .featured-banner.theme-midnight h3 {
     color: white; }
   .featured-banner p {
     margin: 16px 0 0;
@@ -4353,6 +4353,7 @@ div.line {
     border-color: rgba(1, 46, 52, 0.25); }
   .featured-banner.no-theme.no-graphic .site-info small {
     color: rgba(1, 46, 52, 0.25); }
+  .page-template-page-full-width-notitle .content .featured-banner,
   .page-template-page-onecolumn .content .featured-banner,
   .page-template-page-stem .content .featured-banner {
     margin-left: -20px;
@@ -4364,89 +4365,114 @@ div.line {
     background-position: top center;
     background-size: cover; }
     @media screen and (min-width: 640px) {
+      .page-template-page-full-width-notitle .content .featured-banner,
       .page-template-page-onecolumn .content .featured-banner,
       .page-template-page-stem .content .featured-banner {
         margin-left: -40px;
         margin-right: -40px; } }
+    .page-template-page-full-width-notitle .content .featured-banner .banner-caption,
     .page-template-page-onecolumn .content .featured-banner .banner-caption,
     .page-template-page-stem .content .featured-banner .banner-caption {
       background-color: rgba(255, 255, 255, 0.5);
       box-shadow: 0 0 0 36px rgba(255, 255, 255, 0.5);
       transition: all 0.25s ease-in-out; }
+      .page-template-page-full-width-notitle .content .featured-banner .banner-caption:hover,
       .page-template-page-onecolumn .content .featured-banner .banner-caption:hover,
       .page-template-page-stem .content .featured-banner .banner-caption:hover {
         background-color: rgba(255, 255, 255, 0.75);
         box-shadow: 0 0 0 36px rgba(255, 255, 255, 0.75); }
+    .page-template-page-full-width-notitle .content .featured-banner.dark .banner-caption,
     .page-template-page-onecolumn .content .featured-banner.dark .banner-caption,
     .page-template-page-stem .content .featured-banner.dark .banner-caption {
       background-color: rgba(2, 68, 77, 0.7);
       box-shadow: 0 0 0 36px rgba(2, 68, 77, 0.7); }
+      .page-template-page-full-width-notitle .content .featured-banner.dark .banner-caption:hover,
       .page-template-page-onecolumn .content .featured-banner.dark .banner-caption:hover,
       .page-template-page-stem .content .featured-banner.dark .banner-caption:hover {
         background-color: rgba(2, 68, 77, 0.85);
         box-shadow: 0 0 0 36px rgba(2, 68, 77, 0.85); }
-      .page-template-page-onecolumn .content .featured-banner.dark .banner-caption, .page-template-page-onecolumn .content .featured-banner.dark .banner-caption h2, .page-template-page-onecolumn .content .featured-banner.dark .banner-caption a:not(.button),
+      .page-template-page-full-width-notitle .content .featured-banner.dark .banner-caption, .page-template-page-full-width-notitle .content .featured-banner.dark .banner-caption h2, .page-template-page-full-width-notitle .content .featured-banner.dark .banner-caption a:not(.button),
+      .page-template-page-onecolumn .content .featured-banner.dark .banner-caption,
+      .page-template-page-onecolumn .content .featured-banner.dark .banner-caption h2,
+      .page-template-page-onecolumn .content .featured-banner.dark .banner-caption a:not(.button),
       .page-template-page-stem .content .featured-banner.dark .banner-caption,
       .page-template-page-stem .content .featured-banner.dark .banner-caption h2,
       .page-template-page-stem .content .featured-banner.dark .banner-caption a:not(.button) {
         color: white; }
-      .page-template-page-onecolumn .content .featured-banner.dark .banner-caption a:not(.button):hover, .page-template-page-onecolumn .content .featured-banner.dark .banner-caption a:not(.button):focus, .page-template-page-onecolumn .content .featured-banner.dark .banner-caption a:not(.button):active,
+      .page-template-page-full-width-notitle .content .featured-banner.dark .banner-caption a:not(.button):hover, .page-template-page-full-width-notitle .content .featured-banner.dark .banner-caption a:not(.button):focus, .page-template-page-full-width-notitle .content .featured-banner.dark .banner-caption a:not(.button):active,
+      .page-template-page-onecolumn .content .featured-banner.dark .banner-caption a:not(.button):hover,
+      .page-template-page-onecolumn .content .featured-banner.dark .banner-caption a:not(.button):focus,
+      .page-template-page-onecolumn .content .featured-banner.dark .banner-caption a:not(.button):active,
       .page-template-page-stem .content .featured-banner.dark .banner-caption a:not(.button):hover,
       .page-template-page-stem .content .featured-banner.dark .banner-caption a:not(.button):focus,
       .page-template-page-stem .content .featured-banner.dark .banner-caption a:not(.button):active {
         text-decoration: underline; }
+    .page-template-page-full-width-notitle .content .featured-banner.align-center .banner-caption,
     .page-template-page-onecolumn .content .featured-banner.align-center .banner-caption,
     .page-template-page-stem .content .featured-banner.align-center .banner-caption {
       background: none;
       box-shadow: none;
       color: white;
       text-align: center; }
+      .page-template-page-full-width-notitle .content .featured-banner.align-center .banner-caption p,
       .page-template-page-onecolumn .content .featured-banner.align-center .banner-caption p,
       .page-template-page-stem .content .featured-banner.align-center .banner-caption p {
         line-height: 1.2;
         font-size: 20px;
         font-size: 1.25rem; }
         @media screen and (min-width: 640px) {
+          .page-template-page-full-width-notitle .content .featured-banner.align-center .banner-caption p,
           .page-template-page-onecolumn .content .featured-banner.align-center .banner-caption p,
           .page-template-page-stem .content .featured-banner.align-center .banner-caption p {
             font-size: 24px;
             font-size: 1.5rem; } }
         @media screen and (min-width: 960px) {
+          .page-template-page-full-width-notitle .content .featured-banner.align-center .banner-caption p,
           .page-template-page-onecolumn .content .featured-banner.align-center .banner-caption p,
           .page-template-page-stem .content .featured-banner.align-center .banner-caption p {
             font-size: 39px;
             font-size: 2.4375rem; } }
+        .page-template-page-full-width-notitle .content .featured-banner.align-center .banner-caption p:first-child,
         .page-template-page-onecolumn .content .featured-banner.align-center .banner-caption p:first-child,
         .page-template-page-stem .content .featured-banner.align-center .banner-caption p:first-child {
           border-bottom: 1px solid rgba(255, 255, 255, 0.5);
           padding: 0 0 32px;
           padding: 0 0 2rem; }
-    .page-template-page-onecolumn .content .featured-banner h1, .page-template-page-onecolumn .content .featured-banner p,
+    .page-template-page-full-width-notitle .content .featured-banner h1, .page-template-page-full-width-notitle .content .featured-banner p,
+    .page-template-page-onecolumn .content .featured-banner h1,
+    .page-template-page-onecolumn .content .featured-banner p,
     .page-template-page-stem .content .featured-banner h1,
     .page-template-page-stem .content .featured-banner p {
       opacity: 1; }
+    .page-template-page-full-width-notitle .content .featured-banner h2,
     .page-template-page-onecolumn .content .featured-banner h2,
     .page-template-page-stem .content .featured-banner h2 {
       margin-top: 0; }
+    .page-template-page-full-width-notitle .content .featured-banner p,
     .page-template-page-onecolumn .content .featured-banner p,
     .page-template-page-stem .content .featured-banner p {
       margin: 32px 0;
       margin: 2rem 0; }
+      .page-template-page-full-width-notitle .content .featured-banner p:last-child,
       .page-template-page-onecolumn .content .featured-banner p:last-child,
       .page-template-page-stem .content .featured-banner p:last-child {
         margin: 0; }
+    .page-template-page-full-width-notitle .content .featured-banner a:last-of-type,
     .page-template-page-onecolumn .content .featured-banner a:last-of-type,
     .page-template-page-stem .content .featured-banner a:last-of-type {
       margin: 0; }
     @media screen and (min-width: 640px) {
+      .page-template-page-full-width-notitle .content .featured-banner.align-left,
       .page-template-page-onecolumn .content .featured-banner.align-left,
       .page-template-page-stem .content .featured-banner.align-left {
         padding-left: 10%;
         padding-right: 50%; }
+      .page-template-page-full-width-notitle .content .featured-banner.align-right,
       .page-template-page-onecolumn .content .featured-banner.align-right,
       .page-template-page-stem .content .featured-banner.align-right {
         padding-left: 50%;
         padding-right: 10%; }
+      .page-template-page-full-width-notitle .content .featured-banner a:last-of-type,
       .page-template-page-onecolumn .content .featured-banner a:last-of-type,
       .page-template-page-stem .content .featured-banner a:last-of-type {
         margin-bottom: 10px; } }
@@ -7980,12 +8006,22 @@ body.home.menu-open {
 
 .page-id-238 .card-container .card {
   color: white; }
+  .page-id-238 .card-container .card a {
+    text-decoration: underline; }
+    .page-id-238 .card-container .card a:hover, .page-id-238 .card-container .card a:focus, .page-id-238 .card-container .card a:active {
+      color: white !important; }
   .page-id-238 .card-container .card.dark-cyan {
     background: #038798; }
+    .page-id-238 .card-container .card.dark-cyan a {
+      color: #72dccc; }
   .page-id-238 .card-container .card.orange {
     background: #ef4e22; }
+    .page-id-238 .card-container .card.orange a {
+      color: #e7efbe; }
   .page-id-238 .card-container .card.green {
     background: #5c8a3d; }
+    .page-id-238 .card-container .card.green a {
+      color: #aed586; }
 
 .program-brand {
   color: white; }
