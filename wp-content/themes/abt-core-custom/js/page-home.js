@@ -76,6 +76,46 @@
             });
     }
 
+    // Lazy load images a la David Walsh
+    // https://davidwalsh.name/lazyload-image-fade
+    function autoLazyLoad() {
+      [].forEach.call(document.querySelectorAll('noscript'), function(noscript) {
+        if (noscript.hasAttribute('data-src')) {
+          var img = new Image();
+          img.setAttribute('data-src', '');
+          noscript.parentNode.insertBefore(img, noscript);
+          img.onload = function() {
+            img.removeAttribute('data-src');
+            img.className = "loaded";
+          };
+          img.src = noscript.getAttribute('data-src');
+        }
+      });
+    }
+
+    function initHeroVideo() {
+      var data_img = $('#bg-video-wrapper').data('poster');
+      var data_webm = $('#bg-video-wrapper').data('webm');
+      var data_mp4 = $('#bg-video-wrapper').data('mp4');
+      var data_ogg = $('#bg-video-wrapper').data('ogg');
+
+      vid_el = '<video class="bg-video" id="bg-video" playsinline mute loop preload="auto" poster="'+data_img+'">';
+      vid_el += '<source src="'+data_webm+'" type="video/webm">';
+      vid_el += '<source src="'+data_mp4+'" type="video/mp4">';
+      vid_el += '<source src="'+data_ogg+'" type="video/ogg">';
+      vid_el += '</video>';
+
+      var vid_d = $.Deferred();
+      vid_d.resolve( $('#bg-video-wrapper').html(vid_el) );
+      $.when(vid_d).done(function() {
+        $('#bg-video').on('loadeddata', function() {
+          if($('#bg-video')[0].readyState >= 2) {
+            $('#bg-video')[0].play();
+          }
+        });
+      });
+    }
+
     // set up controller to reuse
     var controller = new ScrollMagic.Controller();
 
@@ -83,7 +123,7 @@
     function loadFadeInLeft() {
         $loadFadeInLeftEl = $('.load-fade-in-left');
         if ($loadFadeInLeftEl.length) {
-            var loadFadeInLeftTween = new TweenMax.fromTo($loadFadeInLeftEl, .75, {autoAlpha: 0, x:"-100px"}, {x: "0px", autoAlpha: 1, ease: Power2.easeOut, delay: .5});
+            var loadFadeInLeftTween = new TweenMax.fromTo($loadFadeInLeftEl, .75, {autoAlpha: 0, x:"-100px"}, {x: "0px", autoAlpha: 1, ease: Power2.easeOut, delay: .5, className: "+=loaded"});
         }
     }
 
@@ -93,11 +133,11 @@
         if ($fadeInLeftEl.length) {
             $fadeInLeftEl.each(function(){
                 var currentTarget = this;
-                var tween = new TweenMax.fromTo(currentTarget, .75, {autoAlpha: 0, x:"100px"}, {x: "0px", autoAlpha: 1, ease: Power2.easeOut});
+                var tween = new TweenMax.fromTo(currentTarget, .75, {autoAlpha: 0, x:"100px"}, {x: "0px", autoAlpha: 1, ease: Power2.easeOut, className: "+=loaded"});
                 var scene = new ScrollMagic.Scene({triggerElement: currentTarget})
                 .setTween(tween)
                 .reverse(false)
-                controller.addScene([scene]);    
+                controller.addScene([scene]);
             });
         }
     }
@@ -108,13 +148,13 @@
         if ($fadeInRightEl.length) {
             $fadeInRightEl.each(function(){
                 var currentTarget = this;
-                var tween = new TweenMax.fromTo(currentTarget, .75, {autoAlpha: 0, x:"-100px"}, {x: "0px", autoAlpha: 1, ease: Power2.easeOut});
+                var tween = new TweenMax.fromTo(currentTarget, .75, {autoAlpha: 0, x:"-100px"}, {x: "0px", autoAlpha: 1, ease: Power2.easeOut, className: "+=loaded"});
                 var scene = new ScrollMagic.Scene({triggerElement: currentTarget})
                 .setTween(tween)
                 .reverse(false)
                 controller.addScene([
                 scene
-                ]);    
+                ]);
             });
         }
     }
@@ -125,13 +165,13 @@
         if ($fadeInUpEl.length) {
             $fadeInUpEl.each(function(){
                 var currentTarget = this;
-                var tween = new TweenMax.fromTo(currentTarget, .75, {autoAlpha: 0, y:"100px"}, {y: "0px", autoAlpha: 1, ease: Power2.easeOut});
+                var tween = new TweenMax.fromTo(currentTarget, .75, {autoAlpha: 0, y:"100px"}, {y: "0px", autoAlpha: 1, ease: Power2.easeOut, className: "+=loaded"});
                 var scene = new ScrollMagic.Scene({triggerElement: currentTarget})
                 .setTween(tween)
                 .reverse(false)
                 controller.addScene([
                 scene
-                ]);    
+                ]);
             });
         }
     }
@@ -142,13 +182,13 @@
         if ($fadeInUpEl.length) {
             $fadeInUpEl.each(function(){
                 var currentTarget = this;
-                var tween = new TweenMax.fromTo(currentTarget, .75, {autoAlpha: 0, y:"100px"}, {y: "0px", autoAlpha: 1, ease: Power2.easeOut, onComplete: fadeInRightStaggered(trigger2, target2, 0, delayTime)});
+                var tween = new TweenMax.fromTo(currentTarget, .75, {autoAlpha: 0, y:"100px"}, {y: "0px", autoAlpha: 1, ease: Power2.easeOut, onComplete: fadeInRightStaggered(trigger2, target2, 0, delayTime), className: "+=loaded"});
                 var scene = new ScrollMagic.Scene({triggerElement: currentTarget})
                 .setTween(tween)
                 .reverse(false)
                 controller.addScene([
                 scene
-                ]);    
+                ]);
             });
         }
     }
@@ -156,7 +196,7 @@
     // Fade In Down *too jumpy when set up in foreach loop
     function fadeInDown(triggerEl, targetEl) {
         if (triggerEl.length) {
-            var fadeInDown = TweenMax.fromTo(targetEl, .75, {autoAlpha: 0, y:"-400px"}, {y: "0px", autoAlpha: 1, ease: Power2.easeOut});
+            var fadeInDown = TweenMax.fromTo(targetEl, .75, {autoAlpha: 0, y:"-400px"}, {y: "0px", autoAlpha: 1, ease: Power2.easeOut, className: "+=loaded"});
             var fadeInDownScene = new ScrollMagic.Scene({triggerElement: triggerEl})
             .setTween(fadeInDown)
             .reverse(false)
@@ -167,7 +207,7 @@
     // Fade In Up (staggered)
     function fadeInUpStaggered(triggerEl, targetEl, offsetVal) {
         if (triggerEl.length) {
-            var fadeInUpStaggered = TweenMax.staggerFromTo(targetEl, .5, {autoAlpha: 0, y:"100px"}, {y: "0px", autoAlpha: 1, ease: Power2.easeOut}, 0.15);
+            var fadeInUpStaggered = TweenMax.staggerFromTo(targetEl, .5, {autoAlpha: 0, y:"100px"}, {y: "0px", autoAlpha: 1, ease: Power2.easeOut, className: "+=loaded"}, 0.15);
             var fadeInUpStaggeredScene = new ScrollMagic.Scene({
               triggerElement: triggerEl,
               //triggerHook: "onEnter",
@@ -183,7 +223,7 @@
        // Fade In Right (staggered)
     function fadeInRightStaggered(triggerEl, targetEl, offsetVal, delayStart) {
         if (triggerEl.length) {
-            var fadeInRightStaggered = TweenMax.staggerFromTo(targetEl, .5, {autoAlpha: 0, x:"-100px"}, {x: "0px", autoAlpha: 1, ease: Power2.easeOut, delay: delayStart}, 0.15);
+            var fadeInRightStaggered = TweenMax.staggerFromTo(targetEl, .5, {autoAlpha: 0, x:"-100px"}, {x: "0px", autoAlpha: 1, ease: Power2.easeOut, delay: delayStart, className: "+=loaded"}, 0.15);
             var fadeInRightStaggeredScene = new ScrollMagic.Scene({
               triggerElement: triggerEl,
               //triggerHook: "onEnter",
@@ -199,7 +239,7 @@
     // Slide In Down
     function slideInDown(triggerEl, targetEl) {
         if (triggerEl.length) {
-            var slideInDownTween = TweenMax.fromTo(targetEl, .75, {autoAlpha: 0, y:"-200px"}, {y: "0px", autoAlpha: 1, ease: Power2.easeOut, delay: .5});
+            var slideInDownTween = TweenMax.fromTo(targetEl, .75, {autoAlpha: 0, y:"-200px"}, {y: "0px", autoAlpha: 1, ease: Power2.easeOut, delay: .5, className: "+=loaded"});
             var slideInDownScene = new ScrollMagic.Scene({triggerElement: triggerEl})
             .setTween(slideInDownTween)
             .reverse(false)
@@ -207,10 +247,10 @@
         }
     }
 
-    // Slide In Down
+    // Slide In Up
     function slideInUp(triggerEl, targetEl) {
         if (triggerEl.length) {
-            var slideInUpTween = TweenMax.fromTo(targetEl, .75, {autoAlpha: 0, y:"200px"}, {y: "0px", autoAlpha: 1, ease: Power2.easeOut, delay: .5});
+            var slideInUpTween = TweenMax.fromTo(targetEl, .75, {autoAlpha: 0, y:"200px"}, {y: "0px", autoAlpha: 1, ease: Power2.easeOut, delay: .5, className: "+=loaded"});
             var slideInUpScene = new ScrollMagic.Scene({triggerElement: triggerEl})
             .setTween(slideInUpTween)
             .reverse(false)
@@ -221,7 +261,7 @@
     // Slide In Right
     function slideInRight(triggerEl, targetEl) {
         if (triggerEl.length) {
-            var slideInRightTween = TweenMax.fromTo(targetEl, .75, {autoAlpha: 0, x:"200px"}, {x: "0px", autoAlpha: 1, ease: Power2.easeOut, delay: .5});
+            var slideInRightTween = TweenMax.fromTo(targetEl, .75, {autoAlpha: 0, x:"200px"}, {x: "0px", autoAlpha: 1, ease: Power2.easeOut, delay: .5, className: "+=loaded"});
             var slideInRightScene = new ScrollMagic.Scene({triggerElement: triggerEl})
             .setTween(slideInRightTween)
             .reverse(false)
@@ -232,7 +272,7 @@
     // Slide In Left
     function slideInLeft(triggerEl, targetEl) {
         if (triggerEl.length) {
-            var slideInLeftTween = TweenMax.fromTo(targetEl, .75, {autoAlpha: 0, x:"-200px"}, {x: "0px", autoAlpha: 1, ease: Power2.easeOut, delay: .5});
+            var slideInLeftTween = TweenMax.fromTo(targetEl, .75, {autoAlpha: 0, x:"-200px"}, {x: "0px", autoAlpha: 1, ease: Power2.easeOut, delay: .5, className: "+=loaded"});
             var slideInLeftScene = new ScrollMagic.Scene({triggerElement: triggerEl})
             .setTween(slideInLeftTween)
             .reverse(false)
@@ -242,7 +282,7 @@
 
     function fadeIn(triggerEl, targetEl, offsetVal) {
         if (triggerEl.length) {
-            var fadeInTween = TweenMax.fromTo(targetEl, .75, {autoAlpha: 0}, {autoAlpha: 1, ease: Power2.easeOut});
+            var fadeInTween = TweenMax.fromTo(targetEl, .75, {autoAlpha: 0}, {autoAlpha: 1, ease: Power2.easeOut, className: "+=loaded"});
             var fadeInScene = new ScrollMagic.Scene({triggerElement: triggerEl, triggerHook: "onLeave", offset: offsetVal})
             .setTween(fadeInTween)
             .reverse(false)
@@ -304,7 +344,9 @@
     $(document).ready(function () {
         initNewMenu();
         initScrollToSection();
+        initHeroVideo();
         initHomePageVideoButton();
+        autoLazyLoad();
 
         //hero video
         //$('.hero-video').outerHeight($(window).height());
@@ -322,9 +364,9 @@
             loadFadeInLeft();
             fadeInRight();
             fadeInUp();
-            
+
             fadeInUpStaggered('#innovation-band', '#innovation-band .fade-in-up-staggered', 0);
-            
+
             // Triangle of Young Talent
             fadeInRightStaggered('#young-talent', '#young-talent .fade-in-right-staggered', 0, .25);
 
@@ -336,9 +378,9 @@
 
             // A Culture of Diverse Expertise - header & company logos
             fadeInUpStaggered('#company-logos', '#company-logos .fade-in-up-staggered', 0);
-            
+
             // Quote
-            fadeInUpStaggered('#quote-band', '#quote-band .fade-in-up-staggered', 0);
+            // fadeInUpStaggered('#quote-band', '#quote-band .fade-in-up-staggered', 0);
 
             // Make Your Mark on RTP
             fadeInUpStaggered('#make-your-mark', '#make-your-mark .fade-in-up-staggered', 0);
@@ -351,8 +393,7 @@
 
             // Quote Parallax
             //parallaxAnim('#quote-band__parallax', '#quote-band', '200%', '80%');
-            slideBackground('#quote-band', '#quote-band');
-
+            // slideBackground('#quote-band', '#quote-band');
         }, true);
 
     });

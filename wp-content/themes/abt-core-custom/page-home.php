@@ -19,10 +19,13 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
 
     <div class="content-container">
         <section id="hero-video" class="band hero-video">
-            <video autoplay loop class="bg-video">
-                <source src="//files.rtp.org/videos/RTPExportforWeb.mp4" type="video/mp4">
-                <source src="//files.rtp.org/videos/RTPExportforWeb.ogv" type="video/ogg">
-            </video>
+            <div class="bg-video" id="bg-video-wrapper"
+              data-poster="<?php echo get_stylesheet_directory_uri(); ?>/img/hero-bg-min.jpg"
+              data-webm="//files.rtp.org/videos/RTPExportforWeb.webm"
+              data-mp4="{//files.rtp.org/videos/RTPExportforWeb.mp4"
+              data-ogg="//files.rtp.org/videos/RTPExportforWeb.ogv">
+              <img class="fallback" src="<?php echo get_stylesheet_directory_uri(); ?>/img/hero-bg-min.jpg" alt="" />
+            </div>
             <div class="wrapper band-stretch-first hero-video-meta">
                 <div class="load-fade-in-left">
                     <header>
@@ -62,7 +65,7 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
                     </div>
                     <div class="card-stat fade-in-up-staggered">
                         <div class="card-stat-count text-gradient-blue">50k+</div>
-                        <div class="card-stat-meta">Intelligent & Creative People Work Here</div>
+                        <div class="card-stat-meta">Intelligent &amp; Creative People Work Here</div>
                     </div>
                     <div class="card-stat fade-in-up-staggered">
                         <div class="card-stat-count text-gradient-blue">3k+</div>
@@ -84,13 +87,19 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
                 </header>
                 <div class="block-grid fade-in-right-staggered">
                     <div class="block block-logo theme-white">
-                        <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-duke.png">
+                        <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/logo-duke.png">
+                          <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-duke.png" data-src="" alt="Duke University" />
+                        </noscript>
                     </div>
                     <div class="block block-logo theme-white fade-in-right-staggered">
-                        <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-ncsu.png">
+                        <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/logo-ncsu.png">
+                          <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-ncsu.png" data-src="" alt="NC State University" />
+                        </noscript>
                     </div>
                     <div class="block block-logo theme-white fade-in-right-staggered">
-                        <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-unc.png">
+                        <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/logo-unc.png">
+                          <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-unc.png" data-src="" alt="University of North Carolina" />
+                        </noscript>
                     </div>
                     <div class="block block-more block-more-orange fade-in-right-staggered">
                         <a href="<?= $hp_career_link; ?>" target="blank">
@@ -113,13 +122,20 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
                 <div>
                     <div id="infographic-brain" class="infographic-brain">
                         <div class="panel-left">
-                            <img class="slide-in-down infographic-brain__left" src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-brain-left.svg">
-                            <img class="infographic-brain-absolute slide-in-left" src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-helix.svg">
-
+                            <img class="slide-in-down infographic-brain__left"
+                                 srcset="<?php echo get_stylesheet_directory_uri();?>/img/infographic-brain-left-750.png 1240w,
+                                         <?php echo get_stylesheet_directory_uri();?>/img/infographic-brain-left-500.png 890w,
+                                         <?php echo get_stylesheet_directory_uri();?>/img/infographic-brain-left-250.png 450w"
+                                 src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-brain-left-500.png" alt="" />
+                            <img class="infographic-brain-absolute slide-in-left" src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-helix.svg" alt="" />
                         </div>
                         <div class="panel-right">
-                            <img class="slide-in-up infographic-brain__right" src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-brain-right.svg">
-                            <img class="infographic-brain-absolute infographic-barcode slide-in-right" src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-barcode.svg">
+                            <img class="slide-in-up infographic-brain__right"
+                                 srcset="<?php echo get_stylesheet_directory_uri();?>/img/infographic-brain-right-750.png 1240w,
+                                         <?php echo get_stylesheet_directory_uri();?>/img/infographic-brain-right-500.png 890w,
+                                         <?php echo get_stylesheet_directory_uri();?>/img/infographic-brain-right-250.png 450w"
+                                 src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-brain-right.png" alt="" />
+                            <img class="infographic-brain-absolute infographic-barcode slide-in-right" src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-barcode.svg" alt="" />
                         </div>
                     </div>
 
@@ -135,25 +151,39 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
                 </header>
                 <div class="logo-set-alternate block-quarter group">
                     <div class="block block-logo fade-in-up-staggered">
-                        <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-cisco.png">
+                        <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/logo-cisco.png">
+                          <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-cisco.png" data-src="" alt="Cisco" />
+                        </noscript>
                     </div>
                     <div class="block block-logo fade-in-up-staggered">
-                        <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-fidelity.png">
+                        <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/logo-fidelity.png">
+                          <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-fidelity.png" data-src="" alt="Fidelity" />
+                        </noscript>
                     </div>
                     <div class="block block-logo fade-in-up-staggered">
-                        <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-gsk.png">
+                        <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/logo-gsk.png">
+                          <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-gsk.png" data-src="" alt="GSK" />
+                        </noscript>
                     </div>
                     <div class="block block-logo fade-in-up-staggered">
-                        <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-ibm.png">
+                        <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/logo-ibm.png">
+                          <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-ibm.png" data-src="" alt="IBM" />
+                        </noscript>
                     </div>
                     <div class="block block-logo fade-in-up-staggered">
-                        <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-lenovo.png">
+                        <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/logo-lenovo.png">
+                          <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-lenovo.png" data-src="" alt="Lenovo" />
+                        </noscript>
                     </div>
                     <div class="block block-logo fade-in-up-staggered">
-                        <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-netapp.png">
+                        <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/logo-netapp.png">
+                          <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-netapp.png" data-src="" alt="NetApp" />
+                        </noscript>
                     </div>
                     <div class="block block-logo fade-in-up-staggered">
-                        <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-rti.png">
+                        <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/logo-rti.png">
+                          <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-rti.png" data-src="" alt="RTI International" />
+                        </noscript>
                     </div>
                     <div class="block block-more block-more-blue fade-in-up-staggered">
                         <a href="<?= $hp_company_directory_link; ?>">
@@ -307,13 +337,17 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
                         <!-- Instagram Post 1 -->
                         <?php echo '<a href="' . $instaPostLink[0] . '" target="blank" class="block-social__instagram-item fade-in-up-staggered">
                             <span class="icon icon-i_instagram"></span>
-                            <img src="' . $instaPostImg[0] . '" />
+                            <noscript data-src="' . $instaPostImg[0] . '">
+                              <img src="' . $instaPostImg[0] . '" data-src="" alt="" />
+                            </noscript>
                         </a>'; ?>
 
                         <!-- Instagram Post 2 -->
                         <?php echo '<a href="' . $instaPostLink[1] . '" target="blank" class="block-social__instagram-item fade-in-up-staggered">
                             <span class="icon icon-i_instagram"></span>
-                            <img src="' . $instaPostImg[1] . '" />
+                            <noscript data-src="' . $instaPostImg[1] . '">
+                              <img src="' . $instaPostImg[1] . '" data-src="" alt="" />
+                            </noscript>
                         </a>'; ?>
                         <!-- Blog Post 2 -->
                         <a href="<?php echo $postPermalinks[1]; ?>" class="block-social__blog-item fade-in-up-staggered">
@@ -337,7 +371,9 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
                         <!-- Instagram Post 3 -->
                         <?php echo '<a href="' . $instaPostLink[2] . '" target="blank" class="block-social__instagram-item fade-in-up-staggered">
                             <span class="icon icon-i_instagram"></span>
-                            <img src="' . $instaPostImg[2] . '" />
+                            <noscript data-src="' . $instaPostImg[2] . '">
+                              <img src="' . $instaPostImg[2] . '" data-src="" alt="" />
+                            </noscript>
                         </a>'; ?>
                         <!-- Tweet 1 -->
                         <a href="https://twitter.com/TheRTP/statuses/<?php echo $tweetId[0]; ?>" target="blank" class="block-social__twitter-item fade-in-up-staggered">

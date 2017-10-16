@@ -31,8 +31,8 @@ get_header(); ?>
     </div>
     <?php if ( !$detect->isMobile() ) : ?>
       <video preload="auto" webkit-playsinline="" autoplay="" loop>
-        <source src="//files.rtp.org/videos/frontier-intro.mp4" type="video/mp4" />
         <source src="//files.rtp.org/videos/frontier-intro.webm" type="video/webm" />
+        <source src="//files.rtp.org/videos/frontier-intro.mp4" type="video/mp4" />
         <source src="//files.rtp.org/videos/frontier-intro.ogv" type="video/ogg" />
         <p>To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
       </video>

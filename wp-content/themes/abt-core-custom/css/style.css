@@ -2097,6 +2097,12 @@ textarea {
   .content-container #mc_embed_signup form div.mce_inline_error {
     background-color: #c7202c; }
 
+img[data-src] {
+  opacity: 0; }
+  img[data-src].loaded {
+    opacity: 1;
+    transition: opacity 0.3s; }
+
 iframe {
   border: 0; }
 

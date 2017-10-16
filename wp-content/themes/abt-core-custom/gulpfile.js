@@ -46,7 +46,15 @@ gulp.task('scripts', function() {
 	.pipe(livereload());
 });
 gulp.task('scripts-page-home', function() {
-	return gulp.src(['js/page-home.js'])
+	return gulp.src(
+		['js/vendors/TweenMax.min.js',
+		 'js/vendors/ScrollMagic.js',
+		 'js/vendors/animation.gsap.min.js',
+		 'js/vendors/headroom.min.js',
+		 'js/vendors/jquery.magnific-popup.js',
+		 'js/page-home.js'])
+ 	.pipe(concat('page-home-all.js'))
+	.pipe(gulp.dest('js'))
 	.pipe(uglify())
 	.pipe(rename('page-home.min.js'))
 	.pipe(gulp.dest('js'))
