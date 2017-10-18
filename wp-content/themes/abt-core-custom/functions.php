@@ -169,8 +169,8 @@ class abt_core_custom_theme {
 				wp_enqueue_script('page_frontier_scripts', $theme_dir . '/js/page-frontier.min.js', array('jquery'), $core_version, true );
 			}
 			if (is_page_template('page-stem.php')) {
-			wp_enqueue_script('page_stem_scripts', $theme_dir . '/js/page-stem.js', array('jquery'), $core_version, true );
-				// wp_enqueue_script('page_stem_scripts', $theme_dir . '/js/page-stem.min.js', array('jquery'), $core_version, true );
+			// wp_enqueue_script('page_stem_scripts', $theme_dir . '/js/page-stem.js', array('jquery'), $core_version, true );
+				wp_enqueue_script('page_stem_scripts', $theme_dir . '/js/page-stem.min.js', array('jquery'), $core_version, true );
 			}
 			if (is_page_template('page-thelab.php') || is_page_template('page-thelab-about.php') || is_page_template('page-thelab-companies.php') || is_page_template('page-thelab-space.php')) {
 				wp_enqueue_script('page_thelab_scripts', $theme_dir . '/js/page-thelab.min.js', array('jquery'), $core_version, true );
