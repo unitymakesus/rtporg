@@ -17,6 +17,8 @@
     ?>
   </nav>
 
+  <a href="https://squareup.com/store/research-triangle-park-charitable-fund" target="_blank" class="button">Donate Now</a>
+
   <?php if ( $stem_in_the_park_twitter || $stem_in_the_park_facebook || $stem_in_the_park_instagram || $stem_in_the_park_google ): ?>
     <ul class="follow">
       <?php if ($stem_in_the_park_twitter) : ?>

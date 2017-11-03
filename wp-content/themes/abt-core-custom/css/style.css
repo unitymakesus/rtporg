@@ -1594,7 +1594,8 @@ input[type="submit"], button, a.button {
   padding: 0.625rem 1.25rem;
   margin: 0 0 10px;
   margin: 0 0 0.625rem;
-  transition: all .25s ease-in-out; }
+  transition: all .25s ease-in-out;
+  border-radius: 0; }
   input[type="submit"] + input[type="submit"],
   input[type="submit"] + button,
   input[type="submit"] + a.button, button + input[type="submit"],
@@ -8158,31 +8159,26 @@ body.home.menu-open {
       height: 18px;
       height: 1.125rem; } }
 
-.stem-header .donate-button {
+.stem-header .button {
   float: right;
-  display: block; }
-  .stem-header .donate-button .button {
-    height: 100%;
-    margin-bottom: 0;
-    display: block;
-    line-height: 1.5;
-    font-size: 16px;
-    font-size: 1rem;
-    padding: 20px;
-    padding: 1.25rem; }
-    @media screen and (min-width: 1280px) {
-      .stem-header .donate-button .button {
-        padding: 20px 30px;
-        padding: 1.25rem 1.875rem; } }
-    @media screen and (min-width: 1440px) {
-      .stem-header .donate-button .button {
-        padding: 20px 40px;
-        padding: 1.25rem 2.5rem; } }
-  .stem-header .donate-button img {
-    display: inline-block;
-    position: absolute;
-    top: 0;
-    right: 0; }
+  display: block;
+  height: 100%;
+  margin-bottom: 0;
+  display: block;
+  line-height: 1.5;
+  background: #ef4e22;
+  font-size: 16px;
+  font-size: 1rem;
+  padding: 20px;
+  padding: 1.25rem; }
+  @media screen and (min-width: 1280px) {
+    .stem-header .button {
+      padding: 20px 30px;
+      padding: 1.25rem 1.875rem; } }
+  @media screen and (min-width: 1440px) {
+    .stem-header .button {
+      padding: 20px 40px;
+      padding: 1.25rem 2.5rem; } }
 
 .page-template-page-stem .content {
   overflow: visible;

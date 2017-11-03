@@ -18,6 +18,7 @@ input[type="submit"], button, a.button {
   @include rem(padding, 10px 20px);
   @include rem(margin, 0 0 10px);
   transition: all .25s ease-in-out;
+  border-radius: 0;
 
   // Apply top margin to buttons that follow buttons on mobile devices.
   & + input[type="submit"],
