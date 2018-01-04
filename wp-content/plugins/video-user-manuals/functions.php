@@ -2,9 +2,9 @@
 function vum_get_api_params( $url ) {
 
 	$url->lang           = get_option( 'wpm_o_lang' );
-	$url->branding_img = get_option( 'wpm_o_branding_img' );
-	$url->branding_logo = get_option( 'wpm_o_branding_logo' );
-	$url->video_image  = get_option( 'wpm_o_custom_vid_placeholder' );
+	$url->branding_img = vum_ssl_source( get_option( 'wpm_o_branding_img' ) );
+	$url->branding_logo = vum_ssl_source( get_option( 'wpm_o_branding_logo' ) );
+	$url->video_image  = vum_ssl_source( get_option( 'wpm_o_custom_vid_placeholder' ) );
 
 	$url_params = '';
 
@@ -19,14 +19,20 @@ function vum_get_api_params( $url ) {
 	if (substr($url_params, -1, 1) == ',') $url_params = substr_replace( $url_params, '', - 1 );
 	
 	return $url_params;
+
 }
 
 function vum_domain( $url ) {
 
-	$url = Vum::vum_domain . $url;
+	return vum_ssl_source( Vum::vum_domain . $url );
+
+}
+
+function vum_ssl_source( $source = "" ) {
+
 	if( is_ssl() ){
-		$url = str_replace( 'http://', 'https://', $url );
+		$source = str_replace( 'http://', 'https://', $source );
 	}
 
-	return $url;
+	return $source;
 }

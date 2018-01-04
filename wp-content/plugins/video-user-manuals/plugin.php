@@ -3,7 +3,7 @@
 Plugin Name: Video User Manuals
 Plugin URI: http://www.videousermanuals.com/
 Description: A complete video manual for your clients
-Version: 2.5.4
+Version: 2.5.6
 Author: Video User Manuals Pty Ltd
 Author URI: http://www.videousermanuals.com
 */
@@ -12,7 +12,7 @@ define("VUM_PLUGIN_DIR", WP_PLUGIN_DIR . "/" . basename(dirname(__FILE__)) . "/"
 require_once ( VUM_PLUGIN_DIR . "functions.php" );
 class Vum{
  
-    const pluginver             = '2.5.4';
+    const pluginver             = '2.5.6';
     const ver_key               = 'wpm_o_ver';
     const vum_domain            = 'http://wordpress.videousermanuals.com/';
     const iframe_url            = '//wordpress.videousermanuals.com/json.php?jsoncallback=?';
@@ -191,12 +191,12 @@ class Vum{
                     $sections_option[] = str_replace("show_", "", $key);
                 }
 
-                update_option( $val['dbName'], $_POST[ $key ] );
+                update_option( $val['dbName'], $_POST[ $key ], false );
             }
 
         }
         //save enabled video sections
-        update_option("wpm_o_vum_sections", $sections_option);
+        update_option("wpm_o_vum_sections", $sections_option, false);
 
         if( isset( $_POST['set_master_profile'] ) ) {
 
@@ -283,11 +283,11 @@ class Vum{
 
             // If the heading is there, then this must be legacy, so set lang to AU english, else, try WP default.
             if ( get_option( 'wpm_o_custom_video_title' ) ) {
-                update_option( 'wpm_o_lang', 'en-au' );
+                update_option( 'wpm_o_lang', 'en-au', false );
             } else {
                 $lang = explode( '-', strtolower( get_bloginfo( 'language' ) ) );
                 $lang = ( $lang[0] == $lang[1] ? $lang[0] : strtolower( get_bloginfo( 'language' ) ) );
-                update_option( 'wpm_o_lang', $lang );
+                update_option( 'wpm_o_lang', $lang, false );
             }
         }
 
@@ -503,7 +503,7 @@ class Vum{
             'plugin_custom_logo',
             'Custom Logo For Plugin Pages',
             'Appears top left of pages next to heading. 32px high will look the best',
-            'http://vum.s3.amazonaws.com/wp/assets/vum-logo-32.png'
+            vum_ssl_source( 'http://vum.s3.amazonaws.com/wp/assets/vum-logo-32.png' )
         );
 
         $form->addTextbox(
@@ -516,7 +516,7 @@ class Vum{
             'branding_img',
             'Custom Logo above video player',
             'Absolute url to your logo. Max size 960 x 30px.',
-            'http://vum.s3.amazonaws.com/wp/assets/vum-logo.gif'
+            vum_ssl_source( 'http://vum.s3.amazonaws.com/wp/assets/vum-logo.gif' )
         );
 
         $form->addTextbox(
@@ -863,10 +863,10 @@ class Vum{
         $response = wp_remote_get( apply_filters( 'vum_prefs', self::prefs_url . $url_params ) );
 
         if ( is_wp_error($response) ) {
-            update_option( 'wpm_o_form_prefs', 'error' );
+            update_option( 'wpm_o_form_prefs', 'error', false );
         } else {
             $wpm_prefs = json_decode( wp_remote_retrieve_body( $response ) );
-            update_option( 'wpm_o_form_prefs', $wpm_prefs );
+            update_option( 'wpm_o_form_prefs', $wpm_prefs, false );
         }
 
         return $wpm_prefs;
@@ -886,7 +886,7 @@ class Vum{
             $response = wp_remote_get( apply_filters( 'vum_pages_config', self::vum_domain . "wpm_pages_config.php") );
             
             if ( is_wp_error( $response ) ) {
-                update_option( 'wpm_pages_config', 'error' );
+                update_option( 'wpm_pages_config', 'error', false );
             } else {
                 $config_json = json_decode( wp_remote_retrieve_body( $response ) );
                 
@@ -894,8 +894,8 @@ class Vum{
                 
                 $this->video_pages_settings = (array) $onpage_config->videos;
                 $this->video_pages_sections_settings = (array) $onpage_config->sections;
-                update_option( 'wpm_pages_config', $this->video_pages_settings );
-                update_option( 'wpm_pages_sections_config', $this->video_pages_sections_settings );
+                update_option( 'wpm_pages_config', $this->video_pages_settings, false );
+                update_option( 'wpm_pages_sections_config', $this->video_pages_sections_settings, false );
             }
         }
         return $this->video_pages_settings;
@@ -1004,11 +1004,11 @@ class Vum{
 
         $url_data = array(
             'vid' => $video->vid,
-            'video_thumb' => $video->thumb,
+            'video_thumb' => vum_ssl_source( $video->thumb ),
             'width' => $width,
             'height' => $height,
             'plugins_ver' => self::pluginver,
-            'branding_logo' => get_option( 'wpm_o_branding_logo' )
+            'branding_logo' => vum_ssl_source( get_option( 'wpm_o_branding_logo' ) )
         );
 
         // the <iframe> embed URL
@@ -1033,7 +1033,7 @@ class Vum{
     function ebook() {
         
         $popupsetting = get_option( 'wpm_o_change_popup_url', false );
-        $wpm_urlvars = "lang:'" . get_option( 'wpm_o_lang' ) . "',wp_version:'" . get_bloginfo( 'version' ) . "', user_id:'" . get_option( 'wpm_o_user_id' ) . "',custom_ebook_img:'" . get_option( 'wpm_o_custom_ebook_img' ) . "'";
+        $wpm_urlvars = "lang:'" . get_option( 'wpm_o_lang' ) . "',wp_version:'" . get_bloginfo( 'version' ) . "', user_id:'" . get_option( 'wpm_o_user_id' ) . "',custom_ebook_img:'" . vum_ssl_source( get_option( 'wpm_o_custom_ebook_img' ) ) . "'";
 
         ?>
         <div id="manual-page" class="wrap">
@@ -1042,7 +1042,7 @@ class Vum{
             <h2 style="margin-bottom:8px">
                 <?php
                 if ( get_option( 'wpm_o_plugin_custom_logo' ) ) {
-                    echo '<img src="' . get_option( 'wpm_o_plugin_custom_logo' ) . '" alt="logo" style="vertical-align: -7px">&nbsp; ';
+                    echo '<img src="' . vum_ssl_source( get_option( 'wpm_o_plugin_custom_logo' ) ) . '" alt="logo" style="vertical-align: -7px">&nbsp; ';
                 }
 
                 echo get_option( 'wpm_o_plugin_heading_user' ); ?>
@@ -1317,13 +1317,13 @@ xxx;
                 if ( isset( $api_reply->is_host ) && $api_reply->is_host == 'true' ) {
 
                     // Note in the DB this is a host serial number.
-                    update_option( 'wpm_o_host', true );
+                    update_option( 'wpm_o_host', true, false );
                 }
 
                 if ( isset( $api_reply->has_prefs ) && $api_reply->has_prefs == 'true' ) {
 
                     //  Add Serial
-                    update_option( 'wpm_o_user_id', trim( $_POST['serial'] ) );
+                    update_option( 'wpm_o_user_id', trim( $_POST['serial'] ), false );
                     $this->video_pages_settings(true);
                     
                     // We are going to apply the profile?
@@ -1341,7 +1341,7 @@ xxx;
                                 $s->option_value = get_current_user_id();
                             }
 
-                            update_option( $s->option_name, $s->option_value );
+                            update_option( $s->option_name, $s->option_value, false );
                         }
                     }
 
@@ -1350,7 +1350,7 @@ xxx;
 
                 } elseif ( $api_reply->result == 'active' ) {
 
-                    update_option( 'wpm_o_user_id', trim( $_POST['serial'] ) );
+                    update_option( 'wpm_o_user_id', trim( $_POST['serial'] ), false );
                     wp_redirect( admin_url( 'admin.php?page=vum-options' ) );
                     exit;
 
@@ -1446,9 +1446,9 @@ xxx;
         $url->wp_version     = get_bloginfo( 'version' );
         $url->lang           = get_option( 'wpm_o_lang' );
         
-        $url->branding_img   = get_option( 'wpm_o_branding_img' );
-        $url->branding_logo  = get_option( 'wpm_o_branding_logo' );
-        $url->video_image    = get_option( 'wpm_o_custom_vid_placeholder' );
+        $url->branding_img   = vum_ssl_source( get_option( 'wpm_o_branding_img' ) );
+        $url->branding_logo  = vum_ssl_source( get_option( 'wpm_o_branding_logo' ) );
+        $url->video_image    = vum_ssl_source( get_option( 'wpm_o_custom_vid_placeholder' ) );
 
 
         // Trim off last comma and put in URL array to pass to VUM.
@@ -1557,7 +1557,7 @@ vvvv;
 
             if( ! is_wp_error( $response ) ) {
                 $status =  json_decode($response);
-                update_option( "vum_enable_embed_video", $status);
+                update_option( "vum_enable_embed_video", $status, false);
                 return $status;
             }else{
                 return false;
@@ -1644,7 +1644,7 @@ vvvv;
         
         $return =  '<div id="manual-page" class="wrap"> <h2 style="margin-bottom:8px">';
         if( get_option('wpm_o_plugin_custom_logo') ) {
-            $return .= '<img src="'.get_option('wpm_o_plugin_custom_logo').'" alt="logo" style="vertical-align: -7px">&nbsp; ';
+            $return .= '<img src="'. vum_ssl_source( get_option('wpm_o_plugin_custom_logo') ) .'" alt="logo" style="vertical-align: -7px">&nbsp; ';
         }
         
             $return .= get_option('wpm_o_plugin_heading_video') . '</h2>';

@@ -11,7 +11,7 @@ $urlvars = array(
 	'lang'             => get_option( 'wpm_o_lang' ),
 	'wp_version'       => get_bloginfo( 'version' ),
 	'user_id'          => get_option( 'wpm_o_user_id' ),
-	'custom_ebook_img' => get_option( 'wpm_o_custom_ebook_img' ),
+	'custom_ebook_img' => vum_ssl_source( get_option( 'wpm_o_custom_ebook_img' ) ),
 );
 
 $urlvars_encoded = http_build_query( $urlvars );
@@ -19,7 +19,7 @@ $urlvars_encoded = http_build_query( $urlvars );
 
 ?>
 <a href="javascript:void(0)" id="ebook_link">
-	<img src="<?php echo $custom_ebook_img; ?>" alt="Click here to open manual" title="click here to open manual" />
+	<img src="<?php echo vum_ssl_source( $custom_ebook_img); ?>" alt="Click here to open manual" title="click here to open manual" />
 </a>
 <script type="text/javascript">
 	document.getElementById( 'ebook_link' ).onclick = function () {

@@ -42,10 +42,14 @@ If you have any problems with the plugin, please submit a support ticket here: h
 Change Log
 *********
 
+2.5.6 - November 2, 2017
+- Auto change logo url scheme for ssl
+
+2.5.5 - August 10, 2017
+- Plugin resource updates
 
 2.5.4 - December 19, 2016
 - Minor bug fixes
-
 
 2.5.3 - December 1, 2016
 - Fixed embed feature
