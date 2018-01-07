@@ -126,7 +126,8 @@ class abt_core_custom_theme {
 		$has_https    = isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] == "on" ;
 
 		$timestamp    = date('Ydmhis');
-		$core_version = ABTCORE_VERSION;
+    $theme        = wp_get_theme();
+		$core_version = $theme->get('Version');
 
 		// Only for Theme Area
 		if( ! is_admin() ) {
