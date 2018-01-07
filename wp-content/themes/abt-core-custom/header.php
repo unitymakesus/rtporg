@@ -41,7 +41,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <body <?php body_class(); ?> data-default-menu-size="minimized">
 <?php endif; ?>
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K3PZ6P"
+<noscript class="gtm"><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K3PZ6P"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 	<?php

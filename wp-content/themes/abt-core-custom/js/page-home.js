@@ -97,7 +97,7 @@
                 var scene = new ScrollMagic.Scene({triggerElement: currentTarget})
                 .setTween(tween)
                 .reverse(false)
-                controller.addScene([scene]);    
+                controller.addScene([scene]);
             });
         }
     }
@@ -114,7 +114,7 @@
                 .reverse(false)
                 controller.addScene([
                 scene
-                ]);    
+                ]);
             });
         }
     }
@@ -131,7 +131,7 @@
                 .reverse(false)
                 controller.addScene([
                 scene
-                ]);    
+                ]);
             });
         }
     }
@@ -148,7 +148,7 @@
                 .reverse(false)
                 controller.addScene([
                 scene
-                ]);    
+                ]);
             });
         }
     }
@@ -322,9 +322,9 @@
             loadFadeInLeft();
             fadeInRight();
             fadeInUp();
-            
+
             fadeInUpStaggered('#innovation-band', '#innovation-band .fade-in-up-staggered', 0);
-            
+
             // Triangle of Young Talent
             fadeInRightStaggered('#young-talent', '#young-talent .fade-in-right-staggered', 0, .25);
 
@@ -336,7 +336,7 @@
 
             // A Culture of Diverse Expertise - header & company logos
             fadeInUpStaggered('#company-logos', '#company-logos .fade-in-up-staggered', 0);
-            
+
             // Quote
             fadeInUpStaggered('#quote-band', '#quote-band .fade-in-up-staggered', 0);
 
@@ -355,6 +355,34 @@
 
         }, true);
 
+    });
+
+    // Lazy load images a la David Walsh
+    // https://davidwalsh.name/lazyload-image-fade
+    $('#page noscript').each(function() {
+      if (!$(this).hasClass('gtm')) {
+        var img = new Image();
+        img.setAttribute('data-src', '');
+        $(this).before(img);
+        img.onload = function() {
+          img.removeAttribute('data-src');
+        };
+        img.src = $(this).attr('data-src');
+        img.alt = $(this).attr('alt');
+        if (typeof $(this).attr('height') !== typeof undefined) {
+          img.height = $(this).attr('height');
+        }
+        if (typeof $(this).attr('width') !== typeof undefined) {
+          img.width = $(this).attr('width');
+          img.setAttribute('style', "max-width: " + $(this).attr('width') + "px;");
+        }
+        if (typeof $(this).attr('class') !== typeof undefined) {
+          img.setAttribute('class', $(this).attr('class'));
+        }
+        if (typeof $(this).attr('srcset') !== typeof undefined && $(this).attr('srcset') !== false) {
+          img.setAttribute('srcset', $(this).attr('srcset'));
+        }
+      }
     });
 
 })(jQuery);

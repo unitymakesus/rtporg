@@ -84,13 +84,19 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
                 </header>
                 <div class="block-grid fade-in-right-staggered">
                     <div class="block block-logo theme-white">
-                        <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-duke.png">
+                      <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/logo-duke.png" alt="Duke University">
+                        <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-duke.png" alt="Duke University" />
+                      </noscript>
                     </div>
                     <div class="block block-logo theme-white fade-in-right-staggered">
-                        <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-ncsu.png">
+                      <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/logo-ncsu.png" alt="North Carolina State University">
+                        <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-ncsu.png" alt="North Carolina State University" />
+                      </noscript>
                     </div>
                     <div class="block block-logo theme-white fade-in-right-staggered">
-                        <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-unc.png">
+                      <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/logo-unc.png" alt="University of North Carolina at Chapel Hill">
+                        <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-unc.png" alt="University of North Carolina at Chapel Hill" />
+                      </noscript>
                     </div>
                     <div class="block block-more block-more-orange fade-in-right-staggered">
                         <a href="<?= $hp_career_link; ?>" target="blank">
@@ -113,13 +119,20 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
                 <div>
                     <div id="infographic-brain" class="infographic-brain">
                         <div class="panel-left">
-                            <img class="slide-in-down infographic-brain__left" src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-brain-left.svg">
-                            <img class="infographic-brain-absolute slide-in-left" src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-helix.svg">
-
+                          <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-brain-left.svg" class="slide-in-down infographic-brain__left" alt="Left brain illustration = analytic">
+                            <img class="slide-in-down infographic-brain__left" src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-brain-left.svg" alt="Left brain illustration = analytic">
+                          </noscript>
+                          <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-helix.svg" class="infographic-brain-absolute slide-in-left" alt="Molecules">
+                            <img class="infographic-brain-absolute slide-in-left" src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-helix.svg" alt="Molecules">
+                          </noscript>
                         </div>
                         <div class="panel-right">
-                            <img class="slide-in-up infographic-brain__right" src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-brain-right.svg">
-                            <img class="infographic-brain-absolute infographic-barcode slide-in-right" src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-barcode.svg">
+                          <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-brain-right.svg" class="slide-in-up infographic-brain__right" alt="Right brain illustration = creative">
+                            <img class="slide-in-up infographic-brain__right" src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-brain-right.svg" alt="Right brain illustration = creative">
+                          </noscript>
+                          <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-barcode.svg" class="infographic-brain-absolute infographic-barcode slide-in-right" alt="Barcode">
+                            <img class="infographic-brain-absolute infographic-barcode slide-in-right" src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-barcode.svg" alt="Barcode">
+                          </noscript>
                         </div>
                     </div>
 
@@ -135,25 +148,39 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
                 </header>
                 <div class="logo-set-alternate block-quarter group">
                     <div class="block block-logo fade-in-up-staggered">
-                        <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-cisco.png">
+                      <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/logo-cisco.png" alt="Cisco">
+                        <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-cisco.png" alt="Cisco">
+                      </noscript>
                     </div>
                     <div class="block block-logo fade-in-up-staggered">
-                        <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-fidelity.png">
+                      <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/logo-fidelity.png" alt="Fidelity">
+                        <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-fidelity.png" alt="Fidelity">
+                      </noscript>
                     </div>
                     <div class="block block-logo fade-in-up-staggered">
-                        <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-gsk.png">
+                      <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/logo-gsk.png" alt="GSK">
+                        <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-gsk.png" alt="GSK">
+                      </noscript>
                     </div>
                     <div class="block block-logo fade-in-up-staggered">
-                        <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-ibm.png">
+                      <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/logo-ibm.png" alt="IBM">
+                        <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-ibm.png" alt="IBM">
+                      </noscript>
                     </div>
                     <div class="block block-logo fade-in-up-staggered">
-                        <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-lenovo.png">
+                      <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/logo-lenovo.png" alt="Lenovo">
+                        <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-lenovo.png" alt="Lenovo">
+                      </noscript>
                     </div>
                     <div class="block block-logo fade-in-up-staggered">
-                        <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-netapp.png">
+                      <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/logo-netapp.png" alt="NetApp">
+                        <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-netapp.png" alt="NetApp">
+                      </noscript>
                     </div>
                     <div class="block block-logo fade-in-up-staggered">
-                        <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-rti.png">
+                      <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/logo-rti.png" alt="RTI">
+                        <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-rti.png" alt="RTI">
+                      </noscript>
                     </div>
                     <div class="block block-more block-more-blue fade-in-up-staggered">
                         <a href="<?= $hp_company_directory_link; ?>">
@@ -307,13 +334,17 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
                         <!-- Instagram Post 1 -->
                         <?php echo '<a href="' . $instaPostLink[0] . '" target="blank" class="block-social__instagram-item fade-in-up-staggered">
                             <span class="icon icon-i_instagram"></span>
-                            <img src="' . $instaPostImg[0] . '" />
+                            <noscript data-src="' . $instaPostImg[0] . '" alt="">
+                            <img src="' . $instaPostImg[0] . '" alt="" />
+                            </noscript>
                         </a>'; ?>
 
                         <!-- Instagram Post 2 -->
                         <?php echo '<a href="' . $instaPostLink[1] . '" target="blank" class="block-social__instagram-item fade-in-up-staggered">
                             <span class="icon icon-i_instagram"></span>
-                            <img src="' . $instaPostImg[1] . '" />
+                            <noscript data-src="' . $instaPostImg[1] . '" alt="">
+                            <img src="' . $instaPostImg[1] . '" alt="" />
+                            </noscript>
                         </a>'; ?>
                         <!-- Blog Post 2 -->
                         <a href="<?php echo $postPermalinks[1]; ?>" class="block-social__blog-item fade-in-up-staggered">
@@ -337,7 +368,9 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
                         <!-- Instagram Post 3 -->
                         <?php echo '<a href="' . $instaPostLink[2] . '" target="blank" class="block-social__instagram-item fade-in-up-staggered">
                             <span class="icon icon-i_instagram"></span>
-                            <img src="' . $instaPostImg[2] . '" />
+                            <noscript data-src="' . $instaPostImg[2] . '" alt="">
+                            <img src="' . $instaPostImg[2] . ' alt="" />
+                            </noscript>
                         </a>'; ?>
                         <!-- Tweet 1 -->
                         <a href="https://twitter.com/TheRTP/statuses/<?php echo $tweetId[0]; ?>" target="blank" class="block-social__twitter-item fade-in-up-staggered">
@@ -355,7 +388,9 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
                         <!-- Instagram 4 -->
                         <?php echo '<a href="' . $instaPostLink[3] . '" target="blank" class="block-social__instagram-item fade-in-up-staggered">
                             <span class="icon icon-i_instagram"></span>
-                            <img src="' . $instaPostImg[3] . '" />
+                            <noscript data-src="' . $instaPostImg[3] . '" alt="">
+                            <img src="' . $instaPostImg[3] . '" alt="" />
+                            </noscript>
                         </a>'; ?>
                         <!-- Tweet 3 -->
                         <a href="https://twitter.com/TheRTP/statuses/<?php echo $tweetId[2]; ?>" target="blank" class="block-social__twitter-item fade-in-up-staggered">

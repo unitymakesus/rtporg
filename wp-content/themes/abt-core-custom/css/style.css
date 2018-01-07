@@ -1026,8 +1026,8 @@ body {
   @media screen and (min-width: 960px) {
     .content-container {
       padding: 0;
-      margin-bottom: 56px;
-      margin-bottom: 3.5rem;
+      margin-bottom: 92px;
+      margin-bottom: 5.75rem;
       display: block; }
       .content-container::after {
         clear: both;
