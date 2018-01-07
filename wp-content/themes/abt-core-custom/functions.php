@@ -138,7 +138,7 @@ class abt_core_custom_theme {
 			// Child Theme Stylesheets
 			wp_deregister_style('abtcore-theme');
 			wp_deregister_style('abtcore-theme-ancient');
-			wp_enqueue_style('abtcore-child-theme', $theme_dir . '/css/style.css', null, $core_version . $time, 'screen');
+			wp_enqueue_style('abtcore-child-theme', $theme_dir . '/css/style.min.css', null, $core_version . $time, 'screen');
 			wp_enqueue_style('abtcore-child-print', $theme_dir . '/css/print.css', null, $core_version . $time, 'print');
 
 			// Child Theme Scripts

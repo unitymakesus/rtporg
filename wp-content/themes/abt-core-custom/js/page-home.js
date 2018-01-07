@@ -65,6 +65,34 @@
         }
     }
 
+    // Lazy load images a la David Walsh
+    // https://davidwalsh.name/lazyload-image-fade
+    function walshLoad(noscript) {
+      if (!noscript.hasClass('gtm')) {
+        var img = new Image();
+        img.setAttribute('data-src', '');
+        noscript.before(img);
+        img.onload = function() {
+          img.removeAttribute('data-src');
+        };
+        img.src = noscript.attr('data-src');
+        img.alt = noscript.attr('alt');
+        if (typeof noscript.attr('height') !== typeof undefined) {
+          img.height = noscript.attr('height');
+        }
+        if (typeof noscript.attr('width') !== typeof undefined) {
+          img.width = noscript.attr('width');
+          img.setAttribute('style', "max-width: " + noscript.attr('width') + "px;");
+        }
+        if (typeof noscript.attr('class') !== typeof undefined) {
+          img.setAttribute('class', noscript.attr('class'));
+        }
+        if (typeof noscript.attr('srcset') !== typeof undefined && noscript.attr('srcset') !== false) {
+          img.setAttribute('srcset', noscript.attr('srcset'));
+        }
+      }
+    }
+
     function initScrollToSection() {
             $(".scroll-to-section").click(function() {
                 var $target = $(this).data('target'),
@@ -176,11 +204,16 @@
             })
             .setTween(fadeInUpStaggered)
             .reverse(false)
-            .addTo(controller);
+            .addTo(controller)
+            .on('enter', function(event) {
+              $(targetEl).find('noscript').each(function() {
+                walshLoad($(this));
+              });
+            });
         }
     }
 
-       // Fade In Right (staggered)
+     // Fade In Right (staggered)
     function fadeInRightStaggered(triggerEl, targetEl, offsetVal, delayStart) {
         if (triggerEl.length) {
             var fadeInRightStaggered = TweenMax.staggerFromTo(targetEl, .5, {autoAlpha: 0, x:"-100px"}, {x: "0px", autoAlpha: 1, ease: Power2.easeOut, delay: delayStart}, 0.15);
@@ -192,7 +225,12 @@
             })
             .setTween(fadeInRightStaggered)
             .reverse(false)
-            .addTo(controller);
+            .addTo(controller)
+            .on('enter', function(event) {
+              $(targetEl).find('noscript').each(function() {
+                walshLoad($(this));
+              });
+            });
         }
     }
 
@@ -355,34 +393,6 @@
 
         }, true);
 
-    });
-
-    // Lazy load images a la David Walsh
-    // https://davidwalsh.name/lazyload-image-fade
-    $('#page noscript').each(function() {
-      if (!$(this).hasClass('gtm')) {
-        var img = new Image();
-        img.setAttribute('data-src', '');
-        $(this).before(img);
-        img.onload = function() {
-          img.removeAttribute('data-src');
-        };
-        img.src = $(this).attr('data-src');
-        img.alt = $(this).attr('alt');
-        if (typeof $(this).attr('height') !== typeof undefined) {
-          img.height = $(this).attr('height');
-        }
-        if (typeof $(this).attr('width') !== typeof undefined) {
-          img.width = $(this).attr('width');
-          img.setAttribute('style', "max-width: " + $(this).attr('width') + "px;");
-        }
-        if (typeof $(this).attr('class') !== typeof undefined) {
-          img.setAttribute('class', $(this).attr('class'));
-        }
-        if (typeof $(this).attr('srcset') !== typeof undefined && $(this).attr('srcset') !== false) {
-          img.setAttribute('srcset', $(this).attr('srcset'));
-        }
-      }
     });
 
 })(jQuery);

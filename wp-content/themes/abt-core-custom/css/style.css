@@ -1224,7 +1224,7 @@ body {
       height: 1px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.65);
       bottom: 5px; }
-  .footer-container-new .contact-footer img {
+  .footer-container-new .contact-footer .hexagon {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -1234,11 +1234,11 @@ body {
     width: 200px;
     height: 200px; }
     @media screen and (min-width: 480px) {
-      .footer-container-new .contact-footer img {
+      .footer-container-new .contact-footer .hexagon {
         width: 280px;
         height: 280px; } }
     @media screen and (min-width: 960px) {
-      .footer-container-new .contact-footer img {
+      .footer-container-new .contact-footer .hexagon {
         width: 312px;
         height: 330px; } }
 
@@ -1797,7 +1797,7 @@ input[type="submit"], button, a.button {
     .card-cta {
       padding: 120px 40px; } }
   .card-cta.card-cta-laptop {
-    background-image: url(../img/bg_cta-laptop-sm.jpg);
+    background-image: url(../img/bg_cta-laptop.jpg);
     background-size: cover;
     background-position: center;
     margin-bottom: 1px; }
@@ -1807,7 +1807,6 @@ input[type="submit"], button, a.button {
         margin-right: 1px; } }
     @media screen and (min-width: 960px) {
       .card-cta.card-cta-laptop {
-        background-image: url(../img/bg_cta-laptop.jpg);
         margin-right: 0; } }
   .card-cta.card-cta-lines {
     background-image: url(../img/bg_cta-lines.jpg);
@@ -5081,7 +5080,7 @@ body div#ui-datepicker-div[style] {
   position: relative;
   overflow: hidden;
   text-align: center;
-  background-image: url("../img/hero-bg.jpg");
+  background-image: url("../img/hero-bg-sm.jpg");
   height: 100vh; }
   @supports (background-blend-mode: multiply) {
     .hero-video {
@@ -5089,9 +5088,11 @@ body div#ui-datepicker-div[style] {
       background-blend-mode: multiply; } }
   @media screen and (min-width: 640px) {
     .hero-video {
+      background-image: url("../img/hero-bg-md.jpg");
       min-height: 950px; } }
   @media screen and (min-width: 960px) {
     .hero-video {
+      background-image: url("../img/hero-bg.jpg");
       min-height: 600px;
       text-align: left;
       background-image: none; } }

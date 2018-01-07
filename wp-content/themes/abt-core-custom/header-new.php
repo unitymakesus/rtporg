@@ -34,17 +34,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <header id="masthead" class="site-header headroom" role="banner">
         <div class="site-branding">
-            <?php
-            if ( is_front_page() && is_home() ) : ?>
-                <h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-                    <img src="<?php echo get_stylesheet_directory_uri();?>/img/l_rtp-icon.svg" alt="<?php bloginfo( 'name' ); ?>" class="site-logo-icon"/>
-                    <img src="<?php echo get_stylesheet_directory_uri();?>/img/l_rtg-tagline.svg" alt="<?php bloginfo( 'name' ); ?>" class="site-logo-tagline"/>
-                </a></h1>
-            <?php else : ?>
-                <img src="<?php echo get_stylesheet_directory_uri();?>/img/l_rtp-icon.svg" alt="<?php bloginfo( 'name' ); ?>" class="site-logo-icon"/>
-                    <img src="<?php echo get_stylesheet_directory_uri();?>/img/l_rtg-tagline.svg" alt="<?php bloginfo( 'name' ); ?>" class="site-logo-tagline"/>
-            <?php
-            endif; ?>
+            <div class="site-logo-icon">
+              <?php echo file_get_contents(get_stylesheet_directory() . "/img/l_rtp-icon.svg"); ?>
+            </div>
+            <div class="site-logo-tagline">
+              <?php echo file_get_contents(get_stylesheet_directory() . "/img/l_rtp-tagline.svg"); ?>
+            </div>
         </div><!-- .site-branding -->
 
         <nav id="site-navigation" class="main-navigation" role="navigation">

@@ -36,7 +36,7 @@
 		}
 
 	}
-	
+
 }
 
 // Footer - Touch Support
@@ -116,7 +116,7 @@ html.touch .footer-container {
 			}
 		}
 
-		img {
+		.hexagon {
 			position: absolute;
 			top: 50%;
 			left: 50%;
@@ -124,7 +124,7 @@ html.touch .footer-container {
 			opacity: .25;
 			width: 200px;
 			height: 200px;
-			
+
 			@include media($phone_wide){
 				width: 280px;
 				height: 280px;

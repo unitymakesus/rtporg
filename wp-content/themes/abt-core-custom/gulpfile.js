@@ -2,6 +2,7 @@
 var gulp        = require('gulp');
 var cache       = require('gulp-cached');
 var sass        = require('gulp-sass');
+var cleanCSS 		= require('gulp-clean-css');
 var neat        = require('node-neat').includePaths;
 var concat      = require('gulp-concat');
 var uglify      = require('gulp-uglify');
@@ -33,6 +34,13 @@ gulp.task('sass', function() {
 	}))
 	.pipe(gulp.dest('css'))
 	.pipe(livereload());
+});
+
+gulp.task('minify-css', () => {
+  return gulp.src('css/style.css')
+    .pipe(cleanCSS({compatibility: 'ie8'}))
+		.pipe(rename('style.min.css'))
+    .pipe(gulp.dest('css'));
 });
 
 // Concatenate & Minify JS
@@ -165,13 +173,14 @@ gulp.task('watch', function() {
 	gulp.watch('js/page-stem.js', ['scripts-page-stem']);
 	gulp.watch('js/page-thelab.js', ['scripts-page-thelab']);
 	gulp.watch(path + '/plugin/**/*.js', ['sircus-scripts']);
-	gulp.watch('css/scss/**/*.scss', ['sass']);
+	gulp.watch('css/scss/**/*.scss', ['sass', 'minify-css']);
 	gulp.watch('img/**/*.svg', ['svg']);
 });
 
 // Default Task
 gulp.task('default', [
 	'sass',
+	'minify-css',
 	'svg',
 	'scripts',
 	'scripts-page-home',

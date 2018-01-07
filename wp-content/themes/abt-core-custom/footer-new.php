@@ -17,9 +17,9 @@
                     <a href="rtp.org/contact-us" class="contact-footer">
                         <p>Help Us Write The Next Chapter</p>
                         <strong>Contact us today</strong>
-                        <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/g_contact-hexagon.svg" alt="">
-                          <img class="" src="<?php echo get_stylesheet_directory_uri();?>/img/g_contact-hexagon.svg" alt="">
-                        </noscript>
+                        <div class="hexagon">
+                          <?php echo file_get_contents(get_stylesheet_directory() . "/img/g_contact-hexagon.svg"); ?>
+                        </div>
                     </a>
 
                     <?php if ( has_nav_menu('footer') ) : ?>
