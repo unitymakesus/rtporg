@@ -16,7 +16,8 @@ $hp_lease_office_space_link = types_render_field("hp-lease-office-space-link", a
 $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"));
 
 ?>
-
+    <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
     <div class="content-container">
         <section id="hero-video" class="band hero-video">
             <video autoplay loop class="bg-video">
@@ -24,7 +25,7 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
                 <source src="//files.rtp.org/videos/RTPExportforWeb.ogv" type="video/ogg">
             </video>
             <div class="wrapper band-stretch-first hero-video-meta">
-                <div class="load-fade-in-left">
+                <div class="load-fade-in-left" data-aos="fade-right">
                     <header>
                         <h1>Research Triangle Park</h1>
                         <p>Where Bold Ideas <br/>Flourish</p>
@@ -51,24 +52,24 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
 
         <section id="innovation-band" class="band">
             <div class="wrapper">
-                <header class="band-header fade-in-up-staggered">
+                <header class="band-header fade-in-up-staggered" data-aos="fade-up">
                     <h2>Innovation Starts Here</h2>
                     <p>What sets us apart? Every member of our community.</p>
                 </header>
                 <div id="stat-cards" class="band-half">
-                    <div class="card-stat fade-in-up-staggered">
+                    <div class="card-stat fade-in-up-staggered" data-aos="fade-right">
                         <div class="card-stat-count text-gradient-blue">250+</div>
                         <div class="card-stat-meta">Businesses of All Sizes Call RTP Home</div>
                     </div>
-                    <div class="card-stat fade-in-up-staggered">
+                    <div class="card-stat fade-in-up-staggered" data-aos="fade-up">
                         <div class="card-stat-count text-gradient-blue">50k+</div>
                         <div class="card-stat-meta">Intelligent & Creative People Work Here</div>
                     </div>
-                    <div class="card-stat fade-in-up-staggered">
+                    <div class="card-stat fade-in-up-staggered" data-aos="fade-up">
                         <div class="card-stat-count text-gradient-blue">3k+</div>
                         <div class="card-stat-meta">Patents Awarded to RTP Businesses</div>
                     </div>
-                    <div class="card-stat fade-in-up-staggered">
+                    <div class="card-stat fade-in-up-staggered" data-aos="fade-left">
                         <div class="card-stat-count text-gradient-blue">#1</div>
                         <div class="card-stat-meta">Largest Research Park in the Country</div>
                     </div>
@@ -78,27 +79,27 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
 
         <section id="young-talent" class="band theme-gray">
             <div class="wrapper band-half band-reverse-desktop" style="overflow: hidden;">
-                <header class="band-header band-header-inline band-header-left fade-in-right-staggered">
+                <header class="band-header band-header-inline band-header-left fade-in-right-staggered" data-aos="fade-right">
                     <h2>A Triangle of Talent</h2>
                     <p>The Triangle is one of the smartest areas in the country. Over 50% of the population has a bachelor’s degree, and more than 8,500 young minds graduate annually from the region’s top research universities.</p>
                 </header>
-                <div class="block-grid fade-in-right-staggered">
+                <div class="block-grid fade-in-right-staggered" data-aos="fade-right">
                     <div class="block block-logo theme-white">
                       <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/logo-duke.png" alt="Duke University">
                         <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-duke.png" alt="Duke University" />
                       </noscript>
                     </div>
-                    <div class="block block-logo theme-white fade-in-right-staggered">
+                    <div class="block block-logo theme-white fade-in-right-staggered" data-aos="fade-right">
                       <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/logo-ncsu.png" alt="North Carolina State University">
                         <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-ncsu.png" alt="North Carolina State University" />
                       </noscript>
                     </div>
-                    <div class="block block-logo theme-white fade-in-right-staggered">
+                    <div class="block block-logo theme-white fade-in-right-staggered" data-aos="fade-right">
                       <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/logo-unc.png" alt="University of North Carolina at Chapel Hill">
                         <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-unc.png" alt="University of North Carolina at Chapel Hill" />
                       </noscript>
                     </div>
-                    <div class="block block-more block-more-orange fade-in-right-staggered">
+                    <div class="block block-more block-more-orange fade-in-right-staggered" data-aos="fade-right">
                         <a href="<?= $hp_career_link; ?>" target="blank">
                             <div class="block-more-wrapper">
                                 <strong><span>Kickstart</span></strong>
@@ -112,7 +113,7 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
 
         <section class="band theme-gray-mobile" style="overflow: hidden;">
             <div class="wrapper">
-                <header class="band-header pad-none fade-in-up">
+                <header class="band-header pad-none fade-in-up" data-aos="fade-up">
                     <h2>A Long Tradition of Invention</h2>
                     <p>RTP minds have created everything from the UPC barcode to life-saving HIV drugs. Show us what’s next.</p>
                 </header>
@@ -120,18 +121,18 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
                     <div id="infographic-brain" class="infographic-brain">
                         <div class="panel-left">
                           <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-brain-left.svg" class="slide-in-down infographic-brain__left" alt="Left brain illustration = analytic">
-                            <img class="slide-in-down infographic-brain__left" src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-brain-left.svg" alt="Left brain illustration = analytic">
+                            <img class="slide-in-down infographic-brain__left" data-aos="fade-down" src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-brain-left.svg" alt="Left brain illustration = analytic">
                           </noscript>
                           <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-helix.svg" class="infographic-brain-absolute slide-in-left" alt="Molecules">
-                            <img class="infographic-brain-absolute slide-in-left" src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-helix.svg" alt="Molecules">
+                            <img class="infographic-brain-absolute slide-in-left" data-aos="fade-left" onkeypress="" src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-helix.svg" alt="Molecules">
                           </noscript>
                         </div>
                         <div class="panel-right">
                           <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-brain-right.svg" class="slide-in-up infographic-brain__right" alt="Right brain illustration = creative">
-                            <img class="slide-in-up infographic-brain__right" src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-brain-right.svg" alt="Right brain illustration = creative">
+                            <img class="slide-in-up infographic-brain__right" data-aos="fade-up" src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-brain-right.svg" alt="Right brain illustration = creative">
                           </noscript>
                           <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-barcode.svg" class="infographic-brain-absolute infographic-barcode slide-in-right" alt="Barcode">
-                            <img class="infographic-brain-absolute infographic-barcode slide-in-right" src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-barcode.svg" alt="Barcode">
+                            <img class="infographic-brain-absolute infographic-barcode slide-in-right" data-aos="fade-right" src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-barcode.svg" alt="Barcode">
                           </noscript>
                         </div>
                     </div>
@@ -142,47 +143,47 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
 
         <section id="company-logos" class="band pad-large-bottom theme-gray">
             <div class="wrapper">
-                <header  class="band-header pad-more fade-in-up-staggered">
+                <header  class="band-header pad-more fade-in-up-staggered" data-aos="fade-up">
                     <h2>A Culture of Diverse Expertise</h2>
                     <p>From legendary corporations to disruptive startups, we welcome visionary businesses of all sizes to our innovative community.</p>
                 </header>
                 <div class="logo-set-alternate block-quarter group">
-                    <div class="block block-logo fade-in-up-staggered">
+                    <div class="block block-logo fade-in-up-staggered" data-aos="fade-right">
                       <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/logo-cisco.png" alt="Cisco">
                         <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-cisco.png" alt="Cisco">
                       </noscript>
                     </div>
-                    <div class="block block-logo fade-in-up-staggered">
+                    <div class="block block-logo fade-in-up-staggered" data-aos="fade-right">
                       <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/logo-fidelity.png" alt="Fidelity">
                         <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-fidelity.png" alt="Fidelity">
                       </noscript>
                     </div>
-                    <div class="block block-logo fade-in-up-staggered">
+                    <div class="block block-logo fade-in-up-staggered" data-aos="fade-right">
                       <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/logo-gsk.png" alt="GSK">
                         <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-gsk.png" alt="GSK">
                       </noscript>
                     </div>
-                    <div class="block block-logo fade-in-up-staggered">
+                    <div class="block block-logo fade-in-up-staggered" data-aos="fade-right">
                       <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/logo-ibm.png" alt="IBM">
                         <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-ibm.png" alt="IBM">
                       </noscript>
                     </div>
-                    <div class="block block-logo fade-in-up-staggered">
+                    <div class="block block-logo fade-in-up-staggered" data-aos="fade-right">
                       <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/logo-lenovo.png" alt="Lenovo">
                         <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-lenovo.png" alt="Lenovo">
                       </noscript>
                     </div>
-                    <div class="block block-logo fade-in-up-staggered">
+                    <div class="block block-logo fade-in-up-staggered" data-aos="fade-right">
                       <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/logo-netapp.png" alt="NetApp">
                         <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-netapp.png" alt="NetApp">
                       </noscript>
                     </div>
-                    <div class="block block-logo fade-in-up-staggered">
+                    <div class="block block-logo fade-in-up-staggered" data-aos="fade-right">
                       <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/logo-rti.png" alt="RTI">
                         <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-rti.png" alt="RTI">
                       </noscript>
                     </div>
-                    <div class="block block-more block-more-blue fade-in-up-staggered">
+                    <div class="block block-more block-more-blue fade-in-up-staggered" data-aos="fade-right">
                         <a href="<?= $hp_company_directory_link; ?>">
                             <div class="block-more-wrapper">
                                 <strong><span>View All</span></strong>
@@ -209,18 +210,18 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
 
         <section id="make-your-mark" class="band">
             <div class="wrapper">
-                <header class="band-header pad-less fade-in-up-staggered">
+                <header class="band-header pad-less fade-in-up-staggered" data-aos="fade-right">
                     <h2>Make Your Mark on the RTP</h2>
                     <p>Explore the possibilities for the new home of your business.</p>
                 </header>
                 <div class="cta-cards">
-                    <a href="<?= $hp_lease_office_space_link; ?>" target="blank" class="card-cta card-cta-laptop fade-in-up-staggered">
+                    <a href="<?= $hp_lease_office_space_link; ?>" target="blank" class="card-cta card-cta-laptop fade-in-up-staggered" data-aos="fade-right">
                         <span class="card-cta-meta">
                             <strong>Lease Office Space.</strong>
                             Choose an existing configuration today.
                         </span>
                     </a>
-                    <a href="<?= $hp_buy_land_link; ?>" class="card-cta card-cta-lines fade-in-up-staggered">
+                    <a href="<?= $hp_buy_land_link; ?>" class="card-cta card-cta-lines fade-in-up-staggered" data-aos="fade-left">
                         <span class="card-cta-meta">
                             <strong>Buy Land.</strong>
                             View available sites and make one your own.
@@ -243,7 +244,7 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
                 </header>
                 <ul class="block-events" style="overflow: hidden;">
                     <?php if ($foodTruckEvent) : ?>
-                        <li class="block-event block-event-featured fade-in-right-staggered" style="background-image: url(<?php echo get_stylesheet_directory_uri();?>/img/bg_event-featured.jpg);">
+                        <li class="block-event block-event-featured fade-in-right-staggered" data-aos="fade-right" style="background-image: url(<?php echo get_stylesheet_directory_uri();?>/img/bg_event-featured.jpg);">
                             <a href="<?php echo esc_url(get_post_permalink($foodTruckEvent->ID)); ?>" class="block-event-wrapper">
                                 <div class="block-event-date">
                                     <span class="block-event-day"><?php echo date('j', get_post_meta($foodTruckEvent->ID, 'wpcf-event-end-date-and-time', true)) ?></span>
@@ -256,7 +257,7 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
                         </li>
                     <?php endif; ?>
                     <?php foreach ($sigEvents as $sigEvent) : ?>
-                        <li class="block-event fade-in-right-staggered">
+                        <li class="block-event fade-in-right-staggered" data-aos="fade-right">
                             <a href="<?php echo esc_url(get_post_permalink($sigEvent->ID)); ?>" class="block-event-wrapper">
                                 <div class="block-event-date text-gradient-orange">
                                     <span class="block-event-day" data-day="<?php echo date('j', get_post_meta($sigEvent->ID, 'wpcf-event-start-date-and-time', true)) ?>"><?php echo date('j', get_post_meta($sigEvent->ID, 'wpcf-event-start-date-and-time', true)) ?></span>
@@ -267,7 +268,7 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
                             </a>
                         </li>
                     <?php endforeach; ?>
-                    <li class="block-more block-more-orange fade-in-right-staggered">
+                    <li class="block-more block-more-orange fade-in-right-staggered" data-aos="fade-right">
                         <a href="events/">
                             <div class="block-more-wrapper">
                                 <strong><span><?php echo __('View Full'); ?></span></strong>
@@ -282,7 +283,7 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
 
         <section id="social-outreach" class="band theme-gray pad-bottom">
             <div class="wrapper">
-                <header class="band-header pad-less fade-in-up-staggered">
+                <header class="band-header pad-less fade-in-up-staggered" data-aos="fade-up">
                     <h2>Social Outreach</h2>
                     <p>Engage with us as we move RTP forward.</p>
                 </header>
@@ -332,7 +333,7 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
 
                     <div class="block-socials__col">
                         <!-- Instagram Post 1 -->
-                        <?php echo '<a href="' . $instaPostLink[0] . '" target="blank" class="block-social__instagram-item fade-in-up-staggered">
+                        <?php echo '<a href="' . $instaPostLink[0] . '" target="blank" class="block-social__instagram-item fade-in-up-staggered" data-aos="fade-up">
                             <span class="icon icon-i_instagram"></span>
                             <noscript data-src="' . $instaPostImg[0] . '" alt="">
                             <img src="' . $instaPostImg[0] . '" alt="" />
@@ -340,14 +341,14 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
                         </a>'; ?>
 
                         <!-- Instagram Post 2 -->
-                        <?php echo '<a href="' . $instaPostLink[1] . '" target="blank" class="block-social__instagram-item fade-in-up-staggered">
+                        <?php echo '<a href="' . $instaPostLink[1] . '" target="blank" class="block-social__instagram-item fade-in-up-staggered"data-aos="fade-up">
                             <span class="icon icon-i_instagram"></span>
                             <noscript data-src="' . $instaPostImg[1] . '" alt="">
                             <img src="' . $instaPostImg[1] . '" alt="" />
                             </noscript>
                         </a>'; ?>
                         <!-- Blog Post 2 -->
-                        <a href="<?php echo $postPermalinks[1]; ?>" class="block-social__blog-item fade-in-up-staggered">
+                        <a href="<?php echo $postPermalinks[1]; ?>" class="block-social__blog-item fade-in-up-staggered" data-aos="fade-up">
                             <div class="block-social__blog-category"><?php echo $postCatNames[1]; ?></div>
                             <div class="block-social__blog-title"><?php echo $postTitles[1]; ?></div>
                             <div class="block-social__blog-meta">
@@ -358,7 +359,7 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
 
                     <div class="block-socials__col">
                         <!-- Blog Post 1 -->
-                        <a href="<?php echo $postPermalinks[0]; ?>" class="block-social__blog-item fade-in-up-staggered">
+                        <a href="<?php echo $postPermalinks[0]; ?>" class="block-social__blog-item fade-in-up-staggered" data-aos="fade-down">
                             <div class="block-social__blog-category"><?php echo $postCatNames[0]; ?></div>
                             <div class="block-social__blog-title"><?php echo $postTitles[0]; ?></div>
                             <div class="block-social__blog-meta">
@@ -366,14 +367,14 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
                             </div>
                         </a>
                         <!-- Instagram Post 3 -->
-                        <?php echo '<a href="' . $instaPostLink[2] . '" target="blank" class="block-social__instagram-item fade-in-up-staggered">
+                        <?php echo '<a href="' . $instaPostLink[2] . '" target="blank" class="block-social__instagram-item fade-in-up-staggered" data-aos="fade-right">
                             <span class="icon icon-i_instagram"></span>
                             <noscript data-src="' . $instaPostImg[2] . '" alt="">
                             <img src="' . $instaPostImg[2] . ' alt="" />
                             </noscript>
                         </a>'; ?>
                         <!-- Tweet 1 -->
-                        <a href="https://twitter.com/TheRTP/statuses/<?php echo $tweetId[0]; ?>" target="blank" class="block-social__twitter-item fade-in-up-staggered">
+                        <a href="https://twitter.com/TheRTP/statuses/<?php echo $tweetId[0]; ?>" target="blank" class="block-social__twitter-item fade-in-up-staggered" data-aos="fade-up">
                             <span class="icon icon-i_twitter"></span>
                             <div class="block-social__twitter-text">
                                 <?php echo mb_strimwidth($tweetText[0], 0, 120, '...'); ?>
@@ -386,21 +387,21 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
 
                     <div class="block-socials__col">
                         <!-- Instagram 4 -->
-                        <?php echo '<a href="' . $instaPostLink[3] . '" target="blank" class="block-social__instagram-item fade-in-up-staggered">
+                        <?php echo '<a href="' . $instaPostLink[3] . '" target="blank" class="block-social__instagram-item fade-in-up-staggered" data-aos="fade-up">
                             <span class="icon icon-i_instagram"></span>
                             <noscript data-src="' . $instaPostImg[3] . '" alt="">
                             <img src="' . $instaPostImg[3] . '" alt="" />
                             </noscript>
                         </a>'; ?>
                         <!-- Tweet 3 -->
-                        <a href="https://twitter.com/TheRTP/statuses/<?php echo $tweetId[2]; ?>" target="blank" class="block-social__twitter-item fade-in-up-staggered">
+                        <a href="https://twitter.com/TheRTP/statuses/<?php echo $tweetId[2]; ?>" target="blank" class="block-social__twitter-item fade-in-up-staggered" data-aos="fade-up">
                             <span class="icon icon-i_twitter"></span>
                             <div class="block-social__twitter-text">
                                 <?php echo mb_strimwidth($tweetText[2], 0, 120, '...'); ?>
                             </div>
                         </a>
                         <!-- Post 4 -->
-                        <a href="<?php echo $postPermalinks[3]; ?>" class="block-social__blog-item fade-in-up-staggered">
+                        <a href="<?php echo $postPermalinks[3]; ?>" class="block-social__blog-item fade-in-up-staggered" data-aos="fade-up">
                             <div class="block-social__blog-category"><?php echo $postCatNames[3]; ?></div>
                             <div class="block-social__blog-title"><?php echo $postTitles[3]; ?></div>
                             <div class="block-social__blog-meta">
@@ -411,14 +412,14 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
 
                     <div class="block-socials__col">
                         <!-- Tweet 2 -->
-                        <a href="https://twitter.com/TheRTP/statuses/<?php echo $tweetId[1]; ?>" target="blank" class="block-social__twitter-item fade-in-up-staggered">
+                        <a href="https://twitter.com/TheRTP/statuses/<?php echo $tweetId[1]; ?>" target="blank" class="block-social__twitter-item fade-in-up-staggered" data-aos="fade-up">
                             <span class="icon icon-i_twitter"></span>
                             <div class="block-social__twitter-text">
                                 <?php echo mb_strimwidth($tweetText[1], 0, 120, '...'); ?>
                             </div>
                         </a>
                         <!-- Post 3 -->
-                        <a href="<?php echo $postPermalinks[2]; ?>" class="block-social__blog-item fade-in-up-staggered">
+                        <a href="<?php echo $postPermalinks[2]; ?>" class="block-social__blog-item fade-in-up-staggered" data-aos="fade-up">
                             <div class="block-social__blog-category"><?php echo $postCatNames[2]; ?></div>
                             <div class="block-social__blog-title"><?php echo $postTitles[2]; ?></div>
                             <div class="block-social__blog-meta">
@@ -426,7 +427,7 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
                             </div>
                         </a>
                         <!-- Tweet 4 -->
-                        <a href="https://twitter.com/TheRTP/statuses/<?php echo $tweetId[3]; ?>" target="blank" class="block-social__twitter-item fade-in-up-staggered">
+                        <a href="https://twitter.com/TheRTP/statuses/<?php echo $tweetId[3]; ?>" target="blank" class="block-social__twitter-item fade-in-up-staggered" data-aos="fade-up">
                             <span class="icon icon-i_twitter"></span>
                             <div class="block-social__twitter-text">
                                 <?php echo mb_strimwidth($tweetText[3], 0, 120, '...'); ?>
