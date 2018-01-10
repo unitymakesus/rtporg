@@ -33,7 +33,7 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
                     <p>We break new ground every day by innovating together.<br /> Join us in making the future.</p>
                 </div>
                 <div class="band-center">
-                    <a href="https://www.youtube.com/watch?v=LZuvQFRbZJI" class="hero-video-button popup-youtube">
+                    <a href="https://www.youtube.com/watch?v=LZuvQFRbZJI" class="hero-video-button popup-youtube" data-aos="fade-down">
                         <span class="visuallyhidden">Play</span> <div class="pulse-ring"></div>
                     </a>
                 </div>
@@ -148,22 +148,22 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
                     <p>From legendary corporations to disruptive startups, we welcome visionary businesses of all sizes to our innovative community.</p>
                 </header>
                 <div class="logo-set-alternate block-quarter group">
-                    <div class="block block-logo fade-in-up-staggered" data-aos="fade-right">
+                    <div class="block block-logo fade-in-up-staggered" data-aos="fade-left">
                       <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/logo-cisco.png" alt="Cisco">
                         <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-cisco.png" alt="Cisco">
                       </noscript>
                     </div>
-                    <div class="block block-logo fade-in-up-staggered" data-aos="fade-right">
+                    <div class="block block-logo fade-in-up-staggered" data-aos="fade-left">
                       <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/logo-fidelity.png" alt="Fidelity">
                         <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-fidelity.png" alt="Fidelity">
                       </noscript>
                     </div>
-                    <div class="block block-logo fade-in-up-staggered" data-aos="fade-right">
+                    <div class="block block-logo fade-in-up-staggered" data-aos="fade-left">
                       <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/logo-gsk.png" alt="GSK">
                         <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-gsk.png" alt="GSK">
                       </noscript>
                     </div>
-                    <div class="block block-logo fade-in-up-staggered" data-aos="fade-right">
+                    <div class="block block-logo fade-in-up-staggered" data-aos="fade-left">
                       <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/logo-ibm.png" alt="IBM">
                         <img src="<?php echo get_stylesheet_directory_uri();?>/img/logo-ibm.png" alt="IBM">
                       </noscript>
@@ -210,7 +210,7 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
 
         <section id="make-your-mark" class="band">
             <div class="wrapper">
-                <header class="band-header pad-less fade-in-up-staggered" data-aos="fade-right">
+                <header class="band-header pad-less fade-in-up-staggered" data-aos="fade-up">
                     <h2>Make Your Mark on the RTP</h2>
                     <p>Explore the possibilities for the new home of your business.</p>
                 </header>
@@ -257,7 +257,7 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
                         </li>
                     <?php endif; ?>
                     <?php foreach ($sigEvents as $sigEvent) : ?>
-                        <li class="block-event fade-in-right-staggered" data-aos="fade-right">
+                        <li class="block-event fade-in-right-staggered" data-aos="fade-down">
                             <a href="<?php echo esc_url(get_post_permalink($sigEvent->ID)); ?>" class="block-event-wrapper">
                                 <div class="block-event-date text-gradient-orange">
                                     <span class="block-event-day" data-day="<?php echo date('j', get_post_meta($sigEvent->ID, 'wpcf-event-start-date-and-time', true)) ?>"><?php echo date('j', get_post_meta($sigEvent->ID, 'wpcf-event-start-date-and-time', true)) ?></span>
