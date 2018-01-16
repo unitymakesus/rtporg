@@ -1,11 +1,5 @@
-// import AOS from 'aos';
-
-// $(window).on('load', function () {
-//     AOS.refresh();
-// });
-
 (function ($) {
-
+'use strict';
     function initNewMenu() {
 
         $container = $('#site-navigation'),
@@ -111,6 +105,21 @@
             });
     }
 
-    AOS.init();
-    
+    AOS.init({
+      offset: 100,
+      delay: 50
+    });
+
+      var elem = document.querySelectorAll('#young-talent, #company-logos, #social-outreach');
+      let bounding = [];
+      for (var x = 0; x < elem.length; x++) {
+        bounding.push(elem[x].getBoundingClientRect());
+        if (bounding[x].top - $(window).height() <= $(window).height() / 2) {
+          var noScriptTag = elem[x].querySelectorAll('noscript');
+          for (var i = 0; i < noScriptTag.length; i++) {
+             walshLoad($(noScriptTag[i]))
+          }
+        }
+      }
+
 })(jQuery);

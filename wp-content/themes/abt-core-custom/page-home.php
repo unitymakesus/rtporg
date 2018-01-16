@@ -33,7 +33,7 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
                     <p>We break new ground every day by innovating together.<br /> Join us in making the future.</p>
                 </div>
                 <div class="band-center">
-                    <a href="https://www.youtube.com/watch?v=LZuvQFRbZJI" class="hero-video-button popup-youtube" data-aos="fade-down">
+                    <a href="https://www.youtube.com/watch?v=LZuvQFRbZJI" class="hero-video-button popup-youtube" data-aos="zoom-out">
                         <span class="visuallyhidden">Play</span> <div class="pulse-ring"></div>
                     </a>
                 </div>
@@ -61,11 +61,11 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
                         <div class="card-stat-count text-gradient-blue">250+</div>
                         <div class="card-stat-meta">Businesses of All Sizes Call RTP Home</div>
                     </div>
-                    <div class="card-stat fade-in-up-staggered" data-aos="fade-up">
+                    <div class="card-stat fade-in-up-staggered" data-aos="zoom-out">
                         <div class="card-stat-count text-gradient-blue">50k+</div>
                         <div class="card-stat-meta">Intelligent & Creative People Work Here</div>
                     </div>
-                    <div class="card-stat fade-in-up-staggered" data-aos="fade-up">
+                    <div class="card-stat fade-in-up-staggered" data-aos="zoom-out">
                         <div class="card-stat-count text-gradient-blue">3k+</div>
                         <div class="card-stat-meta">Patents Awarded to RTP Businesses</div>
                     </div>
@@ -79,7 +79,7 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
 
         <section id="young-talent" class="band theme-gray">
             <div class="wrapper band-half band-reverse-desktop" style="overflow: hidden;">
-                <header class="band-header band-header-inline band-header-left fade-in-right-staggered" data-aos="fade-right">
+                <header class="band-header band-header-inline band-header-left fade-in-right-staggered" data-aos="zoom-in">
                     <h2>A Triangle of Talent</h2>
                     <p>The Triangle is one of the smartest areas in the country. Over 50% of the population has a bachelor’s degree, and more than 8,500 young minds graduate annually from the region’s top research universities.</p>
                 </header>
