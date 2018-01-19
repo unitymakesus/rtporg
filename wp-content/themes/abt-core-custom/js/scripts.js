@@ -1,12 +1,7 @@
-/*
- * @build  : 20-07-2013
- * @author : Ram swaroop
- * @site   : Compzets.com
- */
 /*!
  * classie - class helper functions
  * from bonzo https://github.com/ded/bonzo
- *
+ * 
  * classie.has( elem, 'my-class' ) -> true/false
  * classie.add( elem, 'my-new-class' )
  * classie.remove( elem, 'my-unwanted-class' )
@@ -100,7 +95,7 @@ var hljs=new function(){function k(v){return v.replace(/&/gm,"&amp;").replace(/<
  */
 
 (function () {
-
+	
 
 	/**
 	 * Class for managing events.
@@ -649,7 +644,7 @@ if ( typeof define === 'function' && define.amd ) {
  * MIT License
  */
 
-( function( window, factory ) {
+( function( window, factory ) { 
   // universal module definition
 
   /*global define: false, module: false, require: false */
@@ -1338,7 +1333,7 @@ if ( typeof define === 'function' && define.amd ) {
  */
 
 (function () {
-
+	
 
 	/**
 	 * Class for managing events.
@@ -2086,7 +2081,7 @@ if ( typeof define === 'function' && define.amd ) {
 
 ( function( global, ElemProto ) {
 
-
+  
 
   var matchesMethod = ( function() {
     // check un-prefixed
@@ -4930,19 +4925,19 @@ if ( typeof define === 'function' && define.amd ) {
  *
  * Licensed under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
- *
+ * 
  * Copyright 2012, Codrops
  * http://www.codrops.com
  */
 ;( function( $, window, undefined ) {
-
+	
 	'use strict';
 
 	$.Calendario = function( options, element ) {
-
+		
 		this.$el = $( element );
 		this._init( options );
-
+		
 	};
 
 	// the options
@@ -4977,7 +4972,7 @@ if ( typeof define === 'function' && define.amd ) {
 	$.Calendario.prototype = {
 
 		_init : function( options ) {
-
+			
 			// options
 			this.options = $.extend( true, {}, $.Calendario.defaults, options );
 
@@ -5037,7 +5032,7 @@ if ( typeof define === 'function' && define.amd ) {
 		_getHead : function() {
 
 			var html = '<div class="fc-head">';
-
+		
 			for ( var i = 0; i <= 6; i++ ) {
 
 				var pos = i + this.options.startIn,
@@ -5079,7 +5074,7 @@ if ( typeof define === 'function' && define.amd ) {
 						inner = '',
 						today = this.month === this.today.getMonth() && this.year === this.today.getFullYear() && day === this.today.getDate(),
 						content = '';
-
+					
 					if ( day <= monthLength && ( i > 0 || j >= p ) ) {
 
 						inner += '<span class="fc-date">' + day + '</span><span class="fc-weekday">' + this.options.weekabbrs[ j + this.options.startIn > 6 ? j + this.options.startIn - 6 - 1 : j + this.options.startIn ] + '</span>';
@@ -5118,7 +5113,7 @@ if ( typeof define === 'function' && define.amd ) {
 				if (day > monthLength) {
 					this.rowTotal = i + 1;
 					break;
-				}
+				} 
 				else {
 					html += '</div><div class="fc-row">';
 				}
@@ -5163,7 +5158,7 @@ if ( typeof define === 'function' && define.amd ) {
 		_move : function( period, dir, callback ) {
 
 			if( dir === 'previous' ) {
-
+				
 				if( period === 'month' ) {
 					this.year = this.month > 0 ? this.year : --this.year;
 					this.month = this.month > 0 ? --this.month : 11;
@@ -5188,7 +5183,7 @@ if ( typeof define === 'function' && define.amd ) {
 			this._generateTemplate( callback );
 
 		},
-		/*************************
+		/************************* 
 		******PUBLIC METHODS *****
 		**************************/
 		getYear : function() {
@@ -5247,70 +5242,70 @@ if ( typeof define === 'function' && define.amd ) {
 		}
 
 	};
-
+	
 	var logError = function( message ) {
 
 		if ( window.console ) {
 
 			window.console.error( message );
-
+		
 		}
 
 	};
-
+	
 	$.fn.calendario = function( options ) {
 
 		var instance = $.data( this, 'calendario' );
-
+		
 		if ( typeof options === 'string' ) {
-
+			
 			var args = Array.prototype.slice.call( arguments, 1 );
-
+			
 			this.each(function() {
-
+			
 				if ( !instance ) {
 
 					logError( "cannot call methods on calendario prior to initialization; " +
 					"attempted to call method '" + options + "'" );
 					return;
-
+				
 				}
-
+				
 				if ( !$.isFunction( instance[options] ) || options.charAt(0) === "_" ) {
 
 					logError( "no such method '" + options + "' for calendario instance" );
 					return;
-
+				
 				}
-
+				
 				instance[ options ].apply( instance, args );
-
+			
 			});
-
-		}
+		
+		} 
 		else {
-
+		
 			this.each(function() {
-
+				
 				if ( instance ) {
 
 					instance._init();
-
+				
 				}
 				else {
 
 					instance = $.data( this, 'calendario', new $.Calendario( options, this ) );
-
+				
 				}
 
 			});
-
+		
 		}
-
+		
 		return instance;
-
+		
 	};
-
+	
 } )( jQuery, window );
 
 (function($) {
@@ -5366,33 +5361,33 @@ if ( typeof define === 'function' && define.amd ) {
  * to offer multiple easing options
  *
  * TERMS OF USE - jQuery Easing
- *
- * Open source under the BSD License.
- *
+ * 
+ * Open source under the BSD License. 
+ * 
  * Copyright © 2008 George McGinley Smith
  * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without modification,
+ * 
+ * Redistribution and use in source and binary forms, with or without modification, 
  * are permitted provided that the following conditions are met:
- *
- * Redistributions of source code must retain the above copyright notice, this list of
+ * 
+ * Redistributions of source code must retain the above copyright notice, this list of 
  * conditions and the following disclaimer.
- * Redistributions in binary form must reproduce the above copyright notice, this list
- * of conditions and the following disclaimer in the documentation and/or other materials
+ * Redistributions in binary form must reproduce the above copyright notice, this list 
+ * of conditions and the following disclaimer in the documentation and/or other materials 
  * provided with the distribution.
- *
- * Neither the name of the author nor the names of contributors may be used to endorse
+ * 
+ * Neither the name of the author nor the names of contributors may be used to endorse 
  * or promote products derived from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY 
  * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
  * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
  *  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
  *  EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
- *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
+ *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED 
  * AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- *  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
- * OF THE POSSIBILITY OF SUCH DAMAGE.
+ *  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED 
+ * OF THE POSSIBILITY OF SUCH DAMAGE. 
  *
 */
 
@@ -5508,7 +5503,7 @@ jQuery.extend( jQuery.easing,
 		return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
 	},
 	easeInOutBack: function (x, t, b, c, d, s) {
-		if (s == undefined) s = 1.70158;
+		if (s == undefined) s = 1.70158; 
 		if ((t/=d/2) < 1) return c/2*(t*t*(((s*=(1.525))+1)*t - s)) + b;
 		return c/2*((t-=2)*t*(((s*=(1.525))+1)*t + s) + 2) + b;
 	},
@@ -5535,52 +5530,52 @@ jQuery.extend( jQuery.easing,
 /*
  *
  * TERMS OF USE - EASING EQUATIONS
- *
- * Open source under the BSD License.
- *
+ * 
+ * Open source under the BSD License. 
+ * 
  * Copyright © 2001 Robert Penner
  * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without modification,
+ * 
+ * Redistribution and use in source and binary forms, with or without modification, 
  * are permitted provided that the following conditions are met:
- *
- * Redistributions of source code must retain the above copyright notice, this list of
+ * 
+ * Redistributions of source code must retain the above copyright notice, this list of 
  * conditions and the following disclaimer.
- * Redistributions in binary form must reproduce the above copyright notice, this list
- * of conditions and the following disclaimer in the documentation and/or other materials
+ * Redistributions in binary form must reproduce the above copyright notice, this list 
+ * of conditions and the following disclaimer in the documentation and/or other materials 
  * provided with the distribution.
- *
- * Neither the name of the author nor the names of contributors may be used to endorse
+ * 
+ * Neither the name of the author nor the names of contributors may be used to endorse 
  * or promote products derived from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY 
  * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
  * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
  *  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
  *  EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
- *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
+ *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED 
  * AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- *  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
- * OF THE POSSIBILITY OF SUCH DAMAGE.
+ *  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED 
+ * OF THE POSSIBILITY OF SUCH DAMAGE. 
  *
  */
 /**
  * Equal Heights Plugin
  * Equalize the heights of elements. Great for columns or any elements
  * that need to be the same size (floats, etc).
- *
+ * 
  * Version 1.0
  * Updated 12/10/2008
  *
- * Copyright (c) 2008 Rob Glazebrook (cssnewbie.com)
+ * Copyright (c) 2008 Rob Glazebrook (cssnewbie.com) 
  *
  * Usage: $(object).equalHeights([minHeight], [maxHeight]);
- *
+ * 
  * Example 1: $(".cols").equalHeights(); Sets all columns to the same height.
  * Example 2: $(".cols").equalHeights(400); Sets all cols to at least 400px tall.
  * Example 3: $(".cols").equalHeights(100,300); Cols are at least 100 but no more
  * than 300 pixels tall. Elements with too much content will gain a scrollbar.
- *
+ * 
  */
 
 (function($) {
@@ -5688,7 +5683,7 @@ jQuery.extend( jQuery.easing,
  * means you are free to use hoverIntent as long as this header is left intact.
  * Copyright 2007, 2013 Brian Cherne
  */
-
+ 
 /* hoverIntent is similar to jQuery's built-in "hover" method except that
  * instead of firing the handlerIn function immediately, hoverIntent checks
  * to see if the user's mouse has slowed down (beneath the sensitivity
@@ -5803,9 +5798,9 @@ jQuery.extend( jQuery.easing,
 
 /*>>core*/
 /**
- *
+ * 
  * Magnific Popup Core JS file
- *
+ * 
  */
 
 
@@ -5827,7 +5822,7 @@ var CLOSE_EVENT = 'Close',
 
 
 /**
- * Private vars
+ * Private vars 
  */
 var mfp, // As we have only one instance of MagnificPopup object, we define it locally to not to use 'this'
 	MagnificPopup = function(){},
@@ -5895,15 +5890,15 @@ var _mfpOn = function(name, f) {
 			v = ['ms','O','Moz','Webkit']; // 'v' for vendor
 
 		if( s['transition'] !== undefined ) {
-			return true;
+			return true; 
 		}
-
+			
 		while( v.length ) {
 			if( v.pop() + 'Transition' in s ) {
 				return true;
 			}
 		}
-
+				
 		return false;
 	};
 
@@ -5917,12 +5912,12 @@ MagnificPopup.prototype = {
 	constructor: MagnificPopup,
 
 	/**
-	 * Initializes Magnific Popup plugin.
+	 * Initializes Magnific Popup plugin. 
 	 * This function is triggered only once when $.fn.magnificPopup or $.magnificPopup is executed
 	 */
 	init: function() {
 		var appVersion = navigator.appVersion;
-		mfp.isIE7 = appVersion.indexOf("MSIE 7.") !== -1;
+		mfp.isIE7 = appVersion.indexOf("MSIE 7.") !== -1; 
 		mfp.isIE8 = appVersion.indexOf("MSIE 8.") !== -1;
 		mfp.isLowIE = mfp.isIE7 || mfp.isIE8;
 		mfp.isAndroid = (/android/gi).test(appVersion);
@@ -5949,7 +5944,7 @@ MagnificPopup.prototype = {
 
 		var i;
 
-		if(data.isObj === false) {
+		if(data.isObj === false) { 
 			// convert jQuery collection to array to avoid conflicts later
 			mfp.items = data.items.toArray();
 
@@ -5976,8 +5971,8 @@ MagnificPopup.prototype = {
 			mfp.updateItemHTML();
 			return;
 		}
-
-		mfp.types = [];
+		
+		mfp.types = []; 
 		_wrapClasses = '';
 		if(data.mainEl && data.mainEl.length) {
 			mfp.ev = data.mainEl.eq(0);
@@ -5996,7 +5991,7 @@ MagnificPopup.prototype = {
 
 
 
-		mfp.st = $.extend(true, {}, $.magnificPopup.defaults, data );
+		mfp.st = $.extend(true, {}, $.magnificPopup.defaults, data ); 
 		mfp.fixedContentPos = mfp.st.fixedContentPos === 'auto' ? !mfp.probablyMobile : mfp.st.fixedContentPos;
 
 		if(mfp.st.modal) {
@@ -6005,7 +6000,7 @@ MagnificPopup.prototype = {
 			mfp.st.showCloseBtn = false;
 			mfp.st.enableEscapeKey = false;
 		}
-
+		
 
 		// Building markup
 		// main containers are created only once
@@ -6057,7 +6052,7 @@ MagnificPopup.prototype = {
 			_wrapClasses += ' mfp-align-top';
 		}
 
-
+	
 
 		if(mfp.fixedContentPos) {
 			mfp.wrap.css({
@@ -6066,7 +6061,7 @@ MagnificPopup.prototype = {
 				overflowY: mfp.st.overflowY
 			});
 		} else {
-			mfp.wrap.css({
+			mfp.wrap.css({ 
 				top: _window.scrollTop(),
 				position: 'absolute'
 			});
@@ -6078,7 +6073,7 @@ MagnificPopup.prototype = {
 			});
 		}
 
-
+		
 
 		if(mfp.st.enableEscapeKey) {
 			// Close on ESC key
@@ -6097,7 +6092,7 @@ MagnificPopup.prototype = {
 		if(!mfp.st.closeOnContentClick) {
 			_wrapClasses += ' mfp-auto-cursor';
 		}
-
+		
 		if(_wrapClasses)
 			mfp.wrap.addClass(_wrapClasses);
 
@@ -6105,7 +6100,7 @@ MagnificPopup.prototype = {
 		// this triggers recalculation of layout, so we get it once to not to trigger twice
 		var windowHeight = mfp.wH = _window.height();
 
-
+		
 		var windowStyles = {};
 
 		if( mfp.fixedContentPos ) {
@@ -6126,8 +6121,8 @@ MagnificPopup.prototype = {
 			}
 		}
 
-
-
+		
+		
 		var classesToadd = mfp.st.mainClass;
 		if(mfp.isIE7) {
 			classesToadd += ' mfp-ie7';
@@ -6143,16 +6138,16 @@ MagnificPopup.prototype = {
 
 		// remove scrollbar, add margin e.t.c
 		$('html').css(windowStyles);
-
+		
 		// add everything to DOM
 		mfp.bgOverlay.add(mfp.wrap).prependTo( mfp.st.prependTo || _body );
 
 		// Save last focused element
 		mfp._lastFocusedEl = document.activeElement;
-
+		
 		// Wait for next cycle to allow CSS transition
 		setTimeout(function() {
-
+			
 			if(mfp.content) {
 				mfp._addClassToMFP(READY_CLASS);
 				mfp._setFocus();
@@ -6160,7 +6155,7 @@ MagnificPopup.prototype = {
 				// if content is not defined (not loaded e.t.c) we add class only for BG
 				mfp.bgOverlay.addClass(READY_CLASS);
 			}
-
+			
 			// Trap the focus in popup
 			_document.on('focusin' + EVENT_NS, mfp._onFocusIn);
 
@@ -6219,7 +6214,7 @@ MagnificPopup.prototype = {
 			}
 			$('html').css(windowStyles);
 		}
-
+		
 		_document.off('keyup' + EVENT_NS + ' focusin' + EVENT_NS);
 		mfp.ev.off(EVENT_NS);
 
@@ -6239,14 +6234,14 @@ MagnificPopup.prototype = {
 		if(mfp._lastFocusedEl) {
 			$(mfp._lastFocusedEl).focus(); // put tab focus back
 		}
-		mfp.currItem = null;
+		mfp.currItem = null;	
 		mfp.content = null;
 		mfp.currTemplate = null;
 		mfp.prevHeight = 0;
 
 		_mfpTrigger(AFTER_CLOSE_EVENT);
 	},
-
+	
 	updateSize: function(winHeight) {
 
 		if(mfp.isIOS) {
@@ -6283,17 +6278,17 @@ MagnificPopup.prototype = {
 			item = mfp.parseEl( mfp.index );
 		}
 
-		var type = item.type;
+		var type = item.type;	
 
 		_mfpTrigger('BeforeChange', [mfp.currItem ? mfp.currItem.type : '', type]);
 		// BeforeChange event works like so:
 		// _mfpOn('BeforeChange', function(e, prevType, newType) { });
-
+		
 		mfp.currItem = item;
 
+		
 
-
-
+		
 
 		if(!mfp.currTemplate[type]) {
 			var markup = mfp.st[type] ? mfp.st[type].markup : false;
@@ -6312,7 +6307,7 @@ MagnificPopup.prototype = {
 		if(_prevContentType && _prevContentType !== item.type) {
 			mfp.container.removeClass('mfp-'+_prevContentType+'-holder');
 		}
-
+		
 		var newContent = mfp['get' + type.charAt(0).toUpperCase() + type.slice(1)](item, mfp.currTemplate[type]);
 		mfp.appendContent(newContent, type);
 
@@ -6320,7 +6315,7 @@ MagnificPopup.prototype = {
 
 		_mfpTrigger(CHANGE_EVENT, item);
 		_prevContentType = item.type;
-
+		
 		// Append container back after its content changed
 		mfp.container.prepend(mfp.contentContainer);
 
@@ -6333,7 +6328,7 @@ MagnificPopup.prototype = {
 	 */
 	appendContent: function(newContent, type) {
 		mfp.content = newContent;
-
+		
 		if(newContent) {
 			if(mfp.st.showCloseBtn && mfp.st.closeBtnInside &&
 				mfp.currTemplate[type] === true) {
@@ -6356,7 +6351,7 @@ MagnificPopup.prototype = {
 
 
 
-
+	
 	/**
 	 * Creates Magnific Popup data object based on given data
 	 * @param  {int} index Index of item to parse
@@ -6410,11 +6405,11 @@ MagnificPopup.prototype = {
 
 		if(!options) {
 			options = {};
-		}
+		} 
 
 		var eName = 'click.magnificPopup';
 		options.mainEl = el;
-
+		
 		if(options.items) {
 			options.isObj = true;
 			el.off(eName).on(eName, eHandler);
@@ -6449,7 +6444,7 @@ MagnificPopup.prototype = {
 				}
 			}
 		}
-
+		
 		if(e.type) {
 			e.preventDefault();
 
@@ -6458,7 +6453,7 @@ MagnificPopup.prototype = {
 				e.stopPropagation();
 			}
 		}
-
+			
 
 		options.el = $(e.mfpEl);
 		if(options.delegate) {
@@ -6627,14 +6622,14 @@ $.magnificPopup = {
 	modules: [],
 
 	open: function(options, index) {
-		_checkInstance();
+		_checkInstance();	
 
 		if(!options) {
 			options = {};
 		} else {
 			options = $.extend(true, {}, options);
 		}
-
+			
 
 		options.isObj = true;
 		options.index = index || 0;
@@ -6649,16 +6644,16 @@ $.magnificPopup = {
 		if(module.options) {
 			$.magnificPopup.defaults[name] = module.options;
 		}
-		$.extend(this.proto, module.proto);
+		$.extend(this.proto, module.proto);			
 		this.modules.push(name);
 	},
 
-	defaults: {
+	defaults: {   
 
 		// Info about options is in docs:
 		// http://dimsemenov.com/plugins/magnific-popup/documentation.html#options
-
-		disableOn: 0,
+		
+		disableOn: 0,	
 
 		key: null,
 
@@ -6669,12 +6664,12 @@ $.magnificPopup = {
 		preloader: true,
 
 		focus: '', // CSS selector of input to focus after popup is opened
-
+		
 		closeOnContentClick: false,
 
 		closeOnBgClick: true,
 
-		closeBtnInside: true,
+		closeBtnInside: true, 
 
 		showCloseBtn: true,
 
@@ -6683,13 +6678,13 @@ $.magnificPopup = {
 		modal: false,
 
 		alignTop: false,
-
+	
 		removalDelay: 0,
 
 		prependTo: null,
-
-		fixedContentPos: 'auto',
-
+		
+		fixedContentPos: 'auto', 
+	
 		fixedBgPos: 'auto',
 
 		overflowY: 'auto',
@@ -6736,9 +6731,9 @@ $.fn.magnificPopup = function(options) {
 	} else {
 		// clone options obj
 		options = $.extend(true, {}, options);
-
+		
 		/*
-		 * As Zepto doesn't support .data() method for objects
+		 * As Zepto doesn't support .data() method for objects 
 		 * and it works only in normal browsers
 		 * we assign "options" object directly to the DOM element. FTW!
 		 */
@@ -6780,7 +6775,7 @@ console.log('Test #2:', performance.now() - start);
 
 var INLINE_NS = 'inline',
 	_hiddenClass,
-	_inlinePlaceholder,
+	_inlinePlaceholder, 
 	_lastInlineElement,
 	_putInlineElementsBack = function() {
 		if(_lastInlineElement) {
@@ -6928,14 +6923,14 @@ $.magnificPopup.registerModule(AJAX_NS, {
 
 
 
-
+	
 
 /*>>ajax*/
 
 /*>>image*/
 var _imgInterval,
 	_getTitle = function(item) {
-		if(item.data && item.data.title !== undefined)
+		if(item.data && item.data.title !== undefined) 
 			return item.data.title;
 
 		var src = mfp.st.image.titleSrc;
@@ -6966,7 +6961,7 @@ $.magnificPopup.registerModule('image', {
 					'</figure>'+
 				'</div>',
 		cursor: 'mfp-zoom-out-cur',
-		titleSrc: 'title',
+		titleSrc: 'title', 
 		verticalFit: true,
 		tError: '<a href="%url%">The image</a> could not be loaded.'
 	},
@@ -7011,13 +7006,13 @@ $.magnificPopup.registerModule('image', {
 		},
 		_onImageHasSize: function(item) {
 			if(item.img) {
-
+				
 				item.hasSize = true;
 
 				if(_imgInterval) {
 					clearInterval(_imgInterval);
 				}
-
+				
 				item.isCheckingImgSize = false;
 
 				_mfpTrigger('ImageHasSize', item);
@@ -7025,7 +7020,7 @@ $.magnificPopup.registerModule('image', {
 				if(item.imgHidden) {
 					if(mfp.content)
 						mfp.content.removeClass('mfp-loading');
-
+					
 					item.imgHidden = false;
 				}
 
@@ -7078,7 +7073,7 @@ $.magnificPopup.registerModule('image', {
 					if(item) {
 						if (item.img[0].complete) {
 							item.img.off('.mfploader');
-
+							
 							if(item === mfp.currItem){
 								mfp._onImageHasSize(item);
 
@@ -7089,7 +7084,7 @@ $.magnificPopup.registerModule('image', {
 							item.loaded = true;
 
 							_mfpTrigger('ImageLoadComplete');
-
+							
 						}
 						else {
 							// if image complete check fails 200 times (20 sec), we assume that there was an error.
@@ -7136,7 +7131,7 @@ $.magnificPopup.registerModule('image', {
 				img = item.img[0];
 				if(img.naturalWidth > 0) {
 					item.hasSize = true;
-				} else if(!img.width) {
+				} else if(!img.width) {										
 					item.hasSize = false;
 				}
 			}
@@ -7168,7 +7163,7 @@ $.magnificPopup.registerModule('image', {
 				item.imgHidden = true;
 				template.addClass('mfp-loading');
 				mfp.findImageSize(item);
-			}
+			} 
 
 			return template;
 		}
@@ -7185,7 +7180,7 @@ var hasMozTransform,
 		if(hasMozTransform === undefined) {
 			hasMozTransform = document.createElement('p').style.MozTransform !== undefined;
 		}
-		return hasMozTransform;
+		return hasMozTransform;		
 	};
 
 $.magnificPopup.registerModule('zoom', {
@@ -7205,7 +7200,7 @@ $.magnificPopup.registerModule('zoom', {
 			var zoomSt = mfp.st.zoom,
 				ns = '.zoom',
 				image;
-
+				
 			if(!zoomSt.enabled || !mfp.supportsTransition) {
 				return;
 			}
@@ -7241,7 +7236,7 @@ $.magnificPopup.registerModule('zoom', {
 					mfp.content.css('visibility', 'hidden');
 
 					// Basically, all code below does is clones existing image, puts in on top of the current one and animated it
-
+					
 					image = mfp._getItemToZoom();
 
 					if(!image) {
@@ -7249,8 +7244,8 @@ $.magnificPopup.registerModule('zoom', {
 						return;
 					}
 
-					animatedImg = getElToAnimate(image);
-
+					animatedImg = getElToAnimate(image); 
+					
 					animatedImg.css( mfp._getOffset() );
 
 					mfp.wrap.append(animatedImg);
@@ -7265,7 +7260,7 @@ $.magnificPopup.registerModule('zoom', {
 								animatedImg.remove();
 								image = animatedImg = null;
 								_mfpTrigger('ZoomAnimationEnded');
-							}, 16); // avoid blink when switching images
+							}, 16); // avoid blink when switching images 
 
 						}, duration); // this timeout equals animation duration
 
@@ -7289,12 +7284,12 @@ $.magnificPopup.registerModule('zoom', {
 						}
 						animatedImg = getElToAnimate(image);
 					}
-
-
+					
+					
 					animatedImg.css( mfp._getOffset(true) );
 					mfp.wrap.append(animatedImg);
 					mfp.content.css('visibility', 'hidden');
-
+					
 					setTimeout(function() {
 						animatedImg.css( mfp._getOffset() );
 					}, 16);
@@ -7309,7 +7304,7 @@ $.magnificPopup.registerModule('zoom', {
 						animatedImg.remove();
 					}
 					image = null;
-				}
+				}	
 			});
 		},
 
@@ -7341,7 +7336,7 @@ $.magnificPopup.registerModule('zoom', {
 
 
 			/*
-
+			
 			Animating left + top + width/height looks glitchy in Firefox, but perfect in Chrome. And vice-versa.
 
 			 */
@@ -7372,11 +7367,11 @@ $.magnificPopup.registerModule('zoom', {
 
 var IFRAME_NS = 'iframe',
 	_emptyPage = '//about:blank',
-
+	
 	_fixIframeBugs = function(isShowing) {
 		if(mfp.currTemplate[IFRAME_NS]) {
 			var el = mfp.currTemplate[IFRAME_NS].find('iframe');
-			if(el.length) {
+			if(el.length) { 
 				// reset src after the popup is closed to avoid "video keeps playing after popup is closed" bug
 				if(!isShowing) {
 					el[0].src = _emptyPage;
@@ -7403,8 +7398,8 @@ $.magnificPopup.registerModule(IFRAME_NS, {
 		// we don't care and support only one default type of URL by default
 		patterns: {
 			youtube: {
-				index: 'youtube.com',
-				id: 'v=',
+				index: 'youtube.com', 
+				id: 'v=', 
 				src: '//www.youtube.com/embed/%id%?autoplay=1'
 			},
 			vimeo: {
@@ -7429,7 +7424,7 @@ $.magnificPopup.registerModule(IFRAME_NS, {
 						_fixIframeBugs(); // iframe if removed
 					} else if(newType === IFRAME_NS) {
 						_fixIframeBugs(true); // iframe is showing
-					}
+					} 
 				}// else {
 					// iframe source is switched, don't do anything
 				//}
@@ -7443,7 +7438,7 @@ $.magnificPopup.registerModule(IFRAME_NS, {
 		getIframe: function(item, template) {
 			var embedSrc = item.src;
 			var iframeSt = mfp.st.iframe;
-
+				
 			$.each(iframeSt.patterns, function() {
 				if(embedSrc.indexOf( this.index ) > -1) {
 					if(this.id) {
@@ -7457,7 +7452,7 @@ $.magnificPopup.registerModule(IFRAME_NS, {
 					return false; // break;
 				}
 			});
-
+			
 			var dataObj = {};
 			if(iframeSt.srcAction) {
 				dataObj[iframeSt.srcAction] = embedSrc;
@@ -7514,7 +7509,7 @@ $.magnificPopup.registerModule('gallery', {
 				supportsFastClick = Boolean($.fn.mfpFastClick);
 
 			mfp.direction = true; // true - next, false - prev
-
+			
 			if(!gSt || !gSt.enabled ) return false;
 
 			_wrapClasses += ' mfp-gallery';
@@ -7553,16 +7548,16 @@ $.magnificPopup.registerModule('gallery', {
 			_mfpOn('BuildControls' + ns, function() {
 				if(mfp.items.length > 1 && gSt.arrows && !mfp.arrowLeft) {
 					var markup = gSt.arrowMarkup,
-						arrowLeft = mfp.arrowLeft = $( markup.replace(/%title%/gi, gSt.tPrev).replace(/%dir%/gi, 'left') ).addClass(PREVENT_CLOSE_CLASS),
+						arrowLeft = mfp.arrowLeft = $( markup.replace(/%title%/gi, gSt.tPrev).replace(/%dir%/gi, 'left') ).addClass(PREVENT_CLOSE_CLASS),			
 						arrowRight = mfp.arrowRight = $( markup.replace(/%title%/gi, gSt.tNext).replace(/%dir%/gi, 'right') ).addClass(PREVENT_CLOSE_CLASS);
 
 					var eName = supportsFastClick ? 'mfpFastClick' : 'click';
 					arrowLeft[eName](function() {
 						mfp.prev();
-					});
+					});			
 					arrowRight[eName](function() {
 						mfp.next();
-					});
+					});	
 
 					// Polyfill for :before and :after (adds elements with classes mfp-a and mfp-b)
 					if(mfp.isIE7) {
@@ -7582,21 +7577,21 @@ $.magnificPopup.registerModule('gallery', {
 				mfp._preloadTimeout = setTimeout(function() {
 					mfp.preloadNearbyImages();
 					mfp._preloadTimeout = null;
-				}, 16);
+				}, 16);		
 			});
 
 
 			_mfpOn(CLOSE_EVENT+ns, function() {
 				_document.off(ns);
 				mfp.wrap.off('click'+ns);
-
+			
 				if(mfp.arrowLeft && supportsFastClick) {
 					mfp.arrowLeft.add(mfp.arrowRight).destroyMfpFastClick();
 				}
 				mfp.arrowRight = mfp.arrowLeft = null;
 			});
 
-		},
+		}, 
 		next: function() {
 			mfp.direction = true;
 			mfp.index = _getLoopedId(mfp.index + 1);
@@ -7761,11 +7756,11 @@ $.magnificPopup.registerModule(RETINA_NS, {
  *
  * To unbind:
  * $('.your-el').destroyMfpFastClick();
- *
- *
+ * 
+ * 
  * Note that it's a very basic and simple implementation, it blocks ghost click on the same element where it was bound.
  * If you need something more advanced, use plugin by FT Labs https://github.com/ftlabs/fastclick
- *
+ * 
  */
 
 (function() {
@@ -7887,7 +7882,7 @@ if ($('.orbit').length) {
                 particle[0] += particle[3] * Math.cos(particle[2]);
                 particle[1] += particle[3] * Math.sin(particle[2]);
 
-                //get distance from origin
+                //get distance from origin 
                 var diffX = particle[0] - origin[0];
                 var diffY = particle[1] - origin[1];
                 var dis = Math.sqrt((diffX * diffX) + (diffY * diffY));
@@ -7958,7 +7953,7 @@ if ($('.orbit').length) {
                 particle[0] += particle[3] * Math.cos(particle[2]);
                 particle[1] += particle[3] * Math.sin(particle[2]);
 
-                //get distance from origin
+                //get distance from origin 
                 var diffX = particle[0] - origin[0];
                 var diffY = particle[1] - origin[1];
                 var dis = Math.sqrt((diffX * diffX) + (diffY * diffY));
@@ -8029,7 +8024,7 @@ if ($('.orbit').length) {
                 particle[0] += particle[3] * Math.cos(particle[2]);
                 particle[1] += particle[3] * Math.sin(particle[2]);
 
-                //get distance from origin
+                //get distance from origin 
                 var diffX = particle[0] - origin[0];
                 var diffY = particle[1] - origin[1];
                 var dis = Math.sqrt((diffX * diffX) + (diffY * diffY));
@@ -8062,30 +8057,30 @@ if ($('.orbit').length) {
 /*! matchMedia() polyfill - Test a CSS media type/query in JS. Authors & copyright (c) 2012: Scott Jehl, Paul Irish, Nicholas Zakas. Dual MIT/BSD license */
 /*! NOTE: If you're already including a window.matchMedia polyfill via Modernizr or otherwise, you don't need this part */
 window.matchMedia = window.matchMedia || (function(doc, undefined){
-
+  
   var bool,
       docElem  = doc.documentElement,
       refNode  = docElem.firstElementChild || docElem.firstChild,
       // fakeBody required for <FF4 when executed in <head>
       fakeBody = doc.createElement('body'),
       div      = doc.createElement('div');
-
+  
   div.id = 'mq-test-1';
   div.style.cssText = "position:absolute;top:-100em";
   fakeBody.style.background = "none";
   fakeBody.appendChild(div);
-
+  
   return function(q){
-
+    
     div.innerHTML = '&shy;<style media="'+q+'"> #mq-test-1 { width: 42px; }</style>';
-
+    
     docElem.insertBefore(fakeBody, refNode);
-    bool = div.offsetWidth == 42;
+    bool = div.offsetWidth == 42;  
     docElem.removeChild(fakeBody);
-
+    
     return { matches: bool, media: q };
   };
-
+  
 })(document);
 
 
@@ -8095,16 +8090,16 @@ window.matchMedia = window.matchMedia || (function(doc, undefined){
 (function( win ){
 	//exposed namespace
 	win.respond		= {};
-
+	
 	//define update even in native-mq-supporting browsers, to avoid errors
 	respond.update	= function(){};
-
+	
 	//expose media query support flag for external use
 	respond.mediaQueriesSupported	= win.matchMedia && win.matchMedia( "only all" ).matches;
-
+	
 	//if media queries are supported, exit here
 	if( respond.mediaQueriesSupported ){ return; }
-
+	
 	//define vars
 	var doc 			= win.document,
 		docElem 		= doc.documentElement,
@@ -8117,7 +8112,7 @@ window.matchMedia = window.matchMedia || (function(doc, undefined){
 		base			= doc.getElementsByTagName( "base" )[0],
 		links			= head.getElementsByTagName( "link" ),
 		requestQueue	= [],
-
+		
 		//loop stylesheets, send text content to translate
 		ripCSS			= function(){
 			var sheets 	= links,
@@ -8151,12 +8146,12 @@ window.matchMedia = window.matchMedia || (function(doc, undefined){
 			}
 			makeRequests();
 		},
-
+		
 		//recurse through request queue, get css text
 		makeRequests	= function(){
 			if( requestQueue.length ){
 				var thisRequest = requestQueue.shift();
-
+				
 				ajax( thisRequest.href, function( styles ){
 					translate( styles, thisRequest.href, thisRequest.media );
 					parsedSheets[ thisRequest.href ] = true;
@@ -8164,7 +8159,7 @@ window.matchMedia = window.matchMedia || (function(doc, undefined){
 				} );
 			}
 		},
-
+		
 		//find media blocks in css text, convert to style blocks
 		translate			= function( styles, href, media ){
 			var qs			= styles.match(  /@media[^\{]+\{([^\{\}]*\{[^\}\{]*\})+/gi ),
@@ -8180,20 +8175,20 @@ window.matchMedia = window.matchMedia || (function(doc, undefined){
 				j, fullq, thisq, eachq, eql;
 
 			//if path exists, tack on trailing slash
-			if( href.length ){ href += "/"; }
-
-			//if no internal queries exist, but media attr does, use that
+			if( href.length ){ href += "/"; }	
+				
+			//if no internal queries exist, but media attr does, use that	
 			//note: this currently lacks support for situations where a media attr is specified on a link AND
 				//its associated stylesheet has internal CSS media queries.
 				//In those cases, the media attribute will currently be ignored.
 			if( useMedia ){
 				ql = 1;
 			}
-
+			
 
 			for( ; i < ql; i++ ){
 				j	= 0;
-
+				
 				//media attr
 				if( useMedia ){
 					fullq = media;
@@ -8204,65 +8199,65 @@ window.matchMedia = window.matchMedia || (function(doc, undefined){
 					fullq	= qs[ i ].match( /@media *([^\{]+)\{([\S\s]+?)$/ ) && RegExp.$1;
 					rules.push( RegExp.$2 && repUrls( RegExp.$2 ) );
 				}
-
+				
 				eachq	= fullq.split( "," );
 				eql		= eachq.length;
-
+					
 				for( ; j < eql; j++ ){
 					thisq	= eachq[ j ];
-					mediastyles.push( {
+					mediastyles.push( { 
 						media	: thisq.split( "(" )[ 0 ].match( /(only\s+)?([a-zA-Z]+)\s?/ ) && RegExp.$2 || "all",
 						rules	: rules.length - 1,
 						hasquery: thisq.indexOf("(") > -1,
-						minw	: thisq.match( /\(min\-width:[\s]*([\s]*[0-9\.]+)(px|em)[\s]*\)/ ) && parseFloat( RegExp.$1 ) + ( RegExp.$2 || "" ),
+						minw	: thisq.match( /\(min\-width:[\s]*([\s]*[0-9\.]+)(px|em)[\s]*\)/ ) && parseFloat( RegExp.$1 ) + ( RegExp.$2 || "" ), 
 						maxw	: thisq.match( /\(max\-width:[\s]*([\s]*[0-9\.]+)(px|em)[\s]*\)/ ) && parseFloat( RegExp.$1 ) + ( RegExp.$2 || "" )
 					} );
-				}
+				}	
 			}
 
 			applyMedia();
 		},
-
+        	
 		lastCall,
-
+		
 		resizeDefer,
-
+		
 		// returns the value of 1em in pixels
 		getEmValue		= function() {
 			var ret,
 				div = doc.createElement('div'),
 				body = doc.body,
 				fakeUsed = false;
-
+									
 			div.style.cssText = "position:absolute;font-size:1em;width:1em";
-
+					
 			if( !body ){
 				body = fakeUsed = doc.createElement( "body" );
 				body.style.background = "none";
 			}
-
+					
 			body.appendChild( div );
-
+								
 			docElem.insertBefore( body, docElem.firstChild );
-
+								
 			ret = div.offsetWidth;
-
+								
 			if( fakeUsed ){
 				docElem.removeChild( body );
 			}
 			else {
 				body.removeChild( div );
 			}
-
+			
 			//also update eminpx before returning
 			ret = eminpx = parseFloat(ret);
-
+								
 			return ret;
 		},
-
-		//cached container for 1em value, populated the first time it's needed
+		
+		//cached container for 1em value, populated the first time it's needed 
 		eminpx,
-
+		
 		//enable/disable styles
 		applyMedia			= function( fromResize ){
 			var name		= "clientWidth",
@@ -8272,7 +8267,7 @@ window.matchMedia = window.matchMedia || (function(doc, undefined){
 				lastLink	= links[ links.length-1 ],
 				now 		= (new Date()).getTime();
 
-			//throttle resize calls
+			//throttle resize calls	
 			if( fromResize && lastCall && now - lastCall < resizeThrottle ){
 				clearTimeout( resizeDefer );
 				resizeDefer = setTimeout( applyMedia, resizeThrottle );
@@ -8281,7 +8276,7 @@ window.matchMedia = window.matchMedia || (function(doc, undefined){
 			else {
 				lastCall	= now;
 			}
-
+										
 			for( var i in mediastyles ){
 				var thisstyle = mediastyles[ i ],
 					min = thisstyle.minw,
@@ -8289,14 +8284,14 @@ window.matchMedia = window.matchMedia || (function(doc, undefined){
 					minnull = min === null,
 					maxnull = max === null,
 					em = "em";
-
+				
 				if( !!min ){
 					min = parseFloat( min ) * ( min.indexOf( em ) > -1 ? ( eminpx || getEmValue() ) : 1 );
 				}
 				if( !!max ){
 					max = parseFloat( max ) * ( max.indexOf( em ) > -1 ? ( eminpx || getEmValue() ) : 1 );
 				}
-
+				
 				// if there's no media query at all (the () part), or min or max is not null, and if either is present, they're true
 				if( !thisstyle.hasquery || ( !minnull || !maxnull ) && ( minnull || currWidth >= min ) && ( maxnull || currWidth <= max ) ){
 						if( !styleBlocks[ thisstyle.media ] ){
@@ -8305,33 +8300,33 @@ window.matchMedia = window.matchMedia || (function(doc, undefined){
 						styleBlocks[ thisstyle.media ].push( rules[ thisstyle.rules ] );
 				}
 			}
-
+			
 			//remove any existing respond style element(s)
 			for( var i in appendedEls ){
 				if( appendedEls[ i ] && appendedEls[ i ].parentNode === head ){
 					head.removeChild( appendedEls[ i ] );
 				}
 			}
-
+			
 			//inject active styles, grouped by media type
 			for( var i in styleBlocks ){
 				var ss		= doc.createElement( "style" ),
 					css		= styleBlocks[ i ].join( "\n" );
-
-				ss.type = "text/css";
+				
+				ss.type = "text/css";	
 				ss.media	= i;
-
+				
 				//originally, ss was appended to a documentFragment and sheets were appended in bulk.
 				//this caused crashes in IE in a number of circumstances, such as when the HTML element had a bg image set, so appending beforehand seems best. Thanks to @dvelyk for the initial research on this one!
 				head.insertBefore( ss, lastLink.nextSibling );
-
-				if ( ss.styleSheet ){
+				
+				if ( ss.styleSheet ){ 
 		        	ss.styleSheet.cssText = css;
-		        }
+		        } 
 		        else {
 					ss.appendChild( doc.createTextNode( css ) );
 		        }
-
+		        
 				//push to appendedEls to track for later removal
 				appendedEls.push( ss );
 			}
@@ -8341,7 +8336,7 @@ window.matchMedia = window.matchMedia || (function(doc, undefined){
 			var req = xmlHttp();
 			if (!req){
 				return;
-			}
+			}	
 			req.open( "GET", url, true );
 			req.onreadystatechange = function () {
 				if ( req.readyState != 4 || req.status != 200 && req.status != 304 ){
@@ -8354,9 +8349,9 @@ window.matchMedia = window.matchMedia || (function(doc, undefined){
 			}
 			req.send( null );
 		},
-		//define ajax obj
+		//define ajax obj 
 		xmlHttp = (function() {
-			var xmlhttpmethod = false;
+			var xmlhttpmethod = false;	
 			try {
 				xmlhttpmethod = new XMLHttpRequest();
 			}
@@ -8367,13 +8362,13 @@ window.matchMedia = window.matchMedia || (function(doc, undefined){
 				return xmlhttpmethod;
 			};
 		})();
-
+	
 	//translate CSS
 	ripCSS();
-
+	
 	//expose update for re-running respond later on
 	respond.update = ripCSS;
-
+	
 	//adjust on resize
 	function callMedia(){
 		applyMedia( true );
@@ -8837,7 +8832,7 @@ window.matchMedia = window.matchMedia || (function(doc, undefined){
 
             var $this = $(this),
                 el_id = $this.attr('id'),
-
+                
                 options = $.extend({
                     type: 'sprite',
                     do_once: false,
@@ -9187,7 +9182,7 @@ window.matchMedia = window.matchMedia || (function(doc, undefined){
 // Stop IE6 re-loading background images continuously
 try {
   document.execCommand("BackgroundImageCache", false, true);
-} catch(err) {}
+} catch(err) {} 
 
 /*
 
@@ -9240,11 +9235,11 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 			trigger: 'hover',
 			updateAnimation: true
 		};
-
+	
 	function Plugin(element, options) {
-
+		
 		// list of instance variables
-
+		
 		this.bodyOverflowX;
 		// stack of custom callbacks provided as parameters to API methods
 		this.callbacks = {
@@ -9271,27 +9266,27 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 		this.timerShow = null;
 		// this will be the tooltip element (jQuery wrapped HTML element)
 		this.$tooltip;
-
+		
 		// for backward compatibility
 		this.options.iconTheme = this.options.iconTheme.replace('.', '');
 		this.options.theme = this.options.theme.replace('.', '');
-
+		
 		// launch
-
+		
 		this._init();
 	}
-
+	
 	Plugin.prototype = {
-
+		
 		_init: function() {
-
+			
 			var self = this;
-
+			
 			// disable the plugin on old browsers (including IE7 and lower)
 			if (document.querySelector) {
-
+				
 				// note : the content is null (empty) by default and can stay that way if the plugin remains initialized but not fed any content. The tooltip will just not appear.
-
+				
 				// if content is provided in the options, its has precedence over the title attribute. Remark : an empty string is considered content, only 'null' represents the absence of content.
 				if (self.options.content !== null){
 					self._content_set(self.options.content);
@@ -9300,13 +9295,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 					// the same remark as above applies : empty strings (like title="") are considered content and will be shown. Do not define any attribute at all if you want to initialize the plugin without content at start.
 					var t = self.$el.attr('title');
 					if(typeof t === 'undefined') t = null;
-
+					
 					self._content_set(t);
 				}
-
+				
 				var c = self.options.functionInit.call(self.$el, self.$el, self.Content);
 				if(typeof c !== 'undefined') self._content_set(c);
-
+				
 				self.$el
 					// strip the title off of the element to prevent the default tooltips from popping up
 					.removeAttr('title')
@@ -9316,10 +9311,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 				// detect if we're changing the tooltip origin to an icon
 				// note about this condition : if the device has touch capability and self.options.iconTouch is false, you'll have no icons event though you may consider your device as a desktop if it also has a mouse. Not sure why someone would have this use case though.
 				if ((!deviceHasTouchCapability && self.options.iconDesktop) || (deviceHasTouchCapability && self.options.iconTouch)) {
-
+					
 					// TODO : the tooltip should be automatically be given an absolute position to be near the origin. Otherwise, when the origin is floating or what, it's going to be nowhere near it and disturb the position flow of the page elements. It will imply that the icon also detects when its origin moves, to follow it : not trivial.
 					// Until it's done, the icon feature does not really make sense since the user still has most of the work to do by himself
-
+					
 					// if the icon provided is in the form of a string
 					if(typeof self.options.icon === 'string'){
 						// wrap it in a span with the icon class
@@ -9332,20 +9327,20 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 						if (self.options.iconCloning) self.$elProxy = self.options.icon.clone(true);
 						else self.$elProxy = self.options.icon;
 					}
-
+					
 					self.$elProxy.insertAfter(self.$el);
 				}
 				else {
 					self.$elProxy = self.$el;
 				}
-
+				
 				// for 'click' and 'hover' triggers : bind on events to open the tooltip. Closing is now handled in _showNow() because of its bindings.
 				// Notes about touch events :
 					// - mouseenter, mouseleave and clicks happen even on pure touch devices because they are emulated. deviceIsPureTouch() is a simple attempt to detect them.
 					// - on hybrid devices, we do not prevent touch gesture from opening tooltips. It would be too complex to differentiate real mouse events from emulated ones.
 					// - we check deviceIsPureTouch() at each event rather than prior to binding because the situation may change during browsing
 				if (self.options.trigger == 'hover') {
-
+					
 					// these binding are for mouse interaction only
 					self.$elProxy
 						.on('mouseenter.'+ self.namespace, function() {
@@ -9359,10 +9354,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 								self.mouseIsOverProxy = false;
 							}
 						});
-
+					
 					// for touch interaction only
 					if (deviceHasTouchCapability && self.options.touchDevices) {
-
+						
 						// for touch devices, we immediately display the tooltip because we cannot rely on mouseleave to handle the delay
 						self.$elProxy.on('touchstart.'+ self.namespace, function() {
 							self._showNow();
@@ -9370,7 +9365,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 					}
 				}
 				else if (self.options.trigger == 'click') {
-
+					
 					// note : for touch devices, we do not bind on touchstart, we only rely on the emulated clicks (triggered by taps)
 					self.$elProxy.on('click.'+ self.namespace, function() {
 						if (!deviceIsPureTouch() || self.options.touchDevices) {
@@ -9380,17 +9375,17 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 				}
 			}
 		},
-
+		
 		// this function will schedule the opening of the tooltip after the delay, if there is one
 		_show: function() {
-
+			
 			var self = this;
-
+			
 			if (self.Status != 'shown' && self.Status != 'appearing') {
-
+				
 				if (self.options.delay) {
 					self.timerShow = setTimeout(function(){
-
+						
 						// for hover trigger, we check if the mouse is still over the proxy, otherwise we do not show anything
 						if (self.options.trigger == 'click' || (self.options.trigger == 'hover' && self.mouseIsOverProxy)) {
 							self._showNow();
@@ -9400,77 +9395,77 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 				else self._showNow();
 			}
 		},
-
+		
 		// this function will open the tooltip right away
 		_showNow: function(callback) {
-
+			
 			var self = this;
-
+			
 			// call our constructor custom function before continuing
 			self.options.functionBefore.call(self.$el, self.$el, function() {
-
+				
 				// continue only if the tooltip is enabled and has any content
 				if (self.enabled && self.Content !== null) {
-
+				
 					// save the method callback and cancel hide method callbacks
 					if (callback) self.callbacks.show.push(callback);
 					self.callbacks.hide = [];
-
+					
 					//get rid of any appearance timer
 					clearTimeout(self.timerShow);
 					self.timerShow = null;
 					clearTimeout(self.timerHide);
 					self.timerHide = null;
-
+					
 					// if we only want one tooltip open at a time, close all auto-closing tooltips currently open and not already disappearing
 					if (self.options.onlyOne) {
 						$('.tooltipstered').not(self.$el).each(function(i,el) {
-
+							
 							var $el = $(el),
 								nss = $el.data('tooltipster-ns');
-
+							
 							// iterate on all tooltips of the element
 							$.each(nss, function(i, ns){
 								var instance = $el.data(ns),
 									// we have to use the public methods here
 									s = instance.status(),
 									ac = instance.option('autoClose');
-
+								
 								if (s !== 'hidden' && s !== 'disappearing' && ac) {
 									instance.hide();
 								}
 							});
 						});
 					}
-
+					
 					var finish = function() {
 						self.Status = 'shown';
-
+						
 						// trigger any show method custom callbacks and reset them
 						$.each(self.callbacks.show, function(i,c) { c.call(self.$el); });
 						self.callbacks.show = [];
 					};
-
+					
 					// if this origin already has its tooltip open
 					if (self.Status !== 'hidden') {
-
+						
 						// the timer (if any) will start (or restart) right now
 						var extraTime = 0;
-
+						
 						// if it was disappearing, cancel that
 						if (self.Status === 'disappearing') {
-
+							
 							self.Status = 'appearing';
-
+							
 							if (supportsTransitions()) {
-
+								
 								self.$tooltip
 									.clearQueue()
 									.removeClass('tooltipster-dying')
 									.addClass('tooltipster-'+ self.options.animation +'-show');
-
+								
 								if (self.options.speed > 0) self.$tooltip.delay(self.options.speed);
-
+								
 								self.$tooltip.queue(finish);
 							}
 							else {
@@ -9487,71 +9482,71 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 					}
 					// if the tooltip isn't already open, open that sucker up!
 					else {
-
+						
 						self.Status = 'appearing';
-
+						
 						// the timer (if any) will start when the tooltip has fully appeared after its transition
 						var extraTime = self.options.speed;
-
+						
 						// disable horizontal scrollbar to keep overflowing tooltips from jacking with it and then restore it to its previous value
 						self.bodyOverflowX = $('body').css('overflow-x');
 						$('body').css('overflow-x', 'hidden');
-
+						
 						// get some other settings related to building the tooltip
 						var animation = 'tooltipster-' + self.options.animation,
 							animationSpeed = '-webkit-transition-duration: '+ self.options.speed +'ms; -webkit-animation-duration: '+ self.options.speed +'ms; -moz-transition-duration: '+ self.options.speed +'ms; -moz-animation-duration: '+ self.options.speed +'ms; -o-transition-duration: '+ self.options.speed +'ms; -o-animation-duration: '+ self.options.speed +'ms; -ms-transition-duration: '+ self.options.speed +'ms; -ms-animation-duration: '+ self.options.speed +'ms; transition-duration: '+ self.options.speed +'ms; animation-duration: '+ self.options.speed +'ms;',
 							minWidth = self.options.minWidth ? 'min-width:'+ Math.round(self.options.minWidth) +'px;' : '',
 							maxWidth = self.options.maxWidth ? 'max-width:'+ Math.round(self.options.maxWidth) +'px;' : '',
 							pointerEvents = self.options.interactive ? 'pointer-events: auto;' : '';
-
+						
 						// build the base of our tooltip
 						self.$tooltip = $('<div class="tooltipster-base '+ self.options.theme +'" style="'+ minWidth +' '+ maxWidth +' '+ pointerEvents +' '+ animationSpeed +'"><div class="tooltipster-content"></div></div>');
-
+						
 						// only add the animation class if the user has a browser that supports animations
 						if (supportsTransitions()) self.$tooltip.addClass(animation);
-
+						
 						// insert the content
 						self._content_insert();
-
+						
 						// attach
 						self.$tooltip.appendTo('body');
-
+						
 						// do all the crazy calculations and positioning
 						self.reposition();
-
+						
 						// call our custom callback since the content of the tooltip is now part of the DOM
 						self.options.functionReady.call(self.$el, self.$el, self.$tooltip);
-
+						
 						// animate in the tooltip
 						if (supportsTransitions()) {
-
+							
 							self.$tooltip.addClass(animation + '-show');
-
+							
 							if(self.options.speed > 0) self.$tooltip.delay(self.options.speed);
-
+							
 							self.$tooltip.queue(finish);
 						}
 						else {
 							self.$tooltip.css('display', 'none').fadeIn(self.options.speed, finish);
 						}
-
+						
 						// will check if our tooltip origin is removed while the tooltip is shown
 						self._interval_set();
-
+						
 						// reposition on scroll (otherwise position:fixed element's tooltips will move away form their origin) and on resize (in case position can/has to be changed)
 						$(window).on('scroll.'+ self.namespace +' resize.'+ self.namespace, function() {
 							self.reposition();
 						});
-
+						
 						// auto-close bindings
 						if (self.options.autoClose) {
-
+							
 							// in case a listener is already bound for autoclosing (mouse or touch, hover or click), unbind it first
 							$('body').off('.'+ self.namespace);
-
+							
 							// here we'll have to set different sets of bindings for both touch and mouse
 							if (self.options.trigger == 'hover') {
-
+								
 								// if the user touches the body, hide
 								if (deviceHasTouchCapability) {
 									// timeout 0 : explanation below in click section
@@ -9562,20 +9557,20 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 										});
 									}, 0);
 								}
-
+								
 								// if we have to allow interaction
 								if (self.options.interactive) {
-
+									
 									// touch events inside the tooltip must not close it
 									if (deviceHasTouchCapability) {
 										self.$tooltip.on('touchstart.'+ self.namespace, function(event) {
 											event.stopPropagation();
 										});
 									}
-
+									
 									// as for mouse interaction, we get rid of the tooltip only after the mouse has spent some time out of it
 									var tolerance = null;
-
+									
 									self.$elProxy.add(self.$tooltip)
 										// hide after some time out of the proxy and the tooltip
 										.on('mouseleave.'+ self.namespace + '-autoClose', function() {
@@ -9598,17 +9593,17 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 							}
 							// here we'll set the same bindings for both clicks and touch on the body to hide the tooltip
 							else if(self.options.trigger == 'click'){
-
+								
 								// use a timeout to prevent immediate closing if the method was called on a click event and if options.delay == 0 (because of bubbling)
 								setTimeout(function() {
 									$('body').on('click.'+ self.namespace +' touchstart.'+ self.namespace, function() {
 										self.hide();
 									});
 								}, 0);
-
+								
 								// if interactive, we'll stop the events that were emitted from inside the tooltip to stop autoClosing
 								if (self.options.interactive) {
-
+									
 									// note : the touch events will just not be used if the plugin is not enabled on touch devices
 									self.$tooltip.on('click.'+ self.namespace +' touchstart.'+ self.namespace, function(event) {
 										event.stopPropagation();
@@ -9617,10 +9612,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 							}
 						}
 					}
-
+					
 					// if we have a timer set, let the countdown begin
 					if (self.options.timer > 0) {
-
+						
 						self.timerHide = setTimeout(function() {
 							self.timerHide = null;
 							self.hide();
@@ -9629,13 +9624,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 				}
 			});
 		},
-
+		
 		_interval_set: function() {
-
+			
 			var self = this;
-
+			
 			self.checkInterval = setInterval(function() {
-
+				
 				// if the tooltip and/or its interval should be stopped
 				if (
 						// if the origin has been removed
@@ -9649,7 +9644,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 				) {
 					// remove the tooltip if it's still here
 					if (self.Status == 'shown' || self.Status == 'appearing') self.hide();
-
+					
 					// clear this interval as it is no longer necessary
 					self._interval_cancel();
 				}
@@ -9657,13 +9652,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 				else {
 					// compare the former and current positions of the elProxy to reposition the tooltip if need be
 					if(self.options.positionTracker){
-
+						
 						var p = self._repositionInfo(self.$elProxy),
 							identical = false;
-
+						
 						// compare size first (a change requires repositioning too)
 						if(areEqual(p.dimension, self.elProxyPosition.dimension)){
-
+							
 							// for elements with a fixed position, we track the top and left properties (relative to window)
 							if(self.$elProxy.css('position') === 'fixed'){
 								if(areEqual(p.position, self.elProxyPosition.position)) identical = true;
@@ -9673,7 +9668,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 								if(areEqual(p.offset, self.elProxyPosition.offset)) identical = true;
 							}
 						}
-
+						
 						if(!identical){
 							self.reposition();
 						}
@@ -9681,13 +9676,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 				}
 			}, 200);
 		},
-
+		
 		_interval_cancel: function() {
 			clearInterval(this.checkInterval);
 			// clean delete
 			this.checkInterval = null;
 		},
-
+		
 		_content_set: function(content) {
 			// clone if asked. Cloning the object makes sure that each instance has its own version of the content (in case a same object were provided for several instances)
 			// reminder : typeof null === object
@@ -9696,12 +9691,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 			}
 			this.Content = content;
 		},
-
+		
 		_content_insert: function() {
-
+			
 			var self = this,
 				$d = this.$tooltip.find('.tooltipster-content');
-
+			
 			if (typeof self.Content === 'string' && !self.options.contentAsHTML) {
 				$d.text(self.Content);
 			}
@@ -9711,30 +9706,30 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 					.append(self.Content);
 			}
 		},
-
+		
 		_update: function(content) {
-
+			
 			var self = this;
-
+			
 			// change the content
 			self._content_set(content);
-
+			
 			if (self.Content !== null) {
-
+				
 				// update the tooltip if it is open
 				if (self.Status !== 'hidden') {
-
+					
 					// reset the content in the tooltip
 					self._content_insert();
-
+					
 					// reposition and resize the tooltip
 					self.reposition();
-
+					
 					// if we want to play a little animation showing the content changed
 					if (self.options.updateAnimation) {
-
+						
 						if (supportsTransitions()) {
-
+							
 							self.$tooltip.css({
 								'width': '',
 								'-webkit-transition': 'all ' + self.options.speed + 'ms, width 0ms, height 0ms, left 0ms, top 0ms',
@@ -9743,17 +9738,17 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 								'-ms-transition': 'all ' + self.options.speed + 'ms, width 0ms, height 0ms, left 0ms, top 0ms',
 								'transition': 'all ' + self.options.speed + 'ms, width 0ms, height 0ms, left 0ms, top 0ms'
 							}).addClass('tooltipster-content-changing');
-
+							
 							// reset the CSS transitions and finish the change animation
 							setTimeout(function() {
-
+								
 								if(self.Status != 'hidden'){
-
+									
 									self.$tooltip.removeClass('tooltipster-content-changing');
-
+									
 									// after the changing animation has completed, reset the CSS transitions
 									setTimeout(function() {
-
+										
 										if(self.Status !== 'hidden'){
 											self.$tooltip.css({
 												'-webkit-transition': self.options.speed + 'ms',
@@ -9781,7 +9776,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 				self.hide();
 			}
 		},
-
+		
 		_repositionInfo: function($el) {
 			return {
 				dimension: {
@@ -9795,75 +9790,75 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 				}
 			};
 		},
-
+		
 		hide: function(callback) {
-
+			
 			var self = this;
-
+			
 			// save the method custom callback and cancel any show method custom callbacks
 			if (callback) self.callbacks.hide.push(callback);
 			self.callbacks.show = [];
-
+			
 			// get rid of any appearance timeout
 			clearTimeout(self.timerShow);
 			self.timerShow = null;
 			clearTimeout(self.timerHide);
 			self.timerHide = null;
-
+			
 			var finishCallbacks = function() {
 				// trigger any hide method custom callbacks and reset them
 				$.each(self.callbacks.hide, function(i,c) { c.call(self.$el); });
 				self.callbacks.hide = [];
 			};
-
+			
 			// hide
 			if (self.Status == 'shown' || self.Status == 'appearing') {
-
+				
 				self.Status = 'disappearing';
-
+				
 				var finish = function() {
-
+					
 					self.Status = 'hidden';
-
+					
 					// detach our content object first, so the next jQuery's remove() call does not unbind its event handlers
 					if (typeof self.Content == 'object' && self.Content !== null) {
 						self.Content.detach();
 					}
-
+					
 					self.$tooltip.remove();
 					self.$tooltip = null;
-
+					
 					// unbind orientationchange, scroll and resize listeners
 					$(window).off('.'+ self.namespace);
-
+					
 					$('body')
 						// unbind any auto-closing click/touch listeners
 						.off('.'+ self.namespace)
 						.css('overflow-x', self.bodyOverflowX);
-
+					
 					// unbind any auto-closing click/touch listeners
 					$('body').off('.'+ self.namespace);
-
+					
 					// unbind any auto-closing hover listeners
 					self.$elProxy.off('.'+ self.namespace + '-autoClose');
-
+					
 					// call our constructor custom callback function
 					self.options.functionAfter.call(self.$el, self.$el);
-
+					
 					// call our method custom callbacks functions
 					finishCallbacks();
 				};
-
+				
 				if (supportsTransitions()) {
-
+					
 					self.$tooltip
 						.clearQueue()
 						.removeClass('tooltipster-' + self.options.animation + '-show')
 						// for transitions only
 						.addClass('tooltipster-dying');
-
+					
 					if(self.options.speed > 0) self.$tooltip.delay(self.options.speed);
-
+					
 					self.$tooltip.queue(finish);
 				}
 				else {
@@ -9876,16 +9871,16 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 			else if(self.Status == 'hidden') {
 				finishCallbacks();
 			}
-
+			
 			return self;
 		},
-
+		
 		// the public show() method is actually an alias for the private showNow() method
 		show: function(callback) {
 			this._showNow(callback);
 			return this;
 		},
-
+		
 		// 'update' is deprecated in favor of 'content' but is kept for backward compatibility
 		update: function(c) {
 			return this.content(c);
@@ -9901,17 +9896,17 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 				return this;
 			}
 		},
-
+		
 		reposition: function() {
-
+			
 			var self = this;
-
+			
 			// in case the tooltip has been removed from DOM manually
 			if ($('body').find(self.$tooltip).length !== 0) {
-
+				
 				// reset width
 				self.$tooltip.css('width', '');
-
+				
 				// find variables to determine placement
 				self.elProxyPosition = self._repositionInfo(self.$elProxy);
 				var arrowReposition = null,
@@ -9921,7 +9916,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 					tooltipWidth = self.$tooltip.outerWidth(false),
 					tooltipInnerWidth = self.$tooltip.innerWidth() + 1, // this +1 stops FireFox from sometimes forcing an additional text line
 					tooltipHeight = self.$tooltip.outerHeight(false);
-
+				
 				// if this is an <area> tag inside a <map>, all hell breaks loose. Recalculate all the measurements based on coordinates
 				if (self.$elProxy.is('area')) {
 					var areaShape = self.$elProxy.attr('shape'),
@@ -9930,7 +9925,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 						mapOffsetLeft = map.offset().left,
 						mapOffsetTop = map.offset().top,
 						areaMeasurements = self.$elProxy.attr('coords') !== undefined ? self.$elProxy.attr('coords').split(',') : undefined;
-
+					
 					if (areaShape == 'circle') {
 						var areaLeft = parseInt(areaMeasurements[0]),
 							areaTop = parseInt(areaMeasurements[1]),
@@ -9958,10 +9953,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 							areaGreatestX = 0,
 							areaGreatestY = 0,
 							arrayAlternate = 'even';
-
+						
 						for (var i = 0; i < areaMeasurements.length; i++) {
 							var areaNumber = parseInt(areaMeasurements[i]);
-
+							
 							if (arrayAlternate == 'even') {
 								if (areaNumber > areaGreatestX) {
 									areaGreatestX = areaNumber;
@@ -9969,11 +9964,11 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 										areaSmallestX = areaGreatestX;
 									}
 								}
-
+								
 								if (areaNumber < areaSmallestX) {
 									areaSmallestX = areaNumber;
 								}
-
+								
 								arrayAlternate = 'odd';
 							}
 							else {
@@ -9983,15 +9978,15 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 										areaSmallestY = areaGreatestY;
 									}
 								}
-
+								
 								if (areaNumber < areaSmallestY) {
 									areaSmallestY = areaNumber;
 								}
-
+								
 								arrayAlternate = 'even';
 							}
 						}
-
+					
 						proxy.dimension.height = areaGreatestY - areaSmallestY;
 						proxy.dimension.width = areaGreatestX - areaSmallestX;
 						proxy.offset.top = mapOffsetTop + areaSmallestY;
@@ -10004,7 +9999,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 						proxy.offset.left = mapOffsetLeft;
 					}
 				}
-
+				
 				// our function and global vars for positioning our tooltip
 				var myLeft = 0,
 					myLeftMirror = 0,
@@ -10013,39 +10008,39 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 					offsetX = parseInt(self.options.offsetX),
 					// this is the arrow position that will eventually be used. It may differ from the position option if the tooltip cannot be displayed in this position
 					practicalPosition = self.options.position;
-
+				
 				// a function to detect if the tooltip is going off the screen horizontally. If so, reposition the crap out of it!
 				function dontGoOffScreenX() {
-
+				
 					var windowLeft = $(window).scrollLeft();
-
+					
 					// if the tooltip goes off the left side of the screen, line it up with the left side of the window
 					if((myLeft - windowLeft) < 0) {
 						arrowReposition = myLeft - windowLeft;
 						myLeft = windowLeft;
 					}
-
+					
 					// if the tooltip goes off the right of the screen, line it up with the right side of the window
 					if (((myLeft + tooltipWidth) - windowLeft) > windowWidth) {
 						arrowReposition = myLeft - ((windowWidth + windowLeft) - tooltipWidth);
 						myLeft = (windowWidth + windowLeft) - tooltipWidth;
 					}
 				}
-
+				
 				// a function to detect if the tooltip is going off the screen vertically. If so, switch to the opposite!
 				function dontGoOffScreenY(switchTo, switchFrom) {
 					// if it goes off the top off the page
 					if(((proxy.offset.top - $(window).scrollTop() - tooltipHeight - offsetY - 12) < 0) && (switchFrom.indexOf('top') > -1)) {
 						practicalPosition = switchTo;
 					}
-
+					
 					// if it goes off the bottom of the page
 					if (((proxy.offset.top + proxy.dimension.height + tooltipHeight + 12 + offsetY) > ($(window).scrollTop() + $(window).height())) && (switchFrom.indexOf('bottom') > -1)) {
 						practicalPosition = switchTo;
 						myTop = (proxy.offset.top - tooltipHeight) - offsetY - 12;
 					}
 				}
-
+				
 				if(practicalPosition == 'top') {
 					var leftDifference = (proxy.offset.left + tooltipWidth) - (proxy.offset.left + proxy.dimension.width);
 					myLeft = (proxy.offset.left + offsetX) - (leftDifference / 2);
@@ -10053,21 +10048,21 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 					dontGoOffScreenX();
 					dontGoOffScreenY('bottom', 'top');
 				}
-
+				
 				if(practicalPosition == 'top-left') {
 					myLeft = proxy.offset.left + offsetX;
 					myTop = (proxy.offset.top - tooltipHeight) - offsetY - 12;
 					dontGoOffScreenX();
 					dontGoOffScreenY('bottom-left', 'top-left');
 				}
-
+				
 				if(practicalPosition == 'top-right') {
 					myLeft = (proxy.offset.left + proxy.dimension.width + offsetX) - tooltipWidth;
 					myTop = (proxy.offset.top - tooltipHeight) - offsetY - 12;
 					dontGoOffScreenX();
 					dontGoOffScreenY('bottom-right', 'top-right');
 				}
-
+				
 				if(practicalPosition == 'bottom') {
 					var leftDifference = (proxy.offset.left + tooltipWidth) - (proxy.offset.left + proxy.dimension.width);
 					myLeft = proxy.offset.left - (leftDifference / 2) + offsetX;
@@ -10075,75 +10070,75 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 					dontGoOffScreenX();
 					dontGoOffScreenY('top', 'bottom');
 				}
-
+				
 				if(practicalPosition == 'bottom-left') {
 					myLeft = proxy.offset.left + offsetX;
 					myTop = (proxy.offset.top + proxy.dimension.height) + offsetY + 12;
 					dontGoOffScreenX();
 					dontGoOffScreenY('top-left', 'bottom-left');
 				}
-
+				
 				if(practicalPosition == 'bottom-right') {
 					myLeft = (proxy.offset.left + proxy.dimension.width + offsetX) - tooltipWidth;
 					myTop = (proxy.offset.top + proxy.dimension.height) + offsetY + 12;
 					dontGoOffScreenX();
 					dontGoOffScreenY('top-right', 'bottom-right');
 				}
-
+				
 				if(practicalPosition == 'left') {
 					myLeft = proxy.offset.left - offsetX - tooltipWidth - 12;
 					myLeftMirror = proxy.offset.left + offsetX + proxy.dimension.width + 12;
 					var topDifference = (proxy.offset.top + tooltipHeight) - (proxy.offset.top + proxy.dimension.height);
 					myTop = proxy.offset.top - (topDifference / 2) - offsetY;
-
+					
 					// if the tooltip goes off boths sides of the page
 					if((myLeft < 0) && ((myLeftMirror + tooltipWidth) > windowWidth)) {
 						var borderWidth = parseFloat(self.$tooltip.css('border-width')) * 2,
 							newWidth = (tooltipWidth + myLeft) - borderWidth;
 						self.$tooltip.css('width', newWidth + 'px');
-
+						
 						tooltipHeight = self.$tooltip.outerHeight(false);
 						myLeft = proxy.offset.left - offsetX - newWidth - 12 - borderWidth;
 						topDifference = (proxy.offset.top + tooltipHeight) - (proxy.offset.top + proxy.dimension.height);
 						myTop = proxy.offset.top - (topDifference / 2) - offsetY;
 					}
-
+					
 					// if it only goes off one side, flip it to the other side
 					else if(myLeft < 0) {
 						myLeft = proxy.offset.left + offsetX + proxy.dimension.width + 12;
 						arrowReposition = 'left';
 					}
 				}
-
+				
 				if(practicalPosition == 'right') {
 					myLeft = proxy.offset.left + offsetX + proxy.dimension.width + 12;
 					myLeftMirror = proxy.offset.left - offsetX - tooltipWidth - 12;
 					var topDifference = (proxy.offset.top + tooltipHeight) - (proxy.offset.top + proxy.dimension.height);
 					myTop = proxy.offset.top - (topDifference / 2) - offsetY;
-
+					
 					// if the tooltip goes off boths sides of the page
 					if(((myLeft + tooltipWidth) > windowWidth) && (myLeftMirror < 0)) {
 						var borderWidth = parseFloat(self.$tooltip.css('border-width')) * 2,
 							newWidth = (windowWidth - myLeft) - borderWidth;
 						self.$tooltip.css('width', newWidth + 'px');
-
+						
 						tooltipHeight = self.$tooltip.outerHeight(false);
 						topDifference = (proxy.offset.top + tooltipHeight) - (proxy.offset.top + proxy.dimension.height);
 						myTop = proxy.offset.top - (topDifference / 2) - offsetY;
 					}
-
+						
 					// if it only goes off one side, flip it to the other side
 					else if((myLeft + tooltipWidth) > windowWidth) {
 						myLeft = proxy.offset.left - offsetX - tooltipWidth - 12;
 						arrowReposition = 'right';
 					}
 				}
-
+				
 				// if arrow is set true, style it and append it
 				if (self.options.arrow) {
-
+	
 					var arrowClass = 'tooltipster-arrow-' + practicalPosition;
-
+					
 					// set color of the arrow
 					if(self.options.arrowColor.length < 1) {
 						var arrowColor = self.$tooltip.css('background-color');
@@ -10151,7 +10146,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 					else {
 						var arrowColor = self.options.arrowColor;
 					}
-
+					
 					// if the tooltip was going off the page and had to re-adjust, we need to update the arrow's position
 					if (!arrowReposition) {
 						arrowReposition = '';
@@ -10167,7 +10162,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 					else {
 						arrowReposition = 'left:'+ Math.round(arrowReposition) +'px;';
 					}
-
+					
 					// building the logic to create the border around the arrow of the tooltip
 					if ((practicalPosition == 'top') || (practicalPosition == 'top-left') || (practicalPosition == 'top-right')) {
 						var tooltipBorderWidth = parseFloat(self.$tooltip.css('border-bottom-width')),
@@ -10189,11 +10184,11 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 						var tooltipBorderWidth = parseFloat(self.$tooltip.css('border-bottom-width')),
 							tooltipBorderColor = self.$tooltip.css('border-bottom-color');
 					}
-
+					
 					if (tooltipBorderWidth > 1) {
 						tooltipBorderWidth++;
 					}
-
+					
 					var arrowBorder = '';
 					if (tooltipBorderWidth !== 0) {
 						var arrowBorderSize = '',
@@ -10212,55 +10207,55 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 						}
 						arrowBorder = '<span class="tooltipster-arrow-border" style="'+ arrowBorderSize +' '+ arrowBorderColor +';"></span>';
 					}
-
+					
 					// if the arrow already exists, remove and replace it
 					self.$tooltip.find('.tooltipster-arrow').remove();
-
-					// build out the arrow and append it
+					
+					// build out the arrow and append it		
 					var arrowConstruct = '<div class="'+ arrowClass +' tooltipster-arrow" style="'+ arrowReposition +'">'+ arrowBorder +'<span style="border-color:'+ arrowColor +';"></span></div>';
 					self.$tooltip.append(arrowConstruct);
 				}
-
+				
 				// position the tooltip
 				self.$tooltip.css({'top': Math.round(myTop) + 'px', 'left': Math.round(myLeft) + 'px'});
 			}
-
+			
 			return self;
 		},
-
+		
 		enable: function() {
 			this.enabled = true;
 			return this;
 		},
-
+		
 		disable: function() {
 			// hide first, in case the tooltip would not disappear on its own (autoClose false)
 			this.hide();
 			this.enabled = false;
 			return this;
 		},
-
+		
 		destroy: function() {
-
+			
 			var self = this;
-
+			
 			self.hide();
-
+			
 			// remove the icon, if any
 			if(self.$el[0] !== self.$elProxy[0]) self.$elProxy.remove();
-
+			
 			self.$el
 				.removeData(self.namespace)
 				.off('.'+ self.namespace);
-
+			
 			var ns = self.$el.data('tooltipster-ns');
-
+			
 			// if there are no more tooltips on this element
 			if(ns.length === 1){
-
+				
 				// old school technique when outerHTML is not supported
 				var stringifiedContent = (typeof self.Content === 'string') ? self.Content : $('<div></div>').append(self.Content).html();
-
+				
 				self.$el
 					.removeClass('tooltipstered')
 					.attr('title', stringifiedContent)
@@ -10275,18 +10270,18 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 				});
 				self.$el.data('tooltipster-ns', ns);
 			}
-
+			
 			return self;
 		},
-
+		
 		elementIcon: function() {
 			return (this.$el[0] !== this.$elProxy[0]) ? this.$elProxy[0] : undefined;
 		},
-
+		
 		elementTooltip: function() {
 			return this.$tooltip ? this.$tooltip[0] : undefined;
 		},
-
+		
 		// public methods but for internal use only
 		// getter if val is ommitted, setter otherwise
 		option: function(o, val) {
@@ -10300,34 +10295,34 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 			return this.Status;
 		}
 	};
-
+	
 	$.fn[pluginName] = function () {
-
+		
 		// for using in closures
 		var args = arguments;
-
+		
 		// if we are not in the context of jQuery wrapped HTML element(s) :
 		// this happens when calling static methods in the form $.fn.tooltipster('methodName'), or when calling $(sel).tooltipster('methodName or options') where $(sel) does not match anything
 		if (this.length === 0) {
-
+			
 			// if the first argument is a method name
 			if (typeof args[0] === 'string') {
-
+				
 				var methodIsStatic = true;
-
+				
 				// list static methods here (usable by calling $.fn.tooltipster('methodName');)
 				switch (args[0]) {
-
+					
 					case 'setDefaults':
 						// change default options for all future instances
 						$.extend(defaults, args[1]);
 						break;
-
+					
 					default:
 						methodIsStatic = false;
 						break;
 				}
-
+				
 				// $.fn.tooltipster('methodName') calls will return true
 				if (methodIsStatic) return true;
 				// $(sel).tooltipster('methodName') calls will return the list of objects event though it's empty because chaining should work on empty lists
@@ -10341,22 +10336,22 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 		}
 		// this happens when calling $(sel).tooltipster('methodName or options') where $(sel) matches one or more elements
 		else {
-
+			
 			// method calls
 			if (typeof args[0] === 'string') {
-
+				
 				var v = '#*$~&';
-
+				
 				this.each(function() {
-
+					
 					// retrieve the namepaces of the tooltip(s) that exist on that element. We will interact with the first tooltip only.
 					var ns = $(this).data('tooltipster-ns'),
 						// self represents the instance of the first tooltipster plugin associated to the current HTML object of the loop
 						self = ns ? $(this).data(ns[0]) : null;
-
+					
 					// if the current element holds a tooltipster instance
 					if(self){
-
+						
 						if (typeof self[args[0]] === 'function') {
 							// note : args[1] and args[2] may not be defined
 							var resp = self[args[0]](args[1], args[2]);
@@ -10364,7 +10359,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 						else {
 							throw new Error('Unknown method .tooltipster("' + args[0] + '")');
 						}
-
+						
 						// if the function returned anything other than the instance itself (which implies chaining)
 						if (resp !== self){
 							v = resp;
@@ -10376,25 +10371,25 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 						throw new Error('You called Tooltipster\'s "' + args[0] + '" method on an uninitialized element');
 					}
 				});
-
+				
 				return (v !== '#*$~&') ? v : this;
 			}
 			// first argument is undefined or an object : the tooltip is initializing
 			else {
-
+				
 				var instances = [],
 					// is there a defined value for the multiple option in the options object ?
 					multipleIsSet = args[0] && typeof args[0].multiple !== 'undefined',
 					// if the multople option is set to true, or if it's not defined but set to true in the defaults
 					multiple = (multipleIsSet && args[0].multiple) || (!multipleIsSet && defaults.multiple);
-
+				
 				// initialize a tooltipster instance for each element if it doesn't already have one or if the multiple option is set, and attach the object to it
 				this.each(function () {
-
+					
 					var go = false,
 						ns = $(this).data('tooltipster-ns'),
 						instance = null;
-
+					
 					if (!ns) {
 						go = true;
 					}
@@ -10402,28 +10397,28 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 						if(multiple) go = true;
 						else console.log('Tooltipster: one or more tooltips are already attached to this element: ignoring. Use the "multiple" option to attach more tooltips.');
 					}
-
+					
 					if(go) {
 						instance = new Plugin(this, args[0]);
-
+						
 						// save the reference of the new instance
 						if (!ns) ns = [];
 						ns.push(instance.namespace);
 						$(this).data('tooltipster-ns', ns)
-
+						
 						// save the instance itself
 						$(this).data(instance.namespace, instance);
 					}
-
+					
 					instances.push(instance);
 				});
-
+				
 				if(multiple) return instances;
 				else return this;
 			}
 		}
 	};
-
+	
 	// quick & dirty compare function (not bijective nor multidimensional)
 	function areEqual(a,b) {
 		var same = true;
@@ -10435,26 +10430,26 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 		});
 		return same;
 	}
-
+	
 	// detect if this device can trigger touch events
 	var deviceHasTouchCapability = !!('ontouchstart' in window);
-
+	
 	// we'll assume the device has no mouse until we detect any mouse movement
 	var deviceHasMouse = false;
 	$('body').one('mousemove', function() {
 		deviceHasMouse = true;
 	});
-
+	
 	function deviceIsPureTouch() {
 		return (!deviceHasMouse && deviceHasTouchCapability);
 	}
-
+	
 	// detecting support for CSS transitions
 	function supportsTransitions() {
 		var b = document.body || document.documentElement,
 			s = b.style,
 			p = 'transition';
-
+		
 		if(typeof s[p] == 'string') {return true; }
 
 		v = ['Moz', 'Webkit', 'Khtml', 'O', 'ms'],
@@ -11962,7 +11957,7 @@ if (typeof Object.create !== "function") {
                 iterations += 1;
                 if (base.completeImg($lazyImg.get(0)) || isBackgroundImg === true) {
                     showImage();
-                } else if (iterations <= 100) {//if image loads in less than 10 seconds
+                } else if (iterations <= 100) {//if image loads in less than 10 seconds 
                     window.setTimeout(checkLazyImage, 100);
                 } else {
                     showImage();
@@ -11991,7 +11986,7 @@ if (typeof Object.create !== "function") {
                 iterations += 1;
                 if (base.completeImg($currentimg.get(0))) {
                     addHeight();
-                } else if (iterations <= 100) { //if image loads in less than 10 seconds
+                } else if (iterations <= 100) { //if image loads in less than 10 seconds 
                     window.setTimeout(checkImage, 100);
                 } else {
                     base.wrapperOuter.css("height", ""); //Else remove height attribute
@@ -12295,7 +12290,7 @@ if (typeof Object.create !== "function") {
 				// See if which sources match
 				for( var j = 0, jl = sources.length; j < jl; j++ ){
 					var media = sources[ j ].getAttribute( "data-media" );
-					// if there's no media specified, OR w.matchMedia is supported
+					// if there's no media specified, OR w.matchMedia is supported 
 					if( !media || ( w.matchMedia && w.matchMedia( media ).matches ) ){
 						matches.push( sources[ j ] );
 					}
@@ -12349,7 +12344,7 @@ if (typeof Object.create !== "function") {
  *
  * Licensed under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
- *
+ * 
  * Copyright 2013, Codrops
  * http://www.codrops.com
  */
@@ -12407,30 +12402,30 @@ if (typeof Object.create !== "function") {
 
 })();
 // Snap.svg 0.2.0
-//
+// 
 // Copyright (c) 2013 Adobe Systems Incorporated. All rights reserved.
-//
+// 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-//
+// 
 // http://www.apache.org/licenses/LICENSE-2.0
-//
+// 
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-//
+// 
 // build: 2013-12-23
 // Copyright (c) 2013 Adobe Systems Incorporated. All rights reserved.
-//
+// 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-//
+// 
 // http://www.apache.org/licenses/LICENSE-2.0
-//
+// 
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -12574,7 +12569,7 @@ if (typeof Object.create !== "function") {
         }
         return out;
     };
-
+    
     /*\
      * eve.on
      [ method ]
@@ -12589,7 +12584,7 @@ if (typeof Object.create !== "function") {
      - name (string) name of the event, dot (`.`) or slash (`/`) separated, with optional wildcards
      - f (function) event handler function
      **
-     = (function) returned function accepts a single numeric parameter that represents z-index of the handler. It is an optional feature and only used when you need to ensure that some subset of handlers will be invoked in a given order, despite of the order of assignment.
+     = (function) returned function accepts a single numeric parameter that represents z-index of the handler. It is an optional feature and only used when you need to ensure that some subset of handlers will be invoked in a given order, despite of the order of assignment. 
      > Example:
      | eve.on("mouse", eatIt)(2);
      | eve.on("mouse", scream);
@@ -12809,13 +12804,13 @@ if (typeof Object.create !== "function") {
     }
 }(this, function (window, eve) {
 // Copyright (c) 2013 Adobe Systems Incorporated. All rights reserved.
-//
+// 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-//
+// 
 // http://www.apache.org/licenses/LICENSE-2.0
-//
+// 
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -13155,13 +13150,13 @@ var mina = (function (eve) {
     return mina;
 })(typeof eve == "undefined" ? function () {} : eve);
 // Copyright (c) 2013 Adobe Systems Incorporated. All rights reserved.
-//
+// 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-//
+// 
 // http://www.apache.org/licenses/LICENSE-2.0
-//
+// 
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -13749,7 +13744,7 @@ function Matrix(a, b, c, d, e, f) {
             s.scalex = +s.scalex.toFixed(4);
             s.scaley = +s.scaley.toFixed(4);
             s.rotate = +s.rotate.toFixed(4);
-            return  (s.dx || s.dy ? "t" + [+s.dx.toFixed(4), +s.dy.toFixed(4)] : E) +
+            return  (s.dx || s.dy ? "t" + [+s.dx.toFixed(4), +s.dy.toFixed(4)] : E) + 
                     (s.scalex != 1 || s.scaley != 1 ? "s" + [s.scalex, s.scaley, 0, 0] : E) +
                     (s.rotate ? "r" + [+s.rotate.toFixed(4), 0, 0] : E);
         } else {
@@ -13973,7 +13968,7 @@ prepareRGB = function (r, g, b) {
         g /= 255;
         b /= 255;
     }
-
+    
     return [r, g, b];
 },
 packageRGB = function (r, g, b, o) {
@@ -14213,7 +14208,7 @@ Snap.parsePathString = function (pathString) {
     if (pth.arr) {
         return Snap.path.clone(pth.arr);
     }
-
+    
     var paramCounts = {a: 7, c: 6, o: 2, h: 1, l: 2, m: 2, r: 4, q: 4, s: 4, t: 2, v: 1, u: 3, z: 0},
         data = [];
     if (is(pathString, "array") && is(pathString[0], "array")) { // rough assumption
@@ -16801,13 +16796,13 @@ glob.win.Snap = Snap;
 return Snap;
 }());
 // Copyright (c) 2013 Adobe Systems Incorporated. All rights reserved.
-//
+// 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-//
+// 
 // http://www.apache.org/licenses/LICENSE-2.0
-//
+// 
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17222,7 +17217,7 @@ Snap.plugin(function (Snap, Element, Paper, glob) {
             return box();
         }
         path = path2curve(path);
-        var x = 0,
+        var x = 0, 
             y = 0,
             X = [],
             Y = [],
@@ -18155,13 +18150,13 @@ Snap.plugin(function (Snap, Element, Paper, glob) {
     Snap.path.clone = pathClone;
 });
 // Copyright (c) 2013 Adobe Systems Incorporated. All rights reserved.
-//
+// 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-//
+// 
 // http://www.apache.org/licenses/LICENSE-2.0
-//
+// 
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18368,13 +18363,13 @@ Snap.plugin(function (Snap, Element, Paper, glob) {
     };
 });
 // Copyright (c) 2013 Adobe Systems Incorporated. All rights reserved.
-//
+// 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-//
+// 
 // http://www.apache.org/licenses/LICENSE-2.0
-//
+// 
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18537,13 +18532,13 @@ Snap.plugin(function (Snap, Element, Paper, glob) {
     };
 });
 // Copyright (c) 2013 Adobe Systems Incorporated. All rights reserved.
-//
+// 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-//
+// 
 // http://www.apache.org/licenses/LICENSE-2.0
-//
+// 
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18708,7 +18703,7 @@ Snap.plugin(function (Snap, Element, Paper, glob) {
      - handler (function) handler for the event
      = (object) @Element
     \*/
-
+    
     /*\
      * Element.dblclick
      [ method ]
@@ -18725,7 +18720,7 @@ Snap.plugin(function (Snap, Element, Paper, glob) {
      - handler (function) handler for the event
      = (object) @Element
     \*/
-
+    
     /*\
      * Element.mousedown
      [ method ]
@@ -18742,7 +18737,7 @@ Snap.plugin(function (Snap, Element, Paper, glob) {
      - handler (function) handler for the event
      = (object) @Element
     \*/
-
+    
     /*\
      * Element.mousemove
      [ method ]
@@ -18759,7 +18754,7 @@ Snap.plugin(function (Snap, Element, Paper, glob) {
      - handler (function) handler for the event
      = (object) @Element
     \*/
-
+    
     /*\
      * Element.mouseout
      [ method ]
@@ -18776,7 +18771,7 @@ Snap.plugin(function (Snap, Element, Paper, glob) {
      - handler (function) handler for the event
      = (object) @Element
     \*/
-
+    
     /*\
      * Element.mouseover
      [ method ]
@@ -18793,7 +18788,7 @@ Snap.plugin(function (Snap, Element, Paper, glob) {
      - handler (function) handler for the event
      = (object) @Element
     \*/
-
+    
     /*\
      * Element.mouseup
      [ method ]
@@ -18810,7 +18805,7 @@ Snap.plugin(function (Snap, Element, Paper, glob) {
      - handler (function) handler for the event
      = (object) @Element
     \*/
-
+    
     /*\
      * Element.touchstart
      [ method ]
@@ -18827,7 +18822,7 @@ Snap.plugin(function (Snap, Element, Paper, glob) {
      - handler (function) handler for the event
      = (object) @Element
     \*/
-
+    
     /*\
      * Element.touchmove
      [ method ]
@@ -18844,7 +18839,7 @@ Snap.plugin(function (Snap, Element, Paper, glob) {
      - handler (function) handler for the event
      = (object) @Element
     \*/
-
+    
     /*\
      * Element.touchend
      [ method ]
@@ -18861,7 +18856,7 @@ Snap.plugin(function (Snap, Element, Paper, glob) {
      - handler (function) handler for the event
      = (object) @Element
     \*/
-
+    
     /*\
      * Element.touchcancel
      [ method ]
@@ -18949,8 +18944,8 @@ Snap.plugin(function (Snap, Element, Paper, glob) {
      - mcontext (object) #optional context for moving handler
      - scontext (object) #optional context for drag start handler
      - econtext (object) #optional context for drag end handler
-     * Additionaly following `drag` events are triggered: `drag.start.<id>` on start,
-     * `drag.end.<id>` on end and `drag.move.<id>` on every move. When element is dragged over another element
+     * Additionaly following `drag` events are triggered: `drag.start.<id>` on start, 
+     * `drag.end.<id>` on end and `drag.move.<id>` on every move. When element is dragged over another element 
      * `drag.over.<id>` fires as well.
      *
      * Start event and start handler are called in specified context or in context of the element with following parameters:
@@ -19023,13 +19018,13 @@ Snap.plugin(function (Snap, Element, Paper, glob) {
     };
 });
 // Copyright (c) 2013 Adobe Systems Incorporated. All rights reserved.
-//
+// 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-//
+// 
 // http://www.apache.org/licenses/LICENSE-2.0
-//
+// 
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19076,7 +19071,7 @@ Snap.plugin(function (Snap, Element, Paper, glob) {
         paper.defs.appendChild(filter);
         return new Element(filter);
     };
-
+    
     eve.on("snap.util.getattr.filter", function () {
         eve.stop();
         var p = $(this.node, "filter");
