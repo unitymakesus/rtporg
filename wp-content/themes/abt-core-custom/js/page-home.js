@@ -25,7 +25,7 @@ $(document).ready(function($) {
         $container.attr( 'aria-expanded', 'true' );
 
         // stagger in #primary-menu .menu-item
-        staggerFromToAnim('#primary-menu > li', .5, '-10%', '0%', '0', '0', 0, 1, '#primary-menu', 'onEnter', .25, .15, 0);
+        // staggerFromToAnim('#primary-menu > li', .5, '-10%', '0%', '0', '0', 0, 1, '#primary-menu', 'onEnter', .25, .15, 0);
       }
     });
 
@@ -42,7 +42,7 @@ $(document).ready(function($) {
         $(this).parent().addClass('menu-item-selected');
         $siteMenu.addClass('site-menu-sub-open');
 
-        staggerFromToAnim('#primary-menu .menu-item-selected > .sub-menu > li', .5, '+10%', '0%', '0', '0', 0, 1, '#primary-menu', 'onEnter', .25, .15, 0);
+        // staggerFromToAnim('#primary-menu .menu-item-selected > .sub-menu > li', .5, '+10%', '0%', '0', '0', 0, 1, '#primary-menu', 'onEnter', .25, .15, 0);
       }
 
     });
