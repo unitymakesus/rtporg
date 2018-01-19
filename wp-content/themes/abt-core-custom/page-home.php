@@ -119,20 +119,20 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
                 <div>
                     <div id="infographic-brain" class="infographic-brain">
                         <div class="panel-left">
-                          <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-brain-left.svg" class="slide-in-down infographic-brain__left" alt="Left brain illustration = analytic">
-                            <img class="slide-in-down infographic-brain__left" data-aos="fade-down" src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-brain-left.svg" alt="Left brain illustration = analytic">
-                          </noscript>
-                          <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-helix.svg" class="infographic-brain-absolute slide-in-left" alt="Molecules">
-                            <img class="infographic-brain-absolute slide-in-left" data-aos="fade-left" onkeypress="" src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-helix.svg" alt="Molecules">
-                          </noscript>
+                          <div class="slide-in-down infographic-brain__left" data-aos="fade-down">
+                            <?php echo file_get_contents(get_stylesheet_directory() . '/img/infographic-brain-left.svg'); ?>
+                          </div>
+                          <div class="infographic-brain-absolute slide-in-left" data-aos="fade-left">
+                            <?php echo file_get_contents(get_stylesheet_directory() . '/img/infographic-helix.svg'); ?>
+                          </div>
                         </div>
                         <div class="panel-right">
-                          <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-brain-right.svg" class="slide-in-up infographic-brain__right" alt="Right brain illustration = creative">
-                            <img class="slide-in-up infographic-brain__right" data-aos="fade-up" src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-brain-right.svg" alt="Right brain illustration = creative">
-                          </noscript>
-                          <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-barcode.svg" class="infographic-brain-absolute infographic-barcode slide-in-right" alt="Barcode">
-                            <img class="infographic-brain-absolute infographic-barcode slide-in-right" data-aos="fade-right" src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-barcode.svg" alt="Barcode">
-                          </noscript>
+                          <div class="slide-in-up infographic-brain__right" data-aos="fade-up">
+                            <?php echo file_get_contents(get_stylesheet_directory() . '/img/infographic-brain-right.svg'); ?>
+                          </div>
+                          <div class="infographic-brain-absolute infographic-barcode slide-in-right" data-aos="fade-right">
+                            <?php echo file_get_contents(get_stylesheet_directory() . '/img/infographic-barcode.svg'); ?>
+                          </div>
                         </div>
                     </div>
 
