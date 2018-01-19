@@ -1758,8 +1758,7 @@ input[type="submit"], button, a.button {
 
 .cta-cards {
   display: -ms-flexbox;
-  display: flex;
-  overflow: hidden; }
+  display: flex; }
   @media screen and (min-width: 400px) {
     .cta-cards {
       -ms-flex-direction: row;
@@ -5498,7 +5497,10 @@ body div#ui-datepicker-div[style] {
 .infographic-brain {
   text-align: center;
   position: relative;
-  font-size: 0; }
+  font-size: 0;
+  overflow: hidden;
+  min-height: 800px;
+  height: auto; }
   .infographic-brain img {
     position: relative;
     z-index: 1; }
@@ -7374,6 +7376,9 @@ body div#ui-datepicker-div[style] {
     .frontier-about-team .people .vcard.has-profile, .frontier-about-team .company-list .vcard.has-profile {
       float: none;
       display: inline-block; } }
+
+body.home .band {
+  overflow: hidden; }
 
 @media screen and (min-width: 960px) {
   body.home .st-content-inner {

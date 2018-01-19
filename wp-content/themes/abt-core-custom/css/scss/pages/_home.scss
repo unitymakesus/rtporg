@@ -6,6 +6,10 @@
 
 body.home {
 
+	.band {
+		overflow: hidden;
+	}
+
 	.st-content-inner {
 		@include media($desktop) {
 			@include rem(max-width, 1405px);

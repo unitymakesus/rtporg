@@ -110,7 +110,7 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
             </div>
         </section>
 
-        <section class="band theme-gray-mobile" style="overflow: hidden;">
+        <section id="invention" class="band theme-gray-mobile" style="overflow: hidden;">
             <div class="wrapper">
                 <header class="band-header pad-none fade-in-up" data-aos="fade-up">
                     <h2>A Long Tradition of Invention</h2>
@@ -119,19 +119,35 @@ $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"))
                 <div>
                     <div id="infographic-brain" class="infographic-brain">
                         <div class="panel-left">
-                          <div class="slide-in-down infographic-brain__left" data-aos="fade-down">
-                            <?php echo file_get_contents(get_stylesheet_directory() . '/img/infographic-brain-left.svg'); ?>
+                          <div class="slide-in-down infographic-brain__left">
+                            <div class="infographic-aos" data-aos="fade-down" data-aos-offset="150" data-aos-delay="300">
+                              <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-brain-left.png" alt="Left brain illustration = analytic">
+                                <img src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-brain-left.png">
+                              </noscript>
+                            </div>
                           </div>
-                          <div class="infographic-brain-absolute slide-in-left" data-aos="fade-left">
-                            <?php echo file_get_contents(get_stylesheet_directory() . '/img/infographic-helix.svg'); ?>
+                          <div class="infographic-brain-absolute slide-in-left">
+                            <div class="infographic-aos"  data-aos="fade-left" data-aos-offset="150" data-aos-delay="600">
+                              <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-molecule.png" alt="Molecules">
+                                <img src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-molecule.png">
+                              </noscript>
+                            </div>
                           </div>
                         </div>
                         <div class="panel-right">
-                          <div class="slide-in-up infographic-brain__right" data-aos="fade-up">
-                            <?php echo file_get_contents(get_stylesheet_directory() . '/img/infographic-brain-right.svg'); ?>
+                          <div class="slide-in-up infographic-brain__right">
+                            <div class="infographic-aos"  data-aos="fade-up" data-aos-offset="150" data-aos-delay="300">
+                              <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-brain-right.png" alt="Right brain illustration = creative">
+                                <img src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-brain-right.png">
+                              </noscript>
+                            </div>
                           </div>
-                          <div class="infographic-brain-absolute infographic-barcode slide-in-right" data-aos="fade-right">
-                            <?php echo file_get_contents(get_stylesheet_directory() . '/img/infographic-barcode.svg'); ?>
+                          <div class="infographic-brain-absolute infographic-barcode slide-in-right">
+                            <div class="infographic-aos"  data-aos="fade-right" data-aos-offset="150" data-aos-delay="600">
+                              <noscript data-src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-barcode.png" alt="Barcode">
+                                <img src="<?php echo get_stylesheet_directory_uri();?>/img/infographic-barcode.png">
+                              </noscript>
+                            </div>
                           </div>
                         </div>
                     </div>

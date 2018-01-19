@@ -124,7 +124,7 @@ $(document).ready(function($) {
   }
 
   // Lazy load images in each section as user scrolls down page
-  var elem = Array.prototype.slice.call(document.querySelectorAll('#young-talent, #company-logos, #social-outreach'));
+  var elem = Array.prototype.slice.call(document.querySelectorAll('#young-talent, #invention, #company-logos, #social-outreach'));
   window.addEventListener('scroll', scrollingWalshLoad);
 
   function initScrollToSection() {
