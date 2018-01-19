@@ -16,11 +16,10 @@ $hp_lease_office_space_link = types_render_field("hp-lease-office-space-link", a
 $hp_buy_land_link = types_render_field("hp-buy-land-link", array("raw"=>"true"));
 
 ?>
-    <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
-    <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
     <div class="content-container">
         <section id="hero-video" class="band hero-video">
-            <video autoplay loop class="bg-video">
+            <video autoplay loop muted class="bg-video">
+                <source src="//files.rtp.org/videos/RTPExportforWeb.webm" type="video/webm">
                 <source src="//files.rtp.org/videos/RTPExportforWeb.mp4" type="video/mp4">
                 <source src="//files.rtp.org/videos/RTPExportforWeb.ogv" type="video/ogg">
             </video>
