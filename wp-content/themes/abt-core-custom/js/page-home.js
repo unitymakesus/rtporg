@@ -77,10 +77,11 @@ $(document).ready(function($) {
   // Lazy load images a la David Walsh
   // https://davidwalsh.name/lazyload-image-fade
   function walshLoad(noscript) {
-    if (!noscript.hasClass('gtm')) {
+    if (!noscript.hasClass('gtm') && !noscript.hasClass('loaded')) {
       var img = new Image();
       img.setAttribute('data-src', '');
       noscript.before(img);
+      noscript.addClass('loaded');
       img.onload = function() {
         img.removeAttribute('data-src');
       };
