@@ -114,8 +114,10 @@ $(document).ready(function($) {
   }
 
   AOS.init({
-    offset: 100,
-    delay: 50
+    disable: window.innerWidth < 960,
+    once: true,
+    offset: 0,
+    delay: 0
   });
 
   window.addEventListener('scroll', function() {
