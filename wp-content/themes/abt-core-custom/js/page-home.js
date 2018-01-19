@@ -103,6 +103,30 @@ $(document).ready(function($) {
     }
   }
 
+  // Check for images to load within upcoming sections
+  function scrollingWalshLoad() {
+    for (var x = 0; x < elem.length; x++) {
+      var bounds = elem[x].getBoundingClientRect();
+      if (bounds.top - $(window).height() <= $(window).height()) {
+        var noScriptTag = elem[x].querySelectorAll('noscript');
+        for (var i = 0; i < noScriptTag.length; i++) {
+           walshLoad($(noScriptTag[i]))
+        }
+        // Remove element after lazy loaded
+        elem.splice(x, 1);
+
+        // Remove whole event listener after all sections loaded
+        if (elem.length == 0) {
+          window.removeEventListener('scroll', scrollingWalshLoad);
+        }
+      }
+    }
+  }
+
+  // Lazy load images in each section as user scrolls down page
+  var elem = Array.prototype.slice.call(document.querySelectorAll('#young-talent, #company-logos, #social-outreach'));
+  window.addEventListener('scroll', scrollingWalshLoad);
+
   function initScrollToSection() {
     $(".scroll-to-section").click(function() {
       var $target = $(this).data('target'),
@@ -120,20 +144,6 @@ $(document).ready(function($) {
     offset: 0,
     delay: 0
   });
-
-  window.addEventListener('scroll', function() {
-      var elem = document.querySelectorAll('#young-talent, #company-logos, #social-outreach');
-      let bounding = [];
-      for (var x = 0; x < elem.length; x++) {
-        bounding.push(elem[x].getBoundingClientRect());
-        if (bounding[x].top - $(window).height() <= $(window).height() / 2) {
-          var noScriptTag = elem[x].querySelectorAll('noscript');
-          for (var i = 0; i < noScriptTag.length; i++) {
-             walshLoad($(noScriptTag[i]))
-          }
-        }
-      }
-    });
 
   initNewMenu();
   initScrollToSection();
