@@ -88,7 +88,12 @@ redirect 301 /park-life/events-calendar/ncbiotech-jobs-network-career-fair https
 redirect 301 /park-life/events-calendar/category/technology https://www.rtp.org/events/
 redirect 301 /files/Fact%20Sheets/08_129_rtp_pedestrian_trails_2.pdf https://www.rtp.org/events/
 redirect 301 /park-life https://www.rtp.org/about-us/programs/
-
+# Block WordPress xmlrpc.php requests
+<Files xmlrpc.php>
+order deny,allow
+deny from all
+allow from 123.123.123.123
+</Files>
 # BEGIN WpFastestCache
 <IfModule mod_rewrite.c>
 RewriteEngine On
