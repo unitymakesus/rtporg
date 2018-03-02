@@ -21,6 +21,8 @@ redirect 301 /directory https://www.rtp.org/rtp-company-directory/
 redirect 301 /about-rtp/rtp-companies/2013-rtp-directory https://www.rtp.org/rtp-company-directory/
 redirect 301 /choose-rtp/industries-rtps-contributions-span-sectors https://www.rtp.org/map/
 redirect 301 /parkcenter https://www.rtp.org/about-us/park-center/
+redirect 301 /park-center https://www.rtp.org/about-us/park-center/
+redirect 301 /location/park-center https://www.rtp.org/about-us/park-center/
 redirect 301 /choose-rtp/research-triangle-park-top-biotech-and-life-science-cluster https://www.rtp.org/why-rtp/
 redirect 301 /rtp-softball-calendar https://www.rtp.org/program/rtp-fit/
 redirect 301 /about-rtp/research-triangle-park-news https://www.rtp.org/blog/
