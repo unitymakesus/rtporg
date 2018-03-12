@@ -42,12 +42,8 @@
 	<?php
 		$user_id      = get_the_author_meta( 'ID' );
 		$user_obj     = get_userdata( $user_id );
-        $user_role    = "";
-
-        if($user_obj->roles) :
-		  $user_role  = ($user_obj->roles[0] != "community-contributor") ? "rtp-contributor" : $user_obj->roles[0];
-        endif;
-		$display_role = ($user_role != "community-contributor") ? "RTP Contributor" : ucwords(str_replace("-", " ", $user_role));
+		$user_role     = ($user_obj->roles[0] == "contributor") ? "rtp-contributor" : $user_obj->roles[0];
+	  $display_role  = ($user_role == "administrator") ? "Author" : ucwords(str_replace("-", " ", $user_role));
 		$thumb        = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'large' );
 		$thumb_url    = ($thumb['0'] != null) ? 'style="background-image: url(' . $thumb["0"] . ');"' : '';
 	?>
@@ -101,8 +97,8 @@
 		<?php
 			$user_id      = get_the_author_meta( 'ID' );
 			$user_obj     = get_userdata( $user_id );
-			$user_role    = ($user_obj->roles[0] != "community-contributor") ? "rtp-contributor" : $user_obj->roles[0];
-			$display_role = ($user_role != "community-contributor") ? "RTP Contributor" : ucwords(str_replace("-", " ", $user_role));
+			$user_role     = ($user_obj->roles[0] == "contributor") ? "rtp-contributor" : $user_obj->roles[0];
+		  $display_role  = ($user_role == "administrator") ? "Author" : ucwords(str_replace("-", " ", $user_role));
 			$thumb        = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'large' );
 			$thumb_url    = ($thumb['0'] != null) ? 'style="background-image: url(' . $thumb["0"] . ');"' : '';
 			$landing_page_thumb = types_render_field("landing_page_image", array("raw"=>"true"));
