@@ -83,56 +83,5 @@
 				</p>
 			</div>
 		</div>
-		<h2 class="subtitle">Social Media Palette</h2>
-		<div class="swatches">
-			<div class="swatch" style="background-color: #3b5998;">
-				<p>
-					<span class="swatch-name">Facebook Blue</span>
-					<span class="swatch-variable">$color_twitter_blue</span>
-					<span class="swatch-hex">#3B5998</span>
-					<span class="swatch-rgb">59, 89, 152</span>
-				</p>
-			</div>
-			<div class="swatch" style="background-color: #00aced;">
-				<p>
-					<span class="swatch-name">Twitter Blue</span>
-					<span class="swatch-variable">$color_twitter_blue</span>
-					<span class="swatch-hex">#00ACED</span>
-					<span class="swatch-rgb">0, 172, 237</span>
-				</p>
-			</div>
-			<div class="swatch" style="background-color: #dd4b39;">
-				<p>
-					<span class="swatch-name">Google+ Red</span>
-					<span class="swatch-variable">$color_google_red</span>
-					<span class="swatch-hex">#DD4B39</span>
-					<span class="swatch-rgb">221, 75, 57</span>
-				</p>
-			</div>
-			<div class="swatch" style="background-color: #517FA4;">
-				<p>
-					<span class="swatch-name">Instagram Blue</span>
-					<span class="swatch-variable">$color_instagram_blue</span>
-					<span class="swatch-hex">#517FA4</span>
-					<span class="swatch-rgb">81, 127, 164</span>
-				</p>
-			</div>
-			<div class="swatch" style="background-color: #007bb6;">
-				<p>
-					<span class="swatch-name">LinkedIn Blue</span>
-					<span class="swatch-variable">$color_linkedin_blue</span>
-					<span class="swatch-hex">#007BB6</span>
-					<span class="swatch-rgb">0, 123, 182</span>
-				</p>
-			</div>
-			<div class="swatch" style="background-color: #bb0000;">
-				<p>
-					<span class="swatch-name">Youtube Red</span>
-					<span class="swatch-variable">$color_youtube_red</span>
-					<span class="swatch-hex">#BB0000</span>
-					<span class="swatch-rgb">187, 0, 0</span>
-				</p>
-			</div>
-		</div>
 	</div>
 </section>
