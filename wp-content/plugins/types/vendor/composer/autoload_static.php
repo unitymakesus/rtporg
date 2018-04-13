@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitc3c1dc77e2581741c891ff7b2bf920aa
+class ComposerStaticInitb4ac95941783ab1f27185069ef17cdb2
 {
     public static $files = array (
         'a52c1eba913b4ecdd3571194b37baea9' => __DIR__ . '/../..' . '/application/functions.php',
@@ -25,6 +25,13 @@ class ComposerStaticInitc3c1dc77e2581741c891ff7b2bf920aa
     );
 
     public static $prefixesPsr0 = array (
+        'x' => 
+        array (
+            'xrstf\\Composer52' => 
+            array (
+                0 => __DIR__ . '/..' . '/xrstf/composer-php52/lib',
+            ),
+        ),
         'T' => 
         array (
             'Twig_' => 
@@ -125,6 +132,7 @@ class ComposerStaticInitc3c1dc77e2581741c891ff7b2bf920aa
         'FieldFactory' => __DIR__ . '/..' . '/toolset/toolset-common/toolset-forms/classes/class.field_factory.php',
         'FormAbstract' => __DIR__ . '/..' . '/toolset/toolset-common/toolset-forms/classes/abstract.form.php',
         'FormFactory' => __DIR__ . '/..' . '/toolset/toolset-common/toolset-forms/classes/class.form_factory.php',
+        'IOTGS_Installer_Template_Service' => __DIR__ . '/..' . '/otgs/installer/templates/template-service/interface-iotgs-installer-template-service.php',
         'IToolset_Association' => __DIR__ . '/..' . '/toolset/toolset-common/inc/m2m/association/interface.php',
         'IToolset_Association_Query_Condition' => __DIR__ . '/..' . '/toolset/toolset-common/inc/m2m/association/query/condition/interface.php',
         'IToolset_Association_Query_Element_Selector' => __DIR__ . '/..' . '/toolset/toolset-common/inc/m2m/association/query/element_selector/interface.php',
@@ -149,6 +157,22 @@ class ComposerStaticInitc3c1dc77e2581741c891ff7b2bf920aa
         'IToolset_Relationship_Role' => __DIR__ . '/..' . '/toolset/toolset-common/inc/m2m/relationship/role/interface.php',
         'IToolset_Relationship_Role_Parent_Child' => __DIR__ . '/..' . '/toolset/toolset-common/inc/m2m/relationship/role/parent_child_interface.php',
         'IToolset_Upgrade_Command' => __DIR__ . '/..' . '/toolset/toolset-common/inc/autoloaded/upgrade/command_interface.php',
+        'Installer_Dependencies' => __DIR__ . '/..' . '/otgs/installer/includes/class-installer-dependencies.php',
+        'Installer_Theme_Class' => __DIR__ . '/..' . '/otgs/installer/includes/class-installer-theme.php',
+        'Installer_Upgrader_Skins' => __DIR__ . '/..' . '/otgs/installer/includes/class-installer-upgrader-skins.php',
+        'OTGS_Installer_Filename_Hooks' => __DIR__ . '/..' . '/otgs/installer/includes/class-otgs-installer-filename-hooks.php',
+        'OTGS_Installer_Icons' => __DIR__ . '/..' . '/otgs/installer/includes/class-otgs-installer-icons.php',
+        'OTGS_Installer_PHP_Functions' => __DIR__ . '/..' . '/otgs/installer/includes/class-otgs-installer-php-functions.php',
+        'OTGS_Installer_Plugins_Page_Notice' => __DIR__ . '/..' . '/otgs/installer/includes/class-otgs-installer-plugins-page-notice.php',
+        'OTGS_Installer_Twig_Template_Service' => __DIR__ . '/..' . '/otgs/installer/templates/template-service/class-otgs-installer-twig-template-service.php',
+        'OTGS_Installer_Twig_Template_Service_Loader' => __DIR__ . '/..' . '/otgs/installer/templates/template-service/class-otgs-installer-twig-template-service-loader.php',
+        'OTGS_Installer_WP_Components_Hooks' => __DIR__ . '/..' . '/otgs/installer/includes/class-otgs-installer-wp-components-hooks.php',
+        'OTGS_Installer_WP_Components_Sender' => __DIR__ . '/..' . '/otgs/installer/includes/class-otgs-installer-wp-components-sender.php',
+        'OTGS_Installer_WP_Components_Setting_Ajax' => __DIR__ . '/..' . '/otgs/installer/includes/class-otgs-installer-wp-components-setting-ajax.php',
+        'OTGS_Installer_WP_Components_Setting_Resources' => __DIR__ . '/..' . '/otgs/installer/includes/class-otgs-installer-wp-components-setting-resources.php',
+        'OTGS_Installer_WP_Components_Setting_Templates' => __DIR__ . '/..' . '/otgs/installer/includes/class-otgs-installer-wp-components-setting-templates.php',
+        'OTGS_Installer_WP_Components_Storage' => __DIR__ . '/..' . '/otgs/installer/includes/class-otgs-installer-wp-components-storage.php',
+        'OTGS_Installer_WP_Share_Local_Components_Setting' => __DIR__ . '/..' . '/otgs/installer/includes/class-otgs-installer-wp-share-local-components-setting.php',
         'ReCaptchaResponse' => __DIR__ . '/..' . '/toolset/toolset-common/toolset-forms/js/recaptcha-php-1.11/recaptchalib.php',
         'Toolset_Admin_Bar_Menu' => __DIR__ . '/..' . '/toolset/toolset-common/inc/toolset.admin.bar.menu.class.php',
         'Toolset_Admin_Controller' => __DIR__ . '/..' . '/toolset/toolset-common/inc/autoloaded/admin.php',
@@ -508,6 +532,7 @@ class ComposerStaticInitc3c1dc77e2581741c891ff7b2bf920aa
         'Toolset_Wp_Query_Adjustments_Table_Join_Manager' => __DIR__ . '/..' . '/toolset/toolset-common/inc/autoloaded/wp_query_adjustments/table_join_manager.php',
         'Toolset_Wpdb_User' => __DIR__ . '/..' . '/toolset/toolset-common/inc/autoloaded/wpdb_user.php',
         'Toolset_Wpml_Utils' => __DIR__ . '/..' . '/toolset/toolset-common/inc/autoloaded/wpml_utils.php',
+        'Translation_Service_Info' => __DIR__ . '/..' . '/otgs/installer/includes/class-translation-service-info.php',
         'Twig_Autoloader' => __DIR__ . '/..' . '/twig/twig/lib/Twig/Autoloader.php',
         'Twig_BaseNodeVisitor' => __DIR__ . '/..' . '/twig/twig/lib/Twig/BaseNodeVisitor.php',
         'Twig_CacheInterface' => __DIR__ . '/..' . '/twig/twig/lib/Twig/CacheInterface.php',
@@ -864,15 +889,20 @@ class ComposerStaticInitc3c1dc77e2581741c891ff7b2bf920aa
         'WPToolset_Types' => __DIR__ . '/..' . '/toolset/toolset-common/toolset-forms/classes/class.types.php',
         'WPV_Handle_Users_Functions' => __DIR__ . '/..' . '/toolset/toolset-common/toolset-forms/classes/class.conditional.php',
         'WPV_wpcf_switch_post_from_attr_id' => __DIR__ . '/..' . '/toolset/toolset-common/inc/toolset.object.relationship.class.php',
+        'WP_Installer' => __DIR__ . '/..' . '/otgs/installer/includes/class-wp-installer.php',
+        'WP_Installer_API' => __DIR__ . '/..' . '/otgs/installer/includes/class-wp-installer-api.php',
+        'WP_Installer_Channels' => __DIR__ . '/..' . '/otgs/installer/includes/class-wp-installer-channels.php',
+        'xrstf\\Composer52\\AutoloadGenerator' => __DIR__ . '/..' . '/xrstf/composer-php52/lib/xrstf/Composer52/AutoloadGenerator.php',
+        'xrstf\\Composer52\\Generator' => __DIR__ . '/..' . '/xrstf/composer-php52/lib/xrstf/Composer52/Generator.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitc3c1dc77e2581741c891ff7b2bf920aa::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitc3c1dc77e2581741c891ff7b2bf920aa::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitc3c1dc77e2581741c891ff7b2bf920aa::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitc3c1dc77e2581741c891ff7b2bf920aa::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitb4ac95941783ab1f27185069ef17cdb2::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitb4ac95941783ab1f27185069ef17cdb2::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitb4ac95941783ab1f27185069ef17cdb2::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitb4ac95941783ab1f27185069ef17cdb2::$classMap;
 
         }, null, ClassLoader::class);
     }

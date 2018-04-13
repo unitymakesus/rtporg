@@ -174,6 +174,11 @@ class abt_core_custom_theme {
 			if (is_page_template('page-thelab.php') || is_page_template('page-thelab-about.php') || is_page_template('page-thelab-companies.php') || is_page_template('page-thelab-space.php')) {
 				wp_enqueue_script('page_thelab_scripts', $theme_dir . '/js/page-thelab.min.js', array('jquery'), $core_version, true );
 			}
+
+      if (is_page_template('page-directory.php') || is_page('directory')) {
+        wp_enqueue_script('page-directory-script', 'https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js', array(), null, false);
+        wp_enqueue_style('page-directory-style', 'https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css', null, false);
+      }
 		}
 
 		else {

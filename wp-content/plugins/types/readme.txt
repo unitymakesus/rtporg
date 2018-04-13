@@ -7,7 +7,7 @@ Domain Path: /embedded/locale
 License: GPLv2
 Requires at least: 3.7
 Tested up to: 4.9
-Stable tag: 2.2.22
+Stable tag: 2.2.23
 
 The complete and reliable plugin for managing custom post types, custom taxonomies and custom fields.
 
@@ -18,7 +18,7 @@ The complete and reliable plugin for managing custom post types, custom taxonomi
 [vimeo https://vimeo.com/176428571]
 
 = COMPLETE DOCUMENTATION, POWERFUL API, SIMPLE GUI FOR NON-CODERS =
-If you're an experienced PHP developer, you'll appreciate Types comprehensive [fields API](https://wp-types.com/documentation/customizing-sites-using-php/functions/).
+If you're an experienced PHP developer, you'll appreciate Types comprehensive [fields API](https://wp-types.com/documentation/customizing-sites-using-php/functions/). 
 
 You will find detailed guides on [adding custom post types, fields and taxonomy to the front-end](https://wp-types.com/documentation/customizing-sites-using-php/), including:
 
@@ -157,6 +157,9 @@ Additionally, Types is the only plugin that lets you define parent/child relatio
 10. Bulk editing child content using Field Tables
 
 == Changelog ==
+
+= 2.2.23 =
+* Fixed issue with Toolset registration
 
 = 2.2.22 =
 * First version of the public relationship API that will be sustainable also for many-to-many relationships.
