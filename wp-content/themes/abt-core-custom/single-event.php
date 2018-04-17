@@ -10,13 +10,13 @@
 
 get_header(); ?>
 
-	<?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
+	<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 		<?php
 			$theme_dir     = get_stylesheet_directory_uri();
 			$user_id       = get_the_author_meta( 'ID' );
 			$user_obj      = get_userdata( $user_id );
-			$user_role     = ($user_obj->roles[0] != "community-contributor") ? "rtp-contributor" : $user_obj->roles[0];
-			$display_role  = ($user_role != "community-contributor") ? "RTP Contributor" : ucwords(str_replace("-", " ", $user_role));
+			$user_role     = ($user_obj->roles[0] == "contributor") ? "rtp-contributor" : $user_obj->roles[0];
+		  $display_role  = ($user_role == "administrator") ? "Author" : ucwords(str_replace("-", " ", $user_role));
 			$start_date    = types_render_field("event-start-date-and-time", array("format"=>"M j g:i a"));
 			$end_date      = types_render_field("event-end-date-and-time", array("format"=>"M j g:i a"));
 			$sponsor       = types_render_field("event-organization-sponsor", array("raw"=>"true"));
@@ -35,9 +35,9 @@ get_header(); ?>
 			    <?php if(function_exists('bcn_display')) {
 			    	bcn_display();
 			    } ?>
-			</div>			
+			</div>
 	    	<div class="content-wrapper" itemscope itemtype="http://data-vocabulary.org/Event">
-		    	<div class="content">					
+		    	<div class="content">
 					<article id="post-<?php the_ID(); ?>" class="post">
 						<header>
 							<div class="cat-links" itemprop="eventType"><?php the_category( ', ' ); ?></div>
@@ -55,10 +55,10 @@ get_header(); ?>
 								<a class="button primary" href="<?php echo $website; ?>" itemprop="url" target="_blank">Visit Event Website</a>
 							<?php endif; ?>
 						</div>
-					</article>											
+					</article>
 				</div>
-		        <aside class="aside">				
-					<section class="meta">						
+		        <aside class="aside">
+					<section class="meta">
 						<?php if ($logo && $sponsor) : ?>
 							<h3>Event Sponsor</h3>
 							<div class="logo-sponsor"><img src="<?php echo $logo; ?>" alt="<?php echo $sponsor; ?>" /></div>
@@ -75,10 +75,10 @@ get_header(); ?>
 								<?php endif; ?>
 							</p>
 						<?php endif; ?>
-					</section>				
+					</section>
 				</aside>
 			</div>
 		</div>
-	<?php endwhile; ?>
+	<?php endwhile; endif; ?>
 
 <?php get_footer(); ?>
