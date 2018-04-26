@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Map
+ * Template Name: Directory
  *
  * @package WordPress
  * @subpackage ABT_CORE
@@ -16,49 +16,165 @@ get_header(); ?>
 		<div class="content-container">
 			<div class="content">
 				<?php
+				// Set up array containers
+				$facilities_array = array(
+					'type' => 'FeatureCollection',
+    			'features' => array(),
+				);
+
+				// Query facilities from WPDB
         $facilities = new WP_Query(array(
-          'post_type' => 'rtp-facility'
+          'post_type' => 'rtp-facility',
+					'posts_per_page' => -1
         ));
 
         if ($facilities->have_posts()) : while ($facilities->have_posts()) : $facilities->the_post();
+					$feature_type = get_field('geometry_type');
+					$coords_array = array();
 
-          if (get_field('geometry_type') == 'polygon') {
-            $coords = get_field('coordinates');
+					switch (get_field('geometry_type')) {
+          	case 'Polygon':
+							if (!empty($coords = get_field('coordinates_long'))) {
+								$coords_array = array(array(get_field('coordinates_long')));
+							}
+							break;
+						case 'LineString':
+							if (!empty($coords = get_field('coordinates_long'))) {
+								$coords_array = array(get_field('coordinates_long'));
+							}
+							break;
+						case 'Point':
+							$coords = get_field('coordinates');
+							if (!empty($coords['lat'])) {
+								$coords_array = array(
+									$coords['lng'],
+									$coords['lat']
+								);
+							}
+							break;
           }
 
+					if (!empty($coords_array)) {
+						$facilities_array['features'][] = array(
+							'type' => 'Feature',
+							'geometry' => array(
+								'type' => $feature_type,
+								'coordinates' => $coords_array
+							),
+							'properties' => array(
+								'title' => get_the_title(),
+								'content-type' => 'facility',
+								'id' => get_the_id()
+							)
+						);
+					}
+
         endwhile; endif; wp_reset_postdata();
+
+				// Clean up JSON
+				$facilities_json = str_replace(['["[', ']"]'], ['[[', ']]'], json_encode($facilities_array));
         ?>
 
-        <div id="map" class="directory-map"></div>
+        <div id="map" class="directory-map" style="width: 100%; height: 600px;"></div>
+
 
         <script type="text/javascript">
           jQuery(document).ready(function($) {
 
-            L.mapbox.accessToken = '<?php echo $mapbox_token; ?>';
+            mapboxgl.accessToken = '<?php echo $mapbox_token; ?>';
 
-            // Initialize Map
-            // var map = new L.mapbox.map('map', {
-            //   tileLayer: {
-            //     detectRetina: true,
-            //     minZoom: 4,
-            //     maxZoom: 10
-            //   },
-            //   worldCopyJump: true
-            // }).setView([19.159882, -80.188477], 4);
-            //
-            // // Add Style to Map
-            // L.mapbox.styleLayer('mapbox://styles/abtadmin/cj6qljksg3l0y2sn83zkmdh0q').addTo(map);
+						// Initiatlize Map
+						var map = new mapboxgl.Map({
+					    container: 'map',
+					    style: 'mapbox://styles/abtadmin/cjfo8weeq2rtu2rn0q4tuqp0c',
+							center: ['-78.8678052','35.8985119'],
+							zoom: 12
+						});
 
-            var map = L.mapbox.map('map')
-                .setView([35.905, -78.864], 12);
+						// Set up data to add to map
+						const facilities = <?php echo $facilities_json; ?>;
 
-            L.mapbox.styleLayer('mapbox://styles/abtadmin/cj6qljksg3l0y2sn83zkmdh0q', {
-                  detectRetina: true,
-                  continuousWorld: true,
-                  maxZoom: 15,
-                  minZoom: 4
-                }).addTo(map);
+						// Will contain a list of map objects used to filter against.
+						const layerIDs = [];
 
+						map.on('load', function() {
+							// Add geoJSON source for facilities
+							map.addSource('facilities', {
+								'type': 'geojson',
+	        			'data': facilities,
+							});
+
+							facilities.features.forEach(function(feature) {
+								let layerID = 'facility-' + feature.properties['id'],
+										layerType = '',
+										layerStyle = {};
+								layerIDs.push(layerID);
+
+								// Set up layer properties by type
+								switch (feature.geometry.type) {
+									case 'Polygon':
+										layerType = 'fill';
+										layerStyle = {
+											'layout': {},
+											'paint': {
+						            'fill-color': '#088',
+						            'fill-opacity': 0.8
+											},
+											'filter': ["==", "$type", "Polygon"]
+										};
+										break;
+									case 'LineString':
+										layerType = 'line';
+										layerStyle = {
+											'layout': {
+												'line-join': 'round',
+					 							'line-cap': 'round'
+											},
+											'paint': {
+												'line-color': '#880',
+												'line-width': 2,
+												'line-dasharray': [1,3]
+											},
+											'filter': ["==", "$type", "LineString"]
+										}
+										break;
+									case 'Point':
+										layerType = 'circle';
+										layerStyle = {
+											'layout': {},
+							        'paint': {
+												'circle-radius': 5,
+												'circle-color': '#808',
+												'circle-stroke-width': 1,
+												'circle-stroke-color': '#909'
+											},
+											'filter': ["==", "$type", "Point"]
+										}
+										break;
+								}
+
+								let layerObj = {
+									'id': layerID,
+									'source': 'facilities',
+									'type': layerType,
+								};
+
+								// Combine arrays
+								Object.assign(layerObj, layerStyle);
+
+								// Add facilities to map
+								map.addLayer(layerObj);
+
+								// When a click event occurs open a popup at the location of click
+								map.on('click', layerID, function (e) {
+					        new mapboxgl.Popup()
+					            .setLngLat(e.lngLat)
+					            .setHTML(e.features[0].properties.title)
+					            .addTo(map);
+						    });
+							});
+
+						});
           });
 
         </script>
