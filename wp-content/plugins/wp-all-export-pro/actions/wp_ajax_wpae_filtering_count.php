@@ -63,7 +63,7 @@ function pmxe_wp_ajax_wpae_filtering_count(){
 	$filters = \Wpae\Pro\Filtering\FilteringFactory::getFilterEngine();
 	$filters->init($filter_args);
 	$filters->parse();
-				
+
 	PMXE_Plugin::$session->set('whereclause', $filters->get('queryWhere'));
 	PMXE_Plugin::$session->set('joinclause',  $filters->get('queryJoin'));
 	PMXE_Plugin::$session->save_data();		
@@ -78,34 +78,39 @@ function pmxe_wp_ajax_wpae_filtering_count(){
 	if ($post['export_type'] == 'advanced') 
 	{
 		if (XmlExportEngine::$is_user_export)
-		{			
+		{
+
 			// get total users
 			$totalQuery = eval('return new WP_User_Query(array(' . PMXE_Plugin::$session->get('wp_query') . ', \'offset\' => 0, \'number\' => 10 ));');
 			if ( ! empty($totalQuery->results)){
-				$total_records = $totalQuery->get_total();			
+				$total_records = $totalQuery->total_users;
 			}
 
 			ob_start();
 			// get users depends on filters
 			add_action('pre_user_query', 'wp_all_export_pre_user_query', 10, 1);
-			$exportQuery = eval('return new WP_User_Query(array(' . PMXE_Plugin::$session->get('wp_query') . ', \'offset\' => 0, \'number\' => 10 ));');
-			if ( ! empty($exportQuery->results)){
-				$foundRecords = $exportQuery->get_total();			
-			}
-			remove_action('pre_user_query', 'wp_all_export_pre_user_query');			
+
+			$queryCode = 'return new WP_User_Query(array(' . PMXE_Plugin::$session->get('wp_query') . ', \'offset\' => 0, \'number\' => 10 ));';
+			$userExportQuery = eval($queryCode);
+
+            if ( ! empty($userExportQuery->total_users)){
+                $foundRecords = $userExportQuery->total_users;
+            }
+			remove_action('pre_user_query', 'wp_all_export_pre_user_query');
 			ob_get_clean();
+
 		}
 		elseif(XmlExportEngine::$is_comment_export)
 		{
 			// get total comments
 			$totalQuery = eval('return new WP_Comment_Query(array(' . PMXE_Plugin::$session->get('wp_query') . ', \'number\' => 10, \'count\' => true ));');
-			$total_records = $totalQuery->get_comments();
+			$total_records = count($totalQuery->get_comments());
 
 			ob_start();
 			// get comments depends on filters
 			add_action('comments_clauses', 'wp_all_export_comments_clauses', 10, 1);								
 			$exportQuery = eval('return new WP_Comment_Query(array(' . PMXE_Plugin::$session->get('wp_query') . '));');
-			$foundRecords = $exportQuery->get_comments();
+			$foundRecords = count($exportQuery->get_comments());
 			remove_action('comments_clauses', 'wp_all_export_comments_clauses');			
 			ob_get_clean();
 		}
@@ -257,12 +262,13 @@ function pmxe_wp_ajax_wpae_filtering_count(){
 				$variationsQuery = new WP_Query( array( 'post_type' => 'product_variation', 'post_status' => 'any', 'orderby' => 'ID', 'order' => 'ASC', 'posts_per_page' => 10));
 
 				$foundProducts = $productsQuery->found_posts;
+
 				$foundVariations = $variationsQuery->found_posts;
 
 				$foundRecords = $foundProducts;
-
 				$hasVariations = !!$foundVariations;
-				remove_filter('posts_where', 'wp_all_export_numbering_where');
+
+                remove_filter('posts_where', 'wp_all_export_numbering_where');
 
 			} else {
 				$exportQuery = new WP_Query( array( 'post_type' => $cpt, 'post_status' => 'any', 'orderby' => 'ID', 'order' => 'ASC', 'posts_per_page' => 10));
@@ -281,8 +287,10 @@ function pmxe_wp_ajax_wpae_filtering_count(){
 		}
 	}
 
-	PMXE_Plugin::$session->set('exportQuery', $exportQuery);
-	PMXE_Plugin::$session->save_data();
+	if(isset($exportQuery)) {
+		PMXE_Plugin::$session->set('exportQuery', $exportQuery);
+		PMXE_Plugin::$session->save_data();
+	}
 
 	if ( $post['is_confirm_screen'] )
 	{
@@ -308,7 +316,7 @@ function pmxe_wp_ajax_wpae_filtering_count(){
 	}
 	elseif( $post['is_template_screen'] )
 	{
-		?>
+	  	?>
 				
 		<?php if ($foundRecords > 0) :?>
 			<h3><span class="matches_count"><?php echo $foundRecords; ?></span> <strong><?php echo wp_all_export_get_cpt_name($cpt, $foundRecords, $post); ?></strong> will be exported</h3>
@@ -348,49 +356,19 @@ function pmxe_wp_ajax_wpae_filtering_count(){
 
 }
 
-//TODO: Extract class
-/**
- * @return bool
- */
-function getHasVariations()
-{
-	global $wpdb;
-
-	$variationSql = "SELECT COUNT(*) as found_posts FROM $wpdb->posts WHERE $wpdb->posts.post_type = 'product_variation' AND $wpdb->posts.ID NOT IN (SELECT o.ID FROM $wpdb->posts o
-                            LEFT OUTER JOIN $wpdb->posts r ON o.post_parent = r.ID WHERE ((r.post_status = 'trash' OR r.ID IS NULL) AND o.post_type = 'product_variation'))";
-
-	$variationResult = $wpdb->get_results($variationSql);
-	$variationResult = $variationResult[0]->found_posts;
-
-	return !!$variationResult;
-}
-
-/**
- * @return mixed
- */
-function getAvailableProductsNumber()
-{
-	global $wpdb;
-
-	$productsAndVariationsSql = " SELECT COUNT(*) as found_posts 
- 						FROM $wpdb->posts 
- 							WHERE 
- 								($wpdb->posts.post_type = 'product' 
- 								AND $wpdb->posts.post_status != 'trash' AND $wpdb->posts.post_status != 'auto-draft')
-                            OR ($wpdb->posts.post_type = 'product_variation' AND $wpdb->posts.ID NOT IN (SELECT o.ID FROM $wpdb->posts o
-                            LEFT OUTER JOIN $wpdb->posts r ON o.post_parent = r.ID WHERE ((r.post_status = 'trash' OR r.ID IS NULL) AND o.post_type = 'product_variation')))";
-
-	$result = $wpdb->get_results($productsAndVariationsSql);
-
-	return $result[0]->found_posts;
-}
-
 function wp_all_export_numbering_where($where)
 {
 	global $wpdb;
 
-	$where .= " AND $wpdb->posts.ID NOT IN (SELECT o.ID FROM $wpdb->posts o
+ 	$excludeVariationsSql = " AND $wpdb->posts.ID NOT IN (SELECT o.ID FROM $wpdb->posts o
                             LEFT OUTER JOIN $wpdb->posts r ON o.post_parent = r.ID WHERE ((r.post_status = 'trash' OR r.ID IS NULL) AND o.post_type = 'product_variation'))";
+
+	$groupSql = "GROUP BY $wpdb->posts.ID";
+	if(strpos($where, $groupSql) !== false ){
+		$where = str_replace($groupSql, $excludeVariationsSql." ".$groupSql, $where);
+	} else {
+		$where = $where.$excludeVariationsSql;
+	}
 
 	return $where;
 }

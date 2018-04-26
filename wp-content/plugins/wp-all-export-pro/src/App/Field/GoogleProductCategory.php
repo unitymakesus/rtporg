@@ -14,8 +14,8 @@ class GoogleProductCategory extends Field
 
             $categoryId = $this->getProductCategoryId($this->getProduct());
 
-            if(isset($categoryData['catMappings'][$categoryId]['name'])) {
-                return $categoryData['catMappings'][$categoryId]['name'];
+            if(isset($categoryData['catMappings'][$categoryId]['id'])) {
+                return $categoryData['catMappings'][$categoryId]['id'];
             } else {
                 return '';
             }
@@ -41,7 +41,11 @@ class GoogleProductCategory extends Field
     {
         $category = $this->getProductCategory($product);
 
-        return $category->term_id;
+        if(is_object($category)) {
+            return $category->term_id;
+        } else {
+            return '';
+        }
     }
 
     private function getProductCategoryName($product)

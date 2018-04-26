@@ -13,6 +13,7 @@ class AdditionalImageLink extends Field
         $product = wc_get_product($this->entry->ID);
 
         if($basicInformationData['additionalImageLink'] == 'productImages') {
+            
             $attachment_ids = $product->get_gallery_attachment_ids();
 
             if(is_array($attachment_ids) && count($attachment_ids)) {

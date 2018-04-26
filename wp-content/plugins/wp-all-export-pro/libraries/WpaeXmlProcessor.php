@@ -34,6 +34,7 @@ class WpaeXmlProcessor
 
         // Add a snippet to trigger a process
         $snippetCount = count($this->parseSnippetsInString($xml));
+
         if($snippetCount == 0 ) {
             $xml .="<filler>[str_replace('a','b','c')]</filler>";
         }
@@ -41,7 +42,7 @@ class WpaeXmlProcessor
         // While we have snippets
         if ($snippetCount = count($this->parseSnippetsInString($xml))) {
 
-//            $this->step++;
+            // $this->step++;
             $xml = '<root>' . $xml . '</root>';
             $this->initVariables($xml);
             $root = $this->dom->getElementsByTagName("root");
@@ -50,14 +51,17 @@ class WpaeXmlProcessor
 
             $xml = $this->cleanResponse($response);
 
-//            if ($this->step > 8) {
-//                throw new WpaeTooMuchRecursionException('Too much recursion');
-//            }
+            // if ($this->step > 8) {
+            //  throw new WpaeTooMuchRecursionException('Too much recursion');
+            // }
         }
 
         $xml = $this->postProcessXml($xml);
         $xml = $this->decodeSpecialCharacters($xml);
         $xml = $this->encodeSpecialCharsInAttributes($xml);
+
+        $xml = str_replace('**OPENSHORTCODE**', '[', $xml);
+        $xml = str_replace('**CLOSESHORTCODE**', ']', $xml);
 
         return $this->pretify($xml);
     }
@@ -70,8 +74,8 @@ class WpaeXmlProcessor
     {
         $xml = '<root>' . $xml . '</root>';
         $this->initVariables($xml);
-//        $root = $this->dom->getElementsByTagName("root");
-//        $this->preprocess_attributes($root->item(0));
+        // $root = $this->dom->getElementsByTagName("root");
+        // $this->preprocess_attributes($root->item(0));
 
         return "\n  ".$this->cleanResponse($this->dom->saveXML($this->dom));
     }
@@ -140,7 +144,6 @@ class WpaeXmlProcessor
             $tagValues = array();
 
             if (count($snippets) > 0) {
-
                 if (count($snippets) == 1) {
                     $snippet = $snippets[0];
                     $isInFunction = $this->wpaeString->isBetween($nodeAttributes.$element->nodeValue, $snippet, '[',']');
@@ -158,8 +161,9 @@ class WpaeXmlProcessor
                         $f = $this->dom->createDocumentFragment();
                         $f->appendXML($nodeXML);
                         $this->parseElement($f);
-                        $element->parentNode->parentNode->replaceChild($f, $element->parentNode);
-
+                        if($element->parentNode->parentNode) {
+                            $element->parentNode->parentNode->replaceChild($f, $element->parentNode);
+                        }
                     } else {
                         foreach ($snippetValues as $snippetValue) {
                             $newValueNode = $element->parentNode->cloneNode(true);
@@ -238,6 +242,7 @@ class WpaeXmlProcessor
                 if ( ! $has_text_elements ){
                     $nodeAttributes = $this->getNodeAttributes($element);
                     $snippets = $this->parseSnippetsInString($nodeAttributes);
+
                     if (!empty($snippets)){
                         $tagValues = array();
                         foreach ($snippets as $snippet) {
@@ -301,11 +306,13 @@ class WpaeXmlProcessor
      * @param $v
      * @return string
      */
-    private function maybe_cdata($v)
+    private function maybe_cdata($v, $hasSnippets = false)
     {
         if (XmlExportEngine::$is_preview) {
             $v = str_replace('&amp;', '&', $v);
             $v = htmlspecialchars($v);
+            $v = str_replace('##lt##','&lt;', $v);
+            $v = str_replace('##gt##','&gt;', $v);
         }
 
         if (XmlExportEngine::$is_preview && !XmlExportEngine::$exportOptions['show_cdata_in_preview']) {
@@ -318,7 +325,7 @@ class WpaeXmlProcessor
             XmlExportEngine::$exportOptions['custom_xml_cdata_logic'] = 'auto';
         }
         $cdataStrategy = $cdataStrategyFactory->create_strategy(XmlExportEngine::$exportOptions['custom_xml_cdata_logic']);
-        $is_wrap_into_cdata = $cdataStrategy->should_cdata_be_applied($this->decodeSpecialCharacters($v));
+        $is_wrap_into_cdata = $cdataStrategy->should_cdata_be_applied($this->decodeSpecialCharacters($v), $hasSnippets);
 
         if ($is_wrap_into_cdata === false) {
             return $v;
@@ -479,10 +486,12 @@ class WpaeXmlProcessor
      */
     private function processSnippet($snippet, $isInFunction = false)
     {
+
         $sanitizedSnippet = $this->sanitizeSnippet($snippet);
 
         $sanitizedSnippet = str_replace(WpaeXmlProcessor::SNIPPET_DELIMITER, '"', $sanitizedSnippet);
         $functionName = $this->sanitizeFunctionName($sanitizedSnippet);
+
         $this->checkCorrectNumberOfQuotes($sanitizedSnippet, $functionName);
         $this->checkIfFunctionExists($functionName);
 
@@ -494,6 +503,9 @@ class WpaeXmlProcessor
                 $sanitizedSnippet = str_replace($arg, 'apply_filters("wp_all_export_post_process_xml", '. $arg .')' ,$sanitizedSnippet);
             }
         }
+
+        // Clean empty strings
+        $sanitizedSnippet = str_replace(array(', ,',',,'), ',"",', $sanitizedSnippet);
 
         $snippetValue = eval('return ' . $sanitizedSnippet . ';');
         $snippetValue = $this->encodeSpecialCharacters($snippetValue);
@@ -548,8 +560,8 @@ class WpaeXmlProcessor
     {
         $hasSnippets = $this->parseSnippetsInString($element->nodeValue);
 
-        if (strpos($element->nodeValue, '<![CDATA[') === false && strpos($element->nodeValue, 'CDATABEGIN') === false && !$hasSnippets) {
-            $element->nodeValue = $this->maybe_cdata($element->nodeValue);
+        if (strpos($element->nodeValue, '<![CDATA[') === false && strpos($element->nodeValue, 'CDATABEGIN') === false) {
+            $element->nodeValue = $this->maybe_cdata($element->nodeValue, $hasSnippets);
         }
     }
 
@@ -582,9 +594,6 @@ class WpaeXmlProcessor
      */
     private function postProcessXml($xml)
     {
-        $xml = str_replace('<id>', '<ID>', $xml);
-        $xml = str_replace('</id>', '</ID>', $xml);
-
         $xml = str_replace('CDATABEGIN', '<![CDATA[', $xml);
         $xml = str_replace('CDATACLOSE', ']]>', $xml);
 
@@ -592,13 +601,19 @@ class WpaeXmlProcessor
         $xml = str_replace('CLOSECURVE', '}', str_replace('OPENCURVE', '{', $xml));
         $xml = str_replace('CLOSECIRCLE', ')', str_replace('OPENCIRCLE', '(', $xml));
 
+        $xml = str_replace('**SINGLEQUOT**', "'", $xml);
+        $xml = str_replace('**DOUBLEQUOT**', "\"", $xml);
+
+        $xml = str_replace('**GT**', ">", $xml);
+        $xml = str_replace('**LT**', "<", $xml);
+
         $xml = str_replace('##FILLER##', '', $xml);
         $xml = str_replace('<filler>c</filler>', '', $xml);
         $xml = str_replace('<filler><![CDATA[c]]></filler>', '', $xml);
         $xml = str_replace('<filler>CDATABEGINcCDATACLOSE</filler>', '', $xml);
 
-        $xml = str_replace('<comment>', '<!--', $xml);
-        $xml = str_replace('</comment>', '-->', $xml);
+        $xml = str_replace('<commentTempNode>', '<!--', $xml);
+        $xml = str_replace('</commentTempNode>', '-->', $xml);
 
         $xml = str_replace(self::SNIPPET_DELIMITER, '', $xml);
 
@@ -612,8 +627,8 @@ class WpaeXmlProcessor
      */
     private function preprocessXml($xml)
     {
-        $xml = str_replace('<!--', '<comment>', $xml);
-        $xml = str_replace('-->', '</comment>', $xml);
+        $xml = str_replace('<!--', '<commentTempNode>', $xml);
+        $xml = str_replace('-->', '</commentTempNode>', $xml);
 
         $xml = str_replace("\"{}\"", '""', $xml);
         $xml = str_replace("{}", '""', $xml);
@@ -631,6 +646,7 @@ class WpaeXmlProcessor
     {
         $response = str_replace('<root>', '', $response);
         $response = str_replace('</root>', '', $response);
+        $response = str_replace('<root/>', '', $response);
         $xml = str_replace("<?xml version=\"1.0\"?>", '', $response);
         $xml = str_replace("<?xml version=\"1.0\" encoding=\"UTF-8\"?>", "", $xml);
 

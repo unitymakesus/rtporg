@@ -2,6 +2,7 @@
 /**
 *	AJAX action for preview export row
 */
+
 function pmxe_wp_ajax_wpae_preview(){
 
 	if ( ! check_ajax_referer( 'wp_all_export_secure', 'security', false )){
@@ -21,6 +22,13 @@ function pmxe_wp_ajax_wpae_preview(){
 	$values = array();
 
 	parse_str($_POST['data'], $values);
+
+	if(is_array($values['cc_options'])) {
+
+		foreach ($values['cc_options'] as &$value) {
+			$value = stripslashes($value);
+		}
+	}
 
 	$export_id = (isset($_GET['id'])) ? stripcslashes($_GET['id']) : 0;
 
@@ -48,7 +56,7 @@ function pmxe_wp_ajax_wpae_preview(){
 		do_action( 'wpml_switch_language', XmlExportEngine::$exportOptions['wpml_lang'] );
 	}
 
-	if ( in_array(XmlExportEngine::$exportOptions['xml_template_type'], array('custom', 'XmlGoogleMerchants')) ){
+	if (XmlExportEngine::$exportOptions['export_to'] == XmlExportEngine::EXPORT_TYPE_XML && in_array(XmlExportEngine::$exportOptions['xml_template_type'], array('custom', 'XmlGoogleMerchants')) ){
 
 		if ( empty(XmlExportEngine::$exportOptions['custom_xml_template']) )
 		{
@@ -61,8 +69,6 @@ function pmxe_wp_ajax_wpae_preview(){
 
 			$engine->init_available_data();
 
-			//TODO: Ovidiu - here the snippets are parsed and mapped to the field options, We need to extract
-			// the snippet parse for this method so we can parse the snippets from the google merchants feed export
 			$result = $engine->parse_custom_xml_template();		
 			$line_numbers = $result['line_numbers'];
 			if ( ! $errors->get_error_codes()) {
@@ -117,6 +123,10 @@ function pmxe_wp_ajax_wpae_preview(){
 			$exportQuery = eval('return new WP_Comment_Query(array(' . $exportOptions['wp_query'] . ', \'offset\' => 0, \'number\' => 10));');
 		}
 		else {
+			remove_all_actions('parse_query');
+			remove_all_actions('pre_get_posts');
+			remove_all_filters('posts_clauses');
+			
 			$exportQuery = eval('return new WP_Query(array(' . $exportOptions['wp_query'] . ', \'offset\' => 0, \'posts_per_page\' => 10));');
 		}
 	}
@@ -212,7 +222,6 @@ function pmxe_wp_ajax_wpae_preview(){
 				try{
 					$xml = XmlCsvExport::export_xml(true);
 				} catch (WpaeMethodNotFoundException $e) {
-
 					// Find the line where the function is
 					$errorMessage = '';
 					$functionName = $e->getMessage();
@@ -229,7 +238,6 @@ function pmxe_wp_ajax_wpae_preview(){
 					echo $error_msg;
 					exit( json_encode(array('html' => ob_get_clean())) );
 				} catch (WpaeInvalidStringException $e) {
-
 					// Find the line where the function is
 					$errorMessage = '';
 					$functionName = $e->getMessage();
@@ -259,8 +267,6 @@ function pmxe_wp_ajax_wpae_preview(){
                 switch ( XmlExportEngine::$exportOptions['xml_template_type'] ){
 
                     case 'custom':
-                    case 'XmlGoogleMerchants':
-
                         require_once PMXE_ROOT_DIR . '/classes/XMLWriter.php';
 
                         $preview_xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" . "\n<Preview>\n" . $xml . "\n</Preview>";

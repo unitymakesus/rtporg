@@ -55,6 +55,7 @@ class FilteringCPT extends FilteringBase
 
     /**
      * @param $rule
+     * @return mixed|void
      */
     public function parse_single_rule($rule){
         
@@ -114,8 +115,10 @@ class FilteringCPT extends FilteringBase
                         $this->userWhere .= "{$this->wpdb->users}.$rule->element " . $this->parse_condition($rule);
                         break;
                     default:
+
                         if (strpos($rule->element, "cf_") === 0)
                         {
+
                             $meta_query = true;
                             $meta_key = str_replace("cf_", "", $rule->element);
 
@@ -159,23 +162,25 @@ class FilteringCPT extends FilteringBase
 
                 if (strpos($rule->element, "cf_") === 0) {
                     $this->meta_query = true;
-                    $meta_key = str_replace("cf_", "", $rule->element);
 
-                    if ($rule->condition == 'is_empty'){
+                    $meta_key = $this->removePrefix($rule->element, "cf_");
+
+                    if ($rule->condition == 'is_empty') {
                         $table_alias = (count($this->queryJoin) > 0) ? 'meta' . count($this->queryJoin) : 'meta';
                         $this->queryJoin[] = " LEFT JOIN {$this->wpdb->postmeta} AS $table_alias ON ($table_alias.post_id = {$this->wpdb->posts}.ID AND $table_alias.meta_key = '$meta_key') ";
                         $this->queryWhere .= "$table_alias.meta_id " . $this->parse_condition($rule);
-                    }
-                    else {
-                        if ( in_array($meta_key, array('_completed_date')) ) {
-                            $this->parse_date_field( $rule );
+                    } else {
+                        if (in_array($meta_key, array('_completed_date'))) {
+                            $this->parse_date_field($rule);
                         }
                         $table_alias = (count($this->queryJoin) > 0) ? 'meta' . count($this->queryJoin) : 'meta';
                         $this->queryJoin[] = " INNER JOIN {$this->wpdb->postmeta} AS $table_alias ON ({$this->wpdb->posts}.ID = $table_alias.post_id) ";
                         $this->queryWhere .= "$table_alias.meta_key = '$meta_key' AND $table_alias.meta_value " . $this->parse_condition($rule, false, $table_alias);
                     }
+
                 }
                 elseif (strpos($rule->element, "tx_") === 0){
+
                     if ( ! empty($rule->value) ){
                         $this->tax_query = true;
                         $tx_name = str_replace("tx_", "", $rule->element);
@@ -246,5 +251,19 @@ class FilteringCPT extends FilteringBase
         if ( ! empty( $this->userJoin ) ) {
             $obj->query_from .= implode( ' ', array_unique( $this->userJoin ) );
         }
+    }
+
+    /**
+     * @param $str
+     * @param $prefix
+     * @return string
+     */
+    private function removePrefix($str, $prefix)
+    {
+        if (substr($str, 0, strlen($prefix)) == $prefix) {
+            $str = substr($str, strlen($prefix));
+            return $str;
+        }
+        return $str;
     }
 }

@@ -177,9 +177,16 @@ class PMXE_XMLWriter extends XMLWriter
                         $originalValue = $v;
 
                         if (is_array($v)) {
+                            foreach($v as &$val) {
+                                $val = str_replace("\"","**DOUBLEQUOT**",$val);
+                                $val = str_replace("'","**SINGLEQUOT**",$val);
+                            }
+
                             $delimiter = uniqid();
                             $node_tpl = preg_replace('%\[(.*)\{'.$key.'\}([^\[]*)\]%', "[$1explode('" . $delimiter . "', '" . implode($delimiter, $v) . "')$2]", $node_tpl);
                             $v = "[explode('" . $delimiter . "', '" . implode($delimiter, $v) . "')]";
+                            $v = str_replace('<','**LT**', $v);
+                            $v = str_replace('>','**GT**', $v);
                         } else {
                             $v = '{' . $v . '}';
                         }

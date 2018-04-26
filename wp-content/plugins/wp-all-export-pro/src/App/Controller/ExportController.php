@@ -38,8 +38,9 @@ class ExportController extends BaseController
         if(isset($params['update']) && $params['update']) {
             $this->isWizard = false;
         }
+        $snippets = array_filter($snippets[1]);
 
-        return $this->legacySave($params, array_filter($snippets[1]), $extraData);
+        return $this->legacySave($params, $snippets , $extraData);
     }
 
     public function getAction(Request $request)
@@ -48,7 +49,7 @@ class ExportController extends BaseController
             $sessionData = PMXE_Plugin::$session->get_session_data();
             $exportData = unserialize($sessionData['google_merchants_post_data']);
         } else {
-            $id = $_GET['id'];
+            $id = intval($_GET['id']);
             $export = new \PMXE_Export_Record();
             if ($export->getById($id)->isEmpty()) { // specified import is not found
                 wp_redirect(add_query_arg('page', 'pmxe-admin-manage', admin_url('admin.php'))); die();
@@ -73,7 +74,7 @@ class ExportController extends BaseController
 
         $default = PMXE_Plugin::get_default_import_options();
 
-        if(!$extraData['save_template_as']) {
+        if(!isset($extraData['save_template_as'])) {
             $extraData['save_template_as'] = '';
             $extraData['name'] = '';
         }
@@ -81,6 +82,7 @@ class ExportController extends BaseController
         $default = $default + $extraData;
 
         $this->data['dismiss_warnings'] = 0;
+
         if ($this->isWizard) {
 
             $defaultOptions = (PMXE_Plugin::$session->has_session() ? PMXE_Plugin::$session->get_clear_session_data() : array()) + $default;
@@ -91,6 +93,8 @@ class ExportController extends BaseController
             $post['export_to'] = XmlExportEngine::EXPORT_TYPE_XML;
             $post['snippets'] = $snippets;
             $post['cpt'] = array('product', 'product_variation');
+            $post['filter_rules_hierarhy'] = $params['filteringData'];
+
             $this->saveTemplateIfNeeded($params, $post);
 
         } else {
@@ -109,6 +113,7 @@ class ExportController extends BaseController
             $post['xml_template_type'] = XmlExportEngine::EXPORT_TYPE_GOOLE_MERCHANTS;
             $post['export_to'] = XmlExportEngine::EXPORT_TYPE_XML;
             $post['snippets'] = $snippets;
+            $post['filter_rules_hierarhy'] = $params['filteringData'];
             $post['cpt'] = array('product', 'product_variation');
             $this->saveTemplateIfNeeded($params, $post);
             foreach ($post as $key => $value) {

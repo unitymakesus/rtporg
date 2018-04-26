@@ -1,10 +1,9 @@
 <?php
 
-
 namespace Wpae\App\Field;
 
-
 use Wpae\App\Feed\Feed;
+use Wpae\App\Service\WooCommerceVersion;
 
 class FieldFactory
 {
@@ -32,7 +31,7 @@ class FieldFactory
         $className = $this->getClassName($fieldType);
 
         if(class_exists($className)) {
-            return new $className($entry, $this->filters, $this->feed, new \WpaeString());
+            return new $className($entry, $this->filters, $this->feed, new WooCommerceVersion());
         } else {
             throw new \Exception('The field type '.$fieldType.' does not exist');
         }
