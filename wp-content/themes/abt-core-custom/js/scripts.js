@@ -19887,7 +19887,7 @@ function throttle(func, wait, options) {
      Document Ready Scripts
      ======================================================================================================= */
     $(document).ready(function () {
-        initBodyClasses();
+        // initBodyClasses();
         initMenuClasses();
         initMenuIcons();
         initResponsiveVideos();

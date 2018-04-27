@@ -1,0 +1,10 @@
+@import 'vendors/flexboxgrid';
+
+.row.flex {
+  @extend .row;
+}
+
+.directory-map {
+  height: calc(100vh - 92px);
+  width: 100%;
+}
