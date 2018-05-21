@@ -71,16 +71,20 @@ class RTP_Dir_Post_Type {
 		if ( is_admin() ) {
 			global $pagenow;
 
-			add_action( 'admin_menu', array( $this, 'meta_box_setup' ), 20 );
-			add_action( 'save_post', array( $this, 'meta_box_save' ) );
-			add_filter( 'enter_title_here', array( $this, 'enter_title_here' ) );
-			add_filter( 'post_updated_messages', array( $this, 'updated_messages' ) );
+			// add_action( 'admin_menu', array( $this, 'meta_box_setup' ), 20 );
+			// add_action( 'save_post', array( $this, 'meta_box_save' ) );
+			// add_filter( 'enter_title_here', array( $this, 'enter_title_here' ) );
+			// add_filter( 'post_updated_messages', array( $this, 'updated_messages' ) );
 
 			if ( $pagenow == 'edit.php' && isset( $_GET['post_type'] ) && esc_attr( $_GET['post_type'] ) == $this->post_type ) {
 				add_filter( 'manage_edit-' . $this->post_type . '_columns', array( $this, 'register_custom_column_headings' ), 10, 1 );
 				add_action( 'manage_posts_custom_column', array( $this, 'register_custom_columns' ), 10, 2 );
 			}
 		}
+
+		add_action('acf/init', function() {
+			acf_update_setting('google_api_key', 'AIzaSyCbYGfDTIovHfKjfqwGejD54Eds8Wt9TgI');
+		});
 
 		add_action( 'after_setup_theme', array( $this, 'ensure_post_thumbnails_support' ) );
 		add_action( 'after_theme_setup', array( $this, 'register_image_sizes' ) );

@@ -88,8 +88,20 @@ final class RTP_Dir {
 
     // Including functions to get post-type listings for PHP and AJAX
     require_once( 'classes/class-rtp-dir-listing.php' );
-    add_action( 'wp_ajax_get_facilities', array(new RTP_Dir_Listing, 'get_facilities_json') );
-    add_action( 'wp_ajax_nopriv_get_facilities', array(new RTP_Dir_Listing, 'get_facilities_json') );
+    add_action( 'wp_ajax_get_locations', array(new RTP_Dir_Listing, 'get_locations_json') );
+    add_action( 'wp_ajax_nopriv_get_locations', array(new RTP_Dir_Listing, 'get_locations_json') );
+
+		// Add custom facet sources
+		require_once( 'classes/class-rtp-dir-facets.php' );
+		$new_facet = new RTP_Dir_Facets;
+		add_filter( 'facetwp_indexer_row_data', array($new_facet, 'index_row_data'), 100 , 2 );
+		add_filter( 'facetwp_facet_sources', array($new_facet, 'custom_data_sources') );
+		add_filter( 'facetwp_is_main_query', function( $is_main_query, $query ) {
+	    if ( '' !== $query->get( 'facetwp' ) ) {
+        $is_main_query = (bool) $query->get( 'facetwp' );
+	    }
+	    return $is_main_query;
+		}, 10, 2 );
 
 		// Custom Post Types/Taxonomies
 		require_once( 'classes/class-rtp-dir-post-type.php' );
@@ -153,7 +165,8 @@ final class RTP_Dir {
         'rest_base' => 'sites',
         'rewrite' => array(
           'slug' => 'site'
-        )
+        ),
+				'taxonomies' => array('rtp-availability')
       )
     );
 		$this->post_types['rtp-space'] = new RTP_Dir_Post_Type(
@@ -174,9 +187,9 @@ final class RTP_Dir {
         'rest_base' => 'spaces',
         'rewrite' => array(
           'slug' => 'space'
-        )
-      ),
-      array('rtp-availability')
+        ),
+				'taxonomies' => array('rtp-availability')
+      )
     );
 	}
 
@@ -205,18 +218,21 @@ final class RTP_Dir {
     if (is_page_template('templates/page-directory.php')) {
 
       // Enqueue scripts
-      wp_enqueue_script( 'mapbox-script', 'https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.js', array(), null, true );
-      wp_enqueue_script( 'rtp-dir-script', $this->plugin_url . '/scripts/map-script.js', array('mapbox-script'), '1.0.0', true );
+      wp_enqueue_script( 'mapbox-script', 'https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.js', array(), null, true );
+      wp_enqueue_script( 'rtp-dir-script', $this->plugin_url . 'scripts/map-script.js', array('mapbox-script'), '1.0.0', true );
 
       // Enqueue styles
-      wp_enqueue_style( 'mapbox-style', 'https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.css', null, false);
-      wp_enqueue_style( 'rtp-dir-style', $this->plugin_url . '/css/style.css', null, '1.0.0');
+      wp_enqueue_style( 'mapbox-style', 'https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.css', null, false);
+      wp_enqueue_style( 'rtp-dir-style', $this->plugin_url . 'css/style.css', null, '1.0.0');
 
       // Set up FacetWP API
       wp_localize_script('rtp-dir-script', 'rtp_dir_vars', array(
-        'facetapi_uri'  => get_home_url() . '/wp-json/facetwp/v1/fetch',
-        'ajax_uri'      => admin_url('admin-ajax.php'),
-        '_ajax_nonce'   => $this->nonce,
+        'facetapi_uri'  		=> get_home_url() . '/wp-json/facetwp/v1/fetch',
+        'ajax_uri'      		=> admin_url('admin-ajax.php'),
+        '_ajax_nonce'   		=> $this->nonce,
+				'marker_company'		=> $this->plugin_url . 'images/icon-company-3d@2x.png',
+				'marker_recreation'	=> $this->plugin_url . 'images/icon-recreation-3d@2x.png',
+				'marker_realestate'	=> $this->plugin_url . 'images/icon-realestate-3d@2x.png'
       ));
     }
   }
@@ -236,7 +252,7 @@ final class RTP_Dir {
       array( 'rewrite' => array('slug' => 'company-type') )
     );
     $this->taxonomies['rtp-availability'] = new RTP_Dir_Taxonomy(
-      'rtp-space', 'rtp-availability', 'Availability', 'Availabilities',
+      'rtp-site', 'rtp-availability', 'Availability', 'Availabilities',
       array( 'rewrite' => array('slug' => 'availability') )
     );
 
