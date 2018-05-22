@@ -119,6 +119,18 @@ class RTP_Dir_Listing {
           $properties['facility-facet-'.$ftype->slug] = true;
         }
 
+        if ($facility_type[0]->slug == 'multi-tenant') {
+          global $wpdb;
+          $like_id = '%"' . $id . '"%';
+          $query = "SELECT id FROM {$wpdb->prefix}posts AS p INNER JOIN {$wpdb->prefix}postmeta AS pm ON (p.ID = pm.post_id) WHERE 1=1 AND (pm.meta_key = 'related_facility' AND pm.meta_value LIKE %s) AND p.post_type IN ('rtp-company', 'rtp-space') AND p.post_status = 'publish' GROUP BY p.ID";
+          $sql = $wpdb->prepare($query, $like_id);
+          $tenants = $wpdb->get_results($sql);
+
+          foreach ($tenants as $t) {
+            $properties['tenant-id-' . $t->id] = true;
+          }
+        }
+
       } elseif ($location_type == 'rtp-company') {
         // Only add to map if it's not within a facility
         if (get_field('within_facility') == 0) {

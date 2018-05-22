@@ -102,6 +102,10 @@ final class RTP_Dir {
 	    }
 	    return $is_main_query;
 		}, 10, 2 );
+		add_filter( 'facetwp_render_output', function( $output, $params ) {
+	    $output['settings']['post_ids'] = FWP()->facet->query_args['post__in'];
+	    return $output;
+		}, 10, 2 );
 
 		// Custom Post Types/Taxonomies
 		require_once( 'classes/class-rtp-dir-post-type.php' );

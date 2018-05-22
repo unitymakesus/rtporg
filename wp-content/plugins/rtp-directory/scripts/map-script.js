@@ -21,26 +21,37 @@ jQuery(document).ready(function($) {
   let facets = FWP.facets;
 
   // Remove all facet filters
-  function remove_all_facets(facet, layer) {
-    current = map.getFilter(layer);
-    console.info('current', current);
+  function remove_all_facets(layer, flabel) {
+    fcurrent = map.getFilter(layer);
 
-    // Only keep expressions that do not match target facet
+    // Set up empty arrays to keep expressions
     cleaned = [], cleaned_any = [];
 
-    $.each(current, function(key, val) {
-      if (val[0].indexOf('any') !== -1) {
+    // Loop through each of the expressions in the current filter
+    $.each(fcurrent, function(ckey, cval) {
+      // Handle expressions that contain more expressions
+      if (cval[0].indexOf('any') >= 0) {
         cleaned_any = [];
-        $.each(val, function(k, v) {
-          if (v[1].indexOf(facet) == -1) {
+
+        // Loop through sub-expressions
+        $.each(cval, function(k, v) {
+          // Only keep the expressions that are default for the layer's filter
+          if (flabel != 'blank' && v[1].indexOf(flabel) == '-1' && v[1].indexOf('tenant-id') == '-1') {
             cleaned_any.push(v);
           }
         });
+
         if (cleaned_any.length > 1) {
           cleaned.push(cleaned_any);
         }
-      } else if (val[1].indexOf(facet) == -1) {
-        cleaned.push(val);
+
+      // Keep the expressions that were already added to this filter for this facet in a previous loop iteration
+    } else if (cval[1].indexOf(flabel) == '-1' && flabel != 'blank') {
+        cleaned.push(cval);
+
+      // Only keep the expressions that are default for the layer's filter
+    } else if (flabel == 'blank' && cval[1].indexOf('facet') == '-1' && cval[1].indexOf('availability') == '-1') {
+        cleaned.push(cval);
       }
     });
 
@@ -49,17 +60,51 @@ jQuery(document).ready(function($) {
   }
 
   // Add filter for facet
-  function add_filter_facet(facet, layer, value) {
+  function add_filter_facet(layer, flabel, fvalue) {
     // start from scratch to avoid dupes
-    cleaned = remove_all_facets(facet, layer);
+    cleaned = remove_all_facets(layer, flabel);
+    new_exp = [];
+    new_filter = [];
 
-    if (Array.isArray(value)) {
+    console.info('inarray', ($.inArray(layer, polyLayers) != '-1'));
+
+    if (($.inArray(layer, polyLayers) != '-1') && (flabel == 'company-facet' || flabel == 'availability')) {
+      // If we're filtering facilities (polygon layers) for company types or availabilities
+      // we're going to look for companies/spaces that are located within that facility
+
       new_exp = ['any'];
-      value.forEach(function(v) {
-        new_exp.push(['==', facet + '-' + v, true]);
+
+      result_ids = FWP.settings.post_ids;
+      result_ids.forEach(function(r) {
+        new_exp.push(['==', 'tenant-id-' + r, true]);
       });
+
+      // Also if we're looking at polygons for sale (sites), include the original facet filter
+      console.info('facet', flabel);
+      if (flabel == 'availability') {
+        console.info('value', fvalue);
+        console.info('isvalarray', Array.isArray(fvalue));
+        console.info('valinarray', $.inArray('for-sale', fvalue));
+        if (Array.isArray(fvalue) && $.inArray('for-sale', fvalue) != '-1') {
+          fvalue.forEach(function(fv) {
+            new_exp.push(['==', flabel + '-' + fv, true]);
+          });
+        } else if (fvalue == 'for-sale') {
+          new_exp.push(['==', flabel + '-' + fvalue, true]);
+        }
+      }
+
     } else {
-      new_exp = ['==', facet + '-' + value, true];
+      // If we're filtering any other type of layer, we're going to look for
+      // results that match the specific facet
+      if (Array.isArray(fvalue)) {
+        new_exp = ['any'];
+        fvalue.forEach(function(fv) {
+          new_exp.push(['==', flabel + '-' + fv, true]);
+        });
+      } else {
+        new_exp = ['==', flabel + '-' + fvalue, true];
+      }
     }
 
     if (cleaned[0] == '==') {
@@ -68,41 +113,61 @@ jQuery(document).ready(function($) {
       new_filter = cleaned.concat([new_exp]);
     }
 
-    console.info('add', new_filter);
-    map.setFilter(layer, new_filter);
+    console.info('add-'+layer, new_filter);
+    // map.setFilter(layer, new_filter);
+    return new_filter;
+  }
+
+  function get_filter_facets(layer, facets, result_ids) {
+    // Set up the filters array to hold returned filters
+    let filters = [];
+
+    $.each(facets, function(fkey, fval) {
+      // Not for pagination facets though
+      if (fkey == 'paged') {
+        return false;
+      }
+
+      // Set label for expression based on selected facets
+      if (fkey == 'availability') {
+        flabel = 'availability';
+      } else if (fkey == 'facility_types') {
+        flabel = 'facility-facet';
+      } else if (fkey == 'industry') {
+        flabel = 'company-facet';
+      }
+
+      // If one or more values are set for this facet
+      if (fval.length == 1) {
+        filters = add_filter_facet(layer, flabel, fval[0]);
+      } else if (fval.length > 1) {
+        filters = add_filter_facet(layer, flabel, fval);
+      }
+    });
+
+    // If there are no facets set at all, reset this layer's filters to default
+    if (filters.length == 0) {
+      console.log('removing all');
+      filters = remove_all_facets(layer, 'blank');
+    }
+
+    return filters;
   }
 
   // Set facets on the map
   function set_map_facets() {
-    facets = FWP.facets;
-
     if (map.isStyleLoaded()) {
-      $.each(facets, function(key, val) {
-        // Not for pagination facets though
-        if (key == 'paged') {
-          return false;
-        }
-        
-        // Set label for expression based on selected facets
-        if (key == 'availability') {
-          label = 'availability';
-        } else if (key == 'facility_types') {
-          label = 'facility-facet';
-        } else if (key == 'industry') {
-          label = 'company-facet';
-        }
 
-        // Filter layers based on selected facets
-        allLayers.forEach(function(layer) {
-          if (val.length == 1) {
-            add_filter_facet(label, layer, val[0]);
-          } else if (val.length > 1) {
-            add_filter_facet(label, layer, val);
-          } else {
-            filters = remove_all_facets(label, layer);
-            map.setFilter(layer, filters);
-          }
-        });
+      // Get which facets are set
+      const facets = FWP.facets;
+      const result_ids = FWP.settings.post_ids;
+
+      // Filter each layer individually based on selected facets
+      allLayers.forEach(function(layer) {
+        console.info('layer-start', layer);
+        filters = get_filter_facets(layer, facets, result_ids);
+        console.info('layer-filters', filters);
+        map.setFilter(layer, filters);
       });
     }
   }
@@ -285,6 +350,7 @@ jQuery(document).ready(function($) {
 
 		// When a click event occurs open a popup at the location of click
 		map.on('click', "polygon-fills-hover", function(e) {
+      console.log(e.features[0].properties);
       new mapboxgl.Popup()
         .setLngLat(e.lngLat)
         .setHTML(e.features[0].properties.title)
