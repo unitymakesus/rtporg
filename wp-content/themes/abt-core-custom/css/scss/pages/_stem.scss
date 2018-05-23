@@ -50,31 +50,22 @@
     }
   }
 
-  .donate-button {
+  .button {
     float: right;
     display: block;
+    height: 100%;
+    margin-bottom: 0;
+    display: block;
+    line-height: 1.5;
+    background: $color_orange;
+    @include rem(font-size, 16px);
+    @include rem(padding, 20px);
 
-    .button {
-      height: 100%;
-      margin-bottom: 0;
-      display: block;
-      line-height: 1.5;
-      @include rem(font-size, 16px);
-      @include rem(padding, 20px);
-
-      @include media($desktop_wide) {
-        @include rem(padding, 20px 30px);
-      }
-      @include media($desktop_xl_wide) {
-        @include rem(padding, 20px 40px);
-      }
+    @include media($desktop_wide) {
+      @include rem(padding, 20px 30px);
     }
-
-    img {
-      display: inline-block;
-      position: absolute;
-      top: 0;
-      right: 0;
+    @include media($desktop_xl_wide) {
+      @include rem(padding, 20px 40px);
     }
   }
 }

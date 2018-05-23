@@ -13,20 +13,22 @@
   position: relative;
   overflow: hidden;
   text-align: center;
-  background-image: url('../img/hero-bg.jpg');
+  background-image: url('../img/hero-bg-sm.jpg');
   height: 100vh;
 
   @supports (background-blend-mode: multiply) {
     background-color: lighten($color_duke_blue, 15%);
     background-blend-mode: multiply;
   }
-  
+
 
   @include media($tablet){
+    background-image: url('../img/hero-bg-md.jpg');
     min-height: 950px;
   }
 
   @include media($desktop){
+    background-image: url('../img/hero-bg.jpg');
     min-height: 600px;
     text-align: left;
     background-image: none;
@@ -107,21 +109,16 @@
       }
   }
 
-    &:before {
-      position: absolute;
-      content: '';
-      display: block;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      z-index: 2;
-      background-color: rgba(shade($color_duke_blue, 15%), .7);
-      
-
-      @supports not (background-blend-mode: multiply) {
-        background-color: rgba(shade($color_duke_blue, 15%), .9);
-      }
+  &:before {
+    position: absolute;
+    content: '';
+    display: block;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    background-color: rgba($color_duke_blue, .85);
   }
 }
 .hero-video-button {
@@ -234,20 +231,15 @@
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
   max-width: initial;
-
-
-  @supports (background-blend-mode: multiply) {
-    background-color: $color_duke_blue;
-    background-blend-mode: color;
-  }
+  will-change: transform;
+  //
+  // @supports (background-blend-mode: multiply) {
+  //   background-color: $color_duke_blue;
+  //   background-blend-mode: color;
+  // }
 
   @include media($desktop) {
     display: block;
-
-    @supports (background-blend-mode: multiply) {
-      background-color: $color_duke_blue;
-      mix-blend-mode: multiply;
-    }
   }
 }
 

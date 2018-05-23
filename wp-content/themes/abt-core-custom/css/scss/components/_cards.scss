@@ -140,7 +140,7 @@
   }
 
   &.card-cta-laptop {
-    background-image: url(../img/bg_cta-laptop-sm.jpg);
+    background-image: url(../img/bg_cta-laptop.jpg);
     background-size: cover;
     background-position: center;
     margin-bottom: 1px;
@@ -151,7 +151,6 @@
   }
 
     @include media($desktop){
-      background-image: url(../img/bg_cta-laptop.jpg);
       margin-right: 0;
     }
   }

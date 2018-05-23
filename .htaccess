@@ -1,0 +1,112 @@
+
+# BEGIN RTP Redirects
+redirect 301 /rtp180 https://www.rtp.org/program/rtp-180/
+redirect 301 /rtp180/ https://www.rtp.org/program/rtp-180/
+redirect 301 /thefrontier https://www.rtp.org/about-us/the-frontier/
+redirect 301 /thefrontier/ https://www.rtp.org/about-us/the-frontier/
+redirect 301 /about-us/us2020 https://www.rtp.org/about-us/stem-in-the-park/
+redirect 301 /about-us/us2020/ https://www.rtp.org/about-us/stem-in-the-park/
+redirect 301 /category/us2020 https://www.rtp.org/category/stem-in-the-park/
+redirect 301 /category/us2020/ https://www.rtp.org/category/stem-in-the-park/
+redirect 301 /category/stem-in-the-park/?post_type=attachment https://www.rtp.org/category/stem-in-the-park/
+redirect 301 /category/uncategorized https://www.rtp.org/blog/
+redirect 301 /about-rtp/rtp-companies https://www.rtp.org/map/
+redirect 301 /jobs https://www.rtp.org/
+redirect 301 /foodtruckrodeo https://www.rtp.org/program/rtp-food-truck-rodeo/
+redirect 301 /about-rtp https://www.rtp.org/about-us/
+redirect 301 /park-life/events-calendar https://www.rtp.org/events/
+redirect 301 /contact-us/directions https://www.rtp.org/contact-us/
+redirect 301 /contact-us/staff https://www.rtp.org/about-us/staff/
+redirect 301 /choose-rtp/industries/biotechnology-life-sciences https://www.rtp.org/why-rtp/
+redirect 301 /about-rtp/planning-and-progress https://www.rtp.org/about-us/
+redirect 301 /park-life/recreation https://www.rtp.org/program/rtp-fit/
+redirect 301 /about-rtp/rtp-companies/2013-rtp-directory https://www.rtp.org/rtp-company-directory/
+redirect 301 /choose-rtp/industries-rtps-contributions-span-sectors https://www.rtp.org/map/
+redirect 301 /parkcenter https://www.rtp.org/about-us/park-center/
+redirect 301 /park-center https://www.rtp.org/about-us/park-center/
+redirect 301 /location/park-center https://www.rtp.org/about-us/park-center/
+redirect 301 /choose-rtp/research-triangle-park-top-biotech-and-life-science-cluster https://www.rtp.org/why-rtp/
+redirect 301 /rtp-softball-calendar https://www.rtp.org/program/rtp-fit/
+redirect 301 /about-rtp/research-triangle-park-news https://www.rtp.org/blog/
+redirect 301 /park-life/rtp-programs https://www.rtp.org/about-us/programs/
+redirect 301 /bigannouncement https://www.rtp.org/blog/
+redirect 301 /park-life-rtp-raleigh-durham-chapel-hill-and-beyond https://www.rtp.org/blog/
+redirect 301 /choose-rtp https://www.rtp.org/why-rtp/
+redirect 301 /park-life/conference-center https://www.rtp.org/events/reserve-conference-room/
+redirect 301 /choose-rtp/accelerator-and-incubator-space https://www.rtp.org/map/
+redirect 301 /contact-us/board-directors https://www.rtp.org/about-us/board-of-directors/
+redirect 301 /entrepreneurship https://www.rtp.org/
+redirect 301 /choose-rtp/available-sites https://www.rtp.org/map/
+redirect 301 /park-life/wildlife https://www.rtp.org/program/environment-rtp-2/
+redirect 301 /about-rtp/our-partners https://www.rtp.org/
+redirect 301 /research-triangle-parks-master-plan https://www.rtp.org/about-us/park-center/
+redirect 301 /park-life/conference-center/meeting-space https://www.rtp.org/events/reserve-conference-room/
+redirect 301 /park-life/rtp-transit-and-transportation https://www.rtp.org/program/smartcommute-rtp/
+redirect 301 /about-rtp/planning-and-progress/park-infrastructure-and-construction-updates https://www.rtp.org/about-us/park-center/
+redirect 301 /choose-rtp/incentives https://www.rtp.org/why-rtp/
+redirect 301 /choose-rtp/triangle-region/quality-life https://www.rtp.org/why-rtp/
+redirect 301 /about-rtp/media-resources https://www.rtp.org/contact-us/
+redirect 301 /choose-rtp/industries/information-technology https://www.rtp.org/why-rtp/
+redirect 301 /about-rtp/news/research-triangle-park-buys-100-acres-along-i-40-intends-build-new-kind-place https://www.rtp.org/research-triangle-park-buys-100-acres-along-40-intends-build-new-kind-place/
+redirect 301 /choose-rtp/triangle-region/workforce-education https://www.rtp.org/why-rtp/
+redirect 301 /art https://www.rtp.org/program/art-in-the-park/
+redirect 301 /about-rtp/rtp-companies/owners-tenants-association https://www.rtp.org/about-us/board-of-directors/
+redirect 301 /choose-rtp/available-buildings-research-triangle-park https://www.rtp.org/map/
+redirect 301 /choose-rtp/industries/nanotechnologies https://www.rtp.org/why-rtp/
+redirect 301 /choose-rtp/industries/clean-green-energy https://www.rtp.org/why-rtp/
+redirect 301 /park-life/rtp-programs/rtp-stem-coalition https://www.rtp.orgabout-us/us2020-2/
+redirect 301 /choose-rtp/industries/advanced-gaming-e-learning https://www.rtp.org/why-rtp/
+redirect 301 /park-life/events-calendar/rtp-food-truck-rodeo https://www.rtp.org/program/rtp-food-truck-rodeo/
+redirect 301 /rtp-180-biotechnology-0 https://www.rtp.org/program/180-sum-triangle/
+redirect 301 /choose-rtp/site-selection-services https://www.rtp.org/map/
+redirect 301 /rtp-180-search-cures https://www.rtp.org/program/180-sum-triangle/
+redirect 301 /rtp-180-big-data https://www.rtp.org/program/180-sum-triangle/
+redirect 301 /1MC https://www.rtp.org/program/1-million-cups/
+redirect 301 /about-rtp/rtp-companies/ https://www.rtp.org/rtp-company-directory/
+redirect 301 /food-truck-rodeo-5 https://www.rtp.org/program/rtp-food-truck-rodeo/
+redirect 301 /rtp-360-seriously-creative-research-unc-asheville https://www.rtp.org/program/180-sum-triangle/
+redirect 301 /community https://www.rtp.org/programs/
+redirect 301 /rtp-180-transit https://www.rtp.org/program/180-sum-triangle/
+redirect 301 /sites/default/files/2013_RTP_Directory_0.pdf https://www.rtp.org/rtp-company-directory/
+redirect 301 /choose-rtp/available-buildings https://www.rtp.org/map
+redirect 301 /about-rtp/news/rtp-wins-national-stem-mentoring-competition-white-house-science-fair https://www.rtp.org/rtp-wins-national-stem-mentoring-competition-at-white-house-science-fair/
+redirect 301 /choose-rtp/industries/wireless-telecommunications https://www.rtp.org/why-rtp/
+redirect 301 /rtp-180-future https://www.rtp.org/program/180-sum-triangle/
+redirect 301 /rtp-180-entrepreneurship-facing-failure-0 https://www.rtp.org/program/180-sum-triangle/
+redirect 301 /park-life/rtp-programs/innovation-rtp https://www.rtp.org/program/disrupt/
+redirect 301 /event-categories/networking https://www.rtp.org/events/
+redirect 301 /rent-conference-center https://www.rtp.org/events/reserve-conference-room/
+redirect 301 /choose-rtp/triangle-region/transportation-infrastructure https://www.rtp.org/why-rtp/
+redirect 301 /rtp-180-entrepreneurship-facing-failure https://www.rtp.org/program/180-sum-triangle/
+redirect 301 /rtp-180-biotechnology https://www.rtp.org/program/180-sum-triangle/
+redirect 301 /park-life/events-calendar/food-truck-rodeo-5 https://www.rtp.org/program/rtp-food-truck-rodeo/
+redirect 301 /rtp-180-art-triangle https://www.rtp.org/program/180-sum-triangle/
+redirect 301 /park-life/events-calendar/rtp-180-social-media https://www.rtp.org/program/180-sum-triangle/
+redirect 301 /food-truck-rodeo-2 https://www.rtp.org/program/rtp-food-truck-rodeo/
+redirect 301 /park-life/events-calendar/category/networking https://www.rtp.org/events/
+redirect 301 /www.rtp.org/foodtruckrodeo https://www.rtp.org/program/rtp-food-truck-rodeo/
+redirect 301 /park-life/events-calendar/rtp-food-truck-rodeo-3 https://www.rtp.org/program/rtp-food-truck-rodeo/
+redirect 301 /about-rtp/our-partners/ https://www.rtp.org/why-rtp/
+redirect 301 /park-life/events-calendar/ncbiotech-jobs-network-career-fair https://www.rtp.org/events/
+redirect 301 /park-life/events-calendar/category/technology https://www.rtp.org/events/
+redirect 301 /files/Fact%20Sheets/08_129_rtp_pedestrian_trails_2.pdf https://www.rtp.org/events/
+redirect 301 /park-life https://www.rtp.org/about-us/programs/
+redirect 301 /event-categories/communitycharity-event https://www.rtp.org/event-categories/community/
+# Block WordPress xmlrpc.php requests
+<Files xmlrpc.php>
+order deny,allow
+deny from all
+allow from 123.123.123.123
+</Files>
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress

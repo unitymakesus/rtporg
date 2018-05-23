@@ -17,7 +17,9 @@
                     <a href="rtp.org/contact-us" class="contact-footer">
                         <p>Help Us Write The Next Chapter</p>
                         <strong>Contact us today</strong>
-                        <img class="" src="/wp-content/themes/abt-core-custom/img/g_contact-hexagon.svg" alt="">
+                        <div class="hexagon">
+                          <?php echo file_get_contents(get_stylesheet_directory() . "/img/g_contact-hexagon.svg"); ?>
+                        </div>
                     </a>
 
                     <?php if ( has_nav_menu('footer') ) : ?>

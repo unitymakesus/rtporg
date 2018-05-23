@@ -19,10 +19,10 @@ get_header(); ?>
   // $tile2_link = types_render_field("frontier-about-tile2-link", array("raw"=>"true"));
   // $tile3_label = types_render_field("frontier-about-tile3-label", array("raw"=>"true"));
   // $tile3_link = types_render_field("frontier-about-tile3-link", array("raw"=>"true"));
-  
+
   $maps_heading = types_render_field("frontier-about-map-heading", array("raw"=>"true"));
   $maps_content = do_shortcode(types_render_field("frontier-about-map-content", array("raw"=>"true")));
-  
+
   $links_heading = types_render_field("frontier-about-links-heading", array("raw"=>"true"));
   $links_content = do_shortcode(types_render_field("frontier-about-links-content", array("raw"=>"true")));
 
@@ -35,7 +35,7 @@ get_header(); ?>
   <section class="featured-banner theme-frosty frontier-about-intro">
     <div>
       <?php if ($intro_heading) : ?>
-        <h2><?php echo $intro_heading; ?></h2>   
+        <h2><?php echo $intro_heading; ?></h2>
       <?php endif; ?>
       <?php echo $intro_content; ?>
     </div>
@@ -43,7 +43,7 @@ get_header(); ?>
   <section class="featured-banner no-theme frontier-about-map">
     <div>
       <?php if ($maps_heading) : ?>
-        <h2><?php echo $maps_heading; ?></h2>   
+        <h2><?php echo $maps_heading; ?></h2>
       <?php endif; ?>
       <?php echo $maps_content; ?>
     </div>
@@ -51,20 +51,20 @@ get_header(); ?>
   <section class="featured-banner theme-frosty frontier-about-links">
     <div>
       <?php if ($links_heading) : ?>
-        <h2><?php echo $links_heading; ?></h2>   
+        <h2><?php echo $links_heading; ?></h2>
       <?php endif; ?>
       <?php echo $links_content; ?>
     </div>
   </section>
   <section class="featured-banner frontier-about-team">
     <?php if ($team_heading) : ?>
-      <h2><?php echo $team_heading; ?></h2>   
+      <h2><?php echo $team_heading; ?></h2>
     <?php endif; ?>
     <?php
       $args = array(
         'post_type' => 'people',
         'order' => 'ASC',
-        'orderby' => 'title',
+        'orderby' => 'post__in',
         'post__in' => explode(',', $team_members)
       );
       $posts = get_posts($args);
@@ -91,7 +91,7 @@ get_header(); ?>
           <?php endif; ?>
           <?php if($company) : ?>
             <p class="org"><?php echo $company; ?></p>
-          <?php endif; ?>          
+          <?php endif; ?>
           <img class="svg more" src="<?php echo $theme_dir; ?>/img/icons/i_search-submit.svg" />
         </a>
       </li>

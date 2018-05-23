@@ -7,7 +7,16 @@
  * @since ABT Core v1.0
  */
 
-get_header(); ?>
+get_header();
+
+if ( have_posts() ) : while ( have_posts() ) : the_post();
+
+  $user_id       = get_the_author_meta( 'ID' );
+  $user_obj      = get_userdata( $user_id );
+  $user_role     = ($user_obj->roles[0] == "contributor") ? "rtp-contributor" : $user_obj->roles[0];
+  $display_role  = ($user_role == "administrator") ? "Author" : ucwords(str_replace("-", " ", $user_role));
+  $slug          = get_post( $post )->post_name;
+  ?>
 
     <div class="content-container">
         <div class="breadcrumbs">
@@ -41,7 +50,7 @@ get_header(); ?>
                     <?php else : ?>
                         <div class="entry-content">
                             <?php //the_post_thumbnail(); ?>
-                            <?php the_content( __( 'Continue reading', 'abtcore' ) ); ?>
+                            <?php the_content(); ?>
                         </div>
                     <?php endif; ?>
                 </article>
@@ -58,5 +67,7 @@ get_header(); ?>
             </aside>
         </div>
     </div>
+
+	<?php endwhile; endif; ?>
 
 <?php get_footer(); ?>

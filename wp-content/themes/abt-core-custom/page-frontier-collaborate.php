@@ -10,36 +10,36 @@ get_header(); ?>
 <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
 <?php
   $theme_dir  = get_stylesheet_directory_uri();
-  
+
   $intro_heading = types_render_field("frontier-collaborate-intro-heading", array("raw"=>"true"));
   $intro_text = types_render_field("frontier-collaborate-intro-text", array("raw"=>"true"));
-  
+
   $rooms_heading = types_render_field("frontier-collaborate-rooms-heading", array("raw"=>"true"));
-  
+
   $room1_photo = types_render_field("frontier-collaborate-room1-photo", array("raw"=>"true"));
   $room1_title = types_render_field("frontier-collaborate-room1-title", array("raw"=>"true"));
   $room1_subtitle = types_render_field("frontier-collaborate-room1-subtitle", array("raw"=>"true"));
   $room1_text = types_render_field("frontier-collaborate-room1-text", array("raw"=>"true"));
   $room1_link = types_render_field("frontier-collaborate-room1-link", array("raw"=>"true"));
-  
+
   $room2_photo = types_render_field("frontier-collaborate-room2-photo", array("raw"=>"true"));
   $room2_title = types_render_field("frontier-collaborate-room2-title", array("raw"=>"true"));
   $room2_subtitle = types_render_field("frontier-collaborate-room2-subtitle", array("raw"=>"true"));
   $room2_text = types_render_field("frontier-collaborate-room2-text", array("raw"=>"true"));
   $room2_link = types_render_field("frontier-collaborate-room2-link", array("raw"=>"true"));
-  
+
   $room3_photo = types_render_field("frontier-collaborate-room3-photo", array("raw"=>"true"));
   $room3_title = types_render_field("frontier-collaborate-room3-title", array("raw"=>"true"));
   $room3_subtitle = types_render_field("frontier-collaborate-room3-subtitle", array("raw"=>"true"));
   $room3_text = types_render_field("frontier-collaborate-room3-text", array("raw"=>"true"));
   $room3_link = types_render_field("frontier-collaborate-room3-link", array("raw"=>"true"));
-  
+
   $room4_photo = types_render_field("frontier-collaborate-room4-photo", array("raw"=>"true"));
   $room4_title = types_render_field("frontier-collaborate-room4-title", array("raw"=>"true"));
   $room4_subtitle = types_render_field("frontier-collaborate-room4-subtitle", array("raw"=>"true"));
   $room4_text = types_render_field("frontier-collaborate-room4-text", array("raw"=>"true"));
   $room4_link = types_render_field("frontier-collaborate-room4-link", array("raw"=>"true"));
-  
+
   $room5_photo = types_render_field("frontier-collaborate-room5-photo", array("raw"=>"true"));
   $room5_title = types_render_field("frontier-collaborate-room5-title", array("raw"=>"true"));
   $room5_subtitle = types_render_field("frontier-collaborate-room5-subtitle", array("raw"=>"true"));
@@ -105,7 +105,11 @@ get_header(); ?>
             <li class="tooltip" title="HDMI hookup">
               <img class="svg" src="<?php echo $theme_dir; ?>/img/icons/i_hdmi.svg" />
               <span>HDMI hookup</span>
-            </li>            
+            </li>
+            <li class="tooltip" title="Teleconference">
+              <img class="svg" src="<?php echo $theme_dir; ?>/img/icons/i_phone.svg" />
+              <span>Teleconference</span>
+            </li>
           </ul>
           <a class="button primary" href="<?php echo $room2_link; ?>">Reserve Room</a>
         </div>
@@ -131,6 +135,10 @@ get_header(); ?>
             <li class="tooltip" title="HDMI hookup">
               <img class="svg" src="<?php echo $theme_dir; ?>/img/icons/i_hdmi.svg" />
               <span>HDMI hookup</span>
+            </li>
+            <li class="tooltip" title="Teleconference">
+              <img class="svg" src="<?php echo $theme_dir; ?>/img/icons/i_phone.svg" />
+              <span>Teleconference</span>
             </li>
           </ul>
           <a class="button primary" href="<?php echo $room3_link; ?>">Reserve Room</a>
@@ -187,7 +195,7 @@ get_header(); ?>
             <li class="tooltip" title="Configurable layouts">
               <img class="svg" src="<?php echo $theme_dir; ?>/img/icons/i_layouts.svg" />
               <span>Configurable layouts</span>
-            </li>         
+            </li>
           </ul>
           <a class="button primary" href="<?php echo $room5_link; ?>">Reserve Room</a>
         </div>

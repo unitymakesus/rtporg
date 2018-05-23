@@ -20,6 +20,15 @@
 	$google     = ot_get_option( 'google_plus_profile' );
 	$linkedin   = ot_get_option( 'linkedin_profile' );
 
+	// body classes
+	$classes = " ";
+	if (is_page_template('page-board-of-directors.php') || is_page_template('page-frontier-about.php') || is_page_template('page-staff.php')) {
+		$classes .= "archive-people ";
+	}
+
+	if (!is_single() && !is_page_template('page-contact-us.php')) {
+		$classes .= " layout-one-column";
+	}
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -38,10 +47,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <?php if (is_home() || is_front_page()) : ?>
 <body <?php body_class(); ?> data-default-menu-size="maximized">
 <?php else : ?>
-<body <?php body_class(); ?> data-default-menu-size="minimized">
+<body <?php body_class($classes); ?> data-default-menu-size="minimized">
 <?php endif; ?>
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K3PZ6P"
+<noscript class="gtm"><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K3PZ6P"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 	<?php

@@ -17,12 +17,7 @@
     ?>
   </nav>
 
-  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" class="donate-button" id="donate-button">
-    <input name="cmd" type="hidden" value="_s-xclick">
-    <input name="hosted_button_id" type="hidden" value="6WUATCBHUPJ88">
-    <input class="button primary" name="submit" type="submit" value="Donate Now">
-    <img src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" alt="" width="1" height="1" border="0">
-  </form>
+  <a href="https://squareup.com/store/research-triangle-park-charitable-fund" target="_blank" class="button">Donate Now</a>
 
   <?php if ( $stem_in_the_park_twitter || $stem_in_the_park_facebook || $stem_in_the_park_instagram || $stem_in_the_park_google ): ?>
     <ul class="follow">

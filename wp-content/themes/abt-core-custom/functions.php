@@ -113,7 +113,7 @@ class abt_core_custom_theme {
 
 		add_action('init', array(&$this, 'init'));
 		add_action('after_setup_theme', array(&$this, 'after_setup'), 50);
-		add_action('init', array( &$this, 'my_scripts_enqueue' ), 12 );
+		add_action('wp_enqueue_scripts', array( &$this, 'my_scripts_enqueue' ) );
 
 		remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 		remove_action( 'wp_print_styles', 'print_emoji_styles' );
@@ -126,7 +126,8 @@ class abt_core_custom_theme {
 		$has_https    = isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] == "on" ;
 
 		$timestamp    = date('Ydmhis');
-		$core_version = ABTCORE_VERSION;
+    $theme        = wp_get_theme();
+		$core_version = $theme->get('Version');
 
 		// Only for Theme Area
 		if( ! is_admin() ) {
@@ -142,26 +143,17 @@ class abt_core_custom_theme {
 
 			// Child Theme Scripts
 			wp_deregister_script('owl-carousel');
-      wp_deregister_script('jquery');
-      wp_deregister_script('modernizr');
-      wp_enqueue_script('jquery', '//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js', array(), null, false);
-      wp_enqueue_script('modernizr', '//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js', array(), null, false);
 
 			// Global Scripts
-			wp_enqueue_script('site_scripts', $theme_dir . '/js/scripts.js', array('jquery'), $core_version, true );
+			wp_enqueue_script('site_scripts', $theme_dir . '/js/scripts.min.js', array('jquery'), $core_version, true );
 
 			// Per Page/Template Scripts
 			if (is_home() || is_front_page()) {
         wp_deregister_script('site_scripts');
-        // wp_enqueue_script('tween_max', $theme_dir . '/js/TweenMax.min.js', array('jquery'), '1.19.0', true );
-				// wp_enqueue_script('scroll_magic', $theme_dir . '/js/ScrollMagic.min.js', array('jquery'), '2.0.5', true );
-				// wp_enqueue_script('gsap', $theme_dir . '/js/animation.gsap.min.js', array('jquery'), '2.0.5', true );
-				// wp_enqueue_script('headroom', $theme_dir . '/js/headroom.min.js', array('jquery'), '0.9.3', true );
-				// wp_enqueue_script('magnific_popup', $theme_dir . '/js/vendors/jquery.magnific-popup.js', array('jquery'), '0.9.9', true );
-				wp_enqueue_script('page_home_scripts', $theme_dir . '/js/page-home.js', array('jquery'), $core_version, true );
-        // TODO:
-        // Move jquery and modernizr to offsite CDN
-        // Dequeue google-calendar-events plugin files from home, blog, and events archives
+        wp_enqueue_script('aos', $theme_dir . '/js/aos.min.js', array(), '2.1.1', true);
+				wp_enqueue_script('headroom', $theme_dir . '/js/headroom.min.js', array('jquery'), '0.9.3', true );
+				wp_enqueue_script('magnific_popup', $theme_dir . '/js/vendors/jquery.magnific-popup.js', array('jquery'), '0.9.9', true );
+				wp_enqueue_script('page_home_scripts', $theme_dir . '/js/page-home.min.js', array('jquery'), $core_version, true );
 			}
 			if (is_page('About Us') || is_page('Our Mission') || is_page('Why RTP') || is_page_template('page-full-background.php') || is_page_template('page-one-column-animation.php')) {
 				wp_enqueue_script('page_infographics_scripts', $theme_dir . '/js/page-infographics.min.js', array('jquery'), $core_version, true );
@@ -182,6 +174,7 @@ class abt_core_custom_theme {
 			if (is_page_template('page-thelab.php') || is_page_template('page-thelab-about.php') || is_page_template('page-thelab-companies.php') || is_page_template('page-thelab-space.php')) {
 				wp_enqueue_script('page_thelab_scripts', $theme_dir . '/js/page-thelab.min.js', array('jquery'), $core_version, true );
 			}
+
 		}
 
 		else {

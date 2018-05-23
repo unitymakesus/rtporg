@@ -12,6 +12,7 @@
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-cached": "^0.0.3",
+    "gulp-clean-css": "^3.9.2",
     "gulp-concat": "~2.2.0",
     "gulp-iconfont": "^0.0.12",
     "gulp-iconfont-css": "^0.0.9",
@@ -26,7 +27,5 @@
     "node-bourbon": "4.2.8",
     "node-neat": "^1.7.2"
   },
-  "dependencies": {
-    "gulp": "^3.8.6"
-  }
+  "dependencies": {}
 }

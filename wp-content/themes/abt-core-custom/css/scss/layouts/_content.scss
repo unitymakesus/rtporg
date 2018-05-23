@@ -14,7 +14,7 @@
 	}
 	@include media($desktop) {
 		padding: 0;
-		@include rem(margin-bottom, 56px);
+		@include rem(margin-bottom, 92px);
 		@include row();
 	}
 
