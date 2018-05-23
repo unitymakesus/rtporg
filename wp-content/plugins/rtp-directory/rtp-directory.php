@@ -239,6 +239,27 @@ final class RTP_Dir {
 				'marker_realestate'	=> $this->plugin_url . 'images/icon-realestate-3d@2x.png'
       ));
     }
+
+		if (is_singular('rtp-company')) {
+
+			// Enqueue scripts
+			wp_enqueue_script( 'mapbox-script', 'https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.js', array(), null, true );
+			wp_enqueue_script( 'rtp-dir-company-script', $this->plugin_url . 'scripts/company-script.js', array('mapbox-script'), '1.0.0', true );
+
+			// Enqueue styles
+			wp_enqueue_style( 'mapbox-style', 'https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.css', null, false);
+			wp_enqueue_style( 'rtp-dir-style', $this->plugin_url . 'css/style.css', null, '1.0.0');
+
+			// Set up FacetWP API
+			// wp_localize_script('rtp-dir-script', 'rtp_dir_vars', array(
+			// 	'facetapi_uri'  		=> get_home_url() . '/wp-json/facetwp/v1/fetch',
+			// 	'ajax_uri'      		=> admin_url('admin-ajax.php'),
+			// 	'_ajax_nonce'   		=> $this->nonce,
+			// 	'marker_company'		=> $this->plugin_url . 'images/icon-company-3d@2x.png',
+			// 	'marker_recreation'	=> $this->plugin_url . 'images/icon-recreation-3d@2x.png',
+			// 	'marker_realestate'	=> $this->plugin_url . 'images/icon-realestate-3d@2x.png'
+			// ));
+		}
   }
 
 	/**

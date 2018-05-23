@@ -2,10 +2,6 @@
 /**
  * Template Name: RTP Directory
  *
- * @package WordPress
- * @subpackage ABT_CORE
- * @since ABT Core v1.0
- *
  */
 
 get_header(); ?>

@@ -89,6 +89,9 @@ class RTP_Dir_Templates {
 			'templates/page-directory.php' => 'RTP Directory',
 		);
 
+		// Add template for single company
+		add_filter('single_template', array($this, 'single_company_template'));
+
 	}
 
 	/**
@@ -165,6 +168,18 @@ class RTP_Dir_Templates {
 		// Return template
 		return $template;
 
+	}
+
+	/**
+	 * Also add single-company template
+	 */
+	public function single_company_template($template) {
+		global $post;
+		$found = locate_template('single-rtp-company.php');
+		if($post->post_type == 'rtp-company' && $found == ''){
+			$single_template = plugin_dir_path( __FILE__ ).'../templates/single-rtp-company.php';
+		}
+		return $single_template;
 	}
 
 }
