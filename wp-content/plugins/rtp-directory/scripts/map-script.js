@@ -351,7 +351,7 @@ jQuery(document).ready(function($) {
 
 		// When a click event occurs open a popup at the location of click
 		map.on('click', "polygon-fills-hover", function(e) {
-      console.log(e.features[0].properties);
+      console.log('Features', e.features[0].properties);
       new mapboxgl.Popup()
         .setLngLat(e.lngLat)
         .setHTML(e.features[0].properties.title)
@@ -393,7 +393,7 @@ jQuery(document).ready(function($) {
   // $('.filters').css('display', 'none');
 
   $('#filter-toggle').click(function() {
-    $('.filters').slideToggle('slow');
+    $('.filters .container-fluid').slideToggle('slow');
   });
 
 });
