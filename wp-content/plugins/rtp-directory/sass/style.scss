@@ -107,6 +107,7 @@
   overflow: hidden;
   clear: both;
   display: flex;
+  align-items: center;
 
   .result-logo {
     margin-right: 20px;
@@ -114,6 +115,13 @@
     height: 73px;
     border: 1px solid #979797;
     flex: 0 0 auto;
+
+    img {
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+      height: inherit;
+    }
   }
 
   h4 {

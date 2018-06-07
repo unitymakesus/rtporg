@@ -43,7 +43,8 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
   $ft_employment = get_field('eporting_data_full_time_employees');
   $pt_employment = get_field('eporting_data_part_time_employees');
   $year_in_rtp = get_field('eporting_data_year_arrived_in_rtp');
-  $university = get_field('eporting_data_university_affiliation');  // Array
+  $university = get_field('eporting_data_university_affiliation');
+  $company_size = get_field('eporting_data_company_size');  // Array
   ?>
   <div class="content-container">
     <div class="container-fluid">
@@ -92,9 +93,9 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
                   <dd><?php the_field('eporting_data_year_arrived_in_rtp'); ?></dd>
                 <?php } ?>
 
-                <?php if ($employment_public == true && (!empty($ft_employment) || !empty($pt_employment))) { ?>
-                  <dt>Company Size:</dt>
-                  <dd><?php echo ($ft_employment + ($pt_employment * 2)); ?></dd>
+                <?php if (!empty($company_size)) { ?>
+                  <dt>Company Sizesss:</dt>
+                  <dd><?php echo $company_size ?> Employees</dd>
                 <?php } ?>
 
                 <?php if ($locations == 'Multiple countries') { ?>
