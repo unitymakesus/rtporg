@@ -12,9 +12,10 @@ jQuery(document).ready(function($) {
 	});
 
 	// Contains a list of map objects used to filter against.
-	const pointLayers = ['recreation','companies','realestate'];
-  const polyLayers = ['polygon-fills', 'polygon-fills-hover', 'polygon-outlines'];
-  const lineLayers = ['lines'];
+
+	const pointLayers = ['recreation','companies','realestate']; // Array cats
+  const polyLayers = ['polygon-fills', 'polygon-fills-hover', 'polygon-outlines']; // Array shapes
+  const lineLayers = ['lines']; // Array of trails
   const allLayers = pointLayers.concat(polyLayers).concat(lineLayers);
 
   // Get facets on page load
@@ -382,9 +383,17 @@ jQuery(document).ready(function($) {
   $window.scroll(function() {
     if ( $window.scrollTop() >= distance ) {
       $('#map').addClass('fixed');
+
     } else {
       $('#map').removeClass('fixed');
     }
+  });
+
+  // Slide Toggle the Filter Bar
+  // $('.filters').css('display', 'none');
+
+  $('#filter-toggle').click(function() {
+    $('.filters').slideToggle('slow');
   });
 
 });

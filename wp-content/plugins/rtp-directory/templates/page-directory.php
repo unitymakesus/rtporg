@@ -19,6 +19,7 @@ get_header(); ?>
 					</div>
 				</div>
 			</div>
+			<button id="filter-toggle" style="background: black;">Filter Results</button>
 			<div class="filters">
 				<div class="container-fluid">
 					<div class="row">
