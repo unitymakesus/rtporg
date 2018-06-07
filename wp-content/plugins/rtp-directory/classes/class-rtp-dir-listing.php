@@ -107,6 +107,8 @@ class RTP_Dir_Listing {
         $properties = array(
           'id' => $id,
           'title' => get_the_title(),
+          'permalink' => get_permalink(),
+          'photo' => get_the_post_thumbnail_url(),
           'content-type' => $location_type,
           'facility-type' => $facility_type[0]->slug,
           'color' => '#038798',
@@ -148,6 +150,9 @@ class RTP_Dir_Listing {
           $properties = array(
             'id' => $id,
             'title' => get_the_title(),
+            'permalink' => get_permalink(),
+            'logo' => get_field('company_logo'),
+            'photo' => get_field('location_photograph'),
             'content-type' => $location_type
           );
 
@@ -173,6 +178,8 @@ class RTP_Dir_Listing {
           $properties = array(
             'id' => $id,
             'title' => get_the_title(),
+            'permalink' => get_permalink(),
+            'photo' => get_the_post_thumbnail_url(),
             'content-type' => $location_type,
           );
 
@@ -190,6 +197,8 @@ class RTP_Dir_Listing {
         $properties = array(
           'id' => $id,
           'title' => get_the_title(),
+          'permalink' => get_permalink(),
+          'photo' => get_the_post_thumbnail_url(),
           'content-type' => $location_type,
           'color' => '#850B7E',
           'hover-color' => '#850B7E',
