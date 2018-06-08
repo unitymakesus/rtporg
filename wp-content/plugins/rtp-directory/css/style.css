@@ -1268,3 +1268,8 @@
 .page-template-page-directory #filter-toggle .arrow-toggle {
   transform: rotate(180deg);
 }
+
+.checkboxIcons {
+  height: 17px;
+  margin-right: 10px;
+}

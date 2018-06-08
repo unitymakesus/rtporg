@@ -41,7 +41,7 @@ class RTP_Dir_Listing {
       // 'post_type' => 'rtp-facility',
       'post_type' => ['rtp-company', 'rtp-facility', 'rtp-site', 'rtp-space'],
       'posts_per_page' => 20,
-      'orderby' => 'title',
+      'orderby' => 'post_type',
       'order' => 'ASC',
       'facetwp' => true,
     ));
