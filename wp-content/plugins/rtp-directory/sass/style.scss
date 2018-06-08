@@ -139,7 +139,7 @@
 
 /* MAP */
 .directory-map {
-  height: calc(100vh - 92px);
+  height: calc(100vh);
   width: 100%;
   position: relative;
 
@@ -203,6 +203,33 @@
         background-image: url('../images/icon-trail.svg');
         background-repeat: repeat-x;
       }
+    }
+  }
+}
+
+.page-template-page-directory {
+  .meta-icon img {
+    height: 18px;
+  }
+
+  .footer-container {
+    display: none;
+  }
+
+  .content-container {
+    margin-bottom: 0px !important;
+  }
+
+  #filter-toggle {
+    background: #07444b;
+
+    span {
+      display: inline-block;
+      transition: transform 1s;
+    }
+
+    .arrow-toggle {
+      transform: rotate(180deg);
     }
   }
 }

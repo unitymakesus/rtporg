@@ -1194,7 +1194,7 @@
 
 /* MAP */
 .directory-map {
-  height: calc(100vh - 92px);
+  height: calc(100vh);
   width: 100%;
   position: relative;
 }
@@ -1247,4 +1247,24 @@
 .directory-map .key [class^="icon-"].icon-trails {
   background-image: url("../images/icon-trail.svg");
   background-repeat: repeat-x;
+}
+
+.page-template-page-directory .meta-icon img {
+  height: 18px;
+}
+.page-template-page-directory .footer-container {
+  display: none;
+}
+.page-template-page-directory .content-container {
+  margin-bottom: 0px !important;
+}
+.page-template-page-directory #filter-toggle {
+  background: #07444b;
+}
+.page-template-page-directory #filter-toggle span {
+  display: inline-block;
+  transition: transform 1s;
+}
+.page-template-page-directory #filter-toggle .arrow-toggle {
+  transform: rotate(180deg);
 }

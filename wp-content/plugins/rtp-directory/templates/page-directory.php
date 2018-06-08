@@ -19,22 +19,12 @@ get_header(); ?>
 					</div>
 				</div>
 			</div>
-			<button id="filter-toggle" style="background: black;">Filter Results</button>
+			<button id="filter-toggle">Filter Results <span>▲</span></button>
 			<div class="filters">
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-md-6">
 							<h3>Company Types</h3>
-							<?php
-							if (function_exists('get_wp_term_image'))
-							{
-							    $meta_image = get_wp_term_image($term_id);
-							    //It will give category/term image url
-							}
-
-							echo $meta_image; // category/term image url
-							 ?>
-
 							<?php echo do_shortcode('[facetwp facet="industry"]'); ?>
 						</div>
 						<div class="col-md-6">
@@ -55,6 +45,7 @@ get_header(); ?>
 					</div>
 				</div>
 			</div>
+
 			<div class="directory-listing">
 				<div class="row">
 					<div class="col-xs-12 col-sm-4 col-md-6 facetwp-template">
