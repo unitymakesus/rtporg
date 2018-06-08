@@ -48,9 +48,9 @@ get_header(); ?>
 									<?php echo do_shortcode('[facetwp facet="availability"]'); ?>
 								</div>
 							</div>
-							<div class="row">
+							<!-- <div class="row">
 								Search
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
