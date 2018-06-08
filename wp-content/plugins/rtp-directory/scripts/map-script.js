@@ -67,7 +67,7 @@ jQuery(document).ready(function($) {
     new_exp = [];
     new_filter = [];
 
-    console.info('inarray', ($.inArray(layer, polyLayers) != '-1'));
+    console.log('inarray', ($.inArray(layer, polyLayers) != '-1'));
 
     if (($.inArray(layer, polyLayers) != '-1') && (flabel == 'company-facet' || flabel == 'availability')) {
       // If we're filtering facilities (polygon layers) for company types or availabilities
@@ -81,11 +81,11 @@ jQuery(document).ready(function($) {
       });
 
       // Also if we're looking at polygons for sale (sites), include the original facet filter
-      console.info('facet', flabel);
+      console.log('facet', flabel);
       if (flabel == 'availability') {
-        console.info('value', fvalue);
-        console.info('isvalarray', Array.isArray(fvalue));
-        console.info('valinarray', $.inArray('for-sale', fvalue));
+        console.log('value', fvalue);
+        console.log('isvalarray', Array.isArray(fvalue));
+        console.log('valinarray', $.inArray('for-sale', fvalue));
         if (Array.isArray(fvalue) && $.inArray('for-sale', fvalue) != '-1') {
           fvalue.forEach(function(fv) {
             new_exp.push(['==', flabel + '-' + fv, true]);
@@ -114,7 +114,7 @@ jQuery(document).ready(function($) {
       new_filter = cleaned.concat([new_exp]);
     }
 
-    console.info('add-'+layer, new_filter);
+    console.log('add-'+layer, new_filter);
     // map.setFilter(layer, new_filter);
     return new_filter;
   }
@@ -165,9 +165,9 @@ jQuery(document).ready(function($) {
 
       // Filter each layer individually based on selected facets
       allLayers.forEach(function(layer) {
-        console.info('layer-start', layer);
+        console.log('layer-start', layer);
         filters = get_filter_facets(layer, facets, result_ids);
-        console.info('layer-filters', filters);
+        console.log('layer-filters', filters);
         map.setFilter(layer, filters);
       });
     }
@@ -371,6 +371,9 @@ jQuery(document).ready(function($) {
   $(document).on('facetwp-loaded', function() {
     // Re-calc map distance from top
     distance = $('#map').offset().top;
+
+    // Set company type images
+    console.log(rtp_dir_vars.company_type_images);
 
     // Filter layers on map
     set_map_facets();
