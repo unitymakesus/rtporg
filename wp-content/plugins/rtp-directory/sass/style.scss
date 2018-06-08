@@ -235,6 +235,27 @@
 }
 
 .checkboxIcons {
-  height: 17px;
+  width: 17px;
   margin-right: 10px;
+}
+
+.tooltip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  p {
+    margin: 10px;
+    font-size: 18px;
+  }
+
+  a {
+    font-size: 14px;
+    margin-top: 5px;
+    text-decoration: underline;
+  }
+
+  img {
+    height: 75px;
+  }
 }

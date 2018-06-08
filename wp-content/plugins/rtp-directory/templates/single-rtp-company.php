@@ -53,9 +53,9 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
           <div class="box">
             <div class="company-logo">
               <div>
-                <?php if (!empty($company_logo)) { ?>
-                  <img src="<?php echo $company_logo['sizes']['medium']; ?>" alt="<?php the_title(); ?> Logo"/>
-                <?php } ?>
+                <?php if(!empty($company_logo)):?>
+                  <img src="<?php the_field('company_logo'); ?>" alt="<?php the_title(); ?>" />
+                <?php endif; ?>
               </div>
             </div>
             <h1><?php the_title(); ?></h1>

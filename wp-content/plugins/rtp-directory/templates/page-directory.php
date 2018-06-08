@@ -77,7 +77,7 @@ get_header(); ?>
 								<div class="result-item">
 									<div class="result-logo">
 										<?php $logo = get_field('company_logo'); if(!empty($logo)):?>
-											<img src="<?php echo $logo['url']; ?>" alt="<?php the_title(); ?>"/>
+											<img src="<?php the_field('company_logo'); ?>" alt="<?php the_title(); ?>" />
 										<?php endif; ?>
 									</div>
 

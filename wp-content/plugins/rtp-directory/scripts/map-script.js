@@ -343,11 +343,12 @@ jQuery(document).ready(function($) {
 
       // Companies
       map.on('click', layer, function(e) {
-        console.log(e.features[0].properties.logo);
+        var prop = e.features[0].properties;
         var tooltip = `
           <div class="tooltip">
-            ${e.features[0].properties.title}
-            <img src="${e.features[0].properties.logo}" />
+            <p>${e.features[0].properties.title}</p>
+            ${prop.logo ? `<img src="${prop.logo}" alt="${prop.title}"/>` : ''}
+            <a href="${prop.permalink}">View Company</a>
           </div>
         `;
 
@@ -361,9 +362,12 @@ jQuery(document).ready(function($) {
 		// When a click event occurs open a popup at the location of click
 		map.on('click', "polygon-fills-hover", function(e) {
       // Other buildings
+      var prop = e.features[0].properties;
       var tooltip = `
         <div class="tooltip">
-          ${e.features[0].properties.title}
+          <p>${e.features[0].properties.title}</p>
+          ${prop.image ? `<img src="${prop.image}" alt="${prop.title}"/>` : ''}
+          <a href="${prop.permalink}">View Company</a>
         </div>
       `;
 
