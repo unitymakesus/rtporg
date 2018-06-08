@@ -341,27 +341,44 @@ jQuery(document).ready(function($) {
         map.getCanvas().style.cursor = '';
       });
 
+      // Companies
       map.on('click', layer, function(e) {
+        console.log(e.features[0].properties.logo);
+        var tooltip = `
+          <div class="tooltip">
+            ${e.features[0].properties.title}
+            <img src="${e.features[0].properties.logo}" />
+          </div>
+        `;
+
         new mapboxgl.Popup({ offset: 5 })
           .setLngLat(e.lngLat)
-          .setHTML(e.features[0].properties.title)
+          .setHTML(tooltip)
           .addTo(map);
 	    });
     });
 
 		// When a click event occurs open a popup at the location of click
 		map.on('click', "polygon-fills-hover", function(e) {
+      // Other buildings
+      var tooltip = `
+        <div class="tooltip">
+          ${e.features[0].properties.title}
+        </div>
+      `;
+
       console.log('Features', e.features[0].properties);
       new mapboxgl.Popup()
         .setLngLat(e.lngLat)
-        .setHTML(e.features[0].properties.title)
+        .setHTML(tooltip)
         .addTo(map);
     });
 
 		map.on('click', "lines", function(e) {
+      // Lines
       new mapboxgl.Popup()
         .setLngLat(e.lngLat)
-        .setHTML(e.features[0].properties.title)
+        .setHTML(e.featured[0].properties.title)
         .addTo(map);
     });
 
@@ -372,8 +389,19 @@ jQuery(document).ready(function($) {
     // Re-calc map distance from top
     distance = $('#map').offset().top;
 
-    // Set company type images
-    console.log(rtp_dir_vars.company_type_images);
+    // Set company icons and checkboxes
+    let checkboxCats = $('.facetwp-checkbox');
+    let companyImages = rtp_dir_vars.company_type_images;
+
+    // If checkboxes have an icon, set it after content
+    checkboxCats.each(function(i) {
+      let dataValue = $(this);
+      for (key in companyImages) {
+        if(dataValue.attr('data-value') == key) {
+          dataValue.prepend(`<img class="checkboxIcons" src="${companyImages[key]}" />`);
+        }
+      }
+    });
 
     // Filter layers on map
     set_map_facets();
@@ -393,10 +421,8 @@ jQuery(document).ready(function($) {
   });
 
   // Slide Toggle the Filter Bar
-  // $('.filters').css('display', 'none');
-
   $('#filter-toggle').click(function() {
     $('.filters .container-fluid').slideToggle('slow');
+    $('#filter-toggle span').toggleClass('arrow-toggle');
   });
-
 });
