@@ -12,6 +12,7 @@ sitemap.xml.gz
 searchreplacedb2.php
 local-adminer*
 rrrrreplace/*
+wp-content/plugins/rtp-directory/gulpfile.js
 
 # dev specific
 node_modules
