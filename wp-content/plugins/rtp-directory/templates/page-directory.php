@@ -19,6 +19,7 @@ get_header(); ?>
 					</div>
 				</div>
 			</div>
+			<button id="filter-toggle">Filter Results <span>▲</span></button>
 			<div class="filters">
 				<div class="container-fluid">
 					<div class="row">
@@ -37,13 +38,14 @@ get_header(); ?>
 									<?php echo do_shortcode('[facetwp facet="availability"]'); ?>
 								</div>
 							</div>
-							<div class="row">
+							<!-- <div class="row">
 								Search
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
 			</div>
+
 			<div class="directory-listing">
 				<div class="row">
 					<div class="col-xs-12 col-sm-4 col-md-6 facetwp-template">
@@ -74,7 +76,9 @@ get_header(); ?>
 								?>
 								<div class="result-item">
 									<div class="result-logo">
-										<?php echo get_field('company_logo'); ?>
+										<?php $logo = get_field('company_logo'); if(!empty($logo)):?>
+											<img src="<?php the_field('company_logo'); ?>" alt="<?php the_title(); ?>" />
+										<?php endif; ?>
 									</div>
 
 									<div class="result-details">
@@ -83,6 +87,12 @@ get_header(); ?>
 											<div class="result-meta">
 												<?php foreach ($location_terms as $lt) : ?>
 												<div class="meta-term"><?php echo $lt->name; ?></div>
+												<div class="meta-icon">
+													<?php if (function_exists('get_wp_term_image')) :?>
+														<?php $meta_image = get_wp_term_image($lt->term_id);?>
+														<img src="<?php echo $meta_image;?>"/>
+													<?php endif; ?>
+												</div>
 												<?php endforeach; ?>
 											</div>
 										<?php endif; ?>

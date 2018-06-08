@@ -12,9 +12,10 @@ jQuery(document).ready(function($) {
 	});
 
 	// Contains a list of map objects used to filter against.
-	const pointLayers = ['recreation','companies','realestate'];
-  const polyLayers = ['polygon-fills', 'polygon-fills-hover', 'polygon-outlines'];
-  const lineLayers = ['lines'];
+
+	const pointLayers = ['recreation','companies','realestate']; // Array cats
+  const polyLayers = ['polygon-fills', 'polygon-fills-hover', 'polygon-outlines']; // Array shapes
+  const lineLayers = ['lines']; // Array of trails
   const allLayers = pointLayers.concat(polyLayers).concat(lineLayers);
 
   // Get facets on page load
@@ -66,7 +67,7 @@ jQuery(document).ready(function($) {
     new_exp = [];
     new_filter = [];
 
-    console.info('inarray', ($.inArray(layer, polyLayers) != '-1'));
+    console.log('inarray', ($.inArray(layer, polyLayers) != '-1'));
 
     if (($.inArray(layer, polyLayers) != '-1') && (flabel == 'company-facet' || flabel == 'availability')) {
       // If we're filtering facilities (polygon layers) for company types or availabilities
@@ -80,11 +81,11 @@ jQuery(document).ready(function($) {
       });
 
       // Also if we're looking at polygons for sale (sites), include the original facet filter
-      console.info('facet', flabel);
+      console.log('facet', flabel);
       if (flabel == 'availability') {
-        console.info('value', fvalue);
-        console.info('isvalarray', Array.isArray(fvalue));
-        console.info('valinarray', $.inArray('for-sale', fvalue));
+        console.log('value', fvalue);
+        console.log('isvalarray', Array.isArray(fvalue));
+        console.log('valinarray', $.inArray('for-sale', fvalue));
         if (Array.isArray(fvalue) && $.inArray('for-sale', fvalue) != '-1') {
           fvalue.forEach(function(fv) {
             new_exp.push(['==', flabel + '-' + fv, true]);
@@ -113,7 +114,7 @@ jQuery(document).ready(function($) {
       new_filter = cleaned.concat([new_exp]);
     }
 
-    console.info('add-'+layer, new_filter);
+    console.log('add-'+layer, new_filter);
     // map.setFilter(layer, new_filter);
     return new_filter;
   }
@@ -164,9 +165,9 @@ jQuery(document).ready(function($) {
 
       // Filter each layer individually based on selected facets
       allLayers.forEach(function(layer) {
-        console.info('layer-start', layer);
+        console.log('layer-start', layer);
         filters = get_filter_facets(layer, facets, result_ids);
-        console.info('layer-filters', filters);
+        console.log('layer-filters', filters);
         map.setFilter(layer, filters);
       });
     }
@@ -340,27 +341,48 @@ jQuery(document).ready(function($) {
         map.getCanvas().style.cursor = '';
       });
 
+      // Companies
       map.on('click', layer, function(e) {
+        var prop = e.features[0].properties;
+        var tooltip = `
+          <div class="tooltip">
+            <p>${e.features[0].properties.title}</p>
+            ${prop.logo ? `<img src="${prop.logo}" alt="${prop.title}"/>` : ''}
+            <a href="${prop.permalink}">View Company</a>
+          </div>
+        `;
+
         new mapboxgl.Popup({ offset: 5 })
           .setLngLat(e.lngLat)
-          .setHTML(e.features[0].properties.title)
+          .setHTML(tooltip)
           .addTo(map);
 	    });
     });
 
 		// When a click event occurs open a popup at the location of click
 		map.on('click', "polygon-fills-hover", function(e) {
-      console.log(e.features[0].properties);
+      // Other buildings
+      var prop = e.features[0].properties;
+      var tooltip = `
+        <div class="tooltip">
+          <p>${e.features[0].properties.title}</p>
+          ${prop.image ? `<img src="${prop.image}" alt="${prop.title}"/>` : ''}
+          <a href="${prop.permalink}">View Company</a>
+        </div>
+      `;
+
+      console.log('Features', e.features[0].properties);
       new mapboxgl.Popup()
         .setLngLat(e.lngLat)
-        .setHTML(e.features[0].properties.title)
+        .setHTML(tooltip)
         .addTo(map);
     });
 
 		map.on('click', "lines", function(e) {
+      // Lines
       new mapboxgl.Popup()
         .setLngLat(e.lngLat)
-        .setHTML(e.features[0].properties.title)
+        .setHTML(e.featured[0].properties.title)
         .addTo(map);
     });
 
@@ -370,6 +392,20 @@ jQuery(document).ready(function($) {
   $(document).on('facetwp-loaded', function() {
     // Re-calc map distance from top
     distance = $('#map').offset().top;
+
+    // Set company icons and checkboxes
+    let checkboxCats = $('.facetwp-checkbox');
+    let companyImages = rtp_dir_vars.company_type_images;
+
+    // If checkboxes have an icon, set it after content
+    checkboxCats.each(function(i) {
+      let dataValue = $(this);
+      for (key in companyImages) {
+        if(dataValue.attr('data-value') == key) {
+          dataValue.prepend(`<img class="checkboxIcons" src="${companyImages[key]}" />`);
+        }
+      }
+    });
 
     // Filter layers on map
     set_map_facets();
@@ -382,9 +418,15 @@ jQuery(document).ready(function($) {
   $window.scroll(function() {
     if ( $window.scrollTop() >= distance ) {
       $('#map').addClass('fixed');
+
     } else {
       $('#map').removeClass('fixed');
     }
   });
 
+  // Slide Toggle the Filter Bar
+  $('#filter-toggle').click(function() {
+    $('.filters .container-fluid').slideToggle('slow');
+    $('#filter-toggle span').toggleClass('arrow-toggle');
+  });
 });

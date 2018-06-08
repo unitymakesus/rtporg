@@ -62,6 +62,7 @@ final class RTP_Dir {
 	// Custom Post Type/Taxonomy Arrays
 	public $post_types = array();
   public $taxonomies = array();
+	public $company_type_images = array();
 
 	/**
 	 * Constructor function.
@@ -236,7 +237,8 @@ final class RTP_Dir {
         '_ajax_nonce'   		=> $this->nonce,
 				'marker_company'		=> $this->plugin_url . 'images/icon-company-3d@2x.png',
 				'marker_recreation'	=> $this->plugin_url . 'images/icon-recreation-3d@2x.png',
-				'marker_realestate'	=> $this->plugin_url . 'images/icon-realestate-3d@2x.png'
+				'marker_realestate'	=> $this->plugin_url . 'images/icon-realestate-3d@2x.png',
+				'company_type_images' => $this->company_type_images
       ));
     }
 
@@ -284,6 +286,17 @@ final class RTP_Dir {
 		foreach ($this->taxonomies as $tax) {
       $tax->register();
     }
+
+		// Create array of company type images
+    $terms = get_terms('rtp-company-type');
+
+    if (!empty($terms)) {
+      foreach ($terms as $type) {
+        if (function_exists('get_wp_term_image')) {
+          $this->company_type_images[$type->slug] = get_wp_term_image($type->term_id);
+      	}
+      }
+		}
 	}
 
   /**
