@@ -1,4 +1,4 @@
-.single-rtp-company {
+.single-rtp-company, .single-rtp-facility, .single-rtp-site, .single-rtp-space {
   .container-fluid {
     padding-top: 30px;
     padding-bottom: 30px;
@@ -76,12 +76,12 @@
     }
   }
 
-  .static-map-wrapper {
+  .location-map-wrapper {
     width: 100%;
     padding-bottom: 60%;
     position: relative;
 
-    .static-map {
+    .location-map {
       position: absolute;
       top: 0;
       left: 0;

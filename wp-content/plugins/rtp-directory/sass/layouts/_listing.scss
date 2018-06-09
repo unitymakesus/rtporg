@@ -1,0 +1,48 @@
+.facetwp-template {
+  padding-left: 3rem;
+  padding-top: 2rem;
+}
+
+.label.count {
+  font-size: 0.85em;
+  display: block;
+
+  div {
+    display: inline-block;
+  }
+}
+
+.result-item {
+  margin-bottom: 15px;
+  overflow: hidden;
+  clear: both;
+  display: flex;
+  align-items: center;
+
+  .result-logo {
+    margin-right: 20px;
+    width: 96px;
+    height: 73px;
+    border: 1px solid #979797;
+    flex: 0 0 auto;
+
+    img {
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+      height: inherit;
+    }
+  }
+
+  h4 {
+    margin: 0;
+
+    a {
+      text-decoration: none;
+
+      &:hover, &:focus, &:active {
+        text-decoration: underline;
+      }
+    }
+  }
+}

@@ -1,0 +1,55 @@
+#filter-toggle {
+  margin-bottom: 0;
+  background: #07444b;
+
+  span {
+    display: inline-block;
+    transition: transform 1s;
+  }
+
+  .arrow-toggle {
+    transform: rotate(180deg);
+  }
+}
+
+.filters {
+  background: #f2f6f7;
+  border-bottom: 10px solid #07444C;
+
+  h3 {
+    margin-bottom: 5px;
+    font-size: 1.25rem;
+  }
+}
+
+.facetwp-pager {
+  .facetwp-pager-label {
+    display: none;
+  }
+
+  .facetwp-page {
+    display: inline-block;
+    min-width: 30px;
+    padding: 0;
+    height: 30px;
+    line-height: 30px;
+    font-size: 0.9em;
+    background: #038798;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+
+    &.active {
+      background: #07444C;
+    }
+
+    &:hover, &:focus {
+      background: lighten(#038798, 10%);
+    }
+  }
+}
+
+.checkboxIcons {
+  width: 17px;
+  margin: 0 5px;
+}
