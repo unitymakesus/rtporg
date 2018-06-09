@@ -90,7 +90,7 @@ class RTP_Dir_Templates {
 		);
 
 		// Add template for single company
-		add_filter('single_template', array($this, 'single_company_template'));
+		add_filter('single_template', array($this, 'single_location_templates'));
 
 	}
 
@@ -173,12 +173,25 @@ class RTP_Dir_Templates {
 	/**
 	 * Also add single-company template
 	 */
-	public function single_company_template($template) {
+	public function single_location_templates($template) {
 		global $post;
-		$found = locate_template('single-rtp-company.php');
-		if($post->post_type == 'rtp-company' && $found == ''){
+		// Check active theme for template override
+		$single_company_override = locate_template('single-rtp-company.php');
+		$single_facility_override = locate_template('single-rtp-facility.php');
+		$single_site_override = locate_template('single-rtp-site.php');
+		$single_space_override = locate_template('single-rtp-space.php');
+
+		// Use default template set in this plugin if no overrides are set in theme
+		if($post->post_type == 'rtp-company' && $single_company_override == '') {
 			$single_template = plugin_dir_path( __FILE__ ).'../templates/single-rtp-company.php';
+		} elseif ($post->post_type == 'rtp-facility' && $single_facility_override == '') {
+			$single_template = plugin_dir_path( __FILE__ ).'../templates/single-rtp-facility.php';
+		} elseif ($post->post_type == 'rtp-site' && $single_site_override == '') {
+			$single_template = plugin_dir_path( __FILE__ ).'../templates/single-rtp-site.php';
+		} elseif ($post->post_type == 'rtp-space' && $single_space_override == '') {
+			$single_template = plugin_dir_path( __FILE__ ).'../templates/single-rtp-space.php';
 		}
+
 		return $single_template;
 	}
 

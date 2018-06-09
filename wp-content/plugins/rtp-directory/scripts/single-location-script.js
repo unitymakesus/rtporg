@@ -4,7 +4,7 @@ jQuery(document).ready(function($) {
 
   	// Initiatlize Map
   	const map = new mapboxgl.Map({
-      container: 'static-map',
+      container: 'location-map',
       style: 'mapbox://styles/abtadmin/cjfo8weeq2rtu2rn0q4tuqp0c',
   		// center: ['-78.8678052','35.8985119'],
   		center: ['-78.865','35.892'],

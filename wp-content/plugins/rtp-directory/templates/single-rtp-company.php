@@ -22,7 +22,7 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
     $street_address = get_field('street_address', $related_facility[0]);
   } else {
     $street_address = get_field('street_address');
-    $coords = get_fields('details_coordinates');
+    $coords = get_field('details_coordinates');
   }
 
   // Get In Touch
@@ -163,17 +163,17 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
                   <?php } ?>
                 <?php } ?>
               </dl>
-
-              <?php if (!empty($website)) : ?>
-                <a class="button secondary large" href="<?php echo $website; ?>" target="_blank" rel="noopener">Visit Website</a>
-              <?php endif; ?>
             </div>
+
+            <?php if (!empty($website)) : ?>
+              <a class="button secondary large" href="<?php echo $website; ?>" target="_blank" rel="noopener">Visit Website</a>
+            <?php endif; ?>
           </div>
         </div>
 
         <div class="col-xs-12 col-md-6">
-          <div class="static-map-wrapper">
-            <div class="static-map" id="static-map"></div>
+          <div class="location-map-wrapper">
+            <div class="location-map" id="location-map"></div>
           </div>
           <div class="address">
             <?php //var_dump($within_facility); ?>

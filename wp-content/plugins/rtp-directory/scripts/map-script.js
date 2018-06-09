@@ -56,41 +56,6 @@ jQuery(document).ready(function($) {
     return reset;
   }
 
-  // Remove all facet filters
-  // function remove_all_facets(layer) {
-  //   currentFilter = map.getFilter(layer);
-  //
-  //   // Set up empty arrays to keep expressions
-  //   cleaned = [], cleaned_any = [];
-  //
-  //   // Loop through each of the expressions in the current filter
-  //   $.each(currentFilter, function(ckey, cval) {
-  //     // Handle expressions that contain more expressions
-  //     if (cval[0].indexOf('any') >= 0) {
-  //       cleaned_any = [];
-  //
-  //       // Loop through sub-expressions
-  //       $.each(cval, function(k, v) {
-  //         // Only keep the expressions that are default for the layer's filter
-  //         if (v[1].indexOf(flabel) == '-1' && v[1].indexOf('tenant-id') == '-1') {
-  //           cleaned_any.push(v);
-  //         }
-  //       });
-  //
-  //       if (cleaned_any.length > 1) {
-  //         cleaned.push(cleaned_any);
-  //       }
-  //
-  //       // Only keep the expressions that are default for the layer's filter
-  //     } else if (cval[1].indexOf('facet') == '-1' && cval[1].indexOf('availability') == '-1') {
-  //       cleaned.push(cval);
-  //     }
-  //   });
-  //
-  //   console.log(layer + ' clean', cleaned);
-  //   return cleaned;
-  // }
-
   // Check to see if any facets are set
   function areFacetsSet(facets) {
     let set = false;
@@ -104,145 +69,6 @@ jQuery(document).ready(function($) {
 
     return set;
   }
-
-  // Set up layer filters
-  // function setup_layer_filters(layer, facets, result_ids) {
-  //   let facets_set = false,
-  //       new_expression = ['any'],
-  //
-  //   // Check to see if any facets are set
-  //   $.each(facets, function(fkey, fval) {
-  //     // Not for pagination facets though
-  //     if (fkey == 'paged') {
-  //       return false;
-  //     }
-  //
-  //     // If any values are set for this facet
-  //     if (fval.length > 0) {
-  //       facets_set = true;
-  //     }
-  //   });
-  //
-  //   // Start building layer's filters from scratch to avoid duplicate filters being set
-  //   cleaned = remove_all_facets(layer, 'blank');
-  //
-  //   // Set up filters if any facets are set
-  //   if (facets_set == true) {
-  //     result_ids.forEach(function(id) {
-  //       // Match on ids for any location
-  //       new_expression.push(['==', 'id', id]);
-  //
-  //       // Also match on ids of tenants within facility
-  //       if (($.inArray(layer, polyLayers) != '-1')) {
-  //         new_expression.push(['==', 'tenant-id-' + id, true]);
-  //       }
-  //     });
-  //
-  //     // Add new expression to cleaned filter
-  //     if (cleaned[0] == '==') {
-  //       new_filter = ['all', cleaned, new_expression];
-  //     } else {
-  //       new_filter = cleaned.concat([new_expression]);
-  //     }
-  //
-  //     return new_filter;
-  //   }
-  // }
-  //
-  // // Add filter for facet
-  // function add_filter_facet(layer, flabel, fvalue) {
-  //   // start from scratch to avoid dupes
-  //   cleaned = remove_all_facets(layer, flabel);
-  //   new_exp = [];
-  //   new_filter = [];
-  //
-  //   console.log('inarray', ($.inArray(layer, polyLayers) != '-1'));
-  //
-  //   if (($.inArray(layer, polyLayers) != '-1') && (flabel == 'company-facet' || flabel == 'availability')) {
-  //     // If we're filtering facilities (polygon layers) for company types or availabilities
-  //     // we're going to look for companies/spaces that are located within that facility
-  //
-  //     new_exp = ['any'];
-  //
-  //     result_ids = FWP.settings.post_ids;
-  //     result_ids.forEach(function(r) {
-  //       new_exp.push(['==', 'tenant-id-' + r, true]);
-  //     });
-  //
-  //     // Also if we're looking at polygons for sale (sites), include the original facet filter
-  //     console.log('facet', flabel);
-  //     if (flabel == 'availability') {
-  //       console.log('value', fvalue);
-  //       console.log('isvalarray', Array.isArray(fvalue));
-  //       console.log('valinarray', $.inArray('for-sale', fvalue));
-  //       if (Array.isArray(fvalue) && $.inArray('for-sale', fvalue) != '-1') {
-  //         fvalue.forEach(function(fv) {
-  //           new_exp.push(['==', flabel + '-' + fv, true]);
-  //         });
-  //       } else if (fvalue == 'for-sale') {
-  //         new_exp.push(['==', flabel + '-' + fvalue, true]);
-  //       }
-  //     }
-  //
-  //   } else {
-  //     // If we're filtering any other type of layer, we're going to look for
-  //     // results that match the specific facet
-  //     if (Array.isArray(fvalue)) {
-  //       new_exp = ['any'];
-  //       fvalue.forEach(function(fv) {
-  //         new_exp.push(['==', flabel + '-' + fv, true]);
-  //       });
-  //     } else {
-  //       new_exp = ['==', flabel + '-' + fvalue, true];
-  //     }
-  //   }
-  //
-  //   if (cleaned[0] == '==') {
-  //     new_filter = ['all', cleaned, new_exp];
-  //   } else {
-  //     new_filter = cleaned.concat([new_exp]);
-  //   }
-  //
-  //   console.log('add-'+layer, new_filter);
-  //   // map.setFilter(layer, new_filter);
-  //   return new_filter;
-  // }
-
-  // function get_filter_facets(layer, facets, result_ids) {
-  //   // Set up the filters array to hold returned filters
-  //   let filters = [];
-  //
-  //   $.each(facets, function(fkey, fval) {
-  //     // Not for pagination facets though
-  //     if (fkey == 'paged') {
-  //       return false;
-  //     }
-  //
-  //     // Set label for expression based on selected facets
-  //     if (fkey == 'availability') {
-  //       flabel = 'availability';
-  //     } else if (fkey == 'facility_types') {
-  //       flabel = 'facility-facet';
-  //     } else if (fkey == 'industry') {
-  //       flabel = 'company-facet';
-  //     }
-  //
-  //     // If one or more values are set for this facet
-  //     if (fval.length == 1) {
-  //       filters = add_filter_facet(layer, flabel, fval[0]);
-  //     } else if (fval.length > 1) {
-  //       filters = add_filter_facet(layer, flabel, fval);
-  //     }
-  //   });
-  //
-  //   // If there are no facets set at all, reset this layer's filters to default
-  //   if (filters.length == 0) {
-  //     console.log('removing all');
-  //     filters = remove_all_facets(layer, 'blank');
-  //   }
-  //
-  //   return filters;
-  // }
 
   // Set facets on the map
   function set_map_facets() {
@@ -285,14 +111,6 @@ jQuery(document).ready(function($) {
         // Set this layer's filter
         map.setFilter(layer, new_filter);
       });
-
-      // Filter each layer individually based on selected facets
-      // allLayers.forEach(function(layer) {
-      //   console.log('layer-start', layer);
-      //   filters = get_layer_filters(layer, facets, result_ids);
-      //   console.log('layer-filters', filters);
-      //   map.setFilter(layer, filters);
-      // });
     }
   }
 
@@ -445,13 +263,31 @@ jQuery(document).ready(function($) {
     // the state-fills-hover layer to only show the matching state, thus making a hover effect.
     map.on("mousemove", "polygon-fills", function(e) {
       map.getCanvas().style.cursor = 'pointer';
-      map.setFilter("polygon-fills-hover", ["==", "hover_id", e.features[0].properties.id]);
+      map.setFilter("polygon-fills-hover", ["==", "hover_id", e.features[0].properties.hover_id]);
     });
 
     // Reset the state-fills-hover layer's filter when the mouse leaves the layer.
     map.on("mouseleave", "polygon-fills", function() {
       map.getCanvas().style.cursor = '';
       map.setFilter("polygon-fills-hover", ["==", "hover_id", ""]);
+    });
+
+		// When a click event occurs open a popup at the location of click
+		map.on('click', "polygon-fills-hover", function(e) {
+      // Other buildings
+      var prop = e.features[0].properties;
+      var tooltip = `
+        <div class="tooltip">
+          <p>${prop.title}</p>
+          ${prop.image ? `<img src="${prop.image}" alt="${prop.title}"/>` : ''}
+          <a href="${prop.permalink}">More Information</a>
+        </div>
+      `;
+
+      new mapboxgl.Popup()
+        .setLngLat(e.lngLat)
+        .setHTML(tooltip)
+        .addTo(map);
     });
 
     // Hover and click states for points
@@ -464,14 +300,14 @@ jQuery(document).ready(function($) {
         map.getCanvas().style.cursor = '';
       });
 
-      // Companies
+      // Companies, Recreation Facilities, and some Real Estate
       map.on('click', layer, function(e) {
         var prop = e.features[0].properties;
         var tooltip = `
           <div class="tooltip">
-            <p>${e.features[0].properties.title}</p>
+            <p>${prop.title}</p>
             ${prop.logo ? `<img src="${prop.logo}" alt="${prop.title}"/>` : ''}
-            <a href="${prop.permalink}">View Company</a>
+            <a href="${prop.permalink}">More Information</a>
           </div>
         `;
 
@@ -482,30 +318,30 @@ jQuery(document).ready(function($) {
 	    });
     });
 
-		// When a click event occurs open a popup at the location of click
-		map.on('click', "polygon-fills-hover", function(e) {
-      // Other buildings
+    // Hover state for lines
+    map.on('mousemove', 'lines', function(e) {
+      map.getCanvas().style.cursor = 'pointer';
+    });
+
+    map.on('mouseleave', 'lines', function(e) {
+      map.getCanvas().style.cursor = '';
+    });
+
+    // Click state for lines
+		map.on('click', "lines", function(e) {
+      // Lines
       var prop = e.features[0].properties;
       var tooltip = `
         <div class="tooltip">
-          <p>${e.features[0].properties.title}</p>
+          <p>${prop.title}</p>
           ${prop.image ? `<img src="${prop.image}" alt="${prop.title}"/>` : ''}
-          <a href="${prop.permalink}">View Company</a>
+          <a href="${prop.permalink}">More Information</a>
         </div>
       `;
 
-      console.log('Features', e.features[0].properties);
       new mapboxgl.Popup()
         .setLngLat(e.lngLat)
         .setHTML(tooltip)
-        .addTo(map);
-    });
-
-		map.on('click', "lines", function(e) {
-      // Lines
-      new mapboxgl.Popup()
-        .setLngLat(e.lngLat)
-        .setHTML(e.featured[0].properties.title)
         .addTo(map);
     });
 
@@ -524,8 +360,9 @@ jQuery(document).ready(function($) {
     checkboxCats.each(function(i) {
       let dataValue = $(this);
       for (key in companyImages) {
-        if(dataValue.attr('data-value') == key) {
-          dataValue.prepend(`<img class="checkboxIcons" src="${companyImages[key]}" />`);
+        if(dataValue.attr('data-value') == key && !dataValue.hasClass('has-icon')) {
+          dataValue.addClass('has-icon');
+          dataValue.prepend(`<img class="checkboxIcons" src="${companyImages[key]}" alt="" />`);
         }
       }
     });
@@ -549,7 +386,9 @@ jQuery(document).ready(function($) {
 
   // Slide Toggle the Filter Bar
   $('#filter-toggle').click(function() {
-    $('.filters .container-fluid').slideToggle('slow');
+    $('.filters .container-fluid').slideToggle('slow', function() {
+      distance = $('#map').offset().top;
+    });
     $('#filter-toggle span').toggleClass('arrow-toggle');
   });
 });

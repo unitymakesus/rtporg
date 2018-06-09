@@ -221,7 +221,6 @@ final class RTP_Dir {
    */
   public function load_scripts_styles() {
     if (is_page_template('templates/page-directory.php')) {
-
       // Enqueue scripts
       wp_enqueue_script( 'mapbox-script', 'https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.js', array(), null, true );
       wp_enqueue_script( 'rtp-dir-script', $this->plugin_url . 'scripts/map-script.js', array('mapbox-script'), '1.0.0', true );
@@ -230,9 +229,8 @@ final class RTP_Dir {
       wp_enqueue_style( 'mapbox-style', 'https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.css', null, false);
       wp_enqueue_style( 'rtp-dir-style', $this->plugin_url . 'css/style.css', null, '1.0.0');
 
-      // Set up FacetWP API
+      // Set up JS vars
       wp_localize_script('rtp-dir-script', 'rtp_dir_vars', array(
-        'facetapi_uri'  		=> get_home_url() . '/wp-json/facetwp/v1/fetch',
         'ajax_uri'      		=> admin_url('admin-ajax.php'),
         '_ajax_nonce'   		=> $this->nonce,
 				'marker_company'		=> $this->plugin_url . 'images/icon-company-3d@2x.png',
@@ -242,25 +240,14 @@ final class RTP_Dir {
       ));
     }
 
-		if (is_singular('rtp-company')) {
-
+		if (is_singular('rtp-company') || is_singular('rtp-facility') || is_singular('rtp-site') || is_singular('rtp-space')) {
 			// Enqueue scripts
 			wp_enqueue_script( 'mapbox-script', 'https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.js', array(), null, true );
-			wp_enqueue_script( 'rtp-dir-company-script', $this->plugin_url . 'scripts/company-script.js', array('mapbox-script'), '1.0.0', true );
+			wp_enqueue_script( 'rtp-dir-location-script', $this->plugin_url . 'scripts/single-location-script.js', array('mapbox-script'), '1.0.0', true );
 
 			// Enqueue styles
 			wp_enqueue_style( 'mapbox-style', 'https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.css', null, false);
 			wp_enqueue_style( 'rtp-dir-style', $this->plugin_url . 'css/style.css', null, '1.0.0');
-
-			// Set up FacetWP API
-			// wp_localize_script('rtp-dir-script', 'rtp_dir_vars', array(
-			// 	'facetapi_uri'  		=> get_home_url() . '/wp-json/facetwp/v1/fetch',
-			// 	'ajax_uri'      		=> admin_url('admin-ajax.php'),
-			// 	'_ajax_nonce'   		=> $this->nonce,
-			// 	'marker_company'		=> $this->plugin_url . 'images/icon-company-3d@2x.png',
-			// 	'marker_recreation'	=> $this->plugin_url . 'images/icon-recreation-3d@2x.png',
-			// 	'marker_realestate'	=> $this->plugin_url . 'images/icon-realestate-3d@2x.png'
-			// ));
 		}
   }
 

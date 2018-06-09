@@ -59,7 +59,6 @@ get_header(); ?>
 						</div>
 
 						<?php
-						// echo do_shortcode('[facetwp template="locations"]');
 						$locations = (new RTP_Dir_Listing)->get_paged_locations();
 						if ($locations->have_posts()) :
 							while ($locations->have_posts()) : $locations->the_post();

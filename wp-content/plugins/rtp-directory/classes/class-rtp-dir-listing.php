@@ -49,6 +49,24 @@ class RTP_Dir_Listing {
     return $locations;
   }
 
+  public function get_facility_tenant_ids($id) {
+    // Query locations from WPDB
+    // $tenants = new WP_Query(array(
+    //   'post_type' => ['rtp-company', 'rtp-space'],
+    //   'posts_per_page' => 20,
+    //   'orderby' => 'post_type',
+    //   'order' => 'DESC',
+    //   'facetwp' => true
+    // ));
+    global $wpdb;
+    $like_id = '%"' . $id . '"%';
+    $query = "SELECT id FROM {$wpdb->prefix}posts AS p INNER JOIN {$wpdb->prefix}postmeta AS pm ON (p.ID = pm.post_id) WHERE 1=1 AND (pm.meta_key = 'related_facility' AND pm.meta_value LIKE %s) AND p.post_type IN ('rtp-company', 'rtp-space') AND p.post_status = 'publish' GROUP BY p.ID";
+    $sql = $wpdb->prepare($query, $like_id);
+    $tenants = $wpdb->get_results($sql);
+
+    return $tenants;
+  }
+
  	/**
  	 * Get array
  	 * @access  public
@@ -106,6 +124,7 @@ class RTP_Dir_Listing {
 
         $properties = array(
           'id' => $id,
+          'hover_id' => $id,
           'title' => get_the_title(),
           'permalink' => get_permalink(),
           'photo' => get_the_post_thumbnail_url(),
@@ -149,6 +168,7 @@ class RTP_Dir_Listing {
 
           $properties = array(
             'id' => $id,
+            'hover_id' => $id,
             'title' => get_the_title(),
             'permalink' => get_permalink(),
             'logo' => get_field('company_logo'),
@@ -177,6 +197,7 @@ class RTP_Dir_Listing {
 
           $properties = array(
             'id' => $id,
+            'hover_id' => $id,
             'title' => get_the_title(),
             'permalink' => get_permalink(),
             'photo' => get_the_post_thumbnail_url(),
@@ -196,6 +217,7 @@ class RTP_Dir_Listing {
 
         $properties = array(
           'id' => $id,
+          'hover_id' => $id,
           'title' => get_the_title(),
           'permalink' => get_permalink(),
           'photo' => get_the_post_thumbnail_url(),
