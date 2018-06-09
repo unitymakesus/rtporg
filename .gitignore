@@ -13,6 +13,7 @@ searchreplacedb2.php
 local-adminer*
 rrrrreplace/*
 wp-content/plugins/rtp-directory/gulpfile.js
+wp-content/plugins/rtp-directory/.sass-cache/
 
 # dev specific
 node_modules
