@@ -12,4 +12,16 @@ jQuery(document).ready(function($) {
       interactive: false
   	});
 
+    // Stick map to fixed position when it reaches top of screen on scroll
+    const $window = $(window);
+    let distance = $('#location-map.directory-map').offset().top;
+
+    $window.scroll(function() {
+      if ( $window.scrollTop() >= distance ) {
+        $('#location-map.directory-map').addClass('fixed');
+
+      } else {
+        $('#location-map.directory-map').removeClass('fixed');
+      }
+    });
 });

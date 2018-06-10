@@ -38,6 +38,11 @@
     margin-bottom: 0;
   }
 
+  .facility-info {
+    background: #f2f6f7;
+    border-bottom: 10px solid #07444C;
+  }
+
   .company-info {
     & > .row {
       & > div[class*="col-"] {

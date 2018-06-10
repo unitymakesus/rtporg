@@ -65,11 +65,12 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
               <?php the_content(); ?>
             </div>
             <div class="col-md-4">
-              <div class="address">
-                <?php if (!empty($road_access)) {
-                  echo $road_access;
-                } ?>
-              </div>
+              <p class="address">
+                <?php if (!empty($street_address)) {
+                  echo $street_address;
+                } ?><br />
+                RTP, NC 27709
+              </p>
             </div>
           </div>
         </div>
@@ -77,7 +78,7 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
 
       <div class="directory-listing">
         <div class="row">
-          <div class="col-xs-12 col-sm-4 col-md-6 facetwp-template">
+          <div class="col-xs-12 col-sm-6 facetwp-template">
             <div class="clearfix vertical-padding">
   						<?php
   						$tenants = (new RTP_Dir_Listing)->get_facility_tenant_ids($id);
@@ -131,9 +132,7 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
           </div>
 
           <div class="col-xs-12 col-sm-8 col-md-6">
-            <div class="location-map-full">
-              <div id="location-map" class="location-map"></div>
-            </div>
+            <div id="location-map" class="directory-map"></div>
           </div>
         </div>
       </div>
@@ -201,9 +200,6 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
               <?php } ?>
 
               <?php echo $street_address; ?><br />
-                <?php if (!empty($suite_or_building)) { ?>
-                  <?php echo $suite_or_building; ?>
-                <?php } ?>
                 RTP, NC 27709
             </div>
 

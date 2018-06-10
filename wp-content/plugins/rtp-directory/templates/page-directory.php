@@ -48,7 +48,7 @@ get_header(); ?>
 
 			<div class="directory-listing">
 				<div class="row">
-					<div class="col-xs-12 col-sm-4 col-md-6 facetwp-template">
+					<div class="col-xs-12 col-sm-6 facetwp-template">
 						<div class="clearfix vertical-padding">
 							<div class="float-left">
 				        <span class="count label">Showing <?php echo do_shortcode('[facetwp counts="true"]'); ?> Results</span>
@@ -115,7 +115,7 @@ get_header(); ?>
 							</div>
 						</div>
 					</div>
-					<div class="col-xs-12 col-sm-8 col-md-6">
+					<div class="col-xs-12 col-sm-6">
 	        	<div id="map" class="directory-map">
 							<div class="key">
 								<h6>Map Key</h6>
