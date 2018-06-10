@@ -40,19 +40,21 @@
       display: inline-block;
       width: 18px;
       height: 18px;
+      margin-right: 5px;
+      background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
 
       &.icon-company {
-        background-image: url('../images/icon-company-3d.svg');
+        background-image: url('../images/icon-company.svg');
       }
 
       &.icon-recreation {
-        background-image: url('../images/icon-recreation-3d.svg');
+        background-image: url('../images/icon-recreation.svg');
       }
 
       &.icon-realestate {
-        background-image: url('../images/icon-realestate-3d.svg');
+        background-image: url('../images/icon-realestate.svg');
       }
 
       &.icon-multitenant {
@@ -61,7 +63,6 @@
 
       &.icon-trails {
         background-image: url('../images/icon-trail.svg');
-        background-repeat: repeat-x;
       }
     }
   }

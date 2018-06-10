@@ -15,6 +15,7 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
 
   // Location
   $street_address = get_field('street_address');
+  $zip_code = get_field('zip_code');
   $geometry = get_field('geometry_type');
   if ($geometry == 'Point') {
     $coords = get_fields('coordinates');
@@ -32,13 +33,17 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
         <div class="col-xs-12 col-md-8">
           <div class="box">
             <h1><?php the_title(); ?></h1>
-            <?php if (!empty($location_terms)) : ?>
-              <div class="result-meta">
-                <?php foreach ($location_terms as $lt) : ?>
-                <div class="meta-term"><?php echo $lt->name; ?></div>
-                <?php endforeach; ?>
-              </div>
-            <?php endif; ?>
+            <div class="address">
+              <?php if (!empty($street_address)) {
+                echo $street_address;
+              } ?><br />
+              RTP, NC
+              <?php if (!empty($zip_code)) {
+                echo $zip_code;
+              } else {
+                echo '27709';
+              } ?>
+            </div>
           </div>
         </div>
         <div class="col-xs-12 col-md-4">
@@ -63,14 +68,6 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
           <div class="row">
             <div class="col-md-8">
               <?php the_content(); ?>
-            </div>
-            <div class="col-md-4">
-              <p class="address">
-                <?php if (!empty($street_address)) {
-                  echo $street_address;
-                } ?><br />
-                RTP, NC 27709
-              </p>
             </div>
           </div>
         </div>
@@ -145,7 +142,7 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
 
       <div class="company-info">
         <div class="row">
-          <div class="col-xs-12 col-md-6">
+          <div class="col-xs-12 col-sm-6">
             <div class="container-fluid">
               <?php the_content(); ?>
 
@@ -183,24 +180,20 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
             </div>
           </div>
 
-          <div class="col-xs-12 col-md-6">
+          <div class="col-xs-12 col-sm-6">
             <div class="location-map-wrapper">
               <div id="location-map" class="location-map" data-post-type="rtp-facility" data-feature-type="<?php echo $geometry; ?>" data-location-id="<?php echo get_the_id(); ?>"></div>
             </div>
             <div class="address">
-              <?php //var_dump($within_facility); ?>
-              <?php //var_dump($related_facility); ?>
-              <?php //var_dump($suite_or_building); ?>
-              <?php //var_dump($street_address); ?>
-              <?php //var_dump($coords); ?>
-
-              <?php if ($within_facility == 'true') { ?>
-                <strong><?php echo get_the_title($related_facility[0]); ?></strong>
-                <br />
-              <?php } ?>
-
-              <?php echo $street_address; ?><br />
-                RTP, NC 27709
+              <?php if (!empty($street_address)) {
+                echo $street_address;
+              } ?><br />
+              RTP, NC
+              <?php if (!empty($zip_code)) {
+                echo $zip_code;
+              } else {
+                echo '27709';
+              } ?>
             </div>
 
             <div class="location-photo">

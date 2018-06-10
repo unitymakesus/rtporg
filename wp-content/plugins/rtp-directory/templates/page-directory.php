@@ -23,17 +23,17 @@ get_header(); ?>
 			<div class="filters">
 				<div class="container-fluid">
 					<div class="row">
-						<div class="col-md-6">
+						<div class="col-sm-6">
 							<h3>Company Types</h3>
 							<?php echo do_shortcode('[facetwp facet="industry"]'); ?>
 						</div>
-						<div class="col-md-6">
+						<div class="col-sm-6">
 							<div class="row">
-								<div class="col-md-6">
+								<div class="col-sm-6">
 									<h3>Facility Types</h3>
 									<?php echo do_shortcode('[facetwp facet="facility_types"]'); ?>
 								</div>
-								<div class="col-md-6">
+								<div class="col-sm-6">
 									<h3>Real Estate</h3>
 									<?php echo do_shortcode('[facetwp facet="availability"]'); ?>
 								</div>

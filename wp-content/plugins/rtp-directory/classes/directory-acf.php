@@ -576,7 +576,7 @@ acf_add_local_field_group(array(
 		array(
 			'key' => 'field_5ae8afba2028a',
 			'label' => 'Foundation Reporting Data',
-			'name' => 'eporting_data',
+			'name' => 'reporting_data',
 			'type' => 'group',
 			'instructions' => '',
 			'required' => 0,

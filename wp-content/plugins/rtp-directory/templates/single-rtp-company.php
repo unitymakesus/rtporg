@@ -39,12 +39,12 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
   $global_hq = get_field('details_global_headquarters');
 
   // Details
-  $employment_public = get_field('eporting_data_publish_employment');
-  $ft_employment = get_field('eporting_data_full_time_employees');
-  $pt_employment = get_field('eporting_data_part_time_employees');
-  $year_in_rtp = get_field('eporting_data_year_arrived_in_rtp');
-  $university = get_field('eporting_data_university_affiliation');
-  $company_size = get_field('eporting_data_company_size');  // Array
+  $employment_public = get_field('reporting_data_publish_employment');
+  $ft_employment = get_field('reporting_data_full_time_employees');
+  $pt_employment = get_field('reporting_data_part_time_employees');
+  $year_in_rtp = get_field('reporting_data_year_arrived_in_rtp');
+  $university = get_field('reporting_data_university_affiliation');
+  $company_size = get_field('reporting_data_company_size');  // Array
   ?>
   <div class="content-container">
     <div class="container-fluid">
@@ -90,7 +90,7 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
               <dl>
                 <?php if (!empty($year_in_rtp)) { ?>
                   <dt>Arrived in RTP:</dt>
-                  <dd><?php the_field('eporting_data_year_arrived_in_rtp'); ?></dd>
+                  <dd><?php the_field('reporting_data_year_arrived_in_rtp'); ?></dd>
                 <?php } ?>
 
                 <?php if (!empty($company_size)) { ?>
