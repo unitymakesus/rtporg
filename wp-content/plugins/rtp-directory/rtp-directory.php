@@ -91,6 +91,8 @@ final class RTP_Dir {
     require_once( 'classes/class-rtp-dir-listing.php' );
     add_action( 'wp_ajax_get_locations', array(new RTP_Dir_Listing, 'get_locations_json') );
     add_action( 'wp_ajax_nopriv_get_locations', array(new RTP_Dir_Listing, 'get_locations_json') );
+    add_action( 'wp_ajax_get_this_location', array(new RTP_Dir_Listing, 'get_this_location_json') );
+    add_action( 'wp_ajax_nopriv_get_this_location', array(new RTP_Dir_Listing, 'get_this_location_json') );
 
 		// Add custom facet sources
 		require_once( 'classes/class-rtp-dir-facets.php' );
@@ -248,6 +250,15 @@ final class RTP_Dir {
 			// Enqueue styles
 			wp_enqueue_style( 'mapbox-style', 'https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.css', null, false);
 			wp_enqueue_style( 'rtp-dir-style', $this->plugin_url . 'css/style.css', null, '1.0.0');
+
+			// Set up JS vars
+			wp_localize_script('rtp-dir-location-script', 'rtp_dir_vars', array(
+				'ajax_uri'      		=> admin_url('admin-ajax.php'),
+        '_ajax_nonce'   		=> $this->nonce,
+				'marker_company'		=> $this->plugin_url . 'images/icon-company-3d@2x.png',
+				'marker_recreation'	=> $this->plugin_url . 'images/icon-recreation-3d@2x.png',
+				'marker_realestate'	=> $this->plugin_url . 'images/icon-realestate-3d@2x.png',
+			));
 		}
   }
 

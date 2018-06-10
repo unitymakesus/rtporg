@@ -115,6 +115,22 @@ jQuery(document).ready(function($) {
   }
 
 	map.on('load', function() {
+    // Placeholder for data that's coming from AJAX response
+    map.addSource('locations', {
+      type: 'geojson',
+      data: {
+        "type": "FeatureCollection",
+          "features": [{
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+            "type": "Point",
+            "coordinates": []
+          }
+        }]
+      }
+    });
+
 		// Add geoJSON source for locations
     const data = {
   		action: 'get_locations',
@@ -132,22 +148,6 @@ jQuery(document).ready(function($) {
       set_map_facets();
       // Remove loading state
       $('#map').addClass('loaded');
-    });
-
-    // Placeholder
-    map.addSource('locations', {
-      type: 'geojson',
-      data: {
-        "type": "FeatureCollection",
-          "features": [{
-            "type": "Feature",
-            "properties": {},
-            "geometry": {
-            "type": "Point",
-            "coordinates": []
-          }
-        }]
-      }
     });
 
     // Add line styles to map

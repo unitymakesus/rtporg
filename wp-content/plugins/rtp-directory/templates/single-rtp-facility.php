@@ -132,7 +132,7 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
           </div>
 
           <div class="col-xs-12 col-sm-8 col-md-6">
-            <div id="location-map" class="directory-map"></div>
+            <div id="location-map" class="directory-map" data-post-type="rtp-facility" data-feature-type="<?php echo $geometry; ?>" data-location-id="<?php echo get_the_id(); ?>"></div>
           </div>
         </div>
       </div>
@@ -185,7 +185,7 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
 
           <div class="col-xs-12 col-md-6">
             <div class="location-map-wrapper">
-              <div class="location-map" id="location-map"></div>
+              <div id="location-map" class="location-map" data-post-type="rtp-facility" data-feature-type="<?php echo $geometry; ?>" data-location-id="<?php echo get_the_id(); ?>"></div>
             </div>
             <div class="address">
               <?php //var_dump($within_facility); ?>
