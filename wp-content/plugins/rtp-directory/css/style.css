@@ -1296,3 +1296,6 @@
   width: 100%;
   height: 100%;
 }
+.single-rtp-company .location-map-wrapper .location-map.loaded .rtp-loader-wrap, .single-rtp-facility .location-map-wrapper .location-map.loaded .rtp-loader-wrap, .single-rtp-site .location-map-wrapper .location-map.loaded .rtp-loader-wrap, .single-rtp-space .location-map-wrapper .location-map.loaded .rtp-loader-wrap {
+  display: none;
+}

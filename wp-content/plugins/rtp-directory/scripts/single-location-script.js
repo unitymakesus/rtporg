@@ -62,39 +62,75 @@ jQuery(document).ready(function($) {
         data
       })
       .done(function(response, textStatus, jqXHR) {
-        let location = JSON.parse(response);
+        let location = JSON.parse(response),
+            prop = location.features[0].properties,
+            mapCenter = ['-78.865','35.892'],
+            popCenter = [],
+            zoom = 12;
 
-        // Get bounding box of polygon
-        let bbox = getBBox(location);
-        let centerX = (bbox.xMax[0] + bbox.yMax[0])/2;
-        let centerY = (bbox.xMax[1] + bbox.yMax[1])/2;
-        let centerTop = [centerX,bbox.yMax[1]];
-
-        // Zoom to center
-        map.flyTo({
-          center: [centerX, centerY],
-          zoom: 15
-        });
+        console.log(location);
 
         // Add data to locations data source on map
         map.getSource('locations').setData(location);
 
-        // Build tooltip HTML
-        let prop = location.features[0].properties;
-        let tooltip = `
-          <div class="tooltip">
-            <p class="title">${prop.title}</p>
-            <p class="address">
-              ${prop.street_address}<br />
-              RTP, NC 27709
-            </p>
-            ${prop.image ? `<img src="${prop.image}" alt="${prop.title}"/>` : ''}
-          </div>
-        `;
-        new mapboxgl.Popup({closeOnClick: false})
-          .setLngLat(centerTop)
-          .setHTML(tooltip)
-          .addTo(map);
+        if (feature_type == 'Polygon') {
+          // Get bounding box of polygons
+          let bbox = getBBox(location),
+              centerX = (bbox.xMax[0] + bbox.yMax[0])/2,
+              centerY = (bbox.xMax[1] + bbox.yMax[1])/2;
+          mapCenter = [centerX,bbox.yMax[1]],
+          popCenter = [centerX, centerY],
+          zoom = 15;
+        } else if (feature_type == 'LineString') {
+          // Get bounding box of linestrings
+          let bbox = getBBox(location),
+              centerX = (bbox.xMax + bbox.xMin)/2,
+              centerY = (bbox.yMax + bbox.yMin)/2;
+          mapCenter = [centerX, centerY];
+          console.log([bbox.xMin,bbox.yMin],[bbox.xMax,bbox.yMax]);
+          map.fitBounds(
+            [[bbox.xMin,bbox.yMin],[bbox.xMax,bbox.yMax]],
+            {padding: {top: 25, bottom:25, left: 25, right: 25}}
+          );
+        } else if (feature_type == 'Point') {
+          mapCenter = location.features[0].geometry.coordinates,
+          popCenter = location.features[0].geometry.coordinates,
+          zoom = 13;
+        }
+
+        if (feature_type !== 'LineString') {
+          // Zoom to center
+          map.flyTo({
+            center: mapCenter,
+            zoom: zoom
+          });
+
+          // Build tooltip HTML
+          let tooltip = `
+            <div class="tooltip">
+              <p class="title">${prop.title}</p>
+              <p class="address">
+                ${prop.street_address}<br />
+                RTP, NC 27709
+              </p>
+              ${prop.image ? `<img src="${prop.image}" alt="${prop.title}"/>` : ''}
+            </div>
+          `;
+          new mapboxgl.Popup({closeOnClick: false})
+            .setLngLat(popCenter)
+            .setHTML(tooltip)
+            .addTo(map)
+            .on('open', function(e) {
+              // Is this even firing???
+              console.log('e', e);
+              // var px = map.project(e.popup._latlng); // find the pixel location on the map where the popup anchor is
+              // px.y -= e.popup._container.clientHeight/2 // find the height of the popup container, divide by 2, subtract from the Y axis of marker location
+              // map.panTo(map.unproject(px),{animate: true}); // pan to new center
+            });
+          }
+
+        // Remove loading animation
+        $('#location-map').addClass('loaded');
       });
 
       if (post_type == 'rtp-facility' && feature_type == 'Polygon') {
@@ -137,7 +173,7 @@ jQuery(document).ready(function($) {
               'icon-size': 0.5,
               'icon-allow-overlap': true
             },
-            'filter': ['all',['==', '$type', 'Point'],['==', 'facility-type', 'recreation']]
+            'filter': ['all',['==', '$type', 'Point'],['any', ['==', 'facility-type', 'recreation'],['==', 'facility-type', 'trail']]]
           });
         });
       } else if (post_type == 'rtp-facility' && feature_type == 'LineString') {
@@ -163,14 +199,16 @@ jQuery(document).ready(function($) {
 
     // Stick map to fixed position when it reaches top of screen on scroll
     const $window = $(window);
-    let distance = $('#location-map.directory-map').offset().top;
+    if ($('#location-map.directory-map').length) {
+      let distance = $('#location-map.directory-map').offset().top;
 
-    $window.scroll(function() {
-      if ( $window.scrollTop() >= distance ) {
-        $('#location-map.directory-map').addClass('fixed');
+      $window.scroll(function() {
+        if ( $window.scrollTop() >= distance ) {
+          $('#location-map.directory-map').addClass('fixed');
 
-      } else {
-        $('#location-map.directory-map').removeClass('fixed');
-      }
-    });
+        } else {
+          $('#location-map.directory-map').removeClass('fixed');
+        }
+      });
+    }
 });

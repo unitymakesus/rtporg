@@ -17,7 +17,7 @@ jQuery(document).ready(function($) {
   const allLayers = pointLayers.concat(polyLayers).concat(lineLayers);
 
   // Set up initial filters for each layer (to apply correct styles)
-  const recreationFilter = ['all',['==', '$type', 'Point'],['==', 'facility-type', 'recreation']];
+  const recreationFilter = ['all',['==', '$type', 'Point'],['any', ['==', 'facility-type', 'recreation'],['==', 'facility-type', 'trail']]];
   const companyFilter = ['all',['==', '$type', 'Point'],['==', 'content-type', 'rtp-company']];
   const realestateFilter = ['all',['==', '$type', 'Point'],['==', 'content-type', 'rtp-space']];
   const polyFillFilter = ['all',['==', '$type', 'Polygon']];

@@ -119,6 +119,7 @@ class RTP_Dir_Listing {
         'content-type' => $location_type,
         'facility-type' => $facility_type[0]->slug,
         'street_address' => get_field('street_address', $id),
+        'zip_code' => get_field('zip_code', $id),
         'color' => '#038798',
         'hover-color' => '#0A0398',
         'opacity' => 1,
@@ -227,7 +228,7 @@ class RTP_Dir_Listing {
     $locations = new WP_Query(array(
       'post_type' => ['rtp-company', 'rtp-facility', 'rtp-site', 'rtp-space'],
       'posts_per_page' => 20,
-      'orderby' => 'post_type',
+      'orderby' => 'post_type title',
       'order' => 'ASC',
       'facetwp' => true,
     ));
