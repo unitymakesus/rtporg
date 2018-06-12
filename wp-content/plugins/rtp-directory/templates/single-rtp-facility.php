@@ -36,7 +36,7 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
             <div class="address">
               <?php if (!empty($street_address)) {
                 echo $street_address . '<br />';
-                echo 'RTP, NC';
+                echo 'RTP, NC ';
                 if (!empty($zip_code)) {
                   echo $zip_code;
                 } else {
@@ -261,7 +261,7 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
             <div class="address">
               <?php if (!empty($street_address)) {
                 echo $street_address . '<br />';
-                echo 'RTP, NC';
+                echo 'RTP, NC ';
                 if (!empty($zip_code)) {
                   echo $zip_code;
                 } else {

@@ -13,25 +13,6 @@ jQuery(document).ready(function($) {
     const post_type = $('#location-map').attr('data-post-type');
     const feature_type = $('#location-map').attr('data-feature-type');
 
-    function getBBox(data) {
-      let bounds = {}, coords, point, latitude, longitude;
-
-      for (var i = 0; i < data.features.length; i++) {
-        coords = data.features[i].geometry.coordinates;
-
-        for (var j = 0; j < coords.length; j++) {
-          longitude = coords[j][0];
-          latitude = coords[j][1];
-          bounds.xMin = bounds.xMin < longitude ? bounds.xMin : longitude;
-          bounds.xMax = bounds.xMax > longitude ? bounds.xMax : longitude;
-          bounds.yMin = bounds.yMin < latitude ? bounds.yMin : latitude;
-          bounds.yMax = bounds.yMax > latitude ? bounds.yMax : latitude;
-        }
-      }
-
-      return bounds;
-    }
-
     map.on('load', function() {
       // Placeholder for data that's coming from AJAX response
       map.addSource('locations', {
@@ -62,54 +43,56 @@ jQuery(document).ready(function($) {
         data
       })
       .done(function(response, textStatus, jqXHR) {
+        console.log(response);
         let location = JSON.parse(response),
             prop = location.features[0].properties,
+            coords = location.features[0].geometry.coordinates,
             mapCenter = ['-78.865','35.892'],
             popCenter = [],
             zoom = 12;
-
-        console.log(location);
 
         // Add data to locations data source on map
         map.getSource('locations').setData(location);
 
         if (feature_type == 'Polygon') {
-          // Get bounding box of polygons
-          let bbox = getBBox(location),
-              centerX = (bbox.xMax[0] + bbox.yMax[0])/2,
-              centerY = (bbox.xMax[1] + bbox.yMax[1])/2;
-          mapCenter = [centerX,bbox.yMax[1]],
-          popCenter = [centerX, centerY],
-          zoom = 15;
-        } else if (feature_type == 'LineString') {
-          // Get bounding box of linestrings
-          let bbox = getBBox(location),
-              centerX = (bbox.xMax + bbox.xMin)/2,
-              centerY = (bbox.yMax + bbox.yMin)/2;
-          mapCenter = [centerX, centerY];
-          console.log([bbox.xMin,bbox.yMin],[bbox.xMax,bbox.yMax]);
-          map.fitBounds(
-            [[bbox.xMin,bbox.yMin],[bbox.xMax,bbox.yMax]],
-            {padding: {top: 25, bottom:25, left: 25, right: 25}}
-          );
-        } else if (feature_type == 'Point') {
-          mapCenter = location.features[0].geometry.coordinates,
-          popCenter = location.features[0].geometry.coordinates,
-          zoom = 13;
-        }
 
-        if (feature_type !== 'LineString') {
-          // Zoom to center
+          // Get bounding box of polygons
+          let bounds = coords[0].reduce(function(bounds, coord) {
+            return bounds.extend(coord);
+          }, new mapboxgl.LngLatBounds(coords[0][0], coords[0][0]));
+          map.fitBounds(bounds, {padding: 50, maxZoom: 13});
+
+          // Set popup center
+          popCenter = bounds.getCenter();
+
+        } else if (feature_type == 'LineString') {
+
+          // Get bounding box of linestrings
+          let bounds = coords.reduce(function(bounds, coord) {
+            return bounds.extend(coord);
+          }, new mapboxgl.LngLatBounds(coords[0], coords[0]));
+          map.fitBounds(bounds, {padding: 50});
+
+        } else if (feature_type == 'Point') {
+
+          // Set popup center
+          popCenter = coords;
+          // Zoom to point
           map.flyTo({
-            center: mapCenter,
-            zoom: zoom
+            center: coords,
+            zoom: 13
           });
 
+        }
+
+        if (feature_type !== 'LineString' && post_type !== 'rtp-site') {
           // Build tooltip HTML
           let tooltip = `
             <div class="tooltip">
               <p class="title">${prop.title}</p>
               <p class="address">
+                ${prop.related_facility ? `<strong>${prop.related_facility}</strong><br />` : ''}
+                ${prop.suite_or_building ? `${prop.suite_or_building}<br />` : ''}
                 ${prop.street_address}<br />
                 RTP, NC 27709
               </p>
@@ -127,73 +110,105 @@ jQuery(document).ready(function($) {
               // px.y -= e.popup._container.clientHeight/2 // find the height of the popup container, divide by 2, subtract from the Y axis of marker location
               // map.panTo(map.unproject(px),{animate: true}); // pan to new center
             });
-          }
+        }
 
         // Remove loading animation
         $('#location-map').addClass('loaded');
       });
 
-      if (post_type == 'rtp-facility' && feature_type == 'Polygon') {
-        // Add polygon styles to map
-        map.addLayer({
-          'id': 'polygon-fills',
-          'type': 'fill',
-          'source': 'locations',
-          'layout': {},
-          'paint': {
-            'fill-color': ['get', 'color'],
-            'fill-opacity': ['get', 'opacity']
-          },
-          'filter': ['all',['==', '$type', 'Polygon']]
-        });
+      // Add polygon styles to map
+      map.addLayer({
+        'id': 'polygon-fills',
+        'type': 'fill',
+        'source': 'locations',
+        'layout': {},
+        'paint': {
+          'fill-color': ['get', 'color'],
+          'fill-opacity': ['get', 'opacity']
+        },
+        'filter': ['all',['==', '$type', 'Polygon']]
+      });
 
-        // Add polygon outline styles to map
+      // Add polygon outline styles to map
+      map.addLayer({
+        'id': 'polygon-outlines',
+        'type': 'line',
+        'source': 'locations',
+        'layout': {},
+        'paint': {
+          'line-color': ['get', 'hover-color'],
+          'line-width': 1
+        },
+        'filter': ['all',['==', '$type', 'Polygon']]
+      });
+
+      // Add line styles to map
+      map.addLayer({
+        'id': 'lines',
+        'type': 'line',
+        'source': 'locations',
+        'layout': {
+          'line-join': 'round',
+          'line-cap': 'round'
+        },
+        'paint': {
+          'line-color': '#07444C',
+          'line-width': 2,
+          'line-dasharray': [0,2]
+        },
+        'filter': ['all',['==', '$type', 'LineString']]
+      });
+
+      // Add recreation styles to map
+      map.loadImage(rtp_dir_vars.marker_recreation, function(error, data) {
+        if (error) throw error;
+        map.addImage('recreation', data);
         map.addLayer({
-          'id': 'polygon-outlines',
-          'type': 'line',
-          'source': 'locations',
-          'layout': {},
-          'paint': {
-            'line-color': ['get', 'hover-color'],
-            'line-width': 1
-          },
-          'filter': ['all',['==', '$type', 'Polygon']]
-        });
-      } else if (post_type == 'rtp-facility' && feature_type == 'Point') {
-        // Add recreation styles to map
-        map.loadImage(rtp_dir_vars.marker_recreation, function(error, data) {
-          if (error) throw error;
-          map.addImage('recreation', data);
-          map.addLayer({
-            'id': 'recreation',
-            'type': 'symbol',
-            'source': 'locations',
-            'layout': {
-              'icon-image': 'recreation',
-              'icon-size': 0.5,
-              'icon-allow-overlap': true
-            },
-            'filter': ['all',['==', '$type', 'Point'],['any', ['==', 'facility-type', 'recreation'],['==', 'facility-type', 'trail']]]
-          });
-        });
-      } else if (post_type == 'rtp-facility' && feature_type == 'LineString') {
-        // Add line styles to map
-        map.addLayer({
-          'id': 'lines',
-          'type': 'line',
+          'id': 'recreation',
+          'type': 'symbol',
           'source': 'locations',
           'layout': {
-            'line-join': 'round',
-            'line-cap': 'round'
+            'icon-image': 'recreation',
+            'icon-size': 0.5,
+            'icon-allow-overlap': true
           },
-          'paint': {
-            'line-color': '#07444C',
-            'line-width': 2,
-            'line-dasharray': [0,2]
-          },
-          'filter': ['all',['==', '$type', 'LineString']]
+          'filter': ['all',['==', '$type', 'Point'],['any', ['==', 'facility-type', 'recreation'],['==', 'facility-type', 'trail']]]
         });
-      }
+      });
+
+      // Add real estate point styles to map
+      map.loadImage(rtp_dir_vars.marker_realestate, function(error, data) {
+        if (error) throw error;
+        map.addImage('realestate', data);
+        map.addLayer({
+          'id': 'realestate',
+          'type': 'symbol',
+          'source': 'locations',
+          'layout': {
+            'icon-image': 'realestate',
+            'icon-size': 0.5,
+            'icon-allow-overlap': true
+          },
+          'filter': ['all',['==', '$type', 'Point'],['==', 'content-type', 'rtp-space']]
+        });
+      });
+
+      // Add company styles to map
+      map.loadImage(rtp_dir_vars.marker_company, function(error, data) {
+        if (error) throw error;
+        map.addImage('company', data);
+        map.addLayer({
+          'id': 'companies',
+          'type': 'symbol',
+          'source': 'locations',
+          'layout': {
+            'icon-image': 'company',
+            'icon-size': 0.5,
+            'icon-allow-overlap': true
+          },
+          'filter': ['all',['==', '$type', 'Point'],['==', 'content-type', 'rtp-company']]
+        });
+      });
     });
 
 

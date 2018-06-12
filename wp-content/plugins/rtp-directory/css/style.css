@@ -1121,27 +1121,28 @@
   background-image: url("../images/icon-trail.svg");
 }
 
-.tooltip {
+.tooltip.tooltip {
   display: block;
   width: 250px;
 }
-.tooltip p {
+.tooltip.tooltip p {
   margin: 10px;
 }
-.tooltip p.title {
+.tooltip.tooltip p.title {
   font-size: 18px;
   font-weight: bold;
   color: #07444C;
 }
-.tooltip p.address {
+.tooltip.tooltip p.address {
   font-size: 16px;
+  padding: 0;
 }
-.tooltip a {
+.tooltip.tooltip a {
   font-size: 14px;
   margin-top: 5px;
   text-decoration: underline;
 }
-.tooltip img {
+.tooltip.tooltip img {
   height: 75px;
 }
 

@@ -206,12 +206,10 @@ jQuery(document).ready(function($) {
       'filter': polyLinesFilter
     });
 
-    // Add marker images to map
+    // Add company styles to map
     map.loadImage(rtp_dir_vars.marker_company, function(error, data) {
       if (error) throw error;
       map.addImage('company', data);
-
-      // Add company styles to map
       map.addLayer({
         'id': 'companies',
         'type': 'symbol',
@@ -224,11 +222,11 @@ jQuery(document).ready(function($) {
         'filter': companyFilter
       });
     });
+
+    // Add recreation styles to map
     map.loadImage(rtp_dir_vars.marker_recreation, function(error, data) {
       if (error) throw error;
       map.addImage('recreation', data);
-
-      // Add recreation styles to map
       map.addLayer({
         'id': 'recreation',
         'type': 'symbol',
@@ -241,11 +239,11 @@ jQuery(document).ready(function($) {
         'filter': recreationFilter
       });
     });
+
+    // Add real estate point styles to map
     map.loadImage(rtp_dir_vars.marker_realestate, function(error, data) {
       if (error) throw error;
       map.addImage('realestate', data);
-
-      // Add real estate point styles to map
       map.addLayer({
         'id': 'realestate',
         'type': 'symbol',
@@ -278,9 +276,9 @@ jQuery(document).ready(function($) {
       var prop = e.features[0].properties;
       var tooltip = `
         <div class="tooltip">
-          <p>${prop.title}</p>
+          <p class="title">${prop.title}</p>
           ${prop.image ? `<img src="${prop.image}" alt="${prop.title}"/>` : ''}
-          <a href="${prop.permalink}">More Information</a>
+          <p><a href="${prop.permalink}">More Information</a></p>
         </div>
       `;
 
@@ -305,9 +303,9 @@ jQuery(document).ready(function($) {
         var prop = e.features[0].properties;
         var tooltip = `
           <div class="tooltip">
-            <p>${prop.title}</p>
+            <p class="title">${prop.title}</p>
             ${prop.logo ? `<img src="${prop.logo}" alt="${prop.title}"/>` : ''}
-            <a href="${prop.permalink}">More Information</a>
+            <p><a href="${prop.permalink}">More Information</a></p>
           </div>
         `;
 
@@ -333,9 +331,9 @@ jQuery(document).ready(function($) {
       var prop = e.features[0].properties;
       var tooltip = `
         <div class="tooltip">
-          <p>${prop.title}</p>
+          <p class="title">${prop.title}</p>
           ${prop.image ? `<img src="${prop.image}" alt="${prop.title}"/>` : ''}
-          <a href="${prop.permalink}">More Information</a>
+          <p><a href="${prop.permalink}">More Information</a></p>
         </div>
       `;
 
