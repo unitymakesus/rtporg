@@ -27,7 +27,7 @@ get_header(); ?>
   <section class="featured-banner theme-arctic frontier-video">
     <div class="overlay">
       <img src="wp-content/themes/abt-core-custom/img/l_rtp-frontier-logo.png" />
-      <?php echo $video_content; ?>
+      
     </div>
   </section>
 
