@@ -7383,6 +7383,11 @@ body div#ui-datepicker-div[style] {
       float: none;
       display: inline-block; } }
 
+.frontier-header, .stem-header {
+  position: fixed;
+  z-index: 100;
+  width: 100%; }
+
 body.home .band {
   overflow: hidden; }
 
