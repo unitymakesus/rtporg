@@ -18,9 +18,13 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
   if ($within_facility == true) {
     $related_facility = get_field('related_facility');
     $street_address = get_field('street_address', $related_facility[0]);
+    $zip_code = get_field('zip_code', $related_facility[0]);
+    $feature_type = get_field('geometry_type', $related_facility[0]);
   } else {
     $street_address = get_field('street_address');
+    $zip_code = get_field('details_zip_code');
     $coords = get_field('coords');
+    $feature_type = 'Point';
   }
 
   // Details
@@ -93,7 +97,44 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
 
         <div class="col-xs-12 col-md-6">
           <div class="location-map-wrapper">
-            <div class="location-map" id="location-map"></div>
+            <div class="location-map" id="location-map" data-post-type="rtp-space" data-feature-type="<?php echo $feature_type; ?>" data-location-id="<?php echo get_the_id(); ?>">
+              <div class="rtp-loader-wrap">
+                <div class="rtp-loader-icon">
+                  <div class="row">
+                     <div class="arrow up outer outer-18"></div>
+                     <div class="arrow down outer outer-17"></div>
+                     <div class="arrow up outer outer-16"></div>
+                     <div class="arrow down outer outer-15"></div>
+                     <div class="arrow up outer outer-14"></div>
+                  </div>
+                  <div class="row">
+                     <div class="arrow up outer outer-1"></div>
+                     <div class="arrow down outer outer-2"></div>
+                     <div class="arrow up inner inner-6"></div>
+                     <div class="arrow down inner inner-5"></div>
+                     <div class="arrow up inner inner-4"></div>
+                     <div class="arrow down outer outer-13"></div>
+                     <div class="arrow up outer outer-12"></div>
+                  </div>
+                  <div class="row">
+                     <div class="arrow down outer outer-3"></div>
+                     <div class="arrow up outer outer-4"></div>
+                     <div class="arrow down inner inner-1"></div>
+                     <div class="arrow up inner inner-2"></div>
+                     <div class="arrow down inner inner-3"></div>
+                     <div class="arrow up outer outer-11"></div>
+                     <div class="arrow down outer outer-10"></div>
+                  </div>
+                  <div class="row">
+                     <div class="arrow down outer outer-5"></div>
+                     <div class="arrow up outer outer-6"></div>
+                     <div class="arrow down outer outer-7"></div>
+                     <div class="arrow up outer outer-8"></div>
+                     <div class="arrow down outer outer-9"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="address">
             <?php if ($within_facility == 'true') { ?>
@@ -101,8 +142,15 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
               <br />
             <?php } ?>
 
-            <?php echo $street_address; ?><br />
-              RTP, NC 27709
+            <?php if (!empty($street_address)) {
+              echo $street_address . '<br />';
+              echo 'RTP, NC ';
+              if (!empty($zip_code)) {
+                echo $zip_code;
+              } else {
+                echo '27709';
+              }
+            } ?>
           </div>
 
           <div class="location-photo">

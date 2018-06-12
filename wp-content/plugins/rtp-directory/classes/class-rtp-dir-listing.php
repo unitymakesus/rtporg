@@ -82,41 +82,51 @@ class RTP_Dir_Listing {
     wp_die();
   }
 
+  // Get coordinates for facilities with appropriate geometry
+  private function get_facility_coords($id, $feature_type) {
+    switch ($feature_type) {
+      case 'Polygon':
+        if (!empty($coords = get_field('coordinates_long', $id))) {
+          $coords_array = array(array($coords));
+        }
+        break;
+      case 'LineString':
+        if (!empty($coords = get_field('coordinates_long', $id))) {
+          $coords_array = array($coords);
+        }
+        break;
+      case 'Point':
+        $coords = get_field('coordinates', $id);
+        if (!empty($coords['lat'])) {
+          $coords_array = array(
+            $coords['lng'],
+            $coords['lat']
+          );
+        }
+        break;
+    }
+
+    return $coords_array;
+  }
+
   private function setup_location_array($id, $location_type, &$locations_array, $all) {
+    // Set up universal properties for all post types
+    $properties = array(
+      'id' => $id,
+      'hover_id' => $id,
+      'title' => get_the_title($id),
+      'permalink' => get_permalink($id),
+      'content-type' => $location_type
+    );
+
+    // Iterate through the different post types
     if ($location_type == 'rtp-facility') {
-      // Show facilities with appropriate geometry
-      $facility_type = wp_get_object_terms($id, 'rtp-facility-type', array('fields' => 'all'));
-
       $feature_type = get_field('geometry_type', $id);
-      switch ($feature_type) {
-        case 'Polygon':
-          if (!empty($coords = get_field('coordinates_long', $id))) {
-            $coords_array = array(array($coords));
-          }
-          break;
-        case 'LineString':
-          if (!empty($coords = get_field('coordinates_long', $id))) {
-            $coords_array = array($coords);
-          }
-          break;
-        case 'Point':
-          $coords = get_field('coordinates', $id);
-          if (!empty($coords['lat'])) {
-            $coords_array = array(
-              $coords['lng'],
-              $coords['lat']
-            );
-          }
-          break;
-      }
+      $facility_type = wp_get_object_terms($id, 'rtp-facility-type', array('fields' => 'all'));
+      $coords_array = $this->get_facility_coords($id, $feature_type);
 
-      $properties = array(
-        'id' => $id,
-        'hover_id' => $id,
-        'title' => get_the_title($id),
-        'permalink' => get_permalink($id),
+      $properties = array_merge($properties, array(
         'photo' => get_the_post_thumbnail_url($id),
-        'content-type' => $location_type,
         'facility-type' => $facility_type[0]->slug,
         'street_address' => get_field('street_address', $id),
         'zip_code' => get_field('zip_code', $id),
@@ -124,8 +134,9 @@ class RTP_Dir_Listing {
         'hover-color' => '#0A0398',
         'opacity' => 1,
         'hover-opacity' => 1
-      );
+      ));
 
+      // Add all tenant ids as properties if this is for all locations view
       if ($all == true) {
         if ($facility_type[0]->slug == 'multi-tenant') {
           $tenants = $this->get_facility_tenant_ids($id);
@@ -134,81 +145,124 @@ class RTP_Dir_Listing {
           }
         }
       }
-
-    } elseif ($location_type == 'rtp-company') {
-      // Only add to map if it's not within a facility
-      if (get_field('within_facility') == 0) {
-        $feature_type = 'Point';
-        $company_types = wp_get_object_terms($id, 'rtp-company-type', array('fields' => 'slugs'));
-
-        $coords = get_field('details_coordinates', $id);
-        if (!empty($coords['lat'])) {
-          $coords_array = array(
-            $coords['lng'],
-            $coords['lat']
-          );
-        }
-
-        $properties = array(
-          'id' => $id,
-          'hover_id' => $id,
-          'title' => get_the_title($id),
-          'permalink' => get_permalink($id),
-          'logo' => get_field('company_logo', $id),
-          'photo' => get_field('location_photograph', $id),
-          'content-type' => $location_type
-        );
-      }
-
-    } elseif ($location_type == 'rtp-space') {
-      // Only add to map if it's not within a facility
-      if (get_field('within_facility', $id) == 0) {
-        $feature_type = 'Point';
-        $availability = wp_get_object_terms($id, 'rtp-availability', array('fields' => 'all'));
-
-        $coords = get_field('coords', $id);
-        if (!empty($coords['lat'])) {
-          $coords_array = array(
-            $coords['lng'],
-            $coords['lat']
-          );
-        }
-
-        $properties = array(
-          'id' => $id,
-          'hover_id' => $id,
-          'title' => get_the_title($id),
-          'permalink' => get_permalink($id),
-          'photo' => get_the_post_thumbnail_url($id),
-          'content-type' => $location_type,
-        );
-
-        foreach ($availability as $avail) {
-          $properties['availability-'.$avail->slug] = true;
-        }
-
-      }
     } elseif ($location_type == 'rtp-site') {
-      // Show sites as polygons on map
       $feature_type = 'Polygon';
-      $coords_array = array(array(get_field('coordinates', $id)));
       $availability = wp_get_object_terms($id, 'rtp-availability', array('fields' => 'all'));
+      $coords_array = array(array(get_field('coordinates', $id)));
 
-      $properties = array(
-        'id' => $id,
-        'hover_id' => $id,
-        'title' => get_the_title($id),
-        'permalink' => get_permalink($id),
+      $properties = array_merge($properties, array(
         'photo' => get_the_post_thumbnail_url($id),
-        'content-type' => $location_type,
         'color' => '#850B7E',
         'hover-color' => '#850B7E',
         'opacity' => 0.2,
         'hover-opacity' => 1
-      );
+      ));
 
-      foreach ($availability as $avail) {
-        $properties['availability-'.$avail->slug] = true;
+      // Add availabilities as properties if this is for all locations view
+      if ($all == true) {
+        foreach ($availability as $avail) {
+          $properties['availability-'.$avail->slug] = true;
+        }
+      }
+    } elseif ($location_type == 'rtp-company') {
+      // Handle company that's not within a facility
+      if (get_field('within_facility', $id) == 0) {
+        $feature_type = 'Point';
+        $company_types = wp_get_object_terms($id, 'rtp-company-type', array('fields' => 'slugs'));
+        $street_address = get_field('details_street_address', $id);
+        $zip_code = get_field('details_zip_code', $id);
+        $coords = get_field('details_coordinates', $id);
+
+        if (!empty($coords['lat'])) {
+          $coords_array = array(
+            (float)$coords['lng'],
+            (float)$coords['lat']
+          );
+        }
+
+        $properties = array_merge($properties, array(
+          'street_address' => $street_address,
+          'zip_code' => $zip_code,
+          'logo' => get_field('company_logo', $id),
+          'photo' => get_field('location_photograph', $id)
+        ));
+      } else {
+        // Handle company that IS within a facility
+        // (but only for single location view)
+        if ($all !== true) {
+          $related_facility = get_field('related_facility', $id);
+          $feature_type = get_field('geometry_type', $related_facility[0]);
+          $street_address = get_field('street_address', $related_facility[0]);
+          $suite_or_building = get_field('details_suite_or_building', $id);
+          $zip_code = get_field('zip_code', $related_facility[0]);
+          $coords_array = $this->get_facility_coords($related_facility[0], $feature_type);
+
+          $properties = array_merge($properties, array(
+            'related_facility' => get_the_title($related_facility[0]),
+            'street_address' => $street_address,
+            'suite_or_building' => $suite_or_building,
+            'zip_code' => $zip_code,
+            'logo' => get_field('company_logo', $id),
+            'photo' => get_field('location_photograph', $id),
+            'color' => '#038798',
+            'hover-color' => '#0A0398',
+            'opacity' => 1,
+            'hover-opacity' => 1
+          ));
+        }
+      }
+    } elseif ($location_type == 'rtp-space') {
+      // Handle space that's not within a facility
+      if (get_field('within_facility', $id) == 0) {
+        $feature_type = 'Point';
+        $street_address = get_field('street_address', $id);
+        $zip_code = get_field('zip_code', $id);
+        $coords = get_field('coords', $id);
+
+        if (!empty($coords['lat'])) {
+          $coords_array = array(
+            (float)$coords['lng'],
+            (float)$coords['lat']
+          );
+        }
+
+        $properties = array_merge($properties, array(
+          'street_address' => $street_address,
+          'zip_code' => $zip_code,
+          'photo' => get_field('location_photograph', $id)
+        ));
+
+      } else {
+        // Handle space that IS within a facility
+        // (but only for single location view)
+        if ($all !== true) {
+          $related_facility = get_field('related_facility', $id);
+          $feature_type = get_field('geometry_type', $related_facility[0]);
+          $street_address = get_field('street_address', $related_facility[0]);
+          $suite_or_building = get_field('details_suite_or_building', $id);
+          $zip_code = get_field('zip_code', $related_facility[0]);
+          $coords_array = $this->get_facility_coords($related_facility[0], $feature_type);
+
+          $properties = array_merge($properties, array(
+            'related_facility' => get_the_title($related_facility[0]),
+            'street_address' => $street_address,
+            'suite_or_building' => $suite_or_building,
+            'zip_code' => $zip_code,
+            'photo' => get_field('location_photograph', $id),
+            'color' => '#038798',
+            'hover-color' => '#0A0398',
+            'opacity' => 1,
+            'hover-opacity' => 1
+          ));
+        }
+      }
+
+      // Add availabilities as properties if this is for all locations view
+      $availability = wp_get_object_terms($id, 'rtp-availability', array('fields' => 'all'));
+      if ($all == true) {
+        foreach ($availability as $avail) {
+          $properties['availability-'.$avail->slug] = true;
+        }
       }
     }
 
