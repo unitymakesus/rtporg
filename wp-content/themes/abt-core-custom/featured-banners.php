@@ -26,7 +26,7 @@
     // People variables
     $job_title           = types_render_field( "person-job-title", array( "raw" => "true" ) );
     $company_name        = types_render_field( "person-company", array( "raw" => "true" ) );
-    $thumb               = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'people-thumb' );
+    $thumb               = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
     $thumb_url           = isset( $thumb['0'] ) ? $thumb['0'] : '';
 
     // Location overrides
@@ -55,7 +55,7 @@
 		<h1><?php printf( single_cat_title( '', false ) . ' <small>Category Archives</small>' ); ?></h1>
 	</div>
 <?php elseif ( is_singular( 'people' ) ) : ?>
-	<div class="featured-banner <?php echo $apply_type . $apply_theme . $apply_graphic_class; ?>" <?php echo $apply_graphic; ?>>	
+	<div class="featured-banner <?php echo $apply_type . $apply_theme . $apply_graphic_class; ?>" <?php echo $apply_graphic; ?>>
 		<?php if ( has_post_thumbnail( $post->ID ) ): ?>
 			<div class="photo" style="background-image: url(<?php echo $thumb_url; ?>);"></div>
 		<?php else : ?>
@@ -70,7 +70,7 @@
 			<?php else : ?>
 				</small>
 			<?php endif; ?>
-		</h1>		
+		</h1>
 	</div>
 <?php elseif ( is_singular( 'location' ) && $banner_title ) : ?>
     <div class="featured-banner <?php echo $apply_type . $apply_theme . $apply_graphic_class; ?>" <?php echo $apply_graphic; ?>>
@@ -95,7 +95,7 @@
 			<div class="site-info">
 				<small class="site-name"><?php bloginfo( 'name' ); ?></small>
 				<small class="site-tagline"><?php bloginfo( 'description' ); ?></small>
-			</div>	
+			</div>
 		<?php endif; ?>
 	</div>
 <?php endif; ?>
