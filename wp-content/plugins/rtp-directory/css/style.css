@@ -1073,7 +1073,7 @@
   display: none;
 }
 .directory-map.fixed {
-  width: calc(50vw - 56px);
+  width: calc(50vw - 48px);
   position: fixed;
   top: 0;
   right: 0;
@@ -1180,6 +1180,9 @@
 }
 .page-template-page-directory .content-container {
   margin-bottom: 0px !important;
+}
+.page-template-page-directory .facetwp-template {
+  min-height: 100vh;
 }
 
 .facetwp-template {
