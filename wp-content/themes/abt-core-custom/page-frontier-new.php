@@ -29,11 +29,10 @@ get_header(); ?>
       <div class="overlay">
         <img src="wp-content/themes/abt-core-custom/img/l_rtp-frontier-logo.png" />
         <?php
-        $headervar = get_field('header');
-
-        if( $headervar ): ?>
-        	<?php echo $headervar['header_content']; ?>
-        	<a class="button ghost" href="<?php echo $headervar['button_link']['url']; ?>"><?php echo $headervar['button_text']; ?></a>
+        $header = get_field('header');
+        if( $header ): ?>
+        	<?php echo $header['header_content']; ?>
+        	<a class="button ghost" href="<?php echo $header['button_link']['url']; ?>"><?php echo $header['button_text']; ?></a>
         <?php endif; ?>
       </div>
     </section>
