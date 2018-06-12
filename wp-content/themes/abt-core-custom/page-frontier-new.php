@@ -22,15 +22,39 @@ get_header(); ?>
   $about_us_heading = types_render_field("about-us-section-heading", array("raw"=>"true"));
   $about_us_content = do_shortcode(types_render_field("about-us-section-content", array("raw"=>"true")));
 ?>
-<div class="content-container">
-  <?php get_template_part('frontier', 'header'); ?>
-  <section class="featured-banner theme-arctic frontier-video">
-    <div class="overlay">
-      <img src="wp-content/themes/abt-core-custom/img/l_rtp-frontier-logo.png" />
-      
-    </div>
-  </section>
 
-</div>
+  <div class="content-container" id="frontier-homepage">
+    <?php get_template_part('frontier', 'header'); ?>
+    <section class="featured-banner theme-arctic frontier-video">
+      <div class="overlay">
+        <img src="wp-content/themes/abt-core-custom/img/l_rtp-frontier-logo.png" />
+        <?php
+        $headervar = get_field('header');
+
+        if( $headervar ): ?>
+        	<?php echo $headervar['header_content']; ?>
+        	<a class="button ghost" href="<?php echo $headervar['button_link']['url']; ?>"><?php echo $headervar['button_text']; ?></a>
+        <?php endif; ?>
+      </div>
+    </section>
+
+    <div class="page-content"><?php the_field('page_content'); ?></div>
+
+    <section class="content-grid">
+      <?php if( have_rows('content_grid') ): ?>
+        <?php while( have_rows('content_grid') ): the_row(); ?>
+          <section class="content">
+            <img src="<?php the_sub_field('icon'); ?>"/>
+            <div>
+              <h3><?php the_sub_field('title'); ?></h3>
+              <?php the_sub_field('text'); ?>
+              <a href="<?php the_sub_field('link'); ?>">Learn More</a>
+            </div>
+          </section>
+        <?php endwhile; ?>
+      <?php endif; ?>
+    </section>
+  </div>
+
 <?php endwhile; ?>
 <?php get_footer(); ?>
