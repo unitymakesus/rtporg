@@ -44,6 +44,37 @@
   }
 }
 
+.a{fill:#06538f;}.b{font-size:8.71px;font-family:CircularStd-Bold, Circular Std;font-weight:700;}.b,.k{fill:#fff;}.c,.f,.i{font-size:22.86px;}.c{letter-spacing:0.04em;}.d{letter-spacing:0.04em;}.e,.i{letter-spacing:0.04em;}.f{letter-spacing:0.03em;}.g{letter-spacing:0.04em;}.h{letter-spacing:0.04em;}.j{letter-spacing:0.04em;}
+
+.frontier-map {
+  position: relative;
+
+  .map {
+    width: 100%;
+  }
+
+  .click {
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    fill: transparent;
+
+    g:hover {
+      cursor: pointer;
+
+      polygon {
+        fill: #0297C7;
+        stroke: white;
+      }
+    }
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+  }
+}
+
 @media(max-width: 960px) {
   #frontier-homepage {
     // .frontier-header {

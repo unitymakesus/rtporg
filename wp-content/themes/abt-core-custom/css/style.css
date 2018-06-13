@@ -7411,6 +7411,59 @@ body div#ui-datepicker-div[style] {
     #frontier-homepage .content-grid .content img {
       height: 50px; }
 
+.a {
+  fill: #06538f; }
+
+.b {
+  font-size: 8.71px;
+  font-family: CircularStd-Bold, Circular Std;
+  font-weight: 700; }
+
+.b, .k {
+  fill: #fff; }
+
+.c, .f, .i {
+  font-size: 22.86px; }
+
+.c {
+  letter-spacing: 0.04em; }
+
+.d {
+  letter-spacing: 0.04em; }
+
+.e, .i {
+  letter-spacing: 0.04em; }
+
+.f {
+  letter-spacing: 0.03em; }
+
+.g {
+  letter-spacing: 0.04em; }
+
+.h {
+  letter-spacing: 0.04em; }
+
+.j {
+  letter-spacing: 0.04em; }
+
+.frontier-map {
+  position: relative; }
+  .frontier-map .map {
+    width: 100%; }
+  .frontier-map .click {
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    fill: transparent; }
+    .frontier-map .click g:hover {
+      cursor: pointer; }
+      .frontier-map .click g:hover polygon {
+        fill: #0297C7;
+        stroke: white; }
+  .frontier-map .overlay {
+    position: absolute;
+    top: 0; }
+
 @media (max-width: 960px) {
   #frontier-homepage .content-grid .content {
     width: 100%; } }
