@@ -30,7 +30,7 @@
             people.removeAttr('style').equalHeights();
             name.removeAttr('style').equalHeights();
         }
-    } 
+    }
     function resetEqualizePersonTiles() {
         var people = $('.vcard'),
             name = people.find('.fn');
@@ -39,7 +39,7 @@
             people.removeAttr('style');
             name.removeAttr('style');
         }
-    }   
+    }
 
     $(document).ready(function () {
 
@@ -64,7 +64,7 @@
     $(window).resize(function () {
         Responder.query("only screen and (min-width: 640px)", function () {
             initEqualizePersonTiles();
-        }, true);    
+        }, true);
     });
 
 })(jQuery);

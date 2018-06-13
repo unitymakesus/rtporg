@@ -7384,12 +7384,8 @@ body div#ui-datepicker-div[style] {
       display: inline-block; } }
 
 #frontier-homepage .featured-banner {
-  height: 490px; }
-
-#frontier-homepage .frontier-header, #frontier-homepage .stem-header {
-  position: fixed;
-  z-index: 100;
-  width: 100%; }
+  height: 550px;
+  padding-top: 5.5em; }
 
 #frontier-homepage .frontier-video {
   background-image: url("../img/Atrium-berlin-wall.JPG"); }
@@ -7416,8 +7412,6 @@ body div#ui-datepicker-div[style] {
       height: 50px; }
 
 @media (max-width: 960px) {
-  #frontier-homepage .frontier-header, #frontier-homepage .stem-header {
-    position: absolute; }
   #frontier-homepage .content-grid .content {
     width: 100%; } }
 

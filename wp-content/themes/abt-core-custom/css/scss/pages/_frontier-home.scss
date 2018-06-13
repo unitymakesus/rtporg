@@ -1,13 +1,14 @@
 #frontier-homepage {
   .featured-banner{
-    height: 490px;
+    height: 550px;
+    padding-top: 5.5em;
   }
 
-  .frontier-header {
-    position: fixed;
-    z-index: 100;
-    width: 100%;
-  }
+  // .frontier-header {
+  //   position: fixed;
+  //   z-index: 100;
+  //   width: 100%;
+  // }
 
   .frontier-video {
     background-image: url('../img/Atrium-berlin-wall.JPG');
@@ -45,9 +46,9 @@
 
 @media(max-width: 960px) {
   #frontier-homepage {
-    .frontier-header {
-      position: absolute;
-    }
+    // .frontier-header {
+    //   position: absolute;
+    // }
 
     .content-grid {
       .content {
