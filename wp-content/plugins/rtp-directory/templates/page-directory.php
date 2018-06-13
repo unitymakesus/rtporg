@@ -12,7 +12,7 @@ get_header(); ?>
 				<div class="row">
 					<div class="col-md-8">
 						<h1>RTP Directory</h1>
-						<p>The Research Triangle Park is packed with the coolest companies. Explore the Park Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras hendrerit vitae nibh rutrum commodo.</p>
+						<?php the_content(); ?>
 					</div>
 					<div class="col-md-4 text-right">
 						<a href="#" class="button secondary large top-margin">Get Listed</a>
@@ -38,9 +38,12 @@ get_header(); ?>
 									<?php echo do_shortcode('[facetwp facet="availability"]'); ?>
 								</div>
 							</div>
-							<!-- <div class="row">
-								Search
-							</div> -->
+							<div class="row">
+								<div class="col-sm-12">
+									<h3>Search by Keyword</h3>
+									<?php echo do_shortcode('[facetwp facet="search_directory"]'); ?>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
