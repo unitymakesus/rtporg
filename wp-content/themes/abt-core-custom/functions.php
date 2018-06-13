@@ -163,7 +163,7 @@ class abt_core_custom_theme {
 			}
 
 
-			if (is_page_template('page-frontier.php') || is_page_template('page-frontier-about.php') || is_page_template('page-frontier-collaborate.php') || is_page_template('page-frontier-innovate.php') || is_page_template('page-frontier-companies.php')) {
+			if (is_page_template('page-frontier-new.php') || is_page_template('page-frontier-about.php') || is_page_template('page-frontier-collaborate.php') || is_page_template('page-frontier-innovate.php') || is_page_template('page-frontier-companies.php')) {
 			//wp_enqueue_script('page_frontier_scripts', $theme_dir . '/js/page-frontier.js', array('jquery'), $core_version, true );
 				wp_enqueue_script('page_frontier_scripts', $theme_dir . '/js/page-frontier.min.js', array('jquery'), $core_version, true );
 			}

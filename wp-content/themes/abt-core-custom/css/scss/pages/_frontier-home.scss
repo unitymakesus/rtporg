@@ -1,0 +1,132 @@
+#frontier-homepage {
+  .featured-banner{
+    height: 550px;
+    padding-top: 5.5em;
+  }
+
+  .frontier-header {
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+  }
+
+  .frontier-video {
+    background-image: url('../img/Atrium-berlin-wall.JPG');
+  }
+
+  .page-content {
+    padding: 2.5em 2.5em 0 2.5em;
+  }
+
+  .content-grid {
+    float: left;
+    box-sizing: border-box;
+
+    &:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    .content {
+      width: 50%;
+      display: flex;
+      align-items: center;
+
+      div {
+        padding: 0 20px;
+      }
+
+      img {
+        height: 50px;
+      }
+    }
+  }
+}
+
+.frontier-map {
+  position: relative;
+
+  img {
+    width: 100%;
+  }
+
+  svg {
+    position: absolute;
+    top: 0;
+    fill: transparent;
+
+    a:hover {
+      cursor: pointer;
+
+      polygon {
+        fill: #0297C7;
+        stroke: white;
+      }
+    }
+  }
+
+  section p {
+    display: none;
+    position: absolute;
+    background: #0297C7;
+    color: white;
+    padding: 20px;
+    width: 250px;
+
+    &:nth-of-type(1){
+      top: 44%;
+      left: 5%;
+    }
+
+    &:nth-of-type(2){
+      top: 20%;
+      right: 20%;
+    }
+
+    &:nth-of-type(3){
+      bottom: 16%;
+      left: 43%;
+      width: 300px;
+    }
+
+    &:nth-of-type(4){
+      bottom: 28%;
+      right: 5%;
+    }
+  }
+}
+
+.frontier-map svg {
+  .a{fill:#06538f;}.b{font-size:8.71px;font-family:CircularStd-Bold, Circular Std;font-weight:700;}.b,.k{fill:#fff;}.c,.f,.i{font-size:22.86px;}.c{letter-spacing:0.04em;}.d{letter-spacing:0.04em;}.e,.i{letter-spacing:0.04em;}.f{letter-spacing:0.03em;}.g{letter-spacing:0.04em;}.h{letter-spacing:0.04em;}.j{letter-spacing:0.04em;}
+}
+
+#frontier-footer {
+  .footer-container {
+    position: relative;
+  }
+}
+
+@media(max-width: 960px) {
+  #frontier-homepage {
+    .featured-banner{
+      padding-top: 8.5em;
+    }
+
+    .frontier-header {
+      position: absolute;
+    }
+
+    .content-grid {
+      .content {
+        width: 100%;
+      }
+    }
+  }
+
+  .frontier-map {
+    section p {
+      display: none;
+    }
+  }
+}

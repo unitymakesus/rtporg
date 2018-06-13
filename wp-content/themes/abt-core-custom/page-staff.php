@@ -63,7 +63,7 @@ get_header(); ?>
 					<?php while (have_posts()) : the_post(); ?>
 						<?php
 							// Person Fields
-							$thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'people-thumb' );
+							$thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full' );
 							$thumb_url = $thumb['0'];
 							$job_title = types_render_field("person-job-title", array("raw"=>"true"));
 							$company = types_render_field("person-company", array("raw"=>"true"));
@@ -77,15 +77,15 @@ get_header(); ?>
 								<?php endif; ?>
 
 									<h3 class="fn"><?php the_title(); ?></h3>
-								
+
 								<?php if($job_title) : ?>
 									<p class="role"><?php echo $job_title; ?></p>
 								<?php endif; ?>
-								
+
 								<?php if($company) : ?>
 									<p class="org"><?php echo $company; ?></p>
 								<?php endif; ?>
-								
+
 								<img class="svg more" src="<?php echo $theme_dir; ?>/img/icons/i_search-submit.svg" />
 							</a>
 						</li>
