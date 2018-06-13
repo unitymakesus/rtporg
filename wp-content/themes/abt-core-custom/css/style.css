@@ -7485,6 +7485,9 @@ body div#ui-datepicker-div[style] {
 .frontier-map svg .j {
   letter-spacing: 0.04em; }
 
+#frontier-footer .footer-container {
+  position: relative; }
+
 @media (max-width: 960px) {
   #frontier-homepage .featured-banner {
     padding-top: 8.5em; }
