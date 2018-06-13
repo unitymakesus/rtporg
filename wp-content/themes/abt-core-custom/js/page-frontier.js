@@ -67,4 +67,13 @@
         }, true);
     });
 
+
+    // Map hover states
+    if (document.documentElement.clientWidth > 960 ) {
+      $('.frontier-map a').hover(
+        function(){ $(".frontier-map section p").eq($(this).index()).fadeIn()},
+        function(){$(".frontier-map section p").fadeOut();
+      });
+    };
+
 })(jQuery);

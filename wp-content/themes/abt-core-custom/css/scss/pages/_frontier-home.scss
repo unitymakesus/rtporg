@@ -4,11 +4,11 @@
     padding-top: 5.5em;
   }
 
-  // .frontier-header {
-  //   position: fixed;
-  //   z-index: 100;
-  //   width: 100%;
-  // }
+  .frontier-header {
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+  }
 
   .frontier-video {
     background-image: url('../img/Atrium-berlin-wall.JPG');
@@ -44,22 +44,19 @@
   }
 }
 
-.a{fill:#06538f;}.b{font-size:8.71px;font-family:CircularStd-Bold, Circular Std;font-weight:700;}.b,.k{fill:#fff;}.c,.f,.i{font-size:22.86px;}.c{letter-spacing:0.04em;}.d{letter-spacing:0.04em;}.e,.i{letter-spacing:0.04em;}.f{letter-spacing:0.03em;}.g{letter-spacing:0.04em;}.h{letter-spacing:0.04em;}.j{letter-spacing:0.04em;}
-
 .frontier-map {
   position: relative;
 
-  .map {
+  img {
     width: 100%;
   }
 
-  .click {
+  svg {
     position: absolute;
-    z-index: 100;
     top: 0;
     fill: transparent;
 
-    g:hover {
+    a:hover {
       cursor: pointer;
 
       polygon {
@@ -69,22 +66,61 @@
     }
   }
 
-  .overlay {
+  section p {
+    display: none;
     position: absolute;
-    top: 0;
+    background: #0297C7;
+    color: white;
+    padding: 20px;
+    width: 250px;
+
+    &:nth-of-type(1){
+      top: 44%;
+      left: 5%;
+    }
+
+    &:nth-of-type(2){
+      top: 20%;
+      right: 20%;
+    }
+
+    &:nth-of-type(3){
+      bottom: 16%;
+      left: 43%;
+      width: 300px;
+    }
+
+    &:nth-of-type(4){
+      bottom: 28%;
+      right: 5%;
+    }
   }
+}
+
+.frontier-map svg {
+  .a{fill:#06538f;}.b{font-size:8.71px;font-family:CircularStd-Bold, Circular Std;font-weight:700;}.b,.k{fill:#fff;}.c,.f,.i{font-size:22.86px;}.c{letter-spacing:0.04em;}.d{letter-spacing:0.04em;}.e,.i{letter-spacing:0.04em;}.f{letter-spacing:0.03em;}.g{letter-spacing:0.04em;}.h{letter-spacing:0.04em;}.j{letter-spacing:0.04em;}
 }
 
 @media(max-width: 960px) {
   #frontier-homepage {
-    // .frontier-header {
-    //   position: absolute;
-    // }
+    .featured-banner{
+      padding-top: 8.5em;
+    }
+
+    .frontier-header {
+      position: absolute;
+    }
 
     .content-grid {
       .content {
         width: 100%;
       }
+    }
+  }
+
+  .frontier-map {
+    section p {
+      display: none;
     }
   }
 }
