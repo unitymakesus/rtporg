@@ -1,14 +1,27 @@
 .facetwp-template {
   padding-left: 3rem;
-  padding-top: 2rem;
+  padding-top: 1rem;
 }
 
-.label.count {
-  font-size: 0.85em;
-  display: block;
+.directory-listing {
+  border-top: 10px solid #07444C;
 
-  div {
-    display: inline-block;
+  .label {
+    font-size: 0.85em;
+    display: block;
+
+    div {
+      display: inline-block;
+    }
+  }
+
+  a.label {
+    text-decoration: underline !important;
+    color: #333;
+
+    &:hover, &:active, &:focus {
+      color: #194685;
+    }
   }
 }
 
@@ -25,6 +38,7 @@
     height: 73px;
     border: 1px solid #979797;
     flex: 0 0 auto;
+    box-sizing: content-box;
 
     img {
       object-fit: contain;
@@ -44,5 +58,10 @@
         text-decoration: underline;
       }
     }
+  }
+
+  .meta-icon img {
+    height: 18px;
+    display: inline-block;
   }
 }

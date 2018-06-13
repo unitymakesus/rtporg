@@ -33,6 +33,7 @@ class RTP_Dir_Listing {
     $locations = new WP_Query(array(
       'post_type' => ['rtp-company', 'rtp-facility', 'rtp-site', 'rtp-space'],
       'posts_per_page' => -1,
+      'post_status' => 'publish',
       'orderby' => 'title',
       'order' => 'ASC',
     ));
@@ -282,6 +283,7 @@ class RTP_Dir_Listing {
     $locations = new WP_Query(array(
       'post_type' => ['rtp-company', 'rtp-facility', 'rtp-site', 'rtp-space'],
       'posts_per_page' => 20,
+      'post_status' => 'publish',
       'orderby' => 'post_type title',
       'order' => 'ASC',
       'facetwp' => true,

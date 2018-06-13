@@ -63,23 +63,35 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
     if ($location_terms[0]->slug == 'multi-tenant') :
     ?>
 
-      <div class="facility-info">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-8">
-              <?php the_content(); ?>
+      <?php if (!empty(get_the_content()) && get_the_content() !== '<p></p>') : ?>
+        <div class="facility-info">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-8">
+                <?php the_content(); ?>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      <?php endif; ?>
 
       <div class="directory-listing">
         <div class="row">
           <div class="col-xs-12 col-sm-6 facetwp-template">
+            <?php
+            $tenants = (new RTP_Dir_Listing)->get_facility_tenant_ids($id);
+            ?>
             <div class="clearfix vertical-padding">
-  						<?php
-  						$tenants = (new RTP_Dir_Listing)->get_facility_tenant_ids($id);
-              $original_post = $post;
+              <a class="label" href="<?php echo get_permalink(get_page_by_path('/rtp-directory')); ?>">&laquo; Back to RTP directory</a>
+            </div>
+
+            <div class="clearfix vertical-padding">
+			        <span class="count label">Showing <?php echo sizeof($tenants); ?> Companies</span>
+						</div>
+
+            <div class="clearfix vertical-padding">
+              <?php
+  						$original_post = $post;
               if (!empty($tenants)) :
                 foreach ($tenants as $tenant) :
                   $post = get_post($tenant->id);

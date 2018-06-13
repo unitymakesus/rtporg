@@ -58,7 +58,9 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
             <div class="company-logo">
               <div>
                 <?php if(!empty($company_logo)):?>
-                  <img src="<?php the_field('company_logo'); ?>" alt="<?php the_title(); ?>" />
+                  <div>
+                    <img src="<?php the_field('company_logo'); ?>" alt="<?php the_title(); ?>" />
+                  </div>
                 <?php endif; ?>
               </div>
             </div>
@@ -162,16 +164,20 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
                         <dt>General Contact:</dt>
                       <?php } ?>
                       <dd class="new-line">
-                        <?php echo $contact['name']; ?>
-                        <?php if (!empty($contact['title'])) { ?>
-                          , <?php echo $contact['title']; ?>
-                        <?php } ?>
-                        <?php if (!empty($contact['phone'])) { ?>
-                          <br /> <?php echo $contact['phone']; ?>
-                        <?php } ?>
-                        <?php if (!empty($contact['email'])) { ?>
-                          <br /> <a href="mailto:<?php echo $contact['email']; ?>" target="_blank" rel="noopener"><?php echo $contact['email']; ?></a>
-                        <?php } ?>
+                        <?php
+                          echo $contact['name'];
+
+                          if (!empty($contact['title'])) {
+                            echo ', ' . $contact['title'];
+                          }
+
+                          if (!empty($contact['phone'])) {
+                            echo '<br />' . $contact['phone'];
+                          }
+                          if (!empty($contact['email'])) {
+                            echo '<br /><a href="mailto:' . $contact['email'] . '" target="_blank" rel="noopener">' . $contact['email'] . '</a>';
+                          }
+                        ?>
                       </dd>
                     <?php } ?>
                   <?php } ?>
