@@ -33,6 +33,10 @@
       display: flex;
       align-items: center;
 
+      &:nth-of-type(3n+1) {
+        background: #e0dfdf;
+      }
+
       div {
         padding: 0 20px;
       }
@@ -72,39 +76,33 @@
     background: #0297C7;
     color: white;
     padding: 20px;
-    width: 250px;
+    max-width: 250px;
 
     &:nth-of-type(1){
-      top: 44%;
-      left: 5%;
+      top: 41%;
+      left: 7%;
     }
 
     &:nth-of-type(2){
-      top: 20%;
+      top: 12%;
       right: 20%;
     }
 
     &:nth-of-type(3){
-      bottom: 16%;
-      left: 43%;
-      width: 300px;
+      bottom: 6%;
+      left: 47%;
+      max-width: 300px;
     }
 
     &:nth-of-type(4){
-      bottom: 28%;
-      right: 5%;
+      bottom: 22%;
+      right: 4%;
     }
   }
 }
 
 .frontier-map svg {
   .a{fill:#06538f;}.b{font-size:8.71px;font-family:CircularStd-Bold, Circular Std;font-weight:700;}.b,.k{fill:#fff;}.c,.f,.i{font-size:22.86px;}.c{letter-spacing:0.04em;}.d{letter-spacing:0.04em;}.e,.i{letter-spacing:0.04em;}.f{letter-spacing:0.03em;}.g{letter-spacing:0.04em;}.h{letter-spacing:0.04em;}.j{letter-spacing:0.04em;}
-}
-
-#frontier-footer {
-  .footer-container {
-    position: relative;
-  }
 }
 
 @media(max-width: 960px) {
@@ -128,5 +126,19 @@
     section p {
       display: none;
     }
+  }
+}
+
+.content-container {
+	.content.fix-float {
+		@include media($desktop) {
+			float: left !important;
+      margin-right: 0;
+		}
+		@include media($desktop_wide) {
+			@include span-columns(12);
+			float: left !important;
+      margin-right: 0;
+		}
   }
 }
