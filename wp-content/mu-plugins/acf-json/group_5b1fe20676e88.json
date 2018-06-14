@@ -73,6 +73,25 @@
             ]
         },
         {
+            "key": "field_5b22670872840",
+            "label": "Map Content",
+            "name": "map_content",
+            "type": "wysiwyg",
+            "instructions": "This content will appear before the map.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
             "key": "field_5b1fe255b3c07",
             "label": "Map Links",
             "name": "map_links",
@@ -291,5 +310,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1528824975
+    "modified": 1528981325
 }
