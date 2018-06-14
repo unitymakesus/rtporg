@@ -33,6 +33,10 @@
       display: flex;
       align-items: center;
 
+      &:nth-of-type(3n+1) {
+        background: #e0dfdf;
+      }
+
       div {
         padding: 0 20px;
       }
@@ -122,5 +126,19 @@
     section p {
       display: none;
     }
+  }
+}
+
+.content-container {
+	.content.fix-float {
+		@include media($desktop) {
+			float: left !important;
+      margin-right: 0;
+		}
+		@include media($desktop_wide) {
+			@include span-columns(12);
+			float: left !important;
+      margin-right: 0;
+		}
   }
 }

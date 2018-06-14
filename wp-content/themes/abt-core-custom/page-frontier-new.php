@@ -73,7 +73,7 @@ get_header(); ?>
     <section class="content-grid">
       <?php if( have_rows('content_grid') ): ?>
         <?php while( have_rows('content_grid') ): the_row(); ?>
-          <section class="content">
+          <section class="content fix-float">
             <img src="<?php the_sub_field('icon'); ?>"/>
             <div>
               <h3><?php the_sub_field('title'); ?></h3>

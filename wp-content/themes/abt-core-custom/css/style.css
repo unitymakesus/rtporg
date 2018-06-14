@@ -7410,6 +7410,8 @@ body div#ui-datepicker-div[style] {
     display: flex;
     -ms-flex-align: center;
     align-items: center; }
+    #frontier-homepage .content-grid .content:nth-of-type(3n+1) {
+      background: #e0dfdf; }
     #frontier-homepage .content-grid .content div {
       padding: 0 20px; }
     #frontier-homepage .content-grid .content img {
@@ -7493,6 +7495,22 @@ body div#ui-datepicker-div[style] {
     width: 100%; }
   .frontier-map section p {
     display: none; } }
+
+@media screen and (min-width: 960px) {
+  .content-container .content.fix-float {
+    float: left !important;
+    margin-right: 0; } }
+
+@media screen and (min-width: 1280px) {
+  .content-container .content.fix-float {
+    float: left;
+    display: block;
+    margin-right: 1.75788%;
+    width: 74.56053%;
+    float: left !important;
+    margin-right: 0; }
+    .content-container .content.fix-float:last-child {
+      margin-right: 0; } }
 
 body.home .band {
   overflow: hidden; }
