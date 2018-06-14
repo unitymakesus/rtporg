@@ -83,6 +83,4 @@ get_header(); ?>
 
 <?php endwhile; ?>
 
-<div id="frontier-footer">
-  <?php get_footer(); ?>
-</div>
+<?php get_footer(); ?>

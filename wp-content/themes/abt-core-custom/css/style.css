@@ -1144,7 +1144,6 @@ body {
       padding: 2.5rem; } }
   @media screen and (min-width: 960px) {
     .footer-container {
-      position: fixed;
       bottom: 0;
       left: 0;
       width: 100%;
@@ -7484,9 +7483,6 @@ body div#ui-datepicker-div[style] {
 
 .frontier-map svg .j {
   letter-spacing: 0.04em; }
-
-#frontier-footer .footer-container {
-  position: relative; }
 
 @media (max-width: 960px) {
   #frontier-homepage .featured-banner {
