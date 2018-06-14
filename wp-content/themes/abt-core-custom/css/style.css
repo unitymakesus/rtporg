@@ -7434,20 +7434,20 @@ body div#ui-datepicker-div[style] {
     background: #0297C7;
     color: white;
     padding: 20px;
-    width: 250px; }
+    max-width: 250px; }
     .frontier-map section p:nth-of-type(1) {
-      top: 44%;
-      left: 5%; }
+      top: 41%;
+      left: 7%; }
     .frontier-map section p:nth-of-type(2) {
-      top: 20%;
+      top: 12%;
       right: 20%; }
     .frontier-map section p:nth-of-type(3) {
-      bottom: 16%;
-      left: 43%;
-      width: 300px; }
+      bottom: 6%;
+      left: 47%;
+      max-width: 300px; }
     .frontier-map section p:nth-of-type(4) {
-      bottom: 28%;
-      right: 5%; }
+      bottom: 22%;
+      right: 4%; }
 
 .frontier-map svg .a {
   fill: #06538f; }
