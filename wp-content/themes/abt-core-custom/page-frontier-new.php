@@ -37,6 +37,8 @@ get_header(); ?>
       </div>
     </section>
 
+    <div class="page-content"><?php the_field('map_content'); ?></div>
+
     <div class="frontier-map">
       <img src="<?php bloginfo('stylesheet_directory'); ?>/img/frontiermap.svg"/ >
 
