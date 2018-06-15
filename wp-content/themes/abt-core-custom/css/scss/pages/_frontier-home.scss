@@ -19,7 +19,6 @@
   }
 
   .content-grid {
-    float: left;
     box-sizing: border-box;
 
     &:after {
@@ -53,12 +52,16 @@
 
   img {
     width: 100%;
+    position: relative;
+    display: block;
+    z-index: 0;
   }
 
   svg {
     position: absolute;
     top: 0;
     fill: transparent;
+    z-index: 20;
 
     a:hover {
       cursor: pointer;
@@ -77,6 +80,7 @@
     color: white;
     padding: 20px;
     max-width: 250px;
+    z-index: 100;
 
     &:nth-of-type(1){
       top: 41%;
