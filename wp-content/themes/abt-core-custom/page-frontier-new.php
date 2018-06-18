@@ -86,7 +86,7 @@ get_header(); ?>
               <div>
                 <h3><?php the_sub_field('title'); ?></h3>
                 <?php the_sub_field('text'); ?>
-                <a href="<?php the_sub_field('link'); ?>">Learn More</a>
+                <a class="button secondary" href="<?php the_sub_field('link'); ?>">Learn More</a>
               </div>
             </article>
 

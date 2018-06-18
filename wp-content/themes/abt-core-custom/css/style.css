@@ -7418,7 +7418,9 @@ body div#ui-datepicker-div[style] {
       align-items: center;
       width: 50%; }
     #frontier-homepage .content-grid .row img {
-      height: 50px; }
+      height: 50px;
+      width: 50px;
+      object-fit: contain; }
     #frontier-homepage .content-grid .row div {
       padding: 0 20px; }
 
