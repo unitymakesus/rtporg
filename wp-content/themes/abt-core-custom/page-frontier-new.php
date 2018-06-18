@@ -71,19 +71,34 @@ get_header(); ?>
     <div class="page-content"><?php the_field('page_content'); ?></div>
 
     <section class="content-grid">
-      <?php if( have_rows('content_grid') ): ?>
-        <?php while( have_rows('content_grid') ): the_row(); ?>
-          <section class="content fix-float">
-            <img src="<?php the_sub_field('icon'); ?>"/>
-            <div>
-              <h3><?php the_sub_field('title'); ?></h3>
-              <?php the_sub_field('text'); ?>
-              <a href="<?php the_sub_field('link'); ?>">Learn More</a>
-            </div>
-          </section>
-        <?php endwhile; ?>
-      <?php endif; ?>
+      <?php if( have_rows('content_grid')):
+        $count = 0;
+        $group = 0;
+
+        while( have_rows('content_grid')): the_row();
+          if ($count % 2 == 0) {
+            $group++;
+            echo '<div class="row">';
+          } ?>
+
+            <article>
+              <img src="<?php the_sub_field('icon'); ?>"/>
+              <div>
+                <h3><?php the_sub_field('title'); ?></h3>
+                <?php the_sub_field('text'); ?>
+                <a href="<?php the_sub_field('link'); ?>">Learn More</a>
+              </div>
+            </article>
+
+          <?php
+          if ($count % 2 == 1) {
+            echo '</div>';
+          }
+          $count++;
+        endwhile;
+      endif;?>
     </section>
+
   </div>
 
 <?php endwhile; ?>

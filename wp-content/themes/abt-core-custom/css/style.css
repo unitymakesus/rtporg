@@ -7399,22 +7399,28 @@ body div#ui-datepicker-div[style] {
 
 #frontier-homepage .content-grid {
   box-sizing: border-box; }
-  #frontier-homepage .content-grid:after {
-    content: "";
-    display: table;
-    clear: both; }
-  #frontier-homepage .content-grid .content {
-    width: 50%;
+  #frontier-homepage .content-grid .row {
     display: -ms-flexbox;
-    display: flex;
-    -ms-flex-align: center;
-    align-items: center; }
-    #frontier-homepage .content-grid .content:nth-of-type(3n+1) {
-      background: #e0dfdf; }
-    #frontier-homepage .content-grid .content div {
-      padding: 0 20px; }
-    #frontier-homepage .content-grid .content img {
+    display: flex; }
+    #frontier-homepage .content-grid .row:nth-of-type(odd) article:nth-of-type(1) {
+      background: #dee1e5; }
+    #frontier-homepage .content-grid .row:nth-of-type(odd) article:nth-of-type(2) {
+      background: #f9fbfc; }
+    #frontier-homepage .content-grid .row:nth-of-type(even) article:nth-of-type(1) {
+      background: #f9fbfc; }
+    #frontier-homepage .content-grid .row:nth-of-type(even) article:nth-of-type(2) {
+      background: #dee1e5; }
+    #frontier-homepage .content-grid .row article {
+      padding: 20px;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-align: center;
+      align-items: center;
+      width: 50%; }
+    #frontier-homepage .content-grid .row img {
       height: 50px; }
+    #frontier-homepage .content-grid .row div {
+      padding: 0 20px; }
 
 .frontier-map {
   position: relative; }
@@ -7495,26 +7501,13 @@ body div#ui-datepicker-div[style] {
     padding-top: 8.5em; }
   #frontier-homepage .frontier-header, #frontier-homepage .stem-header {
     position: absolute; }
-  #frontier-homepage .content-grid .content {
-    width: 100%; }
-  .frontier-map section p {
+  #frontier-homepage .content-grid .row {
+    display: block; }
+    #frontier-homepage .content-grid .row article {
+      width: 100%;
+      background: transparent !important; }
+  #frontier-homepage .frontier-map section p {
     display: none; } }
-
-@media screen and (min-width: 960px) {
-  .content-container .content.fix-float {
-    float: left !important;
-    margin-right: 0; } }
-
-@media screen and (min-width: 1280px) {
-  .content-container .content.fix-float {
-    float: left;
-    display: block;
-    margin-right: 1.75788%;
-    width: 74.56053%;
-    float: left !important;
-    margin-right: 0; }
-    .content-container .content.fix-float:last-child {
-      margin-right: 0; } }
 
 body.home .band {
   overflow: hidden; }
