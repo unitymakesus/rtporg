@@ -7403,13 +7403,13 @@ body div#ui-datepicker-div[style] {
     display: -ms-flexbox;
     display: flex; }
     #frontier-homepage .content-grid .row:nth-of-type(odd) article:nth-of-type(1) {
-      background: #dee1e5; }
+      background: #E0E0E5; }
     #frontier-homepage .content-grid .row:nth-of-type(odd) article:nth-of-type(2) {
-      background: #f9fbfc; }
+      background: #EDEDF0; }
     #frontier-homepage .content-grid .row:nth-of-type(even) article:nth-of-type(1) {
-      background: #f9fbfc; }
+      background: #EDEDF0; }
     #frontier-homepage .content-grid .row:nth-of-type(even) article:nth-of-type(2) {
-      background: #dee1e5; }
+      background: #E0E0E5; }
     #frontier-homepage .content-grid .row article {
       padding: 20px;
       display: -ms-flexbox;
