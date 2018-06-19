@@ -40,7 +40,7 @@ get_header(); ?>
     <div class="page-content"><?php the_field('map_content'); ?></div>
 
     <div class="frontier-map">
-      <img src="<?php bloginfo('stylesheet_directory'); ?>/img/frontiermap.svg"/ >
+      <img src="<?php bloginfo('stylesheet_directory'); ?>/img/FrontierMapParking.svg"/ >
 
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 976.83 498.66">
         <a target="_blank" xlink:href="<?php bloginfo('stylesheet_directory'); ?>/img/frontier-pdf/700-Park-Office-Building.pdf">
