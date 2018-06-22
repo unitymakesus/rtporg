@@ -996,10 +996,10 @@ body {
     width: 100%; }
     @media screen and (min-width: 960px) {
       .site-menu .sub-menu {
-        position: absolute;
+        position: relative;
         top: 10px;
         text-align: right;
-        padding-right: 110px;
+        padding-right: 150px;
         right: 100%; } }
     .site-menu .sub-menu .menu-item {
       font-size: 22px; }
