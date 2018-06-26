@@ -11,7 +11,7 @@ get_header(); ?>
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-md-8">
-						<h1>RTP Directory</h1>
+						<h1><?php the_title(); ?></h1>
 						<?php the_content(); ?>
 					</div>
 					<div class="col-md-4 text-right">
@@ -19,9 +19,12 @@ get_header(); ?>
 					</div>
 				</div>
 			</div>
-			<button id="filter-toggle">Filter Results <span>▲</span></button>
+			<button id="filter-toggle">Filter &amp; Search <span>▲</span></button>
 			<div class="filters">
 				<div class="container-fluid">
+					<div class="row">
+						<div class="col-sm-12 label">Choose filters below to narrow results:</div>
+					</div>
 					<div class="row">
 						<div class="col-sm-6">
 							<h3>Company Types</h3>
@@ -57,7 +60,9 @@ get_header(); ?>
 				        <span class="count label">Showing <?php echo do_shortcode('[facetwp counts="true"]'); ?> Results</span>
 							</div>
 							<div class="float-right text-right">
-								<?php echo do_shortcode('[facetwp pager="true"]'); ?>
+								<nav role="navigation" aria-label="Results Pagination">
+									<?php echo do_shortcode('[facetwp pager="true"]'); ?>
+								</nav>
 							</div>
 						</div>
 
@@ -113,7 +118,9 @@ get_header(); ?>
 								<span class="count label">Showing <?php echo do_shortcode('[facetwp counts="true"]'); ?> Results</span>
 							</div>
 							<div class="float-right text-right">
-								<?php echo do_shortcode('[facetwp pager="true"]'); ?>
+								<nav role="navigation" aria-label="Results Pagination">
+									<?php echo do_shortcode('[facetwp pager="true"]'); ?>
+								</nav>
 							</div>
 						</div>
 					</div>

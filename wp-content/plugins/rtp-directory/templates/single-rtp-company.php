@@ -54,24 +54,36 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
     <div class="container-fluid">
       <div class="row">
         <div class="col-xs-12 col-md-8">
-          <div class="box">
-            <div class="company-logo">
-              <div>
-                <?php if(!empty($company_logo)):?>
-                  <div>
-                    <img src="<?php the_field('company_logo'); ?>" alt="<?php the_title(); ?>" />
-                  </div>
-                <?php endif; ?>
+          <div class="row flex">
+            <div class="logo-wrapper">
+              <div class="company-logo">
+                <div>
+                  <?php if(!empty($company_logo)):?>
+                    <div>
+                      <img src="<?php the_field('company_logo'); ?>" alt="<?php the_title(); ?>" />
+                    </div>
+                  <?php endif; ?>
+                </div>
               </div>
             </div>
-            <h1><?php the_title(); ?></h1>
-            <?php if (!empty($location_terms)) : ?>
-              <div class="result-meta">
-                <?php foreach ($location_terms as $lt) : ?>
-                <div class="meta-term"><?php echo $lt->name; ?></div>
-                <?php endforeach; ?>
-              </div>
-            <?php endif; ?>
+            <div class="company-title">
+              <h1><?php the_title(); ?></h1>
+              <?php if (!empty($location_terms)) : ?>
+                <div class="result-meta">
+                  <?php foreach ($location_terms as $lt) : ?>
+                  <div class="meta-term">
+                    <?php if (function_exists('get_wp_term_image')) :?>
+                      <div class="meta-icon">
+                        <?php $meta_image = get_wp_term_image($lt->term_id);?>
+                        <img src="<?php echo $meta_image;?>" alt="" />
+                      </div>
+                    <?php endif; ?>
+                    <?php echo $lt->name; ?>
+                  </div>
+                  <?php endforeach; ?>
+                </div>
+              <?php endif; ?>
+            </div>
           </div>
         </div>
         <div class="col-xs-12 col-md-4">
@@ -90,100 +102,112 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
           <div class="container-fluid">
             <?php the_content(); ?>
 
-            <h2>Additional Details</h2>
+            <?php if (!empty($year_in_rtp) || ($employment_public == true && !empty($company_size)) || !empty($university[0]) || (!empty($locations) && $locations !== 'Located in RTP only')) : ?>
+              <h2>Additional Details</h2>
 
-            <div class="indent">
-              <dl>
-                <?php if (!empty($year_in_rtp)) { ?>
-                  <dt>Arrived in RTP:</dt>
-                  <dd><?php the_field('reporting_data_year_arrived_in_rtp'); ?></dd>
-                <?php } ?>
+              <div class="indent">
+                <dl>
+                  <?php if (!empty($year_in_rtp)) { ?>
+                    <dt>Arrived in RTP:</dt>
+                    <dd><span><?php the_field('reporting_data_year_arrived_in_rtp'); ?></span></dd>
+                  <?php } ?>
 
-                <?php if (!empty($company_size)) { ?>
-                  <dt>Company Size:</dt>
-                  <dd><?php echo $company_size ?> Employees</dd>
-                <?php } ?>
+                  <?php if ($employment_public == true && !empty($company_size)) { ?>
+                    <dt>Company Size:</dt>
+                    <dd><span><?php echo $company_size ?> Employees</span></dd>
+                  <?php } ?>
 
-                <?php if ($locations == 'Multiple countries') { ?>
-                  <dt>Global Headquarters:</dt>
-                  <dd><?php the_field('operations_global_headquarters'); ?></dd>
-                  <dt>US Headquarters:</dt>
-                  <dd><?php the_field('operations_us_headquarters'); ?></dd>
-                <?php } elseif ($locations == 'Multiple US locations') { ?>
-                  <dt>Headquarters:</dt>
-                  <dd><?php the_field('operations_us_headquarters'); ?></dd>
-                <?php } ?>
+                  <?php if ($locations == 'Multiple countries') { ?>
+                    <dt>Global Headquarters:</dt>
+                    <dd><span><?php the_field('operations_global_headquarters'); ?></span></dd>
+                    <?php if (get_field('operations_global_headquarters' == get_field('operations_us_headquarters'))) { ?>
+                      <dt>US Headquarters:</dt>
+                      <dd><span><?php the_field('operations_us_headquarters'); ?></span></dd>
+                    <?php } ?>
+                  <?php } elseif ($locations == 'Multiple US locations') { ?>
+                    <dt>Headquarters:</dt>
+                    <dd><span><?php the_field('operations_us_headquarters'); ?></span></dd>
+                  <?php } ?>
 
-                <?php if (!empty($university[0])) { ?>
-                <dt>University Affiliation:</dt>
-                  <dd><?php echo implode(', ', $university); ?></dd>
-                <?php } ?>
-              </dl>
-            </div>
+                  <?php if (!empty($university[0])) { ?>
+                  <dt>University Affiliation:</dt>
+                    <dd><span><?php echo implode(', ', $university); ?></span></dd>
+                  <?php } ?>
+                </dl>
+              </div>
+            <?php endif; ?>
 
-            <h2>Get In Touch</h2>
+            <?php if (($phone['public'] == true && !empty($phone['number'])) || ($fax['public'] == true && !empty($fax['number'])) || !empty($twitter) || !empty($mailing_address) || !empty($contact_ppl)) : ?>
+              <h2>Get In Touch</h2>
 
-            <div class="indent">
-              <dl>
-                <?php if ($phone['public'] == true) { ?>
-                  <dt>Phone:</dt>
-                  <dd><?php echo $phone['number']; ?></dd>
-                <?php } ?>
+              <div class="indent">
+                <dl>
+                  <?php if ($phone['public'] == true && !empty($phone['number'])) { ?>
+                    <dt>Phone:</dt>
+                    <dd><span><?php echo $phone['number']; ?></span></dd>
+                  <?php } ?>
 
-                <?php if ($fax['public'] == true && !empty($fax['number'])) { ?>
-                  <dt>Fax:</dt>
-                  <dd><?php echo $fax['number']; ?></dd>
-                <?php } ?>
+                  <?php if ($fax['public'] == true && !empty($fax['number'])) { ?>
+                    <dt>Fax:</dt>
+                    <dd><span><?php echo $fax['number']; ?></span></dd>
+                  <?php } ?>
 
-                <?php if (!empty($twitter)) { ?>
-                  <dt>Twitter:</dt>
-                  <dd><a href="https://www.twitter.com/<?php echo $twitter; ?>" target="_blank" rel="noopener">@<?php echo $twitter; ?></a></dd>
-                <?php } ?>
+                  <?php if (!empty($twitter)) { ?>
+                    <dt>Twitter:</dt>
+                    <dd><span><a href="https://www.twitter.com/<?php echo $twitter; ?>" target="_blank" rel="noopener">@<?php echo $twitter; ?></a></span></dd>
+                  <?php } ?>
 
-                <?php if (!empty($mailing_address)) { ?>
-                  <dt>Mailing Address:</dt>
-                  <dd>
-                    <?php
-                    echo $street_address . '<br />';
-                    echo 'RTP, NC ';
-                    if (!empty($zip_code)) {
-                      echo $zip_code;
-                    } else {
-                      echo '27709';
-                    }
-                    ?>
-                  </dd>
-                <?php } ?>
+                  <?php if (!empty($mailing_address)) { ?>
+                    <dt>Mailing Address:</dt>
+                    <dd><span>
+                      <?php
+                      echo $street_address . '<br />';
+                      echo 'RTP, NC ';
+                      if (!empty($zip_code)) {
+                        echo $zip_code;
+                      } else {
+                        echo '27709';
+                      }
+                      ?>
+                    </span></dd>
+                  <?php } ?>
 
-                <?php if (!empty($contact_ppl)) { ?>
-                  <?php foreach($contact_ppl as $contact) { ?>
-                    <?php if (!empty($contact['email']) || !empty($contact['phone'])) { ?>
-                      <?php if ($contact['pr_contact'] == true) { ?>
-                        <dt>PR Contact:</dt>
-                      <?php } else { ?>
-                        <dt>General Contact:</dt>
+                  <?php if (!empty($contact_ppl)) { ?>
+                    <?php foreach($contact_ppl as $contact) { ?>
+                      <?php if (!empty($contact['email']) || !empty($contact['phone'])) { ?>
+                        <?php if ($contact['pr_contact'] == true) { ?>
+                          <dt>PR Contact:</dt>
+                        <?php } else { ?>
+                          <dt>General Contact:</dt>
+                        <?php } ?>
+                        <dd><span>
+                          <?php
+                            if (!empty($contact['title'])) {
+                              echo $contact['name'];
+                              if (!empty($contact['title'])) {
+                                echo ', ' . $contact['title'];
+                              }
+                              if (!empty($contact['phone']) || !empty($contact['email'])) {
+                                echo '<br />';
+                              }
+                            }
+                            if (!empty($contact['phone'])) {
+                              echo $contact['phone'];
+                              if (!empty($contact['email'])) {
+                                echo '<br />';
+                              }
+                            }
+                            if (!empty($contact['email'])) {
+                              echo '<a href="mailto:' . $contact['email'] . '" target="_blank" rel="noopener">' . $contact['email'] . '</a>';
+                            }
+                          ?>
+                        </span></dd>
                       <?php } ?>
-                      <dd class="new-line">
-                        <?php
-                          echo $contact['name'];
-
-                          if (!empty($contact['title'])) {
-                            echo ', ' . $contact['title'];
-                          }
-
-                          if (!empty($contact['phone'])) {
-                            echo '<br />' . $contact['phone'];
-                          }
-                          if (!empty($contact['email'])) {
-                            echo '<br /><a href="mailto:' . $contact['email'] . '" target="_blank" rel="noopener">' . $contact['email'] . '</a>';
-                          }
-                        ?>
-                      </dd>
                     <?php } ?>
                   <?php } ?>
-                <?php } ?>
-              </dl>
-            </div>
+                </dl>
+              </div>
+            <?php endif; ?>
 
             <?php if (!empty($website)) : ?>
               <a class="button secondary large" href="<?php echo $website; ?>" target="_blank" rel="noopener">Visit Website</a>
