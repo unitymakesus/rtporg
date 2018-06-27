@@ -305,7 +305,7 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
 
             <div class="location-photo">
               <?php if (!empty($location_photo)) { ?>
-                <img src="<?php echo $location_photo['sizes']['large']; ?>" alt="<?php the_title(); ?> Photograph"/>
+                <img src="<?php echo $location_photo; ?>" alt="<?php the_title(); ?> Photograph"/>
               <?php } ?>
             </div>
           </div>
