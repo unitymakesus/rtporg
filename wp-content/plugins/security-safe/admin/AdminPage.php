@@ -222,9 +222,9 @@ class AdminPage {
      * @param string $short_desc The text that is displayed to the right on the checkbox.
      * @param string $long_desc The description text displayed below the title.
      */
-    protected function form_checkbox( $page_options, $name, $slug, $short_desc, $long_desc, $disabled = false ) {
+    protected function form_checkbox( $page_options, $name, $slug, $short_desc, $long_desc, $classes = '', $disabled = false ) {
 
-        $html = '<tr class="checkbox">';
+        $html = '<tr class="form-checkbox '. $classes .'">';
 
         if ( is_array( $page_options ) && $slug && $short_desc ) {
             
@@ -266,16 +266,58 @@ class AdminPage {
     } //form_checkbox()
 
 
-    protected function form_text() {
+    protected function form_text( $message, $class = '', $classes = '' ) {
 
-        // Placeholder for now
+        $html = '<tr class="form-text '. $classes .'">';
+
+        $html .= '<td colspan="2"><p class="' . $class . '">' . $message . '</p></td>';
+
+        $html .= '</tr>';
+
+        return $html;
         
     } // form_text();
 
 
-    protected function form_select( $page_options, $name, $slug, $options, $long_desc ) {
+    protected function form_input( $page_options, $name, $slug, $placeholder, $long_desc, $styles = '', $classes = '', $required = false ) {
+    
+        $html = '<tr class="form-input '. $classes .'">';
 
-        $html = '<tr class="select">';
+        if ( is_array( $page_options ) && $slug ) {
+
+            $value = ( isset( $page_options[ $slug ] ) ) ? $page_options[ $slug ] : '';
+
+            $html .= $this->row_label( $name );
+            
+            $html .= '<td><input type="text" name="' . $slug . '" placeholder="' . $placeholder . '" value="' . $value . '" style="' . $styles . '">';
+
+            if ( $long_desc ) {
+
+                $html .= '<p class="desc">' . $long_desc . '</p>';
+
+            } // $long_desc
+
+            $html .= '</td>';
+
+        } else {
+
+            $html .= '<td>There is an issue.</td>';
+
+        } // is_array( $options )
+
+        $html .= '</tr>';
+
+        // Memory Cleanup
+        unset( $page_options, $name, $slug, $placeholder, $long_desc, $required, $value );
+
+        return $html;
+
+    } // form_input()
+
+
+    protected function form_select( $page_options, $name, $slug, $options, $long_desc, $classes = '' ) {
+
+        $html = '<tr class="form-select '. $classes .'">';
 
         if ( is_array( $page_options ) && $slug && $options ) {
             
@@ -314,7 +356,7 @@ class AdminPage {
 
         } else {
 
-            $html .= 'There is an issue.';
+            $html .= '<td colspan="2">There is an issue.</td>';
 
         } // is_array( $options ) && $slug ...
 
@@ -349,9 +391,9 @@ class AdminPage {
      * Creates Table Row For A Button
      * @since  0.3.0
      */ 
-    protected function form_button( $text, $type, $value, $long_desc = false ) {
+    protected function form_button( $text, $type, $value, $long_desc = false, $classes = '' ) {
 
-        $html = '<tr class="select">';
+        $html = '<tr class="form-button '. $classes .'">';
             
         $html .= $this->row_label( $text );
             
