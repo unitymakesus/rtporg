@@ -84,6 +84,12 @@ get_header(); ?>
 								<div class="result-item">
 									<div class="result-logo">
 										<?php
+										if ($location_type == 'rtp-facility' || $location_type == 'rtp-space' || $location_type == 'rtp-site') {
+											$location_photo = get_the_post_thumbnail_url($id, 'medium');
+											?>
+											<img src="<?php echo $location_photo; ?>" alt="" />
+											<?php
+										} elseif ($location_type == 'rtp-company') {
 											$logo = get_field('company_logo');
 											$location_photo = get_field('location_photograph');
 											$within_facility = get_field('within_facility');
@@ -106,6 +112,7 @@ get_header(); ?>
 												<img src="<?php echo $related_photo; ?>" alt="" />
 												<?php
 											}
+										}
 										?>
 									</div>
 
