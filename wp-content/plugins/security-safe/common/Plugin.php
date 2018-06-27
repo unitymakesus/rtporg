@@ -38,6 +38,12 @@ class Plugin {
      */
     protected $settings = array();
 
+    /**
+     * Logged In Status
+     * @var boolean
+     */
+    protected $logged_in;
+
 
     /**
      * Contains all the admin message values.
@@ -55,6 +61,9 @@ class Plugin {
         // Testing Plugin
         $this->debug = false;
 
+        // Get value once
+        $this->logged_in = is_user_logged_in();
+
         // Set Plugin Information
         $this->plugin = ( is_array( $plugin ) ) ? $plugin : exit;
 
@@ -65,7 +74,10 @@ class Plugin {
         load_plugin_textdomain( 'security-safe', false, $this->plugin['dir_lang'] );
 
         // Retrieve Plugin Settings
-        $this->check_settings();
+        $this->settings = ( empty( $this->settings ) ) ? $this->get_settings() : $this->settings;
+
+        // Check For Upgrades
+        $this->upgrade_settings();
 
         // Cleanup Settings on Plugin Disable
         register_deactivation_hook( $this->plugin['file'], array( $this, 'disable_plugin') );
@@ -165,63 +177,6 @@ class Plugin {
 
 
     /**
-     * Checks settings and determines whether they need to be reset to default
-     * @since  0.1.0
-     */
-    function check_settings() {
-
-        // Initially Get Settings
-        $this->settings = $this->get_settings();
-
-        if ( isset( $_POST ) && ! empty( $_POST ) && isset( $_GET['page'] ) && strpos( $_GET['page'], 'security-safe' ) !== false && ( ! isset( $_GET['tab'] ) || $_GET['tab'] == 'settings' ) ){
-
-            // Remove Reset Variable
-            if ( isset( $_GET['reset'] ) ) { 
-                
-                unset( $_GET['reset'] );
-
-            }
-
-            // Create Page Slug
-            $page_slug = filter_var( $_GET['page'], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH );
-            $page_slug = str_replace( array( 'security-safe-', 'security-safe' ), '', $page_slug );
-            
-            // Compensation For Oddball Scenarios
-            $page_slug = ( $page_slug == '' ) ? 'general' : $page_slug;
-            $page_slug = ( $page_slug == 'user-access' ) ? 'access' : $page_slug;
-
-            $this->post_settings( $page_slug );
-
-            // Memory Cleanup
-            unset( $page_slug );
-
-        } elseif ( 
-            isset( $_GET['page'] ) && 
-            $_GET['page'] == $this->plugin['slug'] &&
-
-            isset( $_GET['reset'] ) &&
-            $_GET['reset'] == 1
-        ) {
-            // Reset On General Settings Only
-            $this->reset_settings();
-
-        } elseif ( ! isset( $this->settings['plugin']['version'] ) ) {
-
-            // Initially Set Settings to Default
-            $this->log( 'No version in the database. Initially set settings.' );
-            $this->reset_settings( true );
-
-        } else {
-
-            // Check For Upgrades
-            $this->upgrade_settings();
-
-        } // isset( $_POST )
-
-    } //check_settings()
-
-
-    /**
      * Resets the plugin settings to default configuration.
      * @since  0.2.0
      */  
@@ -269,7 +224,8 @@ class Plugin {
         $content = array();
         $content['on'] = '1';
         $content['disable_text_highlight'] = '0';
-        $content['disable_right_click'] = '0'; 
+        $content['disable_right_click'] = '0';
+        $content['hide_password_protected_posts'] = '0';
 
         // Access ----------------------------------|
         $access = array();
@@ -548,6 +504,45 @@ class Plugin {
 
     } // shutdown()
 
+
+    /**
+     * Initializes the plugin.
+     * @since  1.8.0
+     */ 
+    static function init(){
+
+        global $SecuritySafe;
+
+        $admin_user = false;
+
+        if ( is_admin() ) {
+
+            // Multisite Compatibility
+            if ( is_multisite() ){
+
+                $admin_user = ( is_super_admin() ) ? true : false;
+
+            } else {
+
+                $admin_user = ( current_user_can( 'manage_options' ) ) ? true : false;
+
+            }
+            
+        } // is_admin()
+
+        // Initialize Plugin
+        $init = __NAMESPACE__ . '\\';
+        $init .= ( $admin_user ) ? 'Admin' : 'Security';
+        
+        // Pass Plugin Variables
+        $SecuritySafe = new $init( $SecuritySafe );
+
+        // Memory Cleanup
+        unset( $init, $plugin );
+
+    } // init()
+
+
     /**
      * Removes the settings from the database on plugin deactivation
      * @since  0.3.5
@@ -655,5 +650,106 @@ class Plugin {
         unset( $filename );
 
     } // log()
+
+
+    /**
+     * Writes to backup.log for troubleshooting backup issues
+     * @param string $message Message entered into the log
+     * @param string $file Location of the file where the error occured
+     * @param string $line Line number of where the error occured
+     * @return void
+     * @since 1.8.0
+     */
+     function log_backup( $message, $file = false, $line = false ) {
+
+        // Determine File Structure
+        $content_dir = ( defined( 'WP_CONTENT_DIR' ) ) ? WP_CONTENT_DIR : ABSPATH . 'wp-content';
+
+        $log_dir = ( isset( $this->settings['backups']['storage_location'] ) ) ? $this->settings['backups']['storage_location'] : 'security-safe';
+        
+        $log_dir = $content_dir . '/' . $log_dir;
+
+        // Create Directory
+        if ( ! file_exists( $log_dir ) && ! is_dir( $log_dir ) ) {
+
+            mkdir( $log_dir, 0750);
+
+        } 
+
+        $index = $log_dir . '/index.html';
+
+        // Prevent Snooping
+        if ( ! file_exists( $index ) ) {
+
+            file_put_contents( $index, "");
+
+        } 
+
+        // Keep this directory secure
+        chmod( $log_dir, 0750 );
+        chmod( $index, 0640 );
+
+        // Name of log file
+        $filename = 'backup.log';
+
+        // Log message in the log file
+        $activity_log_path = $log_dir . '/' . $filename;
+
+        // Remove Duplicate Slashes
+        $activity_log_path = str_replace( '//', '/', $activity_log_path );
+
+        $datestamp = date( 'Y-M-j h:m:s' );
+        $message = ( $message ) ? $message : 'Error: Log Message not defined!';
+
+        if ( $file && $line ) {
+
+            $message .= ' - ' . 'Occurred on line ' . $line . ' in file ' . $file;
+
+        } // $file
+
+        $filesize = filesize( $activity_log_path );
+
+        // Make log file smaller
+        if ( $filesize > 100000) { // 100k file size max
+
+            // Count lines
+            $text = file_get_contents( $activity_log_path );
+            $lines = explode( "\n", $text );
+            $count = count( $lines );
+            $keep = 500; // lines to keep
+
+            if ( $count > $keep ){
+
+                $start = $count - $keep;
+
+                // Truncate Lines
+                $lines = array_slice( $lines, $start );
+                $text = implode( "\n", $lines );
+
+                // Write retained lines back to file
+                file_put_contents( $activity_log_path, $text );
+
+                // Add notice to log
+                error_log( $datestamp . " - " . "Downsized log to " . $keep . " lines. \n", 3, $activity_log_path );
+
+            }
+
+        } // $filesize
+
+        $activity_log = $datestamp . " - " . $message . ' / ' . $filesize . '/' . $count . "\n";
+
+        // Add to log
+        error_log( $activity_log, 3, $activity_log_path );
+
+        // Keep secure
+        chmod( $activity_log_path, 0640);
+
+        // Memory Cleanup
+        unset( $activity_log_path, $datestamp, $message, $file, $line, $activity_log );
+
+        // Memory Cleanup
+        unset( $filename );
+
+    } // log_backup()
 
 } // Plugin()

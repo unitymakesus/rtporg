@@ -11,17 +11,20 @@ get_header(); ?>
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-md-8">
-						<h1>RTP Directory</h1>
+						<h1><?php the_title(); ?></h1>
 						<?php the_content(); ?>
 					</div>
 					<div class="col-md-4 text-right">
-						<a href="#" class="button secondary large top-margin">Get Listed</a>
+						<!-- <a href="#" class="button secondary large top-margin">Get Listed</a> -->
 					</div>
 				</div>
 			</div>
-			<button id="filter-toggle">Filter Results <span>▲</span></button>
+			<button id="filter-toggle">Filter &amp; Search <span>▲</span></button>
 			<div class="filters">
 				<div class="container-fluid">
+					<div class="row">
+						<div class="col-sm-12 label">Choose filters below to narrow results:</div>
+					</div>
 					<div class="row">
 						<div class="col-sm-6">
 							<h3>Company Types</h3>
@@ -57,7 +60,9 @@ get_header(); ?>
 				        <span class="count label">Showing <?php echo do_shortcode('[facetwp counts="true"]'); ?> Results</span>
 							</div>
 							<div class="float-right text-right">
-								<?php echo do_shortcode('[facetwp pager="true"]'); ?>
+								<nav role="navigation" aria-label="Results Pagination">
+									<?php echo do_shortcode('[facetwp pager="true"]'); ?>
+								</nav>
 							</div>
 						</div>
 
@@ -78,9 +83,30 @@ get_header(); ?>
 								?>
 								<div class="result-item">
 									<div class="result-logo">
-										<?php $logo = get_field('company_logo'); if(!empty($logo)):?>
-											<img src="<?php the_field('company_logo'); ?>" alt="<?php the_title(); ?>" />
-										<?php endif; ?>
+										<?php
+											$logo = get_field('company_logo');
+											$location_photo = get_field('location_photograph');
+											$within_facility = get_field('within_facility');
+
+											if ($within_facility == true) {
+												$related_facility = get_field('related_facility');
+												$related_photo = get_the_post_thumbnail_url($related_facility[0], 'medium');
+											}
+
+											if (!empty($logo)) {
+												?>
+												<img src="<?php echo $logo; ?>" alt="<?php the_title(); ?>" />
+												<?php
+											} elseif (!empty($location_photo)) {
+												?>
+												<img src="<?php echo $location_photo['sizes']['medium']; ?>" alt="" />
+												<?php
+											} elseif (!empty($related_photo)) {
+												?>
+												<img src="<?php echo $related_photo; ?>" alt="" />
+												<?php
+											}
+										?>
 									</div>
 
 									<div class="result-details">
@@ -113,7 +139,9 @@ get_header(); ?>
 								<span class="count label">Showing <?php echo do_shortcode('[facetwp counts="true"]'); ?> Results</span>
 							</div>
 							<div class="float-right text-right">
-								<?php echo do_shortcode('[facetwp pager="true"]'); ?>
+								<nav role="navigation" aria-label="Results Pagination">
+									<?php echo do_shortcode('[facetwp pager="true"]'); ?>
+								</nav>
 							</div>
 						</div>
 					</div>

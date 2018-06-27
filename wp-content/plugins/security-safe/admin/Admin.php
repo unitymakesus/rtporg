@@ -21,6 +21,10 @@ class Admin extends Security {
         // Run parent class constructor first
         parent::__construct( $plugin );
 
+        $this->check_settings();
+
+        $this->policy_notices();
+
         // Display Admin Notices
         add_action( 'admin_notices', array( $this, 'display_notices' ) );
 
@@ -84,7 +88,7 @@ class Admin extends Security {
      */
     public function admin_body_class( $classes ) {
 
-        $classes .= $this->plugin['slug'];
+        $classes .= ' ' . $this->plugin['slug'];
 
         return $classes;
 
@@ -372,7 +376,7 @@ class Admin extends Security {
             
             <?php $page->display_tabs(); ?>
 
-            <form method="post" action="">
+            <form method="post" action="<?php echo admin_url( 'admin.php?page=' . $page->slug ); ?>">
     
                 <div class="all-tab-content">
 
@@ -506,6 +510,9 @@ class Admin extends Security {
                 
             } // foreach ()
 
+            // Reset Messages
+            $this->messages = array();
+
             // Memory Cleanup
             unset( $m, $message, $status, $dismiss );
 
@@ -545,6 +552,148 @@ class Admin extends Security {
         unset( $message, $status, $dismiss, $class );
 
     } //admin_notice()
+
+    /**
+     * Checks settings and determines whether they need to be reset to default
+     * @since  0.1.0
+     */
+    function check_settings() {
+
+        if ( isset( $_POST ) && ! empty( $_POST ) && isset( $_GET['page'] ) && strpos( $_GET['page'], 'security-safe' ) !== false && ( ! isset( $_GET['tab'] ) || $_GET['tab'] == 'settings' ) ){
+
+            // Remove Reset Variable
+            if ( isset( $_GET['reset'] ) ) { 
+                
+                unset( $_GET['reset'] );
+
+            }
+
+            // Create Page Slug
+            $page_slug = filter_var( $_GET['page'], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH );
+            $page_slug = str_replace( array( 'security-safe-', 'security-safe' ), '', $page_slug );
+            
+            // Compensation For Oddball Scenarios
+            $page_slug = ( $page_slug == '' ) ? 'general' : $page_slug;
+            $page_slug = ( $page_slug == 'user-access' ) ? 'access' : $page_slug;
+
+            $this->post_settings( $page_slug );
+
+            // Memory Cleanup
+            unset( $page_slug );
+
+        } elseif ( 
+
+            isset( $_GET['page'] ) && 
+            $_GET['page'] == $this->plugin['slug'] &&
+
+            isset( $_GET['reset'] ) &&
+            $_GET['reset'] == 1
+
+        ) {
+            // Reset On General Settings Only
+            $this->reset_settings();
+
+        }
+
+
+        if ( ! isset( $this->settings['plugin']['version'] ) ) {
+
+            // Initially Set Settings to Default
+            $this->log( 'No version in the database. Initially set settings.' );
+            $this->reset_settings( true );
+
+        }
+
+    } //check_settings()
+
+    /**
+     * Sets notices for policies that are disabled as a group.
+     * @since  1.1.10
+     */
+    protected function policy_notices(){
+
+        // All Plugin Policies
+        if ( ! isset( $this->settings['general']['on'] ) || $this->settings['general']['on'] != "1" ) {
+
+            $message = 'Security Safe: All security policies are disabled.';
+
+            $message .= ( $_GET['page'] == 'security-safe' ) ? '' : ' You can enable them in <a href="admin.php?page=security-safe&tab=settings#settings">Plugin Settings</a>.';
+
+            $this->messages['general'] = array( $message, 2, 0 );
+
+        } // plugin
+
+        // Privacy Policies
+        if ( ! isset( $this->settings['privacy']['on'] ) || $this->settings['privacy']['on'] != "1" ) {
+
+            $message = 'Security Safe: All privacy policies are disabled.';
+
+            $message .= ( $_GET['page'] == 'security-safe-privacy' ) ? '' : ' You can enable them at the top of <a href="admin.php?page=security-safe-privacy&tab=settings#settings">Privacy Settings</a>.';
+
+            $this->messages['privacy'] = array( $message, 2, 0 );
+
+        } // privacy
+
+        // Files Policies
+        if ( ! isset( $this->settings['files']['on'] ) || $this->settings['files']['on'] != "1" ) {
+
+            $message = 'Security Safe: All file policies are disabled.';
+
+            $message .= ( $_GET['page'] == 'security-safe-files' ) ? '' : ' You can enable them at the top of <a href="admin.php?page=security-safe-files&tab=settings#settings">File Settings</a>.';
+
+            $this->messages['files'] = array( $message, 2, 0 );
+
+        } // files
+
+        // Access Policies
+        if ( ! isset( $this->settings['access']['on'] ) || $this->settings['access']['on'] != "1" ) {
+
+            $message = 'Security Safe: All user access policies are disabled.';
+
+            $message .= ( $_GET['page'] == 'security-safe-user-access' ) ? '' : ' You can enable them at the top of <a href="admin.php?page=security-safe-user-access&tab=settings#settings">User Access Settings</a>.';
+
+            $this->messages['access'] = array( $message, 2, 0 );
+
+        } // access
+
+        // Content Policies
+        if ( ! isset( $this->settings['content']['on'] ) || $this->settings['content']['on'] != "1" ) {
+
+            $message = 'Security Safe: All content policies are disabled.';
+
+            $message .= ( $_GET['page'] == 'security-safe-content' ) ? '' : ' You can enable them at the top of <a href="admin.php?page=security-safe-content&tab=settings#settings">Content Settings</a>.';
+
+            $this->messages['content'] = array( $message, 2, 0 );
+
+        } // content
+
+        /* // These Features Do Not Exist Yet =========
+
+            // Firewall Policies
+            if ( ! isset( $this->settings['firewall']['on'] ) || $this->settings['firewall']['on'] != "1" ) {
+
+                $message = 'Security Safe: The firewall is disabled.';
+
+                $message .= ( $_GET['page'] == 'security-safe-firewall' ) ? '' : ' You can enable it at the top of <a href="admin.php?page=security-safe-firewall&tab=settings#settings">Firewall Settings</a>.';
+
+                $this->messages['firewall'] = array( $message, 2, 0 );
+
+            } // firewall
+
+            // Backups Policies
+            if ( ! isset( $this->settings['backups']['on'] ) || $this->settings['backups']['on'] != "1" ) {
+
+                $message = 'Security Safe: Backups are disabled.';
+
+                $message .= ( $_GET['page'] == 'security-safe-backups' ) ? '' : ' You can enable them at the top of <a href="admin.php?page=security-safe-backups&tab=settings#settings">Backup Settings</a>.';
+
+                $this->messages['backups'] = array( $message, 2, 0 );
+
+            } // backups
+        
+        ============================================= */
+
+    } // cleanup_notices()
 
 
 } // Admin()

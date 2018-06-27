@@ -3,7 +3,7 @@ Contributors: sovstack, cfullsteam
 Tags: security, wp security, privacy, security audit, file permissions, brute force login
 Requires at least: 4
 Requires PHP: 5.3
-Tested up to: 4.9.5
+Tested up to: 4.9.6
 Stable tag: trunk
 
 A plugin to quickly implement WordPress hardening and security techniques.
@@ -25,6 +25,7 @@ Features:
 * Disable XML-RPC.php
 * Brute Force Protection
 * Content Copyright Protection
+* Multi-Site Compatible
 * Turn On/Off All Security Policies Easily
 
 == Installation ==
@@ -46,8 +47,52 @@ Features:
 
 == Changelog ==
 
-= 1.1.5 =
+= 1.1.10 (Low Priority) =
+*Release Date - 26 June 2018*
+
+* Bug Fix: After a group of policies are enabled, the disabled warning notice still appears immediately after saving, but goes away after navigating to another page.
+* Bug Fix: When all security policies are disabled, the notice was incorrectly referring to "General Settings" which no longer exists.
+* Bug Fix: When a group of policies are disabled, the warning notice would instruct the user to go to the relative settings page even if the user was already on that specific page.
+* Bug Fix: Page would not go back to the top when a page anchor was used in the URL and settings were saved.
+* Improvement: Improved usability by Adding color indicators within the settings tab to match the notices related to the specific setting.
+* Improvement: Added Priorities to the changelog to indicate the urgency of an update.
+* Thank you @df03472 for notifying us about the bugs above.
+
+= 1.1.9 (Medium Priority) =
+*Release Date - 14 June 2018*
+
+* Bug Fix: Security Safe Admin page styling breaks when other plugins add classes to the body.
+
+= 1.1.8 (High Priority) =
+*Release Date - 12 June 2018*
+
+* Bug Fix: Reference to wp-content was incorrect as a fallback default value when using custom plugin directory outside of wp-content directory.
+* Security: Prevent Administrators of a multisite environment from modifying settings unless they are Super Admin.
+* Added Support: Add support for backup logging. (Backup Feature Coming Soon!)
+* Tested Multi-site Compatibility
+* Improvement: Increased plugin load efficiency
+
+= 1.1.7 (High Priority) =
+*Release Date - 06 June 2018*
+
+* Added Feature: Hide password protected posts from public queries.
+* Bug Fix: Changing permissions of the home directory has been reported to cause issues when loading the website. Use default permissions set by the host. 
+* Bug Fix: Duplicate notices were being displayed in the Files section.
+* Bug Fix: Fixed broken link in notice message.
+* Improvement: Moved certain notices regarding features to the specific areas of each settings tab.
+* Improvement: Updated PHP versions
+* Improvement: Minor grammatical corrections
+* Tested up to version 4.9.6
+
+= 1.1.6 (Low Priority) =
+*Release Date - 08 May 2018*
+
+* Bug Fix: If a child theme is used, only the parent theme files were appearing in the theme files permissions audit list.
+* Improvement: Updated PHP version checks
+
+= 1.1.5 (High Priority) =
 *Release Date - 23 April 2018*
+
 * Added Feature: Prevent Access to readme.html and license.txt core files.
 * Added Feature: Notifications for file permissions displaying totals of vulnerable files.
 * Improvement: Updated file permission status color scheme to match WP notifications.
@@ -59,19 +104,21 @@ Features:
 * Added support for Security Safe Pro Add-on.
 * Tested up to version 4.9.5
 
-= 1.1.3 =
+= 1.1.3 (Medium Priority) =
 *Release Date - 25 February 2018*
+
 * Added Feature: Hide WordPress Version from the RSS feed.
 * Added Feature: Hide Script Versions from enqueued CSS and JS files
-* BUG FIX: Hide WordPress stays on despite the settings value
-* BUG FIX: An error is displayed when saving settings if the settings are the same in the database.
+* Bug Fix: Hide WordPress stays on despite the settings value
+* Bug Fix: An error is displayed when saving settings if the settings are the same in the database.
 
-= 1.1.2 =
+= 1.1.2 (Medium Priority) =
 *Release Date - 20 February 2018*
-* BUG FIX: Icon CSS conflict with other icon plugins
+* Bug Fix: Icon CSS conflict with other icon plugins
 
-= 1.1.1 =
+= 1.1.1 (Low Priority) =
 *Release Date - 20 February 2018*
+
 * Added Feature: Disable text highlighting to deter copying content
 * Added Feature: Disable right clicking to deter copying content
 * Added Feature: Fix file permissions
@@ -82,8 +129,9 @@ Features:
 * Thank you @epohs and @isabisa for file permissions UI testing and feedback
 * Tested up to: 4.9.4
 
-= 1.0.3 =
+= 1.0.3 (High Priority) =
 *Release Date - 24 January 2018*
+
 * Added Feature: Server software version auditing
 * Added Feature: Theme file permissions auditing
 * Added Feature: Plugins files permissions auditing
@@ -96,14 +144,16 @@ Features:
 * Improvement: Updated all screenshots
 * Tested up to: 4.9.2
 
-= 1.0.2 =
+= 1.0.2 (Medium Priority) =
 *Release Date - 10 January 2018*
+
 * Bug Fix: File permissions would display files and directories even if they did not exist
 * Bug Fix: File permissions status would display Bad if the 'world' had no permissions to read, write, or execute
 * Bug Fix: Directory structure references relied on constants that could potentially conflict with custom site directory structures
 
 = 1.0.1 =
-*Release Date - 9 January 2018*
+*Release Date - 09 January 2018*
+
 * Initial Release
 * Thank you @daggerhart for plugin development feedback
 * Thank you @cfullsteam for PHP structure feedback

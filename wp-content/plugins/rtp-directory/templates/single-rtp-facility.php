@@ -106,9 +106,30 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
   								?>
   								<div class="result-item">
   									<div class="result-logo">
-  										<?php $logo = get_field('company_logo'); if(!empty($logo)):?>
-  											<img src="<?php the_field('company_logo'); ?>" alt="<?php the_title(); ?>" />
-  										<?php endif; ?>
+                      <?php
+  											$logo = get_field('company_logo');
+  											$location_photo = get_field('location_photograph');
+  											$within_facility = get_field('within_facility');
+
+  											if ($within_facility == true) {
+  												$related_facility = get_field('related_facility');
+  												$related_photo = get_the_post_thumbnail_url($related_facility[0], 'medium');
+  											}
+
+  											if (!empty($logo)) {
+  												?>
+  												<img src="<?php echo $logo; ?>" alt="<?php the_title(); ?>" />
+  												<?php
+  											} elseif (!empty($location_photo)) {
+  												?>
+  												<img src="<?php echo $location_photo['sizes']['medium']; ?>" alt="" />
+  												<?php
+  											} elseif (!empty($related_photo)) {
+  												?>
+  												<img src="<?php echo $related_photo; ?>" alt="" />
+  												<?php
+  											}
+  										?>
   									</div>
 
   									<div class="result-details">
