@@ -63,7 +63,7 @@ get_header(); ?>
       <section>
         <p>Available office space up to 121,000 SF.</p>
         <p>Startup and emerging company office space.</p>
-        <p>Free coworking andmeeting spaces.<br>Affordable startup offices and event spaces.</p>
+        <p>Free coworking and meeting spaces.<br>Affordable startup offices and event spaces.</p>
         <p>Flexible, full-service startup lab and office space.</p>
       </section>
     </div>
