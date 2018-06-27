@@ -132,6 +132,9 @@ get_header(); ?>
 														<?php if (function_exists('get_wp_term_image')) :?>
 															<?php $meta_image = get_wp_term_image($lt->term_id);?>
 															<img src="<?php echo $meta_image;?>" alt="" title="<?php echo $lt->name; ?>" />
+															<?php if ($location_type == 'rtp-space' || $location_type == 'rtp-site') {
+																echo $lt->name;
+															} ?>
 														<?php endif; ?>
 													<?php endforeach; ?>
 												</div>
