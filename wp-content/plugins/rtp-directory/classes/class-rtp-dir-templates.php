@@ -183,16 +183,16 @@ class RTP_Dir_Templates {
 
 		// Use default template set in this plugin if no overrides are set in theme
 		if($post->post_type == 'rtp-company' && $single_company_override == '') {
-			$single_template = plugin_dir_path( __FILE__ ).'../templates/single-rtp-company.php';
+			$template = plugin_dir_path( __FILE__ ).'../templates/single-rtp-company.php';
 		} elseif ($post->post_type == 'rtp-facility' && $single_facility_override == '') {
-			$single_template = plugin_dir_path( __FILE__ ).'../templates/single-rtp-facility.php';
+			$template = plugin_dir_path( __FILE__ ).'../templates/single-rtp-facility.php';
 		} elseif ($post->post_type == 'rtp-site' && $single_site_override == '') {
-			$single_template = plugin_dir_path( __FILE__ ).'../templates/single-rtp-site.php';
+			$template = plugin_dir_path( __FILE__ ).'../templates/single-rtp-site.php';
 		} elseif ($post->post_type == 'rtp-space' && $single_space_override == '') {
-			$single_template = plugin_dir_path( __FILE__ ).'../templates/single-rtp-space.php';
+			$template = plugin_dir_path( __FILE__ ).'../templates/single-rtp-space.php';
 		}
 
-		return $single_template;
+		return $template;
 	}
 
 }
