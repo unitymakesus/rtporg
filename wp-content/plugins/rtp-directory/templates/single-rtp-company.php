@@ -33,7 +33,7 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
   $phone = get_field('details_phone');  // Array
   $fax = get_field('details_fax');
   $website = get_field('details_website');
-  $mailing_address = get_field('details_rtp_po_box');
+  $mailing_address = get_field('details_mailing_address');
   $twitter = get_field('details_twitter');
   $contact_ppl = get_field('contact_person'); // Array
 
@@ -159,17 +159,7 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
 
                   <?php if (!empty($mailing_address)) { ?>
                     <dt>Mailing Address:</dt>
-                    <dd><span>
-                      <?php
-                      echo $street_address . '<br />';
-                      echo 'RTP, NC ';
-                      if (!empty($zip_code)) {
-                        echo $zip_code;
-                      } else {
-                        echo '27709';
-                      }
-                      ?>
-                    </span></dd>
+                    <dd><span><?php echo $mailing_address; ?></span></dd>
                   <?php } ?>
 
                   <?php if (!empty($contact_ppl)) { ?>

@@ -932,6 +932,7 @@
 }
 
 .filters {
+  border-top: 10px solid #07444C;
   background: #f2f6f7;
 }
 .filters .label {
@@ -1239,7 +1240,7 @@
 }
 
 .directory-listing {
-  border-top: 10px solid #07444C;
+  border-top: 5px solid #d2e0e4;
 }
 .directory-listing .label {
   font-size: 0.85em;
@@ -1367,12 +1368,13 @@
 }
 .single-rtp-company dl dt, .single-rtp-facility dl dt, .single-rtp-site dl dt, .single-rtp-space dl dt {
   flex: 1 0 10em;
-  margin: 0;
+  margin: 0 0 5px;
   padding-right: 8px;
   color: #02444D;
 }
 .single-rtp-company dl dd, .single-rtp-facility dl dd, .single-rtp-site dl dd, .single-rtp-space dl dd {
   flex: 1 0 calc(100% - 10em);
+  margin: 0 0 5px;
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
