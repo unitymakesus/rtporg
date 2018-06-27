@@ -77,8 +77,8 @@ class RTP_Dir_Post_Type {
 			// add_filter( 'post_updated_messages', array( $this, 'updated_messages' ) );
 
 			if ( $pagenow == 'edit.php' && isset( $_GET['post_type'] ) && esc_attr( $_GET['post_type'] ) == $this->post_type ) {
-				add_filter( 'manage_edit-' . $this->post_type . '_columns', array( $this, 'register_custom_column_headings' ), 10, 1 );
-				add_action( 'manage_posts_custom_column', array( $this, 'register_custom_columns' ), 10, 2 );
+				// add_filter( 'manage_edit-' . $this->post_type . '_columns', array( $this, 'register_custom_column_headings' ), 10, 1 );
+				// add_action( 'manage_posts_custom_column', array( $this, 'register_custom_columns' ), 10, 2 );
 			}
 		}
 

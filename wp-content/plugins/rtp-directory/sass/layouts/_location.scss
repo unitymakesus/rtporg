@@ -100,13 +100,14 @@
 
     dt {
       flex: 1 0 10em;
-      margin: 0;
+      margin: 0 0 5px;
       padding-right: 8px;
       color: #02444D;
     }
 
     dd {
       flex: 1 0 calc(100% - 10em);
+      margin: 0 0 5px;
       display: flex;
       justify-content: flex-start;
       align-items: flex-end;
