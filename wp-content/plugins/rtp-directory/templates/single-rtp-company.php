@@ -55,17 +55,17 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
       <div class="row">
         <div class="col-xs-12 col-md-8">
           <div class="row flex">
-            <div class="logo-wrapper">
-              <div class="company-logo">
-                <div>
-                  <?php if(!empty($company_logo)):?>
+            <?php if(!empty($company_logo)):?>
+              <div class="logo-wrapper">
+                <div class="company-logo">
+                  <div>
                     <div>
                       <img src="<?php the_field('company_logo'); ?>" alt="<?php the_title(); ?>" />
                     </div>
-                  <?php endif; ?>
+                  </div>
                 </div>
               </div>
-            </div>
+            <?php endif; ?>
             <div class="company-title">
               <h1><?php the_title(); ?></h1>
               <?php if (!empty($location_terms)) : ?>
