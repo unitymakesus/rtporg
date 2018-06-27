@@ -391,18 +391,18 @@ function throttle(func, wait, options) {
 
     /* Add body classes
     ------------------------------------------------------------------------ */
-    function initBodyClasses() {
-        var body = $('body'),
-            aside = $('.aside'),
-            people = $('.people');
-
-        if (aside.length < 1) {
-            body.addClass('layout-one-column');
-        }
-        if (people.length > 0) {
-            body.addClass('archive-people');
-        }
-    }
+    // function initBodyClasses() {
+    //     var body = $('body'),
+    //         aside = $('.aside'),
+    //         people = $('.people');
+    //
+    //     if (aside.length < 1) {
+    //         body.addClass('layout-one-column');
+    //     }
+    //     if (people.length > 0) {
+    //         body.addClass('archive-people');
+    //     }
+    // }
 
     /* Add menu classes
     ------------------------------------------------------------------------ */
@@ -559,7 +559,7 @@ function throttle(func, wait, options) {
      Document Ready Scripts
      ======================================================================================================= */
     $(document).ready(function () {
-        initBodyClasses();
+        // initBodyClasses();
         initMenuClasses();
         initMenuIcons();
         initResponsiveVideos();

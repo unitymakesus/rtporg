@@ -1,0 +1,29 @@
+.tooltip.tooltip {
+  display: block;
+  width: 250px;
+
+  p {
+    margin: 10px;
+
+    &.title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #07444C;
+    }
+
+    &.address {
+      font-size: 16px;
+      padding: 0;
+    }
+  }
+
+  a {
+    font-size: 14px;
+    margin-top: 5px;
+    text-decoration: underline;
+  }
+
+  img {
+    height: 75px;
+  }
+}

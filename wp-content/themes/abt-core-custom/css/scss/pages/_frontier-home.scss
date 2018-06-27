@@ -1,0 +1,156 @@
+#frontier-homepage {
+  .featured-banner{
+    height: 550px;
+    padding-top: 5.5em;
+  }
+
+  .frontier-header {
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+  }
+
+  .frontier-video {
+    background-image: url('../img/Atrium-berlin-wall.JPG');
+  }
+
+  .page-content {
+    padding: 2.5em 2.5em 0 2.5em;
+  }
+
+  .content-grid {
+    box-sizing: border-box;
+
+    .row {
+      display: flex;
+
+      &:nth-of-type(odd){
+        article:nth-of-type(1) {
+          background: #E0E0E5;
+        }
+
+        article:nth-of-type(2) {
+          background: #EDEDF0;
+        }
+      }
+
+      &:nth-of-type(even){
+        article:nth-of-type(1) {
+          background: #EDEDF0;
+        }
+
+        article:nth-of-type(2) {
+          background: #E0E0E5;
+        }
+      }
+
+      article {
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        width: 50%;
+      }
+
+      img {
+        height: 50px;
+        width: 50px;
+        object-fit: contain;
+      }
+
+      div {
+        padding: 0 20px;
+      }
+    }
+  }
+}
+
+.frontier-map {
+  position: relative;
+
+  img {
+    width: 100%;
+    position: relative;
+    display: block;
+    z-index: 0;
+  }
+
+  svg {
+    position: absolute;
+    top: 0;
+    fill: transparent;
+    z-index: 20;
+
+    a:hover {
+      cursor: pointer;
+
+      polygon {
+        fill: #0297C7;
+        stroke: white;
+      }
+    }
+  }
+
+  section p {
+    display: none;
+    position: absolute;
+    background: #0297C7;
+    color: white;
+    padding: 20px;
+    max-width: 250px;
+    z-index: 100;
+
+    &:nth-of-type(1){
+      top: 41%;
+      left: 7%;
+    }
+
+    &:nth-of-type(2){
+      top: 12%;
+      right: 20%;
+    }
+
+    &:nth-of-type(3){
+      bottom: 6%;
+      left: 47%;
+      max-width: 300px;
+    }
+
+    &:nth-of-type(4){
+      bottom: 22%;
+      right: 4%;
+    }
+  }
+}
+
+.frontier-map svg {
+  .a{fill:#06538f;}.b{font-size:8.71px;font-family:CircularStd-Bold, Circular Std;font-weight:700;}.b,.k{fill:#fff;}.c,.f,.i{font-size:22.86px;}.c{letter-spacing:0.04em;}.d{letter-spacing:0.04em;}.e,.i{letter-spacing:0.04em;}.f{letter-spacing:0.03em;}.g{letter-spacing:0.04em;}.h{letter-spacing:0.04em;}.j{letter-spacing:0.04em;}
+}
+
+@media(max-width: 960px) {
+  #frontier-homepage {
+    .featured-banner {
+      padding-top: 8.5em;
+    }
+
+    .frontier-header {
+      position: absolute;
+    }
+
+    .content-grid {
+      .row {
+        display: block;
+
+        article {
+          width: 100%;
+          background: transparent !important;
+        }
+      }
+    }
+
+    .frontier-map {
+      section p {
+        display: none;
+      }
+    }
+  }
+}

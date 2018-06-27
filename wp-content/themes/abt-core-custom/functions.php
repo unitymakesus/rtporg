@@ -138,7 +138,7 @@ class abt_core_custom_theme {
 			// Child Theme Stylesheets
 			wp_deregister_style('abtcore-theme');
 			wp_deregister_style('abtcore-theme-ancient');
-			wp_enqueue_style('abtcore-child-theme', $theme_dir . '/css/style.min.css', null, $core_version . $time, 'screen');
+			wp_enqueue_style('abtcore-child-theme', $theme_dir . '/css/style.css', null, $core_version . $time, 'screen');
 			wp_enqueue_style('abtcore-child-print', $theme_dir . '/css/print.css', null, $core_version . $time, 'print');
 
 			// Child Theme Scripts
@@ -163,7 +163,7 @@ class abt_core_custom_theme {
 			}
 
 
-			if (is_page_template('page-frontier.php') || is_page_template('page-frontier-about.php') || is_page_template('page-frontier-collaborate.php') || is_page_template('page-frontier-innovate.php') || is_page_template('page-frontier-companies.php')) {
+			if (is_page_template('page-frontier-new.php') || is_page_template('page-frontier-about.php') || is_page_template('page-frontier-collaborate.php') || is_page_template('page-frontier-innovate.php') || is_page_template('page-frontier-companies.php')) {
 			//wp_enqueue_script('page_frontier_scripts', $theme_dir . '/js/page-frontier.js', array('jquery'), $core_version, true );
 				wp_enqueue_script('page_frontier_scripts', $theme_dir . '/js/page-frontier.min.js', array('jquery'), $core_version, true );
 			}
@@ -174,6 +174,7 @@ class abt_core_custom_theme {
 			if (is_page_template('page-thelab.php') || is_page_template('page-thelab-about.php') || is_page_template('page-thelab-companies.php') || is_page_template('page-thelab-space.php')) {
 				wp_enqueue_script('page_thelab_scripts', $theme_dir . '/js/page-thelab.min.js', array('jquery'), $core_version, true );
 			}
+
 		}
 
 		else {

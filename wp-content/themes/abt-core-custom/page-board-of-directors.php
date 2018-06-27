@@ -9,7 +9,7 @@
  */
 
 get_header(); ?>
-	
+
 	<?php
 		$theme_dir = get_stylesheet_directory_uri();
 	?>
@@ -66,11 +66,11 @@ get_header(); ?>
 						<?php
 							// Person Fields
 							$postID = $post->ID;
-							$thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'people-thumb' );
+							$thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full' );
 							$thumb_url = $thumb['0'];
 							$job_title = types_render_field("person-job-title", array("raw"=>"true"));
 							$company = types_render_field("person-company", array("raw"=>"true"));
-						
+
 							$board_chair = ot_get_option( 'board_chair' );
 							$board_vice_chair = ot_get_option( 'board_vice_chair' );
 							$board_secretary = ot_get_option( 'board_secretary' );
@@ -82,9 +82,9 @@ get_header(); ?>
 								<?php else : ?>
 									<div class="photo placeholder" style="background-image: url(<?php echo $theme_dir; ?>/img/bg_no-profile.png);"></div>
 								<?php endif; ?>
-								
+
 									<h3 class="fn"><?php the_title(); ?></h3>
-								
+
 								<?php if($postID == $board_chair) : ?>
 									<h4>Board Chair</h4>
 								<?php elseif ($postID == $board_vice_chair) : ?>
@@ -92,11 +92,11 @@ get_header(); ?>
 								<?php elseif ($postID == $board_secretary) : ?>
 									<h4>Board Secretary</h4>
 								<?php endif; ?>
-								
+
 								<?php if($job_title) : ?>
 									<p class="role"><?php echo $job_title; ?></p>
 								<?php endif; ?>
-								
+
 								<?php if($company) : ?>
 									<p class="org"><?php echo $company; ?></p>
 								<?php endif; ?>

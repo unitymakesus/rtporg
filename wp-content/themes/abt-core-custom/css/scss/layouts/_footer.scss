@@ -15,7 +15,8 @@
 		@include rem(padding, 40px);
 	}
 	@include media($desktop) {
-		position: fixed; bottom: 0; left: 0; width: 100%; background-color: #fff; z-index: 1000;
+		// position: fixed;
+		bottom: 0; left: 0; width: 100%; background-color: #fff; z-index: 1000;
 		@include rem(max-width, 1665px);
 		@include rem(padding, 16px 0 15px 65px);
 	}
