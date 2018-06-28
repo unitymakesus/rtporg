@@ -278,7 +278,7 @@ jQuery(document).ready(function($) {
         <div class="tooltip">
           <p class="title">${prop.title}</p>
           ${prop.image ? `<img src="${prop.image}" alt="${prop.title}"/>` : ''}
-          <p><a href="${prop.permalink}">More Information</a></p>
+          <p><a class="button secondary" href="${prop.permalink}">More Information</a></p>
         </div>
       `;
 
@@ -305,7 +305,7 @@ jQuery(document).ready(function($) {
           <div class="tooltip">
             <p class="title">${prop.title}</p>
             ${prop.logo ? `<img src="${prop.logo}" alt="${prop.title}"/>` : ''}
-            <p><a href="${prop.permalink}">More Information</a></p>
+            <p><a class="button secondary" href="${prop.permalink}">More Information</a></p>
           </div>
         `;
 
@@ -333,7 +333,7 @@ jQuery(document).ready(function($) {
         <div class="tooltip">
           <p class="title">${prop.title}</p>
           ${prop.image ? `<img src="${prop.image}" alt="${prop.title}"/>` : ''}
-          <p><a href="${prop.permalink}">More Information</a></p>
+          <p><a class="button secondary" href="${prop.permalink}">More Information</a></p>
         </div>
       `;
 

@@ -4,6 +4,7 @@
 
   p {
     margin: 10px;
+    text-align: center;
 
     &.title {
       font-size: 18px;
@@ -19,14 +20,19 @@
   }
 
   a {
-    font-size: 14px;
+    font-size: 18px;
     margin-top: 5px;
-    text-decoration: underline;
+    text-align: center;
+  }
+
+  .secondary {
+    background: #048798;
   }
 
   img {
-    max-height: 75px;
+    max-height: 50;
     width: auto;
-    margin-left: 10px;
+    display: block;
+    margin: 0 auto;
   }
 }
