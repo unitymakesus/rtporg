@@ -26,9 +26,24 @@ get_header(); ?>
   <?php get_template_part('frontier', 'header'); ?>
   <?php get_template_part('featured', 'banners'); ?>
 
-  <section class="featured-banner frontier-about-team">
-    
+
+  <?php if( have_rows('new_building') ): ?>
+  <section class="featured-banner frontier-innovate-pricing">
+    <?php while( have_rows('new_building') ): the_row();?>
+      <div class="tier">
+        <div class="summary" style="background-size: cover; background-position: center; background:url('<?php echo get_sub_field('image'); ?>')">
+          <div class="price"><?php echo get_sub_field('name'); ?></div>
+        </div>
+        <div class="info">
+          <?php echo get_sub_field('features'); ?>
+        </div>
+        <div class="action">
+          <a class="button primary " href="<?php echo get_sub_field('link'); ?>">View Companies</a>
+        </div>
+      </div>
+    <?php endwhile; ?>
   </section>
+  <?php endif ?>
 </div>
 <?php endwhile; ?>
 <?php get_footer(); ?>
