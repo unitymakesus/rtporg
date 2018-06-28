@@ -11,17 +11,20 @@ get_header(); ?>
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-md-8">
-						<h1>RTP Directory</h1>
-						<p>The Research Triangle Park is packed with the coolest companies. Explore the Park Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras hendrerit vitae nibh rutrum commodo.</p>
+						<h1><?php the_title(); ?></h1>
+						<?php the_content(); ?>
 					</div>
 					<div class="col-md-4 text-right">
-						<a href="#" class="button secondary large top-margin">Get Listed</a>
+						<!-- <a href="#" class="button secondary large top-margin">Get Listed</a> -->
 					</div>
 				</div>
 			</div>
-			<button id="filter-toggle">Filter Results <span>▲</span></button>
+			<button id="filter-toggle">Filter &amp; Search <span>▲</span></button>
 			<div class="filters">
 				<div class="container-fluid">
+					<div class="row">
+						<div class="col-sm-12 label">Choose filters below to narrow results:</div>
+					</div>
 					<div class="row">
 						<div class="col-sm-6">
 							<h3>Company Types</h3>
@@ -38,9 +41,12 @@ get_header(); ?>
 									<?php echo do_shortcode('[facetwp facet="availability"]'); ?>
 								</div>
 							</div>
-							<!-- <div class="row">
-								Search
-							</div> -->
+							<div class="row">
+								<div class="col-sm-12">
+									<h3>Search by Keyword</h3>
+									<?php echo do_shortcode('[facetwp facet="search_directory"]'); ?>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -54,7 +60,9 @@ get_header(); ?>
 				        <span class="count label">Showing <?php echo do_shortcode('[facetwp counts="true"]'); ?> Results</span>
 							</div>
 							<div class="float-right text-right">
-								<?php echo do_shortcode('[facetwp pager="true"]'); ?>
+								<nav role="navigation" aria-label="Results Pagination">
+									<?php echo do_shortcode('[facetwp pager="true"]'); ?>
+								</nav>
 							</div>
 						</div>
 
@@ -75,24 +83,44 @@ get_header(); ?>
 								?>
 								<div class="result-item">
 									<div class="result-logo">
-										<?php $logo = get_field('company_logo'); if(!empty($logo)):?>
-											<img src="<?php the_field('company_logo'); ?>" alt="<?php the_title(); ?>" />
-										<?php endif; ?>
+										<?php
+											$logo = get_field('company_logo');
+											$location_photo = get_field('location_photograph');
+											$within_facility = get_field('within_facility');
+
+											if ($within_facility == true) {
+												$related_facility = get_field('related_facility');
+												$related_photo = get_the_post_thumbnail_url($related_facility[0], 'medium');
+											}
+
+											if (!empty($logo)) {
+												?>
+												<img src="<?php echo $logo; ?>" alt="<?php the_title(); ?>" />
+												<?php
+											} elseif (!empty($location_photo)) {
+												?>
+												<img src="<?php echo $location_photo['sizes']['medium']; ?>" alt="" />
+												<?php
+											} elseif (!empty($related_photo)) {
+												?>
+												<img src="<?php echo $related_photo; ?>" alt="" />
+												<?php
+											}
+										?>
 									</div>
 
 									<div class="result-details">
 										<h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
 										<?php if (!empty($location_terms)) : ?>
 											<div class="result-meta">
-												<?php foreach ($location_terms as $lt) : ?>
-												<div class="meta-term"><?php echo $lt->name; ?></div>
 												<div class="meta-icon">
-													<?php if (function_exists('get_wp_term_image')) :?>
-														<?php $meta_image = get_wp_term_image($lt->term_id);?>
-														<img src="<?php echo $meta_image;?>"/>
-													<?php endif; ?>
+													<?php foreach ($location_terms as $lt) : ?>
+														<?php if (function_exists('get_wp_term_image')) :?>
+															<?php $meta_image = get_wp_term_image($lt->term_id);?>
+															<img src="<?php echo $meta_image;?>" alt="" title="<?php echo $lt->name; ?>" />
+														<?php endif; ?>
+													<?php endforeach; ?>
 												</div>
-												<?php endforeach; ?>
 											</div>
 										<?php endif; ?>
 									</div>
@@ -111,7 +139,9 @@ get_header(); ?>
 								<span class="count label">Showing <?php echo do_shortcode('[facetwp counts="true"]'); ?> Results</span>
 							</div>
 							<div class="float-right text-right">
-								<?php echo do_shortcode('[facetwp pager="true"]'); ?>
+								<nav role="navigation" aria-label="Results Pagination">
+									<?php echo do_shortcode('[facetwp pager="true"]'); ?>
+								</nav>
 							</div>
 						</div>
 					</div>
