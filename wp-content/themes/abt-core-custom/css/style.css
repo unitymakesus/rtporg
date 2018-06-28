@@ -983,11 +983,13 @@ body {
             margin-top: 0; }
       .site-menu .menu-item {
         font-size: 48px; } }
-  .site-menu .menu-item a {
-    color: #fff;
-    text-transform: uppercase; }
-    .site-menu .menu-item a:hover, .site-menu .menu-item a:active, .site-menu .menu-item a:focus {
-      opacity: 1; }
+  .site-menu .menu-item {
+    position: relative; }
+    .site-menu .menu-item a {
+      color: #fff;
+      text-transform: uppercase; }
+      .site-menu .menu-item a:hover, .site-menu .menu-item a:active, .site-menu .menu-item a:focus {
+        opacity: 1; }
   .site-menu .sub-menu {
     display: none;
     list-style: none;
@@ -997,9 +999,9 @@ body {
     @media screen and (min-width: 960px) {
       .site-menu .sub-menu {
         position: absolute;
-        top: 10px;
+        top: 0;
         text-align: right;
-        padding-right: 110px;
+        padding-right: 150px;
         right: 100%; } }
     .site-menu .sub-menu .menu-item {
       font-size: 22px; }
@@ -1144,7 +1146,6 @@ body {
       padding: 2.5rem; } }
   @media screen and (min-width: 960px) {
     .footer-container {
-      position: fixed;
       bottom: 0;
       left: 0;
       width: 100%;
@@ -7382,6 +7383,135 @@ body div#ui-datepicker-div[style] {
     .frontier-about-team .people .vcard.has-profile, .frontier-about-team .company-list .vcard.has-profile {
       float: none;
       display: inline-block; } }
+
+#frontier-homepage .featured-banner {
+  height: 550px;
+  padding-top: 5.5em; }
+
+#frontier-homepage .frontier-header, #frontier-homepage .stem-header {
+  position: fixed;
+  z-index: 100;
+  width: 100%; }
+
+#frontier-homepage .frontier-video {
+  background-image: url("../img/Atrium-berlin-wall.JPG"); }
+
+#frontier-homepage .page-content {
+  padding: 2.5em 2.5em 0 2.5em; }
+
+#frontier-homepage .content-grid {
+  box-sizing: border-box; }
+  #frontier-homepage .content-grid .row {
+    display: -ms-flexbox;
+    display: flex; }
+    #frontier-homepage .content-grid .row:nth-of-type(odd) article:nth-of-type(1) {
+      background: #E0E0E5; }
+    #frontier-homepage .content-grid .row:nth-of-type(odd) article:nth-of-type(2) {
+      background: #EDEDF0; }
+    #frontier-homepage .content-grid .row:nth-of-type(even) article:nth-of-type(1) {
+      background: #EDEDF0; }
+    #frontier-homepage .content-grid .row:nth-of-type(even) article:nth-of-type(2) {
+      background: #E0E0E5; }
+    #frontier-homepage .content-grid .row article {
+      padding: 20px;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-align: center;
+      align-items: center;
+      width: 50%; }
+    #frontier-homepage .content-grid .row img {
+      height: 50px;
+      width: 50px;
+      object-fit: contain; }
+    #frontier-homepage .content-grid .row div {
+      padding: 0 20px; }
+
+.frontier-map {
+  position: relative; }
+  .frontier-map img {
+    width: 100%;
+    position: relative;
+    display: block;
+    z-index: 0; }
+  .frontier-map svg {
+    position: absolute;
+    top: 0;
+    fill: transparent;
+    z-index: 20; }
+    .frontier-map svg a:hover {
+      cursor: pointer; }
+      .frontier-map svg a:hover polygon {
+        fill: #0297C7;
+        stroke: white; }
+  .frontier-map section p {
+    display: none;
+    position: absolute;
+    background: #0297C7;
+    color: white;
+    padding: 20px;
+    max-width: 250px;
+    z-index: 100; }
+    .frontier-map section p:nth-of-type(1) {
+      top: 41%;
+      left: 7%; }
+    .frontier-map section p:nth-of-type(2) {
+      top: 12%;
+      right: 20%; }
+    .frontier-map section p:nth-of-type(3) {
+      bottom: 6%;
+      left: 47%;
+      max-width: 300px; }
+    .frontier-map section p:nth-of-type(4) {
+      bottom: 22%;
+      right: 4%; }
+
+.frontier-map svg .a {
+  fill: #06538f; }
+
+.frontier-map svg .b {
+  font-size: 8.71px;
+  font-family: CircularStd-Bold, Circular Std;
+  font-weight: 700; }
+
+.frontier-map svg .b, .frontier-map svg .k {
+  fill: #fff; }
+
+.frontier-map svg .c, .frontier-map svg .f, .frontier-map svg .i {
+  font-size: 22.86px; }
+
+.frontier-map svg .c {
+  letter-spacing: 0.04em; }
+
+.frontier-map svg .d {
+  letter-spacing: 0.04em; }
+
+.frontier-map svg .e, .frontier-map svg .i {
+  letter-spacing: 0.04em; }
+
+.frontier-map svg .f {
+  letter-spacing: 0.03em; }
+
+.frontier-map svg .g {
+  letter-spacing: 0.04em; }
+
+.frontier-map svg .h {
+  letter-spacing: 0.04em; }
+
+.frontier-map svg .j {
+  letter-spacing: 0.04em; }
+
+@media (max-width: 960px) {
+  #frontier-homepage .featured-banner {
+    padding-top: 8.5em; }
+  #frontier-homepage .frontier-header, #frontier-homepage .stem-header {
+    position: absolute; }
+  #frontier-homepage .content-grid .row {
+    display: block; }
+    #frontier-homepage .content-grid .row article {
+      width: 100%;
+      background: transparent !important; }
+  #frontier-homepage .frontier-map section p {
+    display: none; } }
 
 body.home .band {
   overflow: hidden; }

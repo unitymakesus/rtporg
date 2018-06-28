@@ -43,9 +43,11 @@ class AdminPageAccess extends AdminPage {
 
         $html = '';
 
-        // Shutoff Switch
-        $rows = $this->form_select( $this->settings, 'User Access Policies', 'on', array('0' => 'Disabled', '1' => 'Enabled'), 'If you experience a problem, you may want to temporarily turn off all user access policies at once to troubleshoot the issue.' );
+        // Shutoff Switch - All Access Policies
+        $classes = ( $this->settings['on'] ) ? '' : 'notice-warning';
+        $rows = $this->form_select( $this->settings, 'User Access Policies', 'on', array('0' => 'Disabled', '1' => 'Enabled'), 'If you experience a problem, you may want to temporarily turn off all user access policies at once to troubleshoot the issue.', $classes );
         $html .= $this->form_table( $rows );
+        $classes = '';
 
         // Login Security
         $html .= $this->form_section( 'Login Form', "Your website's first line of defense is the login form." );
@@ -56,7 +58,7 @@ class AdminPageAccess extends AdminPage {
 
         // Remote Access
         $html .= $this->form_section( 'Remote Control', 'How do you want your users to access your site?' );
-        $rows = $this->form_checkbox( $this->settings, 'XML-RPC', 'xml_rpc', 'Disable Remote Control', 'The xml-rpc.php file allows remote execution of scripts. This can be useful in some cases, but most of the time it is not needed.' );
+        $rows = $this->form_checkbox( $this->settings, 'XML-RPC', 'xml_rpc', 'Disable Remote Control', 'The xmlrpc.php file allows remote execution of scripts. This can be useful in some cases, but most of the time it is not needed.' );
         $html .= $this->form_table( $rows );
 
         // Brute Force

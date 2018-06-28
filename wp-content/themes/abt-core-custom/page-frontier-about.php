@@ -73,7 +73,7 @@ get_header(); ?>
     <?php foreach($posts as $post) : setup_postdata($post); ?>
       <?php
         // Person Fields
-        $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'people-thumb' );
+        $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full' );
         $thumb_url = $thumb['0'];
         $job_title = types_render_field("person-job-title", array("raw"=>"true"));
         $company = types_render_field("person-company", array("raw"=>"true"));

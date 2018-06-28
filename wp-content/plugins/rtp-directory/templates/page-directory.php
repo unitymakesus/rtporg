@@ -84,14 +84,27 @@ get_header(); ?>
 								<div class="result-item">
 									<div class="result-logo">
 										<?php
+										$within_facility = get_field('within_facility');
+										if ($within_facility == true) {
+											$related_facility = get_field('related_facility');
+											$related_photo = get_the_post_thumbnail_url($related_facility[0], 'medium');
+										}
+
+										if ($location_type == 'rtp-facility' || $location_type == 'rtp-space' || $location_type == 'rtp-site') {
+											$location_photo = get_the_post_thumbnail_url($id, 'medium');
+
+											if (!empty($location_photo)) {
+												?>
+												<img src="<?php echo $location_photo; ?>" alt="" />
+												<?php
+											} elseif (!empty($related_photo)) {
+												?>
+												<img src="<?php echo $related_photo; ?>" alt="" />
+												<?php
+											}
+										} elseif ($location_type == 'rtp-company') {
 											$logo = get_field('company_logo');
 											$location_photo = get_field('location_photograph');
-											$within_facility = get_field('within_facility');
-
-											if ($within_facility == true) {
-												$related_facility = get_field('related_facility');
-												$related_photo = get_the_post_thumbnail_url($related_facility[0], 'medium');
-											}
 
 											if (!empty($logo)) {
 												?>
@@ -106,6 +119,7 @@ get_header(); ?>
 												<img src="<?php echo $related_photo; ?>" alt="" />
 												<?php
 											}
+										}
 										?>
 									</div>
 
@@ -118,6 +132,9 @@ get_header(); ?>
 														<?php if (function_exists('get_wp_term_image')) :?>
 															<?php $meta_image = get_wp_term_image($lt->term_id);?>
 															<img src="<?php echo $meta_image;?>" alt="" title="<?php echo $lt->name; ?>" />
+															<?php if ($location_type == 'rtp-space' || $location_type == 'rtp-site') {
+																echo $lt->name;
+															} ?>
 														<?php endif; ?>
 													<?php endforeach; ?>
 												</div>
