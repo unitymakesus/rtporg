@@ -1186,6 +1186,16 @@
   min-height: 100vh;
 }
 
+.rtp-facility-template-default .facetwp-template {
+  min-height: 100vh;
+}
+.rtp-facility-template-default .footer-container {
+  display: none;
+}
+.rtp-facility-template-default .content-container {
+  margin-bottom: 0px !important;
+}
+
 .facetwp-template {
   padding-left: 3rem;
   padding-top: 2rem;
@@ -1302,4 +1312,26 @@
 }
 .single-rtp-company .location-map-wrapper .location-map.loaded .rtp-loader-wrap, .single-rtp-facility .location-map-wrapper .location-map.loaded .rtp-loader-wrap, .single-rtp-site .location-map-wrapper .location-map.loaded .rtp-loader-wrap, .single-rtp-space .location-map-wrapper .location-map.loaded .rtp-loader-wrap {
   display: none;
+}
+
+@media (max-width: 960px) {
+  #map {
+    display: none;
+  }
+
+  .page-template-page-directory .content-container {
+    padding: 0;
+  }
+
+  #filter-toggle {
+    width: 100%;
+  }
+
+  .facetwp-facet {
+    margin-right: 20px;
+  }
+
+  .row-smallsize {
+    margin-left: 0;
+  }
 }
