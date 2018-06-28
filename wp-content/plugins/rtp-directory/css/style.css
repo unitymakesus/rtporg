@@ -1182,7 +1182,8 @@
 .tooltip.tooltip p.title {
   font-size: 18px;
   font-weight: bold;
-  color: #07444C;
+  color: #02444D;
+  font-family: 'Lora', serif;
 }
 .tooltip.tooltip p.address {
   font-size: 16px;
@@ -1194,7 +1195,9 @@
   text-decoration: underline;
 }
 .tooltip.tooltip img {
-  height: 75px;
+  max-height: 75px;
+  width: auto;
+  margin-left: 10px;
 }
 
 .container-fluid {
@@ -1430,5 +1433,10 @@
 
   .row-smallsize {
     margin-left: 0;
+  }
+}
+@media screen and (min-width: 960px) {
+  .st-content-inner {
+    max-width: 100% !important;
   }
 }

@@ -19,3 +19,9 @@
     margin-left: 0;
   }
 }
+
+@media screen and (min-width: 960px){
+  .st-content-inner {
+    max-width: 100% !important;
+  }
+}
