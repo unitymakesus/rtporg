@@ -8,7 +8,8 @@
     &.title {
       font-size: 18px;
       font-weight: bold;
-      color: #07444C;
+      color: #02444D;
+      font-family: 'Lora', serif;
     }
 
     &.address {
@@ -24,6 +25,8 @@
   }
 
   img {
-    height: 75px;
+    max-height: 75px;
+    width: auto;
+    margin-left: 10px;
   }
 }
