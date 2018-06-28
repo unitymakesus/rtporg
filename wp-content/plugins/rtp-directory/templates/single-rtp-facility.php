@@ -82,7 +82,7 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
             $tenants = (new RTP_Dir_Listing)->get_facility_tenant_ids($id);
             ?>
             <div class="clearfix vertical-padding">
-              <a class="label" href="<?php echo get_permalink(get_page_by_path('/rtp-directory')); ?>">&laquo; Back to RTP directory</a>
+              <a class="label" href="<?php echo get_permalink(get_page_by_path('/directory-map')); ?>">&laquo; Back to RTP directory</a>
             </div>
 
             <div class="clearfix vertical-padding">
@@ -305,7 +305,7 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
 
             <div class="location-photo">
               <?php if (!empty($location_photo)) { ?>
-                <img src="<?php echo $location_photo['sizes']['large']; ?>" alt="<?php the_title(); ?> Photograph"/>
+                <img src="<?php echo $location_photo; ?>" alt="<?php the_title(); ?> Photograph"/>
               <?php } ?>
             </div>
           </div>

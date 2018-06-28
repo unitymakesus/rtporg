@@ -11,3 +11,17 @@
     min-height: 100vh;
   }
 }
+
+.rtp-facility-template-default {
+  .facetwp-template {
+    min-height: 100vh;
+  }
+
+  .footer-container {
+    display: none;
+  }
+
+  .content-container {
+    margin-bottom: 0px !important;
+  }
+}
