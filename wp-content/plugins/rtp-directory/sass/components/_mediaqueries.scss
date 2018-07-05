@@ -49,3 +49,9 @@
     max-width: 100% !important;
   }
 }
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+   .indent dl {
+     display: block !important;
+   }
+}
