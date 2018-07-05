@@ -1174,17 +1174,15 @@
 
 .tooltip.tooltip {
   display: block;
-  width: 250px;
+  width: 213px;
 }
 .tooltip.tooltip p {
   margin: 10px;
-  text-align: center;
 }
 .tooltip.tooltip p.title {
   font-size: 18px;
   font-weight: bold;
   color: #02444D;
-  font-family: 'Lora', serif;
 }
 .tooltip.tooltip p.address {
   font-size: 16px;
@@ -1198,11 +1196,14 @@
 .tooltip.tooltip .secondary {
   background: #048798;
 }
-.tooltip.tooltip img {
-  max-height: 50;
-  width: auto;
+.tooltip.tooltip .tooltip-logo {
+  max-width: 100%;
+  margin: 10px;
+}
+.tooltip.tooltip .tooltip-logo img {
+  max-width: 100%;
   display: block;
-  margin: 0 auto;
+  margin: 0;
 }
 
 .container-fluid {
@@ -1357,11 +1358,11 @@
 .single-rtp-company h2, .single-rtp-facility h2, .single-rtp-site h2, .single-rtp-space h2 {
   margin: 1.25rem 0 0.625rem;
 }
-.single-rtp-company .result-meta .meta-icon, .single-rtp-facility .result-meta .meta-icon, .single-rtp-site .result-meta .meta-icon, .single-rtp-space .result-meta .meta-icon {
+.single-rtp-company .location-meta .meta-icon, .single-rtp-facility .location-meta .meta-icon, .single-rtp-site .location-meta .meta-icon, .single-rtp-space .location-meta .meta-icon {
   display: inline-block;
   height: 18px;
 }
-.single-rtp-company .result-meta .meta-icon img, .single-rtp-facility .result-meta .meta-icon img, .single-rtp-site .result-meta .meta-icon img, .single-rtp-space .result-meta .meta-icon img {
+.single-rtp-company .location-meta .meta-icon img, .single-rtp-facility .location-meta .meta-icon img, .single-rtp-site .location-meta .meta-icon img, .single-rtp-space .location-meta .meta-icon img {
   display: block;
 }
 .single-rtp-company .facility-info, .single-rtp-facility .facility-info, .single-rtp-site .facility-info, .single-rtp-space .facility-info {

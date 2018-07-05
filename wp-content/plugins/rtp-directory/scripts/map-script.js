@@ -25,8 +25,11 @@ jQuery(document).ready(function($) {
   const polyLinesFilter = ['all',['==', '$type', 'Polygon']];
   const lineFilter = ['all',['==', '$type', 'LineString']];
 
+  // Variable for holding currently active tooltip/popup
+  var popup;
+
   // Get facets on page load
-  let facets = FWP.facets;
+  var facets = FWP.facets;
 
   // Reset layer filters
   function reset_layer_filter(layer) {
@@ -58,7 +61,7 @@ jQuery(document).ready(function($) {
 
   // Check to see if any facets are set
   function areFacetsSet(facets) {
-    let set = false;
+    var set = false;
 
     $.each(facets, function(fkey, fval) {
       // If any values are set for this facet (besides pagination facets)
@@ -81,7 +84,7 @@ jQuery(document).ready(function($) {
       // Set up filters for each layer individually
       allLayers.forEach(function(layer) {
         // Start building layer's filters from scratch to avoid duplicate filters being set
-        let cleaned = reset_layer_filter(layer),
+        var cleaned = reset_layer_filter(layer),
             new_expression = ['any'],
             new_filter = [];
 
@@ -141,7 +144,7 @@ jQuery(document).ready(function($) {
       data
     })
     .done(function(response, textStatus, jqXHR) {
-      let locations = JSON.parse(response);
+      var locations = JSON.parse(response);
       // Add locations data source to map
   		map.getSource('locations').setData(locations);
       // Filter layers on map
@@ -272,17 +275,25 @@ jQuery(document).ready(function($) {
 
 		// When a click event occurs open a popup at the location of click
 		map.on('click', "polygon-fills-hover", function(e) {
-      // Other buildings
+      // Multi-tenant facility buildings and sites
       var prop = e.features[0].properties;
-      var tooltip = `
-        <div class="tooltip">
-          <p class="title">${prop.title}</p>
-          ${prop.image ? `<img src="${prop.image}" alt="${prop.title}"/>` : ''}
-          <p><a class="button secondary" href="${prop.permalink}">More Information</a></p>
-        </div>
-      `;
+      var logo_photo = (prop.logo ? prop.logo : prop.photo);
+      var image = (logo_photo ? '<div class="tooltip-logo"><img src="' + logo_photo + '" alt="' + prop.title + '"/></div>' : '');
+      var related_facility = (prop.related_facility ? '<strong>' + prop.related_facility + '</strong><br />' : '');
+      var suite_or_building = (prop.suite_or_building ? prop.suite_or_building + '<br />' : '');
+      var street_address = (prop.street_address ? prop.street_address + '<br />RTP, NC ' + prop.zip_code : '');
+      var tooltip = '<div class="tooltip">' +
+                      '<p class="title">' + prop.title + '</p>' +
+                      '<p class="address">' +
+                        related_facility +
+                        suite_or_building +
+                        street_address +
+                      '</p>' +
+                      image +
+                      '<p><a class="button secondary" href="' + prop.permalink + '">More Information</a></p>' +
+                    '</div>';
 
-      new mapboxgl.Popup()
+      popup = new mapboxgl.Popup()
         .setLngLat(e.lngLat)
         .setHTML(tooltip)
         .addTo(map);
@@ -301,15 +312,23 @@ jQuery(document).ready(function($) {
       // Companies, Recreation Facilities, and some Real Estate
       map.on('click', layer, function(e) {
         var prop = e.features[0].properties;
-        var tooltip = `
-          <div class="tooltip">
-            <p class="title">${prop.title}</p>
-            ${prop.logo ? `<img src="${prop.logo}" alt="${prop.title}"/>` : ''}
-            <p><a class="button secondary" href="${prop.permalink}">More Information</a></p>
-          </div>
-        `;
+        var logo_photo = (prop.logo ? prop.logo : prop.photo);
+        var image = (logo_photo ? '<div class="tooltip-logo"><img src="' + logo_photo + '" alt="' + prop.title + '"/></div>' : '');
+        var related_facility = (prop.related_facility ? '<strong>' + prop.related_facility + '</strong><br />' : '');
+        var suite_or_building = (prop.suite_or_building ? prop.suite_or_building + '<br />' : '');
+        var street_address = (prop.street_address ? prop.street_address + '<br />RTP, NC ' + prop.zip_code : '');
+        var tooltip = '<div class="tooltip">' +
+                        '<p class="title">' + prop.title + '</p>' +
+                        '<p class="address">' +
+                          related_facility +
+                          suite_or_building +
+                          street_address +
+                        '</p>' +
+                        image +
+                        '<p><a class="button secondary" href="' + prop.permalink + '">More Information</a></p>' +
+                      '</div>';
 
-        new mapboxgl.Popup({ offset: 5 })
+        popup = new mapboxgl.Popup({ offset: 5 })
           .setLngLat(e.lngLat)
           .setHTML(tooltip)
           .addTo(map);
@@ -329,15 +348,14 @@ jQuery(document).ready(function($) {
 		map.on('click', "lines", function(e) {
       // Lines
       var prop = e.features[0].properties;
-      var tooltip = `
-        <div class="tooltip">
-          <p class="title">${prop.title}</p>
-          ${prop.image ? `<img src="${prop.image}" alt="${prop.title}"/>` : ''}
-          <p><a class="button secondary" href="${prop.permalink}">More Information</a></p>
-        </div>
-      `;
+      var image = (prop.image ? '<div class="tooltip-logo"><img src="' + prop.image + '" alt="' + prop.title + '"/></div>' : '');
+      var tooltip = '<div class="tooltip">' +
+                      '<p class="title">' + prop.title + '</p>' +
+                      image +
+                      '<p><a class="button secondary" href="' + prop.permalink + '">More Information</a></p>' +
+                    '</div>';
 
-      new mapboxgl.Popup()
+      popup = new mapboxgl.Popup()
         .setLngLat(e.lngLat)
         .setHTML(tooltip)
         .addTo(map);
@@ -351,19 +369,24 @@ jQuery(document).ready(function($) {
     distance = $('#map').offset().top;
 
     // Set company icons and checkboxes
-    let checkboxCats = $('.facetwp-checkbox');
-    let companyImages = rtp_dir_vars.company_type_images;
+    var checkboxCats = $('.facetwp-checkbox');
+    var companyImages = rtp_dir_vars.company_type_images;
 
     // If checkboxes have an icon, set it after content
     checkboxCats.each(function(i) {
-      let dataValue = $(this);
+      var dataValue = $(this);
       for (key in companyImages) {
         if(dataValue.attr('data-value') == key && !dataValue.hasClass('has-icon')) {
           dataValue.addClass('has-icon');
-          dataValue.prepend(`<img class="checkboxIcons" src="${companyImages[key]}" alt="" />`);
+          dataValue.prepend('<img class="checkboxIcons" src="' + companyImages[key] + '" alt="" />');
         }
       }
     });
+
+    // Get rid of tooltip/popup
+    if (popup) {
+      popup.remove();
+    }
 
     // Filter layers on map
     set_map_facets();
@@ -371,7 +394,7 @@ jQuery(document).ready(function($) {
 
   // Stick map to fixed position when it reaches top of screen on scroll
   const $window = $(window);
-  let distance = $('#map').offset().top;
+  var distance = $('#map').offset().top;
 
   $window.scroll(function() {
     if ( $window.scrollTop() >= distance ) {

@@ -127,7 +127,7 @@ class RTP_Dir_Listing {
       $coords_array = $this->get_facility_coords($id, $feature_type);
 
       $properties = array_merge($properties, array(
-        'photo' => get_the_post_thumbnail_url($id),
+        'photo' => get_the_post_thumbnail_url($id, 'medium'),
         'facility-type' => $facility_type[0]->slug,
         'street_address' => get_field('street_address', $id),
         'zip_code' => get_field('zip_code', $id),
@@ -152,7 +152,7 @@ class RTP_Dir_Listing {
       $coords_array = array(array(get_field('coordinates', $id)));
 
       $properties = array_merge($properties, array(
-        'photo' => get_the_post_thumbnail_url($id),
+        'photo' => get_the_post_thumbnail_url($id, 'medium'),
         'color' => '#850B7E',
         'hover-color' => '#850B7E',
         'opacity' => 0.2,
@@ -173,6 +173,7 @@ class RTP_Dir_Listing {
         $street_address = get_field('details_street_address', $id);
         $zip_code = get_field('details_zip_code', $id);
         $coords = get_field('details_coordinates', $id);
+        $location_photo = get_field('location_photograph', $id);
 
         if (!empty($coords['lat'])) {
           $coords_array = array(
@@ -185,7 +186,7 @@ class RTP_Dir_Listing {
           'street_address' => $street_address,
           'zip_code' => $zip_code,
           'logo' => get_field('company_logo', $id),
-          'photo' => get_field('location_photograph', $id)
+          'photo' => $location_photo['sizes']['medium']
         ));
       } else {
         // Handle company that IS within a facility
@@ -197,6 +198,7 @@ class RTP_Dir_Listing {
           $suite_or_building = get_field('details_suite_or_building', $id);
           $zip_code = get_field('zip_code', $related_facility[0]);
           $coords_array = $this->get_facility_coords($related_facility[0], $feature_type);
+          $location_photo = get_field('location_photograph', $id);
 
           $properties = array_merge($properties, array(
             'related_facility' => get_the_title($related_facility[0]),
@@ -204,7 +206,8 @@ class RTP_Dir_Listing {
             'suite_or_building' => $suite_or_building,
             'zip_code' => $zip_code,
             'logo' => get_field('company_logo', $id),
-            'photo' => get_field('location_photograph', $id),
+            'photo' => $location_photo['sizes']['medium'],
+            'related_photo' => get_the_post_thumbnail_url($related_facility[0], 'medium'),
             'color' => '#038798',
             'hover-color' => '#0A0398',
             'opacity' => 1,
@@ -219,6 +222,7 @@ class RTP_Dir_Listing {
         $street_address = get_field('street_address', $id);
         $zip_code = get_field('zip_code', $id);
         $coords = get_field('coords', $id);
+        $location_photo = get_field('location_photograph', $id);
 
         if (!empty($coords['lat'])) {
           $coords_array = array(
@@ -230,7 +234,7 @@ class RTP_Dir_Listing {
         $properties = array_merge($properties, array(
           'street_address' => $street_address,
           'zip_code' => $zip_code,
-          'photo' => get_field('location_photograph', $id)
+          'photo' => $location_photo['sizes']['medium']
         ));
 
       } else {
@@ -243,13 +247,15 @@ class RTP_Dir_Listing {
           $suite_or_building = get_field('details_suite_or_building', $id);
           $zip_code = get_field('zip_code', $related_facility[0]);
           $coords_array = $this->get_facility_coords($related_facility[0], $feature_type);
+          $location_photo = get_field('location_photograph', $id);
 
           $properties = array_merge($properties, array(
             'related_facility' => get_the_title($related_facility[0]),
             'street_address' => $street_address,
             'suite_or_building' => $suite_or_building,
             'zip_code' => $zip_code,
-            'photo' => get_field('location_photograph', $id),
+            'photo' => $location_photo['sizes']['medium'],
+            'related_photo' => get_the_post_thumbnail_url($related_facility[0], 'medium'),
             'color' => '#038798',
             'hover-color' => '#0A0398',
             'opacity' => 1,
@@ -295,7 +301,7 @@ class RTP_Dir_Listing {
   public function get_facility_tenant_ids($id) {
     global $wpdb;
     $like_id = '%"' . $id . '"%';
-    $query = "SELECT id FROM {$wpdb->prefix}posts AS p INNER JOIN {$wpdb->prefix}postmeta AS pm ON (p.ID = pm.post_id) WHERE 1=1 AND (pm.meta_key = 'related_facility' AND pm.meta_value LIKE %s) AND p.post_type IN ('rtp-company', 'rtp-space') AND p.post_status = 'publish' GROUP BY p.ID";
+    $query = "SELECT id FROM {$wpdb->prefix}posts AS p INNER JOIN {$wpdb->prefix}postmeta AS pm ON (p.ID = pm.post_id) WHERE 1=1 AND (pm.meta_key = 'related_facility' AND pm.meta_value LIKE %s) AND p.post_type IN ('rtp-company', 'rtp-space') AND p.post_status = 'publish' GROUP BY p.ID ORDER BY p.post_type DESC, p.post_name ASC";
     $sql = $wpdb->prepare($query, $like_id);
     $tenants = $wpdb->get_results($sql);
 

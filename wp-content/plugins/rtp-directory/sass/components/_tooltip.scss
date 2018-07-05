@@ -1,16 +1,14 @@
 .tooltip.tooltip {
   display: block;
-  width: 250px;
+  width: 213px;
 
   p {
     margin: 10px;
-    text-align: center;
 
     &.title {
       font-size: 18px;
       font-weight: bold;
       color: #02444D;
-      font-family: 'Lora', serif;
     }
 
     &.address {
@@ -29,10 +27,14 @@
     background: #048798;
   }
 
-  img {
-    max-height: 50;
-    width: auto;
-    display: block;
-    margin: 0 auto;
+  .tooltip-logo {
+    max-width: 100%;
+    margin: 10px;
+
+    img {
+      max-width: 100%;
+      display: block;
+      margin: 0;
+    }
   }
 }
