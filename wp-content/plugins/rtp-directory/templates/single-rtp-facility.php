@@ -137,11 +137,13 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
   										<?php if (!empty($location_terms)) : ?>
   											<div class="result-meta">
   												<?php foreach ($location_terms as $lt) : ?>
-  												<div class="meta-term"><?php echo $lt->name; ?></div>
   												<div class="meta-icon">
   													<?php if (function_exists('get_wp_term_image')) :?>
   														<?php $meta_image = get_wp_term_image($lt->term_id);?>
   														<img src="<?php echo $meta_image;?>"/>
+                              <?php if ($location_type == 'rtp-space' || $location_type == 'rtp-site') {
+																echo $lt->name;
+															} ?>
   													<?php endif; ?>
   												</div>
   												<?php endforeach; ?>

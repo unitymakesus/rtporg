@@ -87,18 +87,19 @@ jQuery(document).ready(function($) {
 
         if (feature_type !== 'LineString' && post_type !== 'rtp-site') {
           // Build tooltip HTML
-          let tooltip = `
-            <div class="tooltip">
-              <p class="title">${prop.title}</p>
-              <p class="address">
-                ${prop.related_facility ? `<strong>${prop.related_facility}</strong><br />` : ''}
-                ${prop.suite_or_building ? `${prop.suite_or_building}<br />` : ''}
-                ${prop.street_address}<br />
-                RTP, NC 27709
-              </p>
-              ${prop.image ? `<img src="${prop.image}" alt="${prop.title}"/>` : ''}
-            </div>
-          `;
+          var logo_photo = (prop.logo ? prop.logo : prop.photo);
+          var image = (logo_photo ? '<div class="tooltip-logo"><img src="' + logo_photo + '" alt="' + prop.title + '"/></div>' : '');
+          var related_facility = (prop.related_facility ? '<strong>' + prop.related_facility + '</strong><br />' : '');
+          var suite_or_building = (prop.suite_or_building ? prop.suite_or_building + '<br />' : '');
+          var street_address = (prop.street_address ? prop.street_address + '<br />RTP, NC ' + prop.zip_code : '');
+          var tooltip = '<div class="tooltip">' +
+                          '<p class="title">' + prop.title + '</p>' +
+                          '<p class="address">' +
+                            related_facility +
+                            suite_or_building +
+                            street_address +
+                          '</p>' +
+                        '</div>';
           new mapboxgl.Popup({closeOnClick: false})
             .setLngLat(popCenter)
             .setHTML(tooltip)

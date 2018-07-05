@@ -69,7 +69,7 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
             <div class="company-title">
               <h1><?php the_title(); ?></h1>
               <?php if (!empty($location_terms)) : ?>
-                <div class="result-meta">
+                <div class="location-meta">
                   <?php foreach ($location_terms as $lt) : ?>
                   <div class="meta-term">
                     <?php if (function_exists('get_wp_term_image')) :?>
