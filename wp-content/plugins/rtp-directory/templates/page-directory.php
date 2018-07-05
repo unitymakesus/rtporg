@@ -42,7 +42,7 @@ get_header(); ?>
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-sm-12">
+								<div class="col-sm-12 search">
 									<h3>Search by Keyword</h3>
 									<?php echo do_shortcode('[facetwp facet="search_directory"]'); ?>
 								</div>
