@@ -141,7 +141,7 @@ jQuery(document).ready(function($) {
       data
     })
     .done(function(response, textStatus, jqXHR) {
-      let locations = JSON.parse(response);
+      var locations = JSON.parse(response);
       // Add locations data source to map
   		map.getSource('locations').setData(locations);
       // Filter layers on map

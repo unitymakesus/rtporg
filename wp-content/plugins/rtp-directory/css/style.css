@@ -1199,7 +1199,7 @@
   background: #048798;
 }
 .tooltip.tooltip img {
-  max-height: 50;
+  max-height: 50px;
   width: auto;
   display: block;
   margin: 0 auto;
@@ -1295,6 +1295,7 @@
   display: block;
   margin: 0 auto;
   height: inherit;
+  padding: 5px;
 }
 .result-item h4 {
   margin: 0;
@@ -1436,8 +1437,28 @@
     margin-right: 20px;
   }
 
+  .facetwp-template {
+    padding: 1rem 2em;
+  }
+  .facetwp-template .float-left, .facetwp-template .text-right {
+    float: none;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
   .row-smallsize {
     margin-left: 0;
+  }
+
+  .search {
+    margin-left: 10px;
+  }
+
+  .company-info .col-xs-12 {
+    padding-right: 0;
+  }
+  .company-info .container-fluid {
+    padding: 10px;
   }
 }
 @media screen and (min-width: 960px) {
