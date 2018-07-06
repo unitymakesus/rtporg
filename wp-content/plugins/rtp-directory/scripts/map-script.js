@@ -3,7 +3,7 @@ jQuery(document).ready(function($) {
   mapboxgl.accessToken = 'pk.eyJ1IjoiYWJ0YWRtaW4iLCJhIjoiY2pmbzd2MXVhMWVjMzJ5bG4xZmg4YTQzOSJ9.gpCo9L71BBeUf5scYBQH_Q';
 
 	// Initiatlize Map
-	const map = new mapboxgl.Map({
+	var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/abtadmin/cjfo8weeq2rtu2rn0q4tuqp0c',
 		center: ['-78.865','35.892'],
@@ -11,19 +11,19 @@ jQuery(document).ready(function($) {
 	});
 
 	// Arrays of map objects used to filter against.
-	const pointLayers = ['recreation','companies','realestate']; // Array cats
-  const polyLayers = ['polygon-fills', 'polygon-fills-hover', 'polygon-outlines']; // Array shapes
-  const lineLayers = ['lines']; // Array of trails
-  const allLayers = pointLayers.concat(polyLayers).concat(lineLayers);
+	var pointLayers = ['recreation','companies','realestate']; // Array cats
+  var polyLayers = ['polygon-fills', 'polygon-fills-hover', 'polygon-outlines']; // Array shapes
+  var lineLayers = ['lines']; // Array of trails
+  var allLayers = pointLayers.concat(polyLayers).concat(lineLayers);
 
   // Set up initial filters for each layer (to apply correct styles)
-  const recreationFilter = ['all',['==', '$type', 'Point'],['any', ['==', 'facility-type', 'recreation'],['==', 'facility-type', 'trail']]];
-  const companyFilter = ['all',['==', '$type', 'Point'],['==', 'content-type', 'rtp-company']];
-  const realestateFilter = ['all',['==', '$type', 'Point'],['==', 'content-type', 'rtp-space']];
-  const polyFillFilter = ['all',['==', '$type', 'Polygon']];
-  const polyFillHoverFilter = ['all',['==', 'hover_id', '']];
-  const polyLinesFilter = ['all',['==', '$type', 'Polygon']];
-  const lineFilter = ['all',['==', '$type', 'LineString']];
+  var recreationFilter = ['all',['==', '$type', 'Point'],['any', ['==', 'facility-type', 'recreation'],['==', 'facility-type', 'trail']]];
+  var companyFilter = ['all',['==', '$type', 'Point'],['==', 'content-type', 'rtp-company']];
+  var realestateFilter = ['all',['==', '$type', 'Point'],['==', 'content-type', 'rtp-space']];
+  var polyFillFilter = ['all',['==', '$type', 'Polygon']];
+  var polyFillHoverFilter = ['all',['==', 'hover_id', '']];
+  var polyLinesFilter = ['all',['==', '$type', 'Polygon']];
+  var lineFilter = ['all',['==', '$type', 'LineString']];
 
   // Variable for holding currently active tooltip/popup
   var popup;
@@ -78,8 +78,8 @@ jQuery(document).ready(function($) {
     if (map.isStyleLoaded()) {
 
       // Get data from FacetsWP
-      const facets = FWP.facets;
-      const result_ids = FWP.settings.post_ids;
+      var facets = FWP.facets;
+      var result_ids = FWP.settings.post_ids;
 
       // Set up filters for each layer individually
       allLayers.forEach(function(layer) {
@@ -135,7 +135,7 @@ jQuery(document).ready(function($) {
     });
 
 		// Add geoJSON source for locations
-    const data = {
+    var data = {
   		action: 'get_locations',
       _ajax_nonce: rtp_dir_vars._ajax_nonce
   	};
@@ -393,7 +393,7 @@ jQuery(document).ready(function($) {
   });
 
   // Stick map to fixed position when it reaches top of screen on scroll
-  const $window = $(window);
+  var $window = $(window);
   var distance = $('#map').offset().top;
 
   $window.scroll(function() {
