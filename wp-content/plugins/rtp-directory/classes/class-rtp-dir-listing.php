@@ -56,8 +56,8 @@ class RTP_Dir_Listing {
     wp_reset_postdata();
 
     $locations_json = str_replace(['["[', ']"]'], ['[[', ']]'], json_encode($locations_array));
+    error_log($locations_json);
     echo $locations_json;
-    error_log(print_r($locations_array, true));
     wp_die();
   }
 

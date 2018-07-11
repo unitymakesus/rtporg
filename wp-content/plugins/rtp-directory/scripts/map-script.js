@@ -144,7 +144,7 @@ jQuery(document).ready(function($) {
       data
     })
     .done(function(response, textStatus, jqXHR) {
-      console.log(response);
+      // console.log(response);
       var locations = JSON.parse(response);
       // Add locations data source to map
   		map.getSource('locations').setData(locations);
