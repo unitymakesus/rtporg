@@ -57,6 +57,7 @@ class RTP_Dir_Listing {
 
     $locations_json = str_replace(['["[', ']"]'], ['[[', ']]'], json_encode($locations_array));
     echo $locations_json;
+    error_log(print_r($locations_array, true));
     wp_die();
   }
 
