@@ -24,37 +24,37 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
   $within_facility = get_field('within_facility');
   if ($within_facility == true) {
     $related_facility = get_field('related_facility');
-    $suite_or_building = get_field('details_suite_or_building');
+    $suite_or_building = get_field('suite_or_building');
     $street_address = get_field('street_address', $related_facility[0]);
     $zip_code = get_field('zip_code', $related_facility[0]);
     $feature_type = get_field('geometry_type', $related_facility[0]);
   } else {
-    $street_address = get_field('details_street_address');
-    $zip_code = get_field('details_zip_code');
-    $coords = get_field('details_coordinates');
+    $street_address = get_field('street_address');
+    $zip_code = get_field('zip_code');
+    $coords = get_field('coordinates');
     $feature_type = 'Point';
   }
 
   // Get In Touch
-  $phone = get_field('details_phone');  // Array
-  $fax = get_field('details_fax');
-  $website = get_field('details_website');
-  $mailing_address = get_field('details_mailing_address');
-  $twitter = get_field('details_twitter');
+  $phone = get_field('phone');  // Array
+  $fax = get_field('fax');
+  $website = get_field('website');
+  $mailing_address = get_field('mailing_address');
+  $twitter = get_field('twitter');
   $contact_ppl = get_field('contact_person'); // Array
 
   // Operations
   $locations = get_field('operations_locations');
-  $us_hq = get_field('details_us_headquarters');
-  $global_hq = get_field('details_global_headquarters');
+  $us_hq = get_field('operations_us_headquarters');
+  $global_hq = get_field('operations_global_headquarters');
 
   // Details
-  $employment_public = get_field('reporting_data_publish_employment');
+  $employment_public = get_field('publish_employment');
+  $year_in_rtp = get_field('year_arrived_in_rtp');
+  $university = get_field('university_affiliation');
+  $company_size = get_field('company_size');
   $ft_employment = get_field('reporting_data_full_time_employees');
   $pt_employment = get_field('reporting_data_part_time_employees');
-  $year_in_rtp = get_field('reporting_data_year_arrived_in_rtp');
-  $university = get_field('reporting_data_university_affiliation');
-  $company_size = get_field('reporting_data_company_size');  // Array
 
   ?>
   <div class="content-container">
@@ -64,12 +64,10 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
           <div class="row flex">
 
             <?php // COMPANY LOGO ?>
-            <?php if ($user_can_edit) { ?>
-              <div class="logo-wrapper">
+            <div class="logo-wrapper">
+              <?php if ($user_can_edit) { ?>
                 <?php acf_form(['fields' => ['company_logo'], 'uploader' => 'basic']); ?>
-              </div>
-            <?php } else { ?>
-              <?php if(!empty($company_logo)):?>
+              <?php } elseif(!empty($company_logo)) { ?>
                   <div class="company-logo">
                     <div>
                       <div>
@@ -77,9 +75,8 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
                       </div>
                     </div>
                   </div>
-                </div>
-              <?php endif; ?>
-            <?php } ?>
+              <?php } ?>
+            </div>
 
             <?php // COMPANY NAME AND CATEGORY ?>
             <div class="company-title">
@@ -104,7 +101,6 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
                 <?php endif; ?>
               <?php } ?>
             </div>
-
           </div>
         </div>
 
@@ -118,7 +114,6 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
             </div>
           </div>
         <?php } ?>
-
       </div>
     </div>
 
@@ -299,7 +294,7 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
             <?php // PHYSICAL ADDRESS/LOCATION ?>
             <div class="address">
               <?php if ($within_facility == 'true') { ?>
-                <strong><?php echo get_the_title($related_facility[0]); ?></strong>
+                <strong><?php echo get_the_title($related_facility); ?></strong>
                 <?php if (!empty($suite_or_building)) {
                   echo '<br />' . $suite_or_building;
                 } ?>
@@ -325,6 +320,10 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
               <img src="<?php echo $location_photo['sizes']['large']; ?>" alt="<?php the_title(); ?> Photograph"/>
             <?php } ?>
           </div>
+
+          <?php if ($user_can_edit) { ?>
+            <?php acf_form(['fields' => ['reporting_data']]); ?>
+          <?php } ?>
         </div>
       </div>
     </div>
