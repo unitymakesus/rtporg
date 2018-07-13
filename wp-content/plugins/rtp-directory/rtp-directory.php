@@ -305,6 +305,10 @@ final class RTP_Dir {
 			wp_enqueue_script( 'mapbox-script', 'https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.js', array(), null, true );
 			wp_enqueue_script( 'rtp-dir-location-script', $this->plugin_url . 'scripts/single-location-script.js', array('mapbox-script'), '1.0.0', true );
 
+			// Enqueue JS for edit directory
+			wp_enqueue_script( 'rtp-dir-tingle', $this->plugin_url . 'scripts/vendor/tingle.min.js', array(), '1.0.0', true );
+			wp_enqueue_script( 'rtp-dir-edit-directory', $this->plugin_url . 'scripts/edit-directory.js', array('rtp-dir-tingle'), '1.0.0', true );
+
 			// Enqueue styles
 			wp_enqueue_style( 'mapbox-style', 'https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.css', null, false);
 			wp_enqueue_style( 'rtp-dir-style', $this->plugin_url . 'css/style.css', null, '1.0.0');

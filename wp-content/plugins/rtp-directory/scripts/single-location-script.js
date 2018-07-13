@@ -43,7 +43,7 @@ jQuery(document).ready(function($) {
         data
       })
       .done(function(response, textStatus, jqXHR) {
-        console.log(response);
+        // console.log(response);
         var location = JSON.parse(response),
             prop = location.features[0].properties,
             coords = location.features[0].geometry.coordinates,
@@ -86,7 +86,7 @@ jQuery(document).ready(function($) {
         }
 
         if (feature_type !== 'LineString' && post_type !== 'rtp-site') {
-          console.log(popCenter);
+          // console.log(popCenter);
           // Build tooltip HTML
           var logo_photo = (prop.logo ? prop.logo : prop.photo);
           var image = (logo_photo ? '<div class="tooltip-logo"><img src="' + logo_photo + '" alt="' + prop.title + '"/></div>' : '');

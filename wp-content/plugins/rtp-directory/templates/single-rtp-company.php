@@ -57,18 +57,11 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
   $pt_employment = get_field('reporting_data_part_time_employees');
 
   ?>
-  <div class="content-container">
-
-    <?php if ($user_can_edit) { ?>
-      <div class="notice">
-        <a href="#" class="button primary"><span class="important"></span> Please review and update private data.</a>
-      </div>
-    <?php } ?>
-
+  <div class="content-container edit-directory">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-xs-12 col-md-8">
-          <div class="row flex<?php echo ($user_can_edit ? 'user-can-edit" data-target="modal-header' : ''); ?>">
+        <div class="col-xs-12 col-md-10">
+          <div class="row flex <?php echo ($user_can_edit ? 'user-can-edit" data-target="modal-header' : ''); ?>">
             <?php // COMPANY LOGO ?>
             <div class="logo-wrapper">
               <?php if(!empty($company_logo)) { ?>
@@ -84,7 +77,9 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
 
             <?php // COMPANY NAME AND CATEGORY ?>
             <div class="company-title">
-              <h1><?php the_title(); ?></h1>
+              <h1><?php the_title(); ?>
+                <button class="modal-btn">&#9998;</button>
+              </h1>
               <?php if (!empty($location_terms)) : ?>
                 <div class="location-meta">
                   <?php foreach ($location_terms as $lt) : ?>
@@ -105,12 +100,12 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
         </div>
 
         <?php // COMPANY WEBSITE LINK ?>
-        <div class="col-xs-12 col-md-4">
-          <div class="box">
-            <?php if (!empty($website)) : ?>
-              <a class="website button secondary large" href="<?php echo $website; ?>" target="_blank" rel="noopener">Visit Website</a>
-            <?php endif; ?>
-          </div>
+        <div class="col-xs-12 col-md-2">
+          <?php if ($user_can_edit) { ?>
+            <div class="notice user-can-edit" data-target="modal-reporting-data">
+              <button class="modal-btn button secondary reporting">Reporting Data &#9998;</button>
+            </div>
+          <?php } ?>
         </div>
       </div>
     </div>
@@ -122,12 +117,20 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
 
             <?php // COMPANY DESCRIPTION ?>
             <div class="<?php echo ($user_can_edit ? 'user-can-edit" data-target="modal-description' : ''); ?>">
+              <h2>Company Description
+                <span class="modal-btn">&#9998;</span>
+              </h2>
+
               <?php the_content(); ?>
             </div>
 
             <?php if (!empty($year_in_rtp) || ($employment_public == true && !empty($company_size)) || !empty($university[0]) || (!empty($locations) && $locations !== 'Located in RTP only')) : ?>
-              <h2>Additional Details</h2>
-              <div class="indent <?php echo ($user_can_edit ? 'user-can-edit" data-target="modal-details' : ''); ?>">
+              <div class="<?php echo ($user_can_edit ? 'user-can-edit" data-target="modal-details' : ''); ?>">
+                <h2>Additional Details
+                  <span class="modal-btn">&#9998;</span>
+                </h2>
+
+                <div class="indent">
                 <dl>
                   <?php if ($user_can_edit) { ?>
                     <?php //acf_form(['fields' => 'reporting_data_year_arrived_in_rtp']); ?>
@@ -158,12 +161,16 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
                     <dd><span><?php echo implode(', ', $university); ?></span></dd>
                   <?php } ?>
                 </dl>
+                </div>
               </div>
             <?php endif; ?>
 
             <?php if (($phone['public'] == true && !empty($phone['number'])) || ($fax['public'] == true && !empty($fax['number'])) || !empty($twitter) || !empty($mailing_address) || !empty($contact_ppl)) : ?>
-              <h2>Get In Touch</h2>
               <div class="<?php echo ($user_can_edit ? 'user-can-edit" data-target="modal-contact' : ''); ?>">
+                <h2>Get In Touch
+                  <span class="modal-btn">&#9998;</span>
+                </h2>
+
                 <div class="indent">
                   <dl>
                     <?php if ($phone['public'] == true && !empty($phone['number'])) { ?>
@@ -233,6 +240,8 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
 
         <div class="col-xs-12 col-md-6 <?php echo ($user_can_edit ? 'user-can-edit" data-target="modal-location' : ''); ?>">
           <div class="location-map-wrapper">
+            <button class="modal-btn">&#9998;</button>
+
             <div class="location-map" id="location-map" data-post-type="rtp-company" data-feature-type="<?php echo $feature_type; ?>" data-location-id="<?php echo get_the_id(); ?>">
               <div class="rtp-loader-wrap">
                 <div class="rtp-loader-icon">
@@ -276,7 +285,9 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
           <?php // PHYSICAL ADDRESS/LOCATION ?>
           <div class="address">
             <?php if ($within_facility == 'true') { ?>
-              <strong><?php echo get_the_title($related_facility); ?></strong>
+              <strong><?php echo get_the_title($related_facility); ?>
+                <span class="modal-btn">&#9998;</span>
+              </strong>
               <?php if (!empty($suite_or_building)) {
                 echo '<br />' . $suite_or_building;
               } ?>
@@ -304,7 +315,6 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
     </div>
   </div>
 
-  <?php // @LEXI, can you make each of these into actual modals??? ?>
   <?php if ($user_can_edit) { ?>
     <div class="modal" id="modal-header">
       <?php acf_form(['fields' => ['company_type', 'website', 'company_logo'], 'uploader' => 'basic', 'post_title' => true]); ?>
@@ -323,7 +333,7 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
     </div>
 
     <div class="modal" id="modal-location">
-      <?php acf_form(['fields' => ['within_facility', 'related_facility', 'suite_or_building', 'coordinates', 'street_address', 'zip_code', 'location_photograph'], 'uploader' => 'basic']); ?>
+      <?php acf_form(['fields' => ['within_facility', 'related_facility', 'suite_or_building', 'street_address', 'zip_code', 'coordinates', 'location_photograph'], 'uploader' => 'basic']); ?>
     </div>
 
     <div class="modal" id="modal-reporting-data">
