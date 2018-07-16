@@ -142,8 +142,7 @@ jQuery(document).ready(function($) {
   	$.ajax({
       url: rtp_dir_vars.ajax_uri,
       data
-    })
-    .done(function(response, textStatus, jqXHR) {
+    }).done(function(response, textStatus, jqXHR) {
       // console.log(response);
       var locations = JSON.parse(response);
       // Add locations data source to map
