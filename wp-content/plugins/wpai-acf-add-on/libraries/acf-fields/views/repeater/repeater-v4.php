@@ -19,7 +19,7 @@
                                 <td>
                                     <div class="inner input">
                                         <?php
-                                        $subField->data['field_name'] = $field_name . "[" . $subField->getFieldKey() . "][rows][" . $key . "]";
+                                        $subField->setFieldInputName($field_name . "[" . $field['key'] . "][rows][" . $key . "]");
                                         $subField->view();
                                         ?>
                                     </div>
@@ -51,7 +51,7 @@
                             <td>
                                 <div class="inner input">
                                     <?php
-                                    $subField->data['field_name'] = $field_name . "[" . $subField->getFieldKey() . "][rows][ROWNUMBER]";
+                                    $subField->setFieldInputName($field_name . "[" . $field['key'] . "][rows][ROWNUMBER]");
                                     $subField->view();
                                     ?>
                                 </div>

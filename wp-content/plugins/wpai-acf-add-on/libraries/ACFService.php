@@ -160,4 +160,34 @@ final class ACFService{
 
         return PMXI_API::upload_image($pid, $atch_url, "yes", $logger, true, "", "files");
     }
+
+    /**
+     * @param $values
+     * @param array $post_types
+     * @return array
+     */
+    public static function get_posts_by_relationship($values, $post_types = array()){
+        global $wpdb;
+        $post_ids = array();
+        foreach ($values as $ev) {
+            $relation = false;
+            if (ctype_digit($ev)) {
+                $relation = $wpdb->get_row($wpdb->prepare("SELECT * FROM {$wpdb->posts} WHERE ID = %s", $ev));
+            }
+            if (empty($relation)){
+                if (empty($post_types)){
+                    $sql = "SELECT * FROM {$wpdb->posts} WHERE post_type != %s AND ( post_title = %s OR post_name = %s )";
+                    $relation = $wpdb->get_row($wpdb->prepare($sql, 'revision', $ev, sanitize_title_for_query($ev)));
+                }
+                else{
+                    $sql = "SELECT * FROM {$wpdb->posts} WHERE post_type IN ('%s') AND ( post_title = %s OR post_name = %s )";
+                    $relation = $wpdb->get_row($wpdb->prepare($sql, implode("','", $post_types), $ev, sanitize_title_for_query($ev)));
+                }
+            }
+            if ($relation) {
+                $post_ids[] = (string) $relation->ID;
+            }
+        }
+        return $post_ids;
+    }
 }

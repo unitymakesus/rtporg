@@ -48,10 +48,6 @@ class FieldRelationship extends Field {
      */
     public function getFieldValue() {
 
-        global $wpdb;
-
-        $post_ids = array();
-
         $xpath = $this->getOption('xpath');
 
         $values = parent::getFieldValue();
@@ -60,19 +56,8 @@ class FieldRelationship extends Field {
             $values = explode($xpath['delim'], $values);
         }
 
-        foreach ($values as $ev) {
-            $relation = false;
-            if (ctype_digit($ev)) {
-                $relation = $wpdb->get_row($wpdb->prepare("SELECT * FROM {$wpdb->posts} WHERE ID = %s", $ev));
-            }
-            if (empty($relation)){
-                $sql = "SELECT * FROM {$wpdb->posts} WHERE post_type IN ('%s') AND ( post_title = %s OR post_name = %s )";
-                $relation = $wpdb->get_row($wpdb->prepare($sql, implode("','", $this->getFieldOption('post_type')), $ev, sanitize_title_for_query($ev)));
-            }
-            if ($relation) {
-                $post_ids[] = (string) $relation->ID;
-            }
-        }
+        $post_ids = ACFService::get_posts_by_relationship($values);
+
         return empty($post_ids) ? '' : $post_ids;
     }
 

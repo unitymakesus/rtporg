@@ -125,7 +125,8 @@ class FieldRepeater extends Field {
 
                         $xpath_suffix = '';
                         if ((is_array($rowFields[$this->getFieldKey()]) || strpos($rowFields[$this->getFieldKey()], "!") !== 0) && strpos($xpath['foreach'], "!") !== 0){
-                            $xpath_suffix = $this->getOption('xpath_suffix') . $repeaterXpath;
+                            $xpath_suffix = $this->getOption('base_xpath') . $repeaterXpath;
+                            $xpath_suffix = str_replace($parsingData['xpath_prefix'] . $parsingData['import']->xpath, '', $xpath_suffix);
                         }
 
                         $rowData = array();
@@ -200,11 +201,6 @@ class FieldRepeater extends Field {
                             $subField->import($importData, array(
                                 'container_name' => $this->getFieldName() . "_" . $k . "_"
                             ));
-//                            $this->import_field($pid,
-//                                $k,
-//                                $sub_field_key,
-//                                $sub_field,
-//                                $fieldContainerName . $field['name'] . "_" . $k . "_");
                         }
                     }
                     ACFService::update_post_meta($this, $this->getPostID(), $this->getFieldName(), $values[$this->getPostIndex()]['countRows']);
@@ -233,6 +229,11 @@ class FieldRepeater extends Field {
                     foreach ($values as $row_number => $fields) {
                         if (!empty($fields)) {
                             $countRows++;
+                            // Init importData in all sub fields
+                            /** @var Field $subField */
+                            foreach ($fields as $subFieldKey => $subField) {
+                                $subField->importData = $importData;
+                            }
                             if ($this->isImportRow($fields)) {
                                 /** @var Field $subField */
                                 foreach ($fields as $subFieldKey => $subField) {

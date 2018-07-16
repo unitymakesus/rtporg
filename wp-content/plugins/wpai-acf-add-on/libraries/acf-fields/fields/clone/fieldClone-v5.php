@@ -71,7 +71,6 @@ class FieldCloneV5 extends Field {
         if ($subFieldsData){
             foreach ($subFieldsData as $subFieldData) {
                 $field = $this->initDataAndCreateField($subFieldData);
-                $field->setParent($this);
                 $this->subFields[] = $field;
             }
         }

@@ -38,10 +38,9 @@ class FieldImage extends Field {
      */
     public function import($importData, $args = array()) {
         $isUpdated = parent::import($importData, $args);
-        if (!$isUpdated){
-            return FALSE;
+        if ($isUpdated){
+            ACFService::update_post_meta($this, $this->getPostID(), $this->getFieldName(), $this->getFieldValue());
         }
-        ACFService::update_post_meta($this, $this->getPostID(), $this->getFieldName(), $this->getFieldValue());
     }
 
     /**

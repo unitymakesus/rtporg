@@ -67,6 +67,8 @@ class Plugin {
         // Set Plugin Information
         $this->plugin = ( is_array( $plugin ) ) ? $plugin : exit;
 
+        $this->log( 'running __construct() plugin.php' );
+
         // Set Pro Variable
         $this->pro = ( $this->check_pro() ) ? true : false;
 
@@ -95,9 +97,23 @@ class Plugin {
      */
     protected function get_settings() {
 
-        $this->log( 'Getting settings from db get_settings().' );
+        $this->log( 'running get_settings().' );
 
-        return get_option( $this->plugin['options'] );
+        $settings = get_option( $this->plugin['options'] );
+
+        // Set settings initially if they do not exist
+        if ( ! isset( $settings['general'] ) ) {
+
+            // Initially Set Settings to Default
+            $this->log( 'No version in the database. Initially set settings.' );
+            $this->reset_settings( true );
+
+            // Get New Initial Settings
+            $settings = get_option( $this->plugin['options'] );
+
+        } 
+
+        return $settings;
 
     } // get_settings()
 
@@ -109,7 +125,7 @@ class Plugin {
      */
     protected function delete_settings() {
 
-        $this->log( 'Deleting settings from db.' );
+        $this->log( 'running delete_settings()' );
 
         // Delete settings
         return delete_option( $this->plugin['options'] );
@@ -123,6 +139,8 @@ class Plugin {
      * @since 0.1.0
      */
     protected function set_settings( $settings ) {
+
+        $this->log( 'running set_settings()' );
 
         if ( is_array( $settings ) && isset( $settings['plugin']['version'] ) ) {
             
@@ -182,7 +200,7 @@ class Plugin {
      */  
     protected function reset_settings( $initial = false ) {
 
-        $this->log( 'System forced to RESET settings.' );
+        $this->log( 'running reset_settings()' );
 
         // Keep Plugin Version History
         $plugin_history = ( isset( $this->settings['plugin']['version_history'] ) && $this->settings['plugin']['version_history'] ) ? $this->settings['plugin']['version_history'] : array( $this->plugin['version'] );
@@ -219,6 +237,9 @@ class Plugin {
         $files['allow_minor_auto_core_updates'] = '1';
         $files['auto_update_plugin'] = '0';
         $files['auto_update_theme'] = '0';
+        $files['version_files_core'] = '0';
+        $files['version_files_plugins'] = '0';
+        $files['version_files_themes'] = '0';
 
         // Content ---------------------------------|
         $content = array();
@@ -277,7 +298,7 @@ class Plugin {
 
             $this->messages[] = array( 'The settings have been reset to default.', 1, 1 );
 
-        } elseif ( !$result ) {
+        } elseif ( ! $result ) {
 
             $this->messages[] = array( 'Error: Settings could not be reset. [2]', 3, 0 );
         
@@ -296,11 +317,15 @@ class Plugin {
      */
     protected function upgrade_settings(){
 
+        $this->log( 'Running upgrade_settings()' );
+
         $settings = $this->settings;
         $upgrade = false;
 
         // Upgrade Versions
         if ( $this->plugin['version'] != $settings['plugin']['version'] ) {
+
+            $this->log( 'Upgrading version. ' . $this->plugin['version'] . ' != ' . $settings['plugin']['version'] );
 
             $upgrade = true;
 
@@ -315,6 +340,8 @@ class Plugin {
 
         // Upgrade to version 1.1.0
         if ( isset( $settings['files']['auto_update_core'] ) ) {
+
+            $this->log( 'Upgrading updates for 1.1.0 upgrades.' );
 
             $upgrade = true;
 
@@ -368,9 +395,9 @@ class Plugin {
      */
     protected function post_settings( $settings_page ) {
 
-        $settings_page = strtolower( $settings_page );
-
         $this->log( 'Running post_settings().' );
+
+        $settings_page = strtolower( $settings_page );
 
         if ( isset( $_POST ) && ! empty( $_POST ) ) {
 
@@ -471,6 +498,8 @@ class Plugin {
      */ 
     public function is_pro() {
 
+        $this->log( 'Running is_pro().' );
+
         return $this->pro;
 
     } // is_pro()
@@ -482,6 +511,8 @@ class Plugin {
      * @return boolean
      */ 
     private function check_pro() {
+
+        $this->log( 'Running check_pro().' );
 
         $plugin = $this->plugin['slug_pro'] . '/' . $this->plugin['file_pro'];
         $active = apply_filters( 'active_plugins', get_option('active_plugins') );
@@ -549,6 +580,8 @@ class Plugin {
      */
     public function disable_plugin() {
 
+        $this->log( 'Running disable_plugin().' );
+
         if( isset( $this->settings['general']['cleanup'] ) && $this->settings['general']['cleanup'] == '1' ) {
 
             $delete = $this->delete_settings();
@@ -562,6 +595,8 @@ class Plugin {
      * @return int
      */ 
     function get_cache_busting() {
+
+        $this->log( 'Running get_cache_busting().' );
 
         $settings = $this->settings;
 
@@ -578,6 +613,8 @@ class Plugin {
      * @param  boolean $return Return cache_busting value if true
      */
     function increase_cache_busting( $return = false ) {
+
+        $this->log( 'Running increase_cache_busting().' );
 
         $settings = $this->settings;
 
@@ -614,10 +651,10 @@ class Plugin {
         // Name of log file
         $filename = 'debug.log';
 
-        if ( $this->debug ) {
+        // Log message in the log file
+        $activity_log_path = $this->plugin['dir'] . '/' . $filename;
 
-            // Log message in the log file
-            $activity_log_path = $this->plugin['dir'] . '/' . $filename;
+        if ( $this->debug ) {
 
             $datestamp = date( 'Y-M-j h:m:s' );
             $message = ( $message ) ? $message : 'Error: Log Message not defined!';
@@ -638,9 +675,9 @@ class Plugin {
         } else {
 
             // Detect File Then Delete It
-            if ( file_exists( $filename ) ) {
+            if ( file_exists( $activity_log_path ) ) {
 
-                unlink( $filename );
+                unlink( $activity_log_path );
 
             } // file_exists()
             

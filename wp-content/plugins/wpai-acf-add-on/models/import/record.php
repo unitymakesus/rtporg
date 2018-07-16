@@ -36,17 +36,19 @@ class PMAI_Import_Record extends PMAI_Model_Record {
 
         $parsingData['chunk'] == 1 and $parsingData['logger'] and call_user_func($parsingData['logger'], __('Composing advanced custom fields...', 'wp_all_import_acf_add_on'));
 
-        $acfGroups = $parsingData['import']->options['acf'];
-        if (!empty($acfGroups)) {
-            foreach ($acfGroups as $acfGroupID => $status) {
-                if (!$status) {
-                    continue;
+        if (!empty($parsingData['import']->options['acf'])){
+            $acfGroups = $parsingData['import']->options['acf'];
+            if (!empty($acfGroups)) {
+                foreach ($acfGroups as $acfGroupID => $status) {
+                    if (!$status) {
+                        continue;
+                    }
+                    $this->groups[] = GroupFactory::create(array('ID' => $acfGroupID), $parsingData['import']->options);
                 }
-                $this->groups[] = GroupFactory::create(array('ID' => $acfGroupID), $parsingData['import']->options);
             }
-        }
-        foreach ($this->groups as $group){
-            $group->parse($parsingData);
+            foreach ($this->groups as $group){
+                $group->parse($parsingData);
+            }
         }
 
         remove_filter('user_has_cap', array(
