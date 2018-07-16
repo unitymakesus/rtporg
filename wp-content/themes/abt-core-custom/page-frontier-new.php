@@ -32,7 +32,6 @@ get_header(); ?>
         $header = get_field('header');
         if( $header ): ?>
         	<?php echo $header['header_content']; ?>
-        	<a class="button ghost" href="<?php echo $header['button_link']['url']; ?>"><?php echo $header['button_text']; ?></a>
         <?php endif; ?>
       </div>
     </section>
