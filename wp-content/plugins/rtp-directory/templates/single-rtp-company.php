@@ -4,10 +4,22 @@
  *
  */
 
+// Get contact people's email addresses and save MD5 hashes into approved people array
+$contact_ppl = get_field('contact_person'); // Array
+$approved_ppl = array();
+if (!empty($contact_ppl)) {
+  foreach ($contact_ppl as $contact) {
+    if (!empty($contact['email'])) {
+      $approved_ppl[] = md5($contact['email']);
+    }
+  }
+}
+
 // Check if fields are editable
-$user_can_edit = $_REQUEST['company_edit'];
-if ($user_can_edit) {
+if (in_array($_REQUEST['company_edit'], $approved_ppl)) {
   acf_form_head();
+  $user_can_edit = true;
+  $edit_button = '<span class="modal-btn">&#9998;</span>';
 }
 
 get_header();
@@ -41,7 +53,6 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
   $website = get_field('website');
   $mailing_address = get_field('mailing_address');
   $twitter = get_field('twitter');
-  $contact_ppl = get_field('contact_person'); // Array
 
   // Operations
   $locations = get_field('operations_locations');
@@ -63,22 +74,22 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
         <div class="col-xs-12 col-md-10">
           <div class="row flex <?php echo ($user_can_edit ? 'user-can-edit" data-target="modal-header' : ''); ?>">
             <?php // COMPANY LOGO ?>
-            <div class="logo-wrapper">
-              <?php if(!empty($company_logo)) { ?>
-                  <div class="company-logo">
+            <?php if(!empty($company_logo)) { ?>
+              <div class="logo-wrapper">
+                <div class="company-logo">
+                  <div>
                     <div>
-                      <div>
-                        <img src="<?php echo $company_logo; ?>" alt="<?php the_title(); ?>" />
-                      </div>
+                      <img src="<?php echo $company_logo; ?>" alt="<?php the_title(); ?>" />
                     </div>
                   </div>
-              <?php } ?>
-            </div>
+                </div>
+              </div>
+            <?php } ?>
 
             <?php // COMPANY NAME AND CATEGORY ?>
             <div class="company-title">
               <h1><?php the_title(); ?>
-                <button class="modal-btn">&#9998;</button>
+                <?php echo ($user_can_edit ? $edit_button : ''); ?>
               </h1>
               <?php if (!empty($location_terms)) : ?>
                 <div class="location-meta">
@@ -105,6 +116,10 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
             <div class="notice user-can-edit" data-target="modal-reporting-data">
               <button class="modal-btn button secondary reporting">Reporting Data &#9998;</button>
             </div>
+          <?php } else { ?>
+            <?php if (!empty($website)) : ?>
+              <a class="button secondary large" href="<?php echo $website; ?>" target="_blank" rel="noopener">Visit Website</a>
+            <?php endif; ?>
           <?php } ?>
         </div>
       </div>
@@ -118,7 +133,7 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
             <?php // COMPANY DESCRIPTION ?>
             <div class="<?php echo ($user_can_edit ? 'user-can-edit" data-target="modal-description' : ''); ?>">
               <h2>Company Description
-                <span class="modal-btn">&#9998;</span>
+                <?php echo ($user_can_edit ? $edit_button : ''); ?>
               </h2>
 
               <?php the_content(); ?>
@@ -127,7 +142,7 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
             <?php if (!empty($year_in_rtp) || ($employment_public == true && !empty($company_size)) || !empty($university[0]) || (!empty($locations) && $locations !== 'Located in RTP only')) : ?>
               <div class="<?php echo ($user_can_edit ? 'user-can-edit" data-target="modal-details' : ''); ?>">
                 <h2>Additional Details
-                  <span class="modal-btn">&#9998;</span>
+                  <?php echo ($user_can_edit ? $edit_button : ''); ?>
                 </h2>
 
                 <div class="indent">
@@ -168,7 +183,7 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
             <?php if (($phone['public'] == true && !empty($phone['number'])) || ($fax['public'] == true && !empty($fax['number'])) || !empty($twitter) || !empty($mailing_address) || !empty($contact_ppl)) : ?>
               <div class="<?php echo ($user_can_edit ? 'user-can-edit" data-target="modal-contact' : ''); ?>">
                 <h2>Get In Touch
-                  <span class="modal-btn">&#9998;</span>
+                  <?php echo ($user_can_edit ? $edit_button : ''); ?>
                 </h2>
 
                 <div class="indent">
@@ -240,7 +255,7 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
 
         <div class="col-xs-12 col-md-6 <?php echo ($user_can_edit ? 'user-can-edit" data-target="modal-location' : ''); ?>">
           <div class="location-map-wrapper">
-            <button class="modal-btn">&#9998;</button>
+            <?php echo ($user_can_edit ? $edit_button : ''); ?>
 
             <div class="location-map" id="location-map" data-post-type="rtp-company" data-feature-type="<?php echo $feature_type; ?>" data-location-id="<?php echo get_the_id(); ?>">
               <div class="rtp-loader-wrap">
@@ -284,10 +299,9 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
 
           <?php // PHYSICAL ADDRESS/LOCATION ?>
           <div class="address">
+            <?php echo ($user_can_edit ? $edit_button : ''); ?>
             <?php if ($within_facility == 'true') { ?>
-              <strong><?php echo get_the_title($related_facility); ?>
-                <span class="modal-btn">&#9998;</span>
-              </strong>
+              <strong><?php echo get_the_title($related_facility); ?></strong>
               <?php if (!empty($suite_or_building)) {
                 echo '<br />' . $suite_or_building;
               } ?>
