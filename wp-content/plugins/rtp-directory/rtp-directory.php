@@ -256,6 +256,27 @@ final class RTP_Dir {
 				'taxonomies' => array('rtp-availability')
       )
     );
+
+		// Don't show private link to anonymous users
+		add_filter( 'acf/load_field/key=field_5b4df2133b7de', function($field) {
+			// var_dump($field);
+	    if( current_user_can('edit_this_field') ) {
+				// Generate unique edit link for company contacts and put in ACF Field
+				preg_match_all('/\[(.*?)\]/m', $field['prefix'], $matches, PREG_SET_ORDER, 0);
+
+				$contact_ppl = get_field_object($matches[0][1]);
+				$email = $contact_ppl['value'][$matches[1][1]]['email'];
+
+				if (!empty($email)) {
+					$field['value'] = '<p>The following unique link allows any user the ability to edit this company\'s data. Please use caution when sharing.</p><pre>' . get_the_permalink() . '?company_edit=' . md5($email) . '</pre>';
+				}
+	    } else {
+        $field['label'] = '';
+			}
+
+			return $field;
+		} );
+
 	}
 
 	/**

@@ -210,7 +210,7 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
 
                     <?php if (!empty($contact_ppl)) { ?>
                       <?php foreach($contact_ppl as $contact) { ?>
-                        <?php if (!empty($contact['email']) || !empty($contact['phone'])) { ?>
+                        <?php if ((!empty($contact['email']) || !empty($contact['phone'])) && $contact['public'] == TRUE) { ?>
                           <?php if ($contact['pr_contact'] == true) { ?>
                             <dt>PR Contact:</dt>
                           <?php } else { ?>
