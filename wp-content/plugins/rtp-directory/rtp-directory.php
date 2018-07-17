@@ -266,6 +266,8 @@ final class RTP_Dir {
 				$contact_ppl = get_field_object($matches[0][1]);
 				$email = $contact_ppl['value'][$matches[1][1]]['email'];
 
+				$field['label'] = 'PRIVATE - Edit Link';
+
 				if (!empty($email)) {
 					$field['value'] = '<p>The following unique link allows any user the ability to edit this company\'s data. Please use caution when sharing.</p><pre>' . get_the_permalink() . '?company_edit=' . md5($email) . '</pre>';
 				}
