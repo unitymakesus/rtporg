@@ -9,3 +9,11 @@
     margin-top: 4rem;
   }
 }
+
+.acf-button, .acf-input .button {
+  background: #2ebaa5;
+
+  &:hover, &:active, &:focus {
+    background: #038798;
+  }
+}
