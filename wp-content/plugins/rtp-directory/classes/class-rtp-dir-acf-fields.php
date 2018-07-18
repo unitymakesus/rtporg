@@ -599,7 +599,7 @@ class RTP_Dir_ACF_Fields {
 						'new_lines' => 'br',
 					),
 					array(
-						'key' => 'field_5b3fd7f07536a',
+						'key' => 'field_5ae8b19d20295',
 						'label' => 'Contact(s)',
 						'name' => 'contact_person',
 						'type' => 'repeater',
@@ -611,14 +611,14 @@ class RTP_Dir_ACF_Fields {
 							'class' => '',
 							'id' => '',
 						),
-						'collapsed' => 'field_5b3fd85c7536b',
+						'collapsed' => 'field_5ae8b1b820296',
 						'min' => 0,
 						'max' => 0,
 						'layout' => 'block',
 						'button_label' => 'Add Contact',
 						'sub_fields' => array(
 							array(
-								'key' => 'field_5b3fd85c7536b',
+								'key' => 'field_5ae8b1b820296',
 								'label' => 'Name',
 								'name' => 'name',
 								'type' => 'text',
@@ -637,7 +637,7 @@ class RTP_Dir_ACF_Fields {
 								'maxlength' => '',
 							),
 							array(
-								'key' => 'field_5b3fd8737536c',
+								'key' => 'field_5ae8b1bd20297',
 								'label' => 'Title',
 								'name' => 'title',
 								'type' => 'text',
@@ -656,7 +656,7 @@ class RTP_Dir_ACF_Fields {
 								'maxlength' => '',
 							),
 							array(
-								'key' => 'field_5b3fd87f7536d',
+								'key' => 'field_5ae8b1c120298',
 								'label' => 'Email',
 								'name' => 'email',
 								'type' => 'email',
@@ -674,7 +674,7 @@ class RTP_Dir_ACF_Fields {
 								'append' => '',
 							),
 							array(
-								'key' => 'field_5b3fd8897536e',
+								'key' => 'field_5ae8b1c920299',
 								'label' => 'Phone',
 								'name' => 'phone',
 								'type' => 'text',
@@ -693,7 +693,7 @@ class RTP_Dir_ACF_Fields {
 								'maxlength' => '',
 							),
 							array(
-								'key' => 'field_5b3fd8937536f',
+								'key' => 'field_5ae8b1d12029a',
 								'label' => 'PR Contact?',
 								'name' => 'pr_contact',
 								'type' => 'true_false',

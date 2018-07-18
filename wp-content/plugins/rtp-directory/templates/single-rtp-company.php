@@ -133,11 +133,12 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
 
             <?php // COMPANY DESCRIPTION ?>
             <div class="<?php echo ($user_can_edit ? 'user-can-edit" data-target="modal-description' : ''); ?>">
-              <h2>Company Description
-                <?php echo ($user_can_edit ? $edit_button : ''); ?>
-              </h2>
-
-              <?php echo $description; ?>
+              <?php echo ($user_can_edit ? '<h2>Company Description ' . $edit_button . '</h2>' : ''); ?>
+              <?php if (!empty($description)) : ?>
+                <?php echo $description; ?>
+              <?php elseif ($user_can_edit) : ?>
+                <p>Add company description.</p>
+              <?php endif; ?>
             </div>
 
             <?php if (!empty($year_in_rtp) || ($employment_public == true && !empty($company_size)) || !empty($university[0]) || (!empty($locations) && $locations !== 'Located in RTP only')) : ?>
@@ -148,9 +149,7 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
 
                 <div class="indent">
                 <dl>
-                  <?php if ($user_can_edit) { ?>
-                    <?php //acf_form(['fields' => 'reporting_data_year_arrived_in_rtp']); ?>
-                  <?php } elseif (!empty($year_in_rtp)) { ?>
+                  <?php if (!empty($year_in_rtp)) { ?>
                     <dt>Arrived in RTP:</dt>
                     <dd><span><?php echo $year_in_rtp; ?></span></dd>
                   <?php } ?>
@@ -178,6 +177,11 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
                   <?php } ?>
                 </dl>
                 </div>
+              </div>
+            <?php elseif ($user_can_edit) : ?>
+              <div class="user-can-edit" data-target="modal-details">
+                <h2>Additional Details<?php echo $edit_button; ?></h2>
+                <p>Add company details.</p>
               </div>
             <?php endif; ?>
 
@@ -243,6 +247,11 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
                       <?php } ?>
                     <?php } ?>
                   </dl>
+                </div>
+              <?php elseif ($user_can_edit) : ?>
+                <div class="user-can-edit" data-target="modal-contact">
+                  <h2>Get In Touch <?php echo $edit_button; ?></h2>
+                  <p>Add contact information</p>
                 </div>
               <?php endif; ?>
 
