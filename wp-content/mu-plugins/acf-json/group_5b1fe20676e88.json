@@ -3,7 +3,7 @@
     "title": "Frontier-Homepage",
     "fields": [
         {
-            "key": "field_5b1fe20cb3c06__trashed",
+            "key": "field_5b1fe20cb3c06",
             "label": "Header",
             "name": "header",
             "type": "group",
@@ -73,7 +73,7 @@
             ]
         },
         {
-            "key": "field_5b22670872840__trashed",
+            "key": "field_5b22670872840",
             "label": "Map Content",
             "name": "map_content",
             "type": "wysiwyg",
@@ -92,7 +92,7 @@
             "delay": 0
         },
         {
-            "key": "field_5b1fe255b3c07__trashed",
+            "key": "field_5b1fe255b3c07",
             "label": "Map Links",
             "name": "map_links",
             "type": "group",
@@ -173,7 +173,7 @@
             ]
         },
         {
-            "key": "field_5b200421ca05d__trashed",
+            "key": "field_5b200421ca05d",
             "label": "Page Content",
             "name": "page_content",
             "type": "wysiwyg",
@@ -192,7 +192,7 @@
             "delay": 0
         },
         {
-            "key": "field_5b1fe2b0b3c0c__trashed",
+            "key": "field_5b1fe2b0b3c0c",
             "label": "Content Grid",
             "name": "content_grid",
             "type": "repeater",
@@ -310,5 +310,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1531951606
+    "modified": 1528981325
 }
