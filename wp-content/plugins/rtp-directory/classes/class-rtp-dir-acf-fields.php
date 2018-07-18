@@ -30,7 +30,7 @@ class RTP_Dir_ACF_Fields {
 
 			acf_add_local_field_group(array(
 				'key' => 'group_5b3fc9196d4d7',
-				'title' => 'Companies Fields',
+				'title' => 'Company Data',
 				'fields' => array(
 					array(
 						'key' => 'field_5b4f6a762909e',
@@ -851,7 +851,7 @@ class RTP_Dir_ACF_Fields {
 
 			acf_add_local_field_group(array(
 				'key' => 'group_5b3ff87273b5e',
-				'title' => 'Company Fields - Images',
+				'title' => 'Company Images',
 				'fields' => array(
 					array(
 						'key' => 'field_5b3ff8841e30a',
