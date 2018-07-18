@@ -335,7 +335,7 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
     </div>
 
     <div class="modal" id="modal-description">
-      <?php acf_form(['fields' => ['false'], 'post_content' => true]); ?>
+      <?php acf_form(['fields' => ['description']]); ?>
     </div>
 
     <div class="modal" id="modal-details">

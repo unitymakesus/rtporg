@@ -257,26 +257,28 @@ final class RTP_Dir {
       )
     );
 
+		// Create ACF Field Groups for custom post types
+    require_once( 'classes/class-rtp-dir-acf-fields.php' );
+    add_action( 'init', array(new RTP_Dir_ACF_Fields, 'add_field_groups') );
+
+
 		// Don't show private link to anonymous users
-		add_filter( 'acf/load_field/key=field_5b4df2133b7de', function($field) {
-	    if (current_user_can('edit_this_field')) {
-				// Generate unique edit link for company contacts and put in ACF Field
+		add_action( 'acf/render_field/type=message', function($field) {
+			if ($field['key'] == 'field_5b4df2133b7de' && is_user_logged_in()) {
+				// Getting and parsing the field prefix
 				preg_match_all('/\[(.*?)\]/m', $field['prefix'], $matches, PREG_SET_ORDER, 0);
 
 				$contact_ppl = get_field_object($matches[0][1]);
 				$email = $contact_ppl['value'][$matches[1][1]]['email'];
 
-				$field['label'] = 'PRIVATE - Edit Link';
-
 				if (!empty($email)) {
-					$field['value'] = '<p>The following unique link allows any user the ability to edit this company\'s data. Please use caution when sharing.</p><pre>' . get_the_permalink() . '?company_edit=' . md5($email) . '</pre>';
-				}
-	    } else {
-        $field['label'] = '';
-			}
+					$key = md5($email);
 
-			return $field;
-		} );
+					echo '<p class="description">The following unique link allows anyone with it the ability to edit this company\'s data. Please use caution when sharing.</p>';
+					echo '<pre>' . get_the_permalink() . '?company_edit=' . $key . '</pre>';
+				}
+			}
+		}, 10, 1 );
 
 	}
 

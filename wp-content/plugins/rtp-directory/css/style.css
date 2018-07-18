@@ -1730,6 +1730,19 @@
   display: none;
 }
 
+.acf-field-message.acf-field-5b4df2133b7de {
+  display: none;
+}
+
+.tingle-modal-box__content div.mce-menubar {
+  display: none;
+}
+
+.tingle-modal-box__content div.acf-editor-wrap {
+  max-height: 365px;
+  overflow: hidden;
+}
+
 @media (max-width: 960px) {
   #map {
     display: none;
