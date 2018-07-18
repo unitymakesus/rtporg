@@ -28,6 +28,7 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
 
   $id = get_the_id();
   $location_terms = wp_get_object_terms($id, 'rtp-company-type', array('fields' => 'all'));
+  $description = get_field('description');
 
   $company_logo = get_field('company_logo');
   $location_photo = get_field('location_photograph');
@@ -136,7 +137,7 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
                 <?php echo ($user_can_edit ? $edit_button : ''); ?>
               </h2>
 
-              <?php the_content(); ?>
+              <?php echo $description; ?>
             </div>
 
             <?php if (!empty($year_in_rtp) || ($employment_public == true && !empty($company_size)) || !empty($university[0]) || (!empty($locations) && $locations !== 'Located in RTP only')) : ?>
