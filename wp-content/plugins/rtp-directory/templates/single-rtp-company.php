@@ -115,7 +115,7 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
         <div class="col-xs-12 col-md-2">
           <?php if ($user_can_edit) { ?>
             <div class="notice user-can-edit" data-target="modal-reporting-data">
-              <button class="modal-btn button secondary reporting">Reporting Data &#9998;</button>
+              <button class="modal-btn button secondary reporting">2018 RTP Companies Survey &#9998;</button>
             </div>
           <?php } else { ?>
             <?php if (!empty($website)) : ?>
