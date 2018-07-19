@@ -303,9 +303,8 @@ class RTP_Dir_Listing {
 
   public function get_facility_tenant_ids($id) {
     global $wpdb;
-    $like_id = '%"' . $id . '"%';
-    $query = "SELECT id FROM {$wpdb->prefix}posts AS p INNER JOIN {$wpdb->prefix}postmeta AS pm ON (p.ID = pm.post_id) WHERE 1=1 AND (pm.meta_key = 'related_facility' AND pm.meta_value LIKE %s) AND p.post_type IN ('rtp-company', 'rtp-space') AND p.post_status = 'publish' GROUP BY p.ID ORDER BY p.post_type DESC, p.post_name ASC";
-    $sql = $wpdb->prepare($query, $like_id);
+    $query = "SELECT id FROM {$wpdb->prefix}posts AS p INNER JOIN {$wpdb->prefix}postmeta AS pm ON (p.ID = pm.post_id) WHERE 1=1 AND (pm.meta_key = 'related_facility' AND pm.meta_value = %s) AND p.post_type IN ('rtp-company', 'rtp-space') AND p.post_status = 'publish' GROUP BY p.ID ORDER BY p.post_type DESC, p.post_name ASC";
+    $sql = $wpdb->prepare($query, $id);
     $tenants = $wpdb->get_results($sql);
 
     return $tenants;
