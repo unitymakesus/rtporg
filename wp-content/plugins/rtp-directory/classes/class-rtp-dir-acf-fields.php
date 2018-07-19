@@ -751,7 +751,7 @@ class RTP_Dir_ACF_Fields {
 					),
 					array(
 						'key' => 'field_5b3ff436b12c7',
-						'label' => 'Research Triangle Foundation Data',
+						'label' => '2018 RTP Survey Data',
 						'name' => 'reporting_data',
 						'type' => 'group',
 						'instructions' => 'We use the following information in aggregate when evaluating our impact on the region and marketing the Research Triangle Park. None of this information will be publicly displayed in your profile.',
