@@ -1563,7 +1563,7 @@ class RTP_Dir_ACF_Fields {
 						'key' => 'field_5ad65a80daa9b',
 						'label' => 'Related Facility',
 						'name' => 'related_facility',
-						'type' => 'relationship',
+						'type' => 'post_object',
 						'instructions' => 'Select the facility in which this space is located.',
 						'required' => 0,
 						'conditional_logic' => array(
@@ -1586,11 +1586,10 @@ class RTP_Dir_ACF_Fields {
 						'taxonomy' => array(
 							0 => 'rtp-facility-type:multi-tenant',
 						),
-						'filters' => '',
-						'elements' => '',
-						'min' => '',
-						'max' => '',
+						'allow_null' => 1,
+						'multiple' => 0,
 						'return_format' => 'id',
+						'ui' => 1,
 					),
 					array(
 						'key' => 'field_5ad65b4edaa9d',
