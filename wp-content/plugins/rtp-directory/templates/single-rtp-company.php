@@ -72,7 +72,7 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
   <div class="content-container edit-directory">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-xs-12 col-md-10">
+        <div class="col-xs-12 col-md-9">
           <div class="row flex <?php echo ($user_can_edit ? 'user-can-edit" data-target="modal-header' : ''); ?>">
             <?php // COMPANY LOGO ?>
             <?php if(!empty($company_logo)) { ?>
@@ -112,7 +112,7 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
         </div>
 
         <?php // COMPANY WEBSITE LINK ?>
-        <div class="col-xs-12 col-md-2">
+        <div class="col-xs-12 col-md-3">
           <?php if ($user_can_edit) { ?>
             <div class="notice user-can-edit" data-target="modal-reporting-data">
               <button class="modal-btn button secondary reporting">2018 RTP Companies Survey &#9998;</button>
