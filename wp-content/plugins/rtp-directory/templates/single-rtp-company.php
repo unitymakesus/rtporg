@@ -349,7 +349,7 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
     </div>
 
     <div class="modal" id="modal-details">
-      <?php acf_form(['fields' => ['year_arrived_in_rtp', 'company_size', 'university_affiliation', 'operations'], 'label_placement' => 'left']); ?>
+      <?php acf_form(['fields' => ['year_arrived_in_rtp', 'company_size', 'publish_employment', 'university_affiliation', 'operations'], 'label_placement' => 'left']); ?>
     </div>
 
     <div class="modal" id="modal-contact">
