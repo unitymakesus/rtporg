@@ -603,7 +603,7 @@ class RTP_Dir_ACF_Fields {
 						'label' => 'Contact(s)',
 						'name' => 'contact_person',
 						'type' => 'repeater',
-						'instructions' => '',
+						'instructions' => 'Please include at least one contact person for your company so that we are able to stay in touch regarding updates to the directory. If you do not want your contact information to appear publicly on the website, you may choose to make it private.',
 						'required' => 0,
 						'conditional_logic' => 0,
 						'wrapper' => array(
@@ -612,7 +612,7 @@ class RTP_Dir_ACF_Fields {
 							'id' => '',
 						),
 						'collapsed' => 'field_5ae8b1b820296',
-						'min' => 0,
+						'min' => 1,
 						'max' => 0,
 						'layout' => 'block',
 						'button_label' => 'Add Contact',
@@ -661,7 +661,7 @@ class RTP_Dir_ACF_Fields {
 								'name' => 'email',
 								'type' => 'email',
 								'instructions' => '',
-								'required' => 0,
+								'required' => 1,
 								'conditional_logic' => 0,
 								'wrapper' => array(
 									'width' => '',
