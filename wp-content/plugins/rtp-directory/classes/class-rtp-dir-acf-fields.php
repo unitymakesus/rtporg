@@ -344,7 +344,7 @@ class RTP_Dir_ACF_Fields {
 							'NCCU' => 'NCCU',
 							'UNC-Chapel Hill' => 'UNC-Chapel Hill',
 						),
-						'allow_custom' => 0,
+						'allow_custom' => 1,
 						'save_custom' => 0,
 						'default_value' => array(
 						),
