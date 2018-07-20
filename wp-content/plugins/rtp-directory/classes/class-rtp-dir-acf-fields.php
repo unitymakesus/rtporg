@@ -844,6 +844,7 @@ class RTP_Dir_ACF_Fields {
 				'instruction_placement' => 'label',
 				'hide_on_screen' => array(
 					0 => 'featured_image',
+					1 => 'the_content'
 				),
 				'active' => 1,
 				'description' => '',
@@ -918,6 +919,7 @@ class RTP_Dir_ACF_Fields {
 				'instruction_placement' => 'label',
 				'hide_on_screen' => array(
 					0 => 'featured_image',
+					1 => 'the_content'
 				),
 				'active' => 1,
 				'description' => '',
