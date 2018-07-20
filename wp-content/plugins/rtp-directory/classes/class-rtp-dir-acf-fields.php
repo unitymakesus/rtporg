@@ -272,7 +272,7 @@ class RTP_Dir_ACF_Fields {
 						'placeholder' => '',
 						'prepend' => '',
 						'append' => '',
-						'min' => 1960,
+						'min' => 1959,
 						'max' => '',
 						'step' => 1,
 					),
