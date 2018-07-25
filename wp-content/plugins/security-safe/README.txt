@@ -47,6 +47,24 @@ Features:
 
 == Changelog ==
 
+= 1.1.12 (Low Priority) =
+*Release Date - 4 July 2018*
+
+* NOTICE: Update to this version if you are having issues with your settings.
+* Improvement: Automatically detects if settings are corrupted and resets them to default values.
+* Improvement: Updated the initial/default settings.
+* Improvement: Updated PHP version checks.
+
+= 1.1.11 (High Priority) =
+*Release Date - 3 July 2018*
+
+* Bug Fix: Cannot change file permissions. Bug introduced in version 1.1.10.
+* Bug Fix: File Policy settings get cleared out when attempting to change file permissions. Bug introduced in version 1.1.10.
+* Bug Fix: Initial settings were not properly being set. Bug introduced in version 1.1.10.
+* Bug Fix: debug.log file does not remove itself when debugging is turned off.
+* Improvement: Cleaned up some PHP Notices in error log.
+* Improvement: Added additional logging for troubleshooting bugs.
+
 = 1.1.10 (Low Priority) =
 *Release Date - 26 June 2018*
 
@@ -80,7 +98,7 @@ Features:
 * Bug Fix: Duplicate notices were being displayed in the Files section.
 * Bug Fix: Fixed broken link in notice message.
 * Improvement: Moved certain notices regarding features to the specific areas of each settings tab.
-* Improvement: Updated PHP versions
+* Improvement: Updated PHP version checks
 * Improvement: Minor grammatical corrections
 * Tested up to version 4.9.6
 

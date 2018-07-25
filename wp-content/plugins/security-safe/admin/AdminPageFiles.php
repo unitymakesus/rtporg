@@ -290,8 +290,8 @@ class AdminPageFiles extends AdminPage {
         //https://secure.php.net/ChangeLog-7.php
         //https://secure.php.net/ChangeLog-5.php
         $latest_versions['PHP'] = array( 
-            '7.2.0' => '7.2.6',
-            '7.1.0' => '7.1.18',
+            '7.2.0' => '7.2.7',
+            '7.1.0' => '7.1.19',
             '7.0.0' => '7.0.30',
             '5.6.0' => '5.6.36' );
 

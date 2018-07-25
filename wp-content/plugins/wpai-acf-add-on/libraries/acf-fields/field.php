@@ -59,13 +59,15 @@ abstract class Field implements FieldInterface {
      * @param $field
      * @param $post
      * @param $field_name
+     * @param $parent_field
      */
-    public function __construct($field, $post, $field_name = "") {
+    public function __construct($field, $post, $field_name = "", $parent_field = false) {
         $this->data = array(
             'field' => $field,
             'post' => $post,
             'field_name' => $field_name
         );
+        $this->setParent($parent_field);
         $this->data = array_merge($this->data, $this->getFieldData());
         $this->initSubFields();
     }
@@ -82,7 +84,6 @@ abstract class Field implements FieldInterface {
 
             foreach ($subFieldsData as $subFieldData) {
                 $field = $this->initDataAndCreateField($subFieldData);
-                $field->setParent($this);
                 $this->subFields[] = $field;
             }
         }
@@ -200,8 +201,8 @@ abstract class Field implements FieldInterface {
             }
 
             $xpath = empty($xpath[$field['key']]) ? false : $xpath[$field['key']];
-            $isMultipleField = isset($currentIsMultipleField[$field['key']]) ? false : $isMultipleField[$field['key']];
-            $multipleValue = isset($multipleValue[$field['key']]) ? false : $multipleValue[$field['key']];
+            $isMultipleField = isset($isMultipleField[$field['key']]) ? $isMultipleField[$field['key']] : false;
+            $multipleValue = isset($multipleValue[$field['key']]) ? $multipleValue[$field['key']] : false;
         }
 
         $this->setOption('base_xpath', $parsingData['xpath_prefix'] . $parsingData['import']->xpath . $args['xpath_suffix']);
@@ -307,14 +308,14 @@ abstract class Field implements FieldInterface {
     }
 
     /**
-     * @return \wpai_acf_add_on\acf\fields\Field
+     * @return \wpai_acf_add_on\acf\fields\Field|bool
      */
     public function getParent() {
         return $this->parent;
     }
 
     /**
-     * @param \wpai_acf_add_on\acf\fields\Field $parent
+     * @param \wpai_acf_add_on\acf\fields\Field|bool $parent
      */
     public function setParent($parent) {
         $this->parent = $parent;
@@ -634,7 +635,7 @@ abstract class Field implements FieldInterface {
         }
 
         // Create sub field instance
-        return FieldFactory::create($fieldData, $this->getData('post'), $this->getFieldName());
+        return FieldFactory::create($fieldData, $this->getData('post'), $this->getFieldName(), $this);
     }
 
     /**
@@ -660,7 +661,7 @@ abstract class Field implements FieldInterface {
                 $parentIndex = $parent['index'];
             }
         }
-        return is_array($value) ? count($value) : $value !== "";
+        return is_array($value) ? count($value) : ( ! is_null($value) && $value !== false && $value !== "");
     }
 
     /**
@@ -681,7 +682,7 @@ abstract class Field implements FieldInterface {
             if ($parent){
                 switch ($parent->type){
                     case 'repeater':
-                        if ($parent->getDelimiter()){
+                        if ($parent->getMode() == 'csv' && $parent->getDelimiter()){
                             $parents[] = array(
                                 'delimiter' => $parent->getDelimiter(),
                                 'index'     => $parent->getRowIndex()

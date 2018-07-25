@@ -256,6 +256,30 @@ final class RTP_Dir {
 				'taxonomies' => array('rtp-availability')
       )
     );
+
+		// Create ACF Field Groups for custom post types
+    require_once( 'classes/class-rtp-dir-acf-fields.php' );
+    add_action( 'init', array(new RTP_Dir_ACF_Fields, 'add_field_groups') );
+
+
+		// Don't show private link to anonymous users
+		add_action( 'acf/render_field/type=message', function($field) {
+			if ($field['key'] == 'field_5b4df2133b7de' && is_user_logged_in()) {
+				// Getting and parsing the field prefix
+				preg_match_all('/\[(.*?)\]/m', $field['prefix'], $matches, PREG_SET_ORDER, 0);
+
+				$contact_ppl = get_field_object($matches[0][1]);
+				$email = $contact_ppl['value'][$matches[1][1]]['email'];
+
+				if (!empty($email)) {
+					$key = md5($email);
+
+					echo '<p class="description">The following unique link allows anyone with it the ability to edit this company\'s data. Please use caution when sharing.</p>';
+					echo '<pre>' . get_the_permalink() . '?company_edit=' . $key . '</pre>';
+				}
+			}
+		}, 10, 1 );
+
 	}
 
 	/**
@@ -304,6 +328,10 @@ final class RTP_Dir {
 			// Enqueue scripts
 			wp_enqueue_script( 'mapbox-script', 'https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.js', array(), null, true );
 			wp_enqueue_script( 'rtp-dir-location-script', $this->plugin_url . 'scripts/single-location-script.js', array('mapbox-script'), '1.0.0', true );
+
+			// Enqueue JS for edit directory
+			wp_enqueue_script( 'rtp-dir-tingle', $this->plugin_url . 'scripts/vendor/tingle.min.js', array(), '1.0.0', true );
+			wp_enqueue_script( 'rtp-dir-edit-directory', $this->plugin_url . 'scripts/edit-directory.js', array('rtp-dir-tingle'), '1.0.0', true );
 
 			// Enqueue styles
 			wp_enqueue_style( 'mapbox-style', 'https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.css', null, false);

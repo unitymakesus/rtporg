@@ -47,12 +47,11 @@ class FieldFile extends Field {
      */
     public function getFieldValue() {
         $attachmentID = false;
-        $values = $this->getOption('values');
-        if ("" != $values[$this->getPostIndex()] ) {
+        if ("" != parent::getFieldValue() ) {
             $parsingData = $this->getParsingData();
             $xpath  = $this->getOption('xpath');
             $search_in_gallery = empty($xpath['search_in_media']) ? 0 : 1;
-            $attachmentID = ACFService::import_file($values[$this->getPostIndex()], $this->getPostID(), $parsingData['logger'], $parsingData['import']->options['is_fast_mode'], $search_in_gallery);
+            $attachmentID = ACFService::import_file(parent::getFieldValue(), $this->getPostID(), $parsingData['logger'], $parsingData['import']->options['is_fast_mode'], $search_in_gallery);
         }
         return $attachmentID;
     }

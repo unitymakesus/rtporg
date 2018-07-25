@@ -22,9 +22,10 @@ final class FieldFactory {
      * @param $fieldData
      * @param $post
      * @param $fieldName
+     * @param $fieldParent
      * @return bool|\wpai_acf_add_on\acf\fields\FieldEmpty
      */
-    public static function create($fieldData, $post, $fieldName = "") {
+    public static function create($fieldData, $post, $fieldName = "", $fieldParent = false) {
         $field = FALSE;
         $class = '\\wpai_acf_add_on\\acf\\fields\\Field' . str_replace(" ", "", ucwords(str_replace("_", " ", $fieldData['type'])));
         if (in_array($fieldData['type'], self::$hiddenFields)) {
@@ -32,14 +33,14 @@ final class FieldFactory {
         }
         elseif (ACFService::isACFNewerThan('5.0.0') && class_exists($class.'V5')){
             $class .= 'V5';
-            $field = new $class($fieldData, $post, $fieldName);
+            $field = new $class($fieldData, $post, $fieldName, $fieldParent);
         }
         elseif (!ACFService::isACFNewerThan('5.0.0') && class_exists($class.'V4')){
             $class .= 'V4';
-            $field = new $class($fieldData, $post, $fieldName);
+            $field = new $class($fieldData, $post, $fieldName, $fieldParent);
         }
         elseif (class_exists($class)) {
-            $field = new $class($fieldData, $post, $fieldName);
+            $field = new $class($fieldData, $post, $fieldName, $fieldParent);
         }
 
         if (empty($field)){

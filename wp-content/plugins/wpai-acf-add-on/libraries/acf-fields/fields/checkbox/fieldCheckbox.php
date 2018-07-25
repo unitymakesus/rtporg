@@ -35,9 +35,6 @@ class FieldCheckbox extends Field {
                 break;
             default:
                 $values = $this->getByXPath($this->getOption('xpath'));
-                foreach ($values as $key => $value) {
-                    $values[$key] = array_map('trim', explode(",", $value));
-                }
                 $this->setOption('is_multiple', TRUE);
                 break;
         }
@@ -51,10 +48,9 @@ class FieldCheckbox extends Field {
      */
     public function import($importData, $args = array()) {
         $isUpdated = parent::import($importData, $args);
-        if (!$isUpdated){
-            return FALSE;
+        if ($isUpdated){
+            ACFService::update_post_meta($this, $this->getPostID(), $this->getFieldName(), $this->getFieldValue());
         }
-        ACFService::update_post_meta($this, $this->getPostID(), $this->getFieldName(), $this->getFieldValue());
     }
 
     /**
@@ -84,7 +80,7 @@ class FieldCheckbox extends Field {
         }
 
         if ($parsedData['is_multiple']) {
-            $value = (!empty($value) && is_array($value)) ? $value : array();
+            $value = (!empty($value) && is_array($value)) ? $value : array($value);
         }
         return $value;
     }

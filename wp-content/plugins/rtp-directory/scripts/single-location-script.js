@@ -3,15 +3,15 @@ jQuery(document).ready(function($) {
     mapboxgl.accessToken = 'pk.eyJ1IjoiYWJ0YWRtaW4iLCJhIjoiY2pmbzd2MXVhMWVjMzJ5bG4xZmg4YTQzOSJ9.gpCo9L71BBeUf5scYBQH_Q';
 
   	// Initiatlize Map
-  	const map = new mapboxgl.Map({
+  	var map = new mapboxgl.Map({
       container: 'location-map',
       style: 'mapbox://styles/abtadmin/cjfo8weeq2rtu2rn0q4tuqp0c',
   		center: ['-78.865','35.892'],
   		zoom: 12,
   	});
 
-    const post_type = $('#location-map').attr('data-post-type');
-    const feature_type = $('#location-map').attr('data-feature-type');
+    var post_type = $('#location-map').attr('data-post-type');
+    var feature_type = $('#location-map').attr('data-feature-type');
 
     map.on('load', function() {
       // Placeholder for data that's coming from AJAX response
@@ -31,16 +31,15 @@ jQuery(document).ready(function($) {
       });
 
       // Add geoJSON source for location
-      const data = {
-        action: 'get_this_location',
-        location_id: $('#location-map').attr('data-location-id'),
-        post_type: post_type,
-        _ajax_nonce: rtp_dir_vars._ajax_nonce
-      };
       $.ajax({
         url: rtp_dir_vars.ajax_uri,
         type: 'POST',
-        data
+        data: {
+          action: 'get_this_location',
+          location_id: $('#location-map').attr('data-location-id'),
+          post_type: post_type,
+          _ajax_nonce: rtp_dir_vars._ajax_nonce
+        }
       })
       .done(function(response, textStatus, jqXHR) {
         // console.log(response);
@@ -214,7 +213,7 @@ jQuery(document).ready(function($) {
 
 
     // Stick map to fixed position when it reaches top of screen on scroll
-    const $window = $(window);
+    var $window = $(window);
     if ($('#location-map.directory-map').length) {
       let distance = $('#location-map.directory-map').offset().top;
 

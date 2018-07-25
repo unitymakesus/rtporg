@@ -82,8 +82,19 @@ class RTP_Dir_Post_Type {
 			}
 		}
 
+		// Set Google API key
 		add_action('acf/init', function() {
 			acf_update_setting('google_api_key', 'AIzaSyCbYGfDTIovHfKjfqwGejD54Eds8Wt9TgI');
+		});
+
+		// Simplify WYSIWYG editor for front-end content editing
+		add_filter( 'acf/get_valid_field', function( $field ) {
+			if($field['type'] == 'wysiwyg' && $field['name'] == '_post_content') {
+				$field['tabs'] = 'visual';
+				$field['toolbar'] = 'basic';
+				$field['media_upload'] = 0;
+			}
+			return $field;
 		});
 
 		add_action( 'after_setup_theme', array( $this, 'ensure_post_thumbnails_support' ) );

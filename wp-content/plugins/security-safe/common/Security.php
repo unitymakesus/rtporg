@@ -25,7 +25,9 @@ class Security extends Plugin {
         // Run parent class constructor first
         parent::__construct( $plugin );
 
-        if ( $this->settings['general']['on'] == '1' ) {
+        $this->log( 'running Security.php' );
+
+        if ( isset( $this->settings['general']['on'] ) && $this->settings['general']['on'] == '1' ) {
             
             // Run All Policies
             $this->privacy();
@@ -48,6 +50,8 @@ class Security extends Plugin {
      * @since  0.2.0
      */
     private function privacy() {
+
+        $this->log( 'running privacy().' );
 
         $settings = $this->settings['privacy'];
 
@@ -75,6 +79,8 @@ class Security extends Plugin {
      * @since  0.2.0
      */
     private function files() {
+
+        $this->log( 'running files().' );
 
         global $wp_version;
 
@@ -137,6 +143,8 @@ class Security extends Plugin {
      */ 
     private function content() {
 
+        $this->log( 'running content().' );
+
         $settings = $this->settings['content'];
 
         if ( $settings['on'] == "1" ) {
@@ -163,6 +171,8 @@ class Security extends Plugin {
      * @since  0.2.0
      */
     private function access() {
+
+        $this->log( 'running access().' );
 
         $settings = $this->settings['access'];
         
@@ -202,6 +212,8 @@ class Security extends Plugin {
      */
     private function firewall() {
 
+        $this->log( 'running firewall().' );
+
         return; // Disable functionality
 
         $settings = $this->settings['firewall'];
@@ -223,6 +235,8 @@ class Security extends Plugin {
      * @since  0.2.0
      */
     private function backups() {
+
+        $this->log( 'running backups().' );
 
         return; // Disable functionality
 
@@ -362,6 +376,8 @@ class Security extends Plugin {
      * @since  0.2.0
      */ 
     static function forbidden(){
+
+        $this->log( 'running forbidden().' );
 
         header('Status: 403 Forbidden');
         header('HTTP/1.1 403 Forbidden');

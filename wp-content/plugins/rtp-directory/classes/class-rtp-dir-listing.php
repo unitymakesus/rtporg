@@ -121,6 +121,8 @@ class RTP_Dir_Listing {
       'content-type' => $location_type
     );
 
+    // error_log(print_r($properties, true));
+
     // Iterate through the different post types
     if ($location_type == 'rtp-facility') {
       $feature_type = get_field('geometry_type', $id);
@@ -171,9 +173,9 @@ class RTP_Dir_Listing {
       if (get_field('within_facility', $id) == 0) {
         $feature_type = 'Point';
         $company_types = wp_get_object_terms($id, 'rtp-company-type', array('fields' => 'slugs'));
-        $street_address = get_field('details_street_address', $id);
-        $zip_code = get_field('details_zip_code', $id);
-        $coords = get_field('details_coordinates', $id);
+        $street_address = get_field('street_address', $id);
+        $zip_code = get_field('zip_code', $id);
+        $coords = get_field('coordinates', $id);
         $location_photo = get_field('location_photograph', $id);
 
         if (!empty($coords['lat'])) {
@@ -194,21 +196,21 @@ class RTP_Dir_Listing {
         // (but only for single location view)
         if ($all !== true) {
           $related_facility = get_field('related_facility', $id);
-          $feature_type = get_field('geometry_type', $related_facility[0]);
-          $street_address = get_field('street_address', $related_facility[0]);
-          $suite_or_building = get_field('details_suite_or_building', $id);
-          $zip_code = get_field('zip_code', $related_facility[0]);
-          $coords_array = $this->get_facility_coords($related_facility[0], $feature_type);
+          $feature_type = get_field('geometry_type', $related_facility);
+          $street_address = get_field('street_address', $related_facility);
+          $suite_or_building = get_field('suite_or_building', $id);
+          $zip_code = get_field('zip_code', $related_facility);
+          $coords_array = $this->get_facility_coords($related_facility, $feature_type);
           $location_photo = get_field('location_photograph', $id);
 
           $properties = array_merge($properties, array(
-            'related_facility' => get_the_title($related_facility[0]),
+            'related_facility' => get_the_title($related_facility),
             'street_address' => $street_address,
             'suite_or_building' => $suite_or_building,
             'zip_code' => $zip_code,
             'logo' => get_field('company_logo', $id),
             'photo' => $location_photo['sizes']['medium'],
-            'related_photo' => get_the_post_thumbnail_url($related_facility[0], 'medium'),
+            'related_photo' => get_the_post_thumbnail_url($related_facility, 'medium'),
             'color' => '#038798',
             'hover-color' => '#0A0398',
             'opacity' => 1,
@@ -301,9 +303,8 @@ class RTP_Dir_Listing {
 
   public function get_facility_tenant_ids($id) {
     global $wpdb;
-    $like_id = '%"' . $id . '"%';
-    $query = "SELECT id FROM {$wpdb->prefix}posts AS p INNER JOIN {$wpdb->prefix}postmeta AS pm ON (p.ID = pm.post_id) WHERE 1=1 AND (pm.meta_key = 'related_facility' AND pm.meta_value LIKE %s) AND p.post_type IN ('rtp-company', 'rtp-space') AND p.post_status = 'publish' GROUP BY p.ID ORDER BY p.post_type DESC, p.post_name ASC";
-    $sql = $wpdb->prepare($query, $like_id);
+    $query = "SELECT id FROM {$wpdb->prefix}posts AS p INNER JOIN {$wpdb->prefix}postmeta AS pm ON (p.ID = pm.post_id) WHERE 1=1 AND (pm.meta_key = 'related_facility' AND pm.meta_value = %s) AND p.post_type IN ('rtp-company', 'rtp-space') AND p.post_status = 'publish' GROUP BY p.ID ORDER BY p.post_type DESC, p.post_name ASC";
+    $sql = $wpdb->prepare($query, $id);
     $tenants = $wpdb->get_results($sql);
 
     return $tenants;
