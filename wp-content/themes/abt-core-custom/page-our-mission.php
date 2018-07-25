@@ -28,12 +28,16 @@ get_header(); ?>
 						$image = get_sub_field('background_image');
 						$caption = get_sub_field('caption');
 						$headline = get_sub_field('headline');
+						$link = get_sub_field('button_link');
 					?>
 
 					<section id="mission-<?php echo $index; ?>" class="featured-banner theme-ocean" style="background-image: url(<?php echo $image; ?>);">
 						<div class="flex-container">
 							<div class="flex-content">
-								<h1><small><?php echo $index; ?></small> <?php echo $headline; ?></h1>
+								<h1><small>.0<?php echo $index; ?></small> <?php echo $headline; ?></h1>
+								<?php if($link): ?>
+									<a style="margin-top: 2em;" class="button primary" href="<?php echo $link; ?>">Learn More</a>
+								<?php endif ?>
 							</div>
 						</div>
 						<p class="source"><small><?php echo $caption; ?></small></p>

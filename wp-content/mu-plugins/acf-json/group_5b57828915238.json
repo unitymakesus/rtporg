@@ -82,6 +82,21 @@
                     "maxlength": "",
                     "rows": "",
                     "new_lines": ""
+                },
+                {
+                    "key": "field_5b5876ae3daeb",
+                    "label": "Button Link (Optional)",
+                    "name": "button_link",
+                    "type": "link",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "url"
                 }
             ]
         }
@@ -105,5 +120,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1532462883
+    "modified": 1532524311
 }
