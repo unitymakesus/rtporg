@@ -41,7 +41,7 @@ get_header(); ?>
             ?>
             <?php if(empty($cats) || !$cats || count($cats)<1): ?>
                 <?php /* Put what you want here. This means something went wrong and there were not results. */ ?>
-                <h1><?php _e('Bubba was here. But he is no longer.'); ?></h1>
+                <h1><?php _e('This page cannot be found.'); ?></h1>
             <?php endif; ?>
             <?php foreach ($cats as $cat) : ?>
                 <?php $term = get_term($cat->term_id,'division', OBJECT); ?>
