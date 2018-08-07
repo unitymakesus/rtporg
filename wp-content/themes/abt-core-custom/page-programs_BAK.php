@@ -34,7 +34,7 @@ get_header(); ?>
 			?>
 			<?php query_posts($args); ?>
 			<?php get_template_part('loop'); ?>
-			<?php wp_reset_query; ?>
+			<?php wp_reset_query(); ?>
 		</div>
 	</div>
 
