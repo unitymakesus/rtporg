@@ -91,7 +91,7 @@ get_header(); ?>
 						</li>
 					<?php endwhile; ?>
 				</ul>
-			<?php endif; wp_reset_query()); ?>
+			<?php endif; wp_reset_query(); ?>
 			<?php endforeach; ?>
 		</div>
 	</div>
