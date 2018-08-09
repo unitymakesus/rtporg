@@ -24,7 +24,8 @@ get_header(); ?>
 					$paged = ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1;
 
 					query_posts(array(
-          	'posts_per_page' => 24
+          	'posts_per_page' => 24,
+						'paged' => $paged,
           ));
 
           get_template_part('loop');
