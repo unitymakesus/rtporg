@@ -35,12 +35,13 @@ get_header(); ?>
 						<div class="flex-container">
 							<div class="flex-content">
 								<h1><small>.0<?php echo $index; ?></small> <?php echo $headline; ?></h1>
+								<hr>
+								<h3><?php echo $caption; ?></h3>
 								<?php if($link): ?>
 									<a style="margin-top: 2em;" class="button primary" href="<?php echo $link; ?>">Learn More</a>
 								<?php endif ?>
 							</div>
 						</div>
-						<p class="source"><small><?php echo $caption; ?></small></p>
 					</section>
 				<?php endwhile; ?>
 

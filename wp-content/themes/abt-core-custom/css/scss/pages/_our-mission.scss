@@ -31,13 +31,14 @@
       @include rem(padding, 240px 100px);
     }
     @include media($desktop_wide) {
-      @include rem(padding, 360px 200px);
+      @include rem(padding, 250px 200px);
     }
 
     .flex-container {
       @include media($desktop) {
         position: relative; height: 100%; z-index: 1;
         @include display(flex);
+        align-items: center;
       }
     }
     .flex-content {
@@ -71,6 +72,15 @@
     }
     h1 + div {
       @include rem(margin, 32px 0 0);
+    }
+
+    h3 {
+      color: white;
+    }
+
+    hr {
+      margin: 2em 0;
+      color: white;
     }
 
     .source {

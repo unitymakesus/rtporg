@@ -60,14 +60,6 @@ get_header(); ?>
 <div class="content-container">
   <?php get_template_part('frontier', 'header'); ?>
   <?php get_template_part('featured', 'banners'); ?>
-  <section class="featured-banner theme-frosty frontier-innovate-intro">
-    <div>
-      <?php if ($intro_heading) : ?>
-        <h2><?php echo $intro_heading; ?></h2>
-      <?php endif; ?>
-      <?php echo $intro_text; ?>
-    </div>
-  </section>
   <section class="featured-banner frontier-innovate-pricing">
     <?php if ($tiers_heading) : ?>
       <h2><?php echo $tiers_heading; ?></h2>
@@ -77,7 +69,7 @@ get_header(); ?>
         <div class="summary">
           <?php if ($tier1_name) : ?>
             <h2><?php echo $tier1_name; ?></h2>
-          <?php endif; ?>      
+          <?php endif; ?>
           <?php if ($tier1_price) : ?>
             <div class="price"><?php echo $tier1_price; ?></div>
           <?php endif; ?>
@@ -96,7 +88,7 @@ get_header(); ?>
         <div class="summary">
           <?php if ($tier2_name) : ?>
             <h2><?php echo $tier2_name; ?></h2>
-          <?php endif; ?>      
+          <?php endif; ?>
           <?php if ($tier2_price) : ?>
             <div class="price"><?php echo $tier2_price; ?></div>
           <?php endif; ?>
@@ -112,7 +104,7 @@ get_header(); ?>
         <div class="summary">
           <?php if ($tier3_name) : ?>
             <h2><?php echo $tier3_name; ?></h2>
-          <?php endif; ?>      
+          <?php endif; ?>
           <?php if ($tier3_price) : ?>
             <div class="price"><?php echo $tier3_price; ?></div>
           <?php endif; ?>
@@ -195,7 +187,7 @@ get_header(); ?>
         </div>
       </div>
     </div>
-  </section>  
+  </section>
 </div>
 <?php endwhile; ?>
 <?php get_footer(); ?>
