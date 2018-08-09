@@ -41,7 +41,7 @@ get_header(); ?>
 					<article id="post-<?php the_ID(); ?>" class="post">
 						<header>
 							<div class="cat-links" itemprop="eventType"><?php the_category( ', ' ); ?></div>
-							<h2 class="entry-title" itemprop="summary"><?php the_title(); ?></h2>
+							<h1 class="entry-title" itemprop="summary"><?php the_title(); ?></h1>
 							<div class="meta">
 								<span itemprop="location"><?php echo $location; ?></span>
 								<span class="timestamp">
