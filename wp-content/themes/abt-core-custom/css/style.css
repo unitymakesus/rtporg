@@ -11359,7 +11359,7 @@ website:    http://www.burocratik.com
 .fc-calendar .fc-row > div {
   border-right: 1px solid #ddd;
   padding: 4px;
-  overflow: hidden;
+  overflow: auto;
   position: relative; }
 
 .fc-calendar .fc-head > div {

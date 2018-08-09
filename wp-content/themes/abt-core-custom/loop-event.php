@@ -98,7 +98,7 @@
     </div>
 </div>
 
-<section class="source-local social-grid">
+<section class="source-local social-grid" style="display:none;">
     <?php while ( have_posts() ) : the_post(); ?>
             <?php
                 $user_id      = get_the_author_meta( 'ID' );
