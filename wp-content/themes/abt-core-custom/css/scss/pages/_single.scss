@@ -16,7 +16,6 @@
 		}
 
     header {
-      background-color: $color_off_white; clear: both;
   		@include rem(padding, 20px);
   		@include rem(margin, 20px -20px -20px);
 
@@ -25,13 +24,14 @@
   			@include rem(margin, 40px -40px -40px);
   		}
   		@include media($desktop) {
+        background-color: $color_off_white; clear: both;
   			margin: 0; clear: none; word-break: break-word;
-  			@include span-columns(5);
+  			@include span-columns(4);
   			@include rem(padding, 40px);
   			@include order(1);
   		}
   		@include media($desktop_wide) {
-  			@include span-columns(4);
+  			@include span-columns(5);
   		}
 
       .share {
@@ -42,7 +42,7 @@
     .entry-content {
       overflow: hidden;
   		@include media($desktop) {
-  			@include span-columns(7);
+  			@include span-columns(8);
   			float: right;
   			@include rem(padding, 40px);
   			@include order(2);

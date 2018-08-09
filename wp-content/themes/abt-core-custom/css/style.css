@@ -8260,8 +8260,6 @@ body.home.menu-open {
     -ms-flex-align: stretch; } }
 
 .single-post .hentry header {
-  background-color: #f2f6f7;
-  clear: both;
   padding: 20px;
   padding: 1.25rem;
   margin: 20px -20px -20px;
@@ -8274,13 +8272,15 @@ body.home.menu-open {
       margin: 2.5rem -2.5rem -2.5rem; } }
   @media screen and (min-width: 960px) {
     .single-post .hentry header {
+      background-color: #f2f6f7;
+      clear: both;
       margin: 0;
       clear: none;
       word-break: break-word;
       float: left;
       display: block;
       margin-right: 2.35765%;
-      width: 40.29137%;
+      width: 31.76157%;
       padding: 40px;
       padding: 2.5rem;
       box-ordinal-group: 1;
@@ -8294,7 +8294,7 @@ body.home.menu-open {
       float: left;
       display: block;
       margin-right: 1.75788%;
-      width: 23.68159%; }
+      width: 30.04146%; }
       .single-post .hentry header:last-child {
         margin-right: 0; } }
   .single-post .hentry header .share {
@@ -8307,7 +8307,7 @@ body.home.menu-open {
       float: left;
       display: block;
       margin-right: 2.35765%;
-      width: 57.35098%;
+      width: 65.88078%;
       float: right;
       padding: 40px;
       padding: 2.5rem;
