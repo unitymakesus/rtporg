@@ -35,12 +35,12 @@ get_header(); ?>
 				// Get categories within 'Staff'
 				$cats = get_categories( array(
 					'taxonomy' => 'division',
-                    'child_of' => ot_get_option( 'term_division_staff', 5 )
+          'child_of' => ot_get_option( 'term_division_staff', 5 )
 				) );
             ?>
             <?php if(empty($cats) || !$cats || count($cats)<1): ?>
                 <?php /* Put what you want here. This means something went wrong and there were not results. */ ?>
-                <h1><?php _e('Bubba was here. But he is no longer.'); ?></h1>
+                <h1><?php _e('This page cannot be found.'); ?></h1>
             <?php endif; ?>
 			<?php foreach ($cats as $cat) : ?>
                 <?php $term = get_term($cat->term_id,'division', OBJECT); ?>
@@ -48,7 +48,7 @@ get_header(); ?>
                     // Get posts from 'People' with specified categories
                     $args = array(
                         'post_type'      => 'people',
-                        'taxonomy'		 => 'division',
+                        'taxonomy'		 	 => 'division',
                         'term'           => $term->slug,
                         'post_status'    => 'publish',
                         'orderby'        => 'title',
@@ -91,7 +91,7 @@ get_header(); ?>
 						</li>
 					<?php endwhile; ?>
 				</ul>
-				<?php endif; wp_reset_query; ?>
+			<?php endif; wp_reset_query(); ?>
 			<?php endforeach; ?>
 		</div>
 	</div>

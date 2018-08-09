@@ -26,14 +26,14 @@
 				'title_li' => false
 			); ?>
 			<?php wp_list_categories( $args ); ?>
-		<?php elseif (is_page('blog') || is_category()) : ?>			
+		<?php elseif (is_page('blog') || is_category()) : ?>
 			<?php if (is_category()) : ?>
-				<li><a href="/blog">Clear Filter</a></li>
+				<li><a href="/blog/">Clear Filter</a></li>
 			<?php endif; ?>
-			<?php $args = array(				
+			<?php $args = array(
 				'title_li' => false
 			); ?>
 			<?php wp_list_categories( $args ); ?>
-		<?php endif; ?>	
+		<?php endif; ?>
 	</ul>
 </div>

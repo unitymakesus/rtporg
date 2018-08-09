@@ -280,6 +280,16 @@ final class RTP_Dir {
 			}
 		}, 10, 1 );
 
+
+		// Completely disable term archives for these taxonomies
+		add_action('pre_get_posts', function($qry) {
+			if (is_admin()) return;
+
+			if (is_tax('rtp-facility-type') || is_tax('rtp-company-type') || is_tax('rtp-availability')) {
+				$qry->set_404();
+			}
+		});
+
 	}
 
 	/**

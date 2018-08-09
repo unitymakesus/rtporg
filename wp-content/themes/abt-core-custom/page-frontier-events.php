@@ -42,7 +42,7 @@ get_header(); ?>
   <section class="featured-banner theme-frosty frontier-about-intro">
     <div>
       <?php if ($intro_heading) : ?>
-          <h2><?php echo $intro_heading; ?></h2>   
+          <h2><?php echo $intro_heading; ?></h2>
         <?php endif; ?>
         <?php echo $intro_text; ?>
       </div>
@@ -110,7 +110,7 @@ get_header(); ?>
     <?php if ($events_heading) : ?>
       <h2><?php echo $events_heading; ?></h2>
     <?php endif; ?>
-    
+
     <?php
     /*
      * Let's get events from the frontier category in which their
@@ -129,7 +129,7 @@ get_header(); ?>
         'post_status'       => 'publish',
         'meta_key'          => 'wpcf-event-start-date-and-time',
         'meta_value'        => $next30days,
-        'meta_compare'      => '<=',        
+        'meta_compare'      => '<=',
         'orderby'           => 'meta_value',
         'order'             => 'ASC',
         'posts_per_page'    => -1
@@ -137,7 +137,7 @@ get_header(); ?>
     ?>
     <?php query_posts($args); ?>
     <?php get_template_part('loop', 'event'); ?>
-    <?php wp_reset_query; ?>
+    <?php wp_reset_query(); ?>
     <?php echo $events_text; ?>
   </section>
 </div>
