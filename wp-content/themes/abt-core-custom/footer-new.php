@@ -14,7 +14,7 @@
         <footer class="group">
             <section class="band theme-orange pad-none fade-in">
                 <div class="wrapper">
-                    <a href="rtp.org/contact-us" class="contact-footer">
+                    <a href="/contact-us/" class="contact-footer">
                         <p>Help Us Write The Next Chapter</p>
                         <strong>Contact us today</strong>
                         <div class="hexagon">
