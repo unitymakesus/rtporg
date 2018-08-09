@@ -75,6 +75,27 @@ get_header(); ?>
 								<?php endif; ?>
 							</p>
 						<?php endif; ?>
+						<div class="panel">
+							<h3>Share Event</h3>
+								<ul class="share rrssb-buttons">
+										<li class="facebook">
+												<a href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>" class="popup" target="_blank" rel="nofollow noopener">
+														<img class="svg" src="<?php echo $theme_dir; ?>/img/icons/i_facebook.svg" />
+												</a>
+										</li>
+										<li class="twitter">
+												<a href="http://twitter.com/home?status=<?php the_title(); ?>%20<?php the_permalink(); ?>" class="popup" target="_blank" rel="nofollow noopener">
+														<img class="svg" src="<?php echo $theme_dir; ?>/img/icons/i_twitter.svg" />
+												</a>
+										</li>
+										<li class="linkedin">
+												<a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=<?php the_permalink(); ?>" class="popup" target="_blank" rel="nofollow noopener">
+														<img class="svg" src="<?php echo $theme_dir; ?>/img/icons/i_linkedin.svg" />
+												</a>
+										</li>
+								</ul>
+						</div>
+
 					</section>
 				</aside>
 			</div>

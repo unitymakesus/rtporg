@@ -164,32 +164,6 @@
                                     <p><strong>Sponsor</strong><br><?php echo $sponsor; ?></p>
                                 </div>
                             </li>
-                            <li data-option="share">
-                                <span class="label" title="Share">
-                                    <img class="svg" src="<?php echo $theme_dir; ?>/img/icons/i_share.svg" />
-                                    <span class="visuallyhidden">Share</span>
-                                </span>
-                                <div class="panel">
-                                    <h3>Share</h3>
-                                    <ul class="share rrssb-buttons">
-                                        <li class="facebook">
-                                            <a href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>" class="popup" target="_blank">
-                                                <img class="svg" src="<?php echo $theme_dir; ?>/img/icons/i_facebook.svg" />
-                                            </a>
-                                        </li>
-                                        <li class="twitter">
-                                            <a href="http://twitter.com/home?status=<?php the_title(); ?>%20<?php the_permalink(); ?>" class="popup" target="_blank">
-                                                <img class="svg" src="<?php echo $theme_dir; ?>/img/icons/i_twitter.svg" />
-                                            </a>
-                                        </li>
-                                        <li class="google">
-                                            <a href="https://plus.google.com/share?url=<?php the_title(); ?>%20<?php the_permalink(); ?>" class="popup" target="_blank">
-                                                <img class="svg" src="<?php echo $theme_dir; ?>/img/icons/i_google.svg" />
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
                             <li data-option="source">
                                 <span class="label" title="Source">
                                     <img class="svg" src="<?php echo $theme_dir; ?>/img/icons/i_source.svg" />
