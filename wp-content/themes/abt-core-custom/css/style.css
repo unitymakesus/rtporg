@@ -8015,8 +8015,8 @@ body.home.menu-open {
         padding: 15rem 6.25rem; } }
     @media screen and (min-width: 1280px) {
       .page-template-page-our-mission-php .featured-banner {
-        padding: 360px 200px;
-        padding: 22.5rem 12.5rem; } }
+        padding: 250px 200px;
+        padding: 15.625rem 12.5rem; } }
     @media screen and (min-width: 960px) {
       .page-template-page-our-mission-php .featured-banner .flex-container {
         position: relative;
@@ -8024,7 +8024,9 @@ body.home.menu-open {
         z-index: 1;
         display: -moz-flex;
         display: -ms-flexbox;
-        display: flex; } }
+        display: flex;
+        -ms-flex-align: center;
+        align-items: center; } }
     @media screen and (min-width: 960px) {
       .page-template-page-our-mission-php .featured-banner .flex-content {
         width: 100%;
@@ -8059,6 +8061,11 @@ body.home.menu-open {
     .page-template-page-our-mission-php .featured-banner h1 + div {
       margin: 32px 0 0;
       margin: 2rem 0 0; }
+    .page-template-page-our-mission-php .featured-banner h3 {
+      color: white; }
+    .page-template-page-our-mission-php .featured-banner hr {
+      margin: 2em 0;
+      color: white; }
     @media screen and (min-width: 960px) {
       .page-template-page-our-mission-php .featured-banner .source {
         position: absolute;
