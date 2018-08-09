@@ -151,8 +151,8 @@ class abt_core_custom_theme {
 			if (is_home() || is_front_page()) {
         wp_deregister_script('site_scripts');
         wp_enqueue_script('aos', $theme_dir . '/js/aos.min.js', array(), '2.1.1', true);
-				wp_enqueue_script('headroom', $theme_dir . '/js/headroom.min.js', array('jquery'), '0.9.3', true );
-				wp_enqueue_script('magnific_popup', $theme_dir . '/js/vendors/jquery.magnific-popup.js', array('jquery'), '0.9.9', true );
+				// wp_enqueue_script('headroom', $theme_dir . '/js/headroom.min.js', array('jquery'), '0.9.3', true );
+				// wp_enqueue_script('magnific_popup', $theme_dir . '/js/vendors/jquery.magnific-popup.js', array('jquery'), '0.9.9', true );
 				wp_enqueue_script('page_home_scripts', $theme_dir . '/js/page-home.min.js', array('jquery'), $core_version, true );
 			}
 			if (is_page('About Us') || is_page('Our Mission') || is_page('Why RTP') || is_page_template('page-full-background.php') || is_page_template('page-one-column-animation.php')) {
