@@ -15,7 +15,7 @@ get_header(); ?>
 			<?php if(function_exists('bcn_display')) {
 				bcn_display();
 			} ?>
-		</div>			
+		</div>
 		<div class="content-wrapper">
 			<div class="content">
 				<?php get_template_part('tag', 'filter'); ?>
@@ -24,11 +24,28 @@ get_header(); ?>
 					$paged = ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1;
 
 					query_posts(array(
-	                	'posts_per_page' => -1
-	                ));
+          	'posts_per_page' => 24
+          ));
 
-	                get_template_part('loop');
-	            ?>
+          get_template_part('loop');
+      	?>
+
+				<div class="pagination">
+						<?php
+						$big = 999999999; // need an unlikely integer
+						$translated = __( 'Page', 'mytextdomain' ); // Supply translatable string
+
+						echo paginate_links( array(
+							'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+							'format' => '?paged=%#%',
+							'current' => max( 1, get_query_var('paged') ),
+							'total' => $wp_query->max_num_pages,
+		        	'before_page_number' => '<span class="screen-reader-text">'.$translated.' </span>'
+						) );
+						?>
+				</div>
+
+				<?php wp_reset_query(); ?>
 			</div>
 		</div>
 	</div>

@@ -140,6 +140,7 @@ class RTP_Dir_Post_Type {
 			'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail', 'page-attributes' ),
 			'menu_position' => 5,
 			'menu_icon' => 'dashicons-smiley',
+			'feeds' => false,
 		);
 
 		$args = wp_parse_args( $this->args, $defaults );

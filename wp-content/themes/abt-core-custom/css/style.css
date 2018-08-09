@@ -1028,8 +1028,6 @@ body {
   @media screen and (min-width: 960px) {
     .content-container {
       padding: 0;
-      margin-bottom: 92px;
-      margin-bottom: 5.75rem;
       display: block; }
       .content-container::after {
         clear: both;
@@ -1037,9 +1035,6 @@ body {
         display: table; } }
   @media screen and (min-width: 960px) {
     .content-container .content-wrapper {
-      display: -webkit-box;
-      display: -moz-box;
-      display: box;
       display: -moz-flex;
       display: -ms-flexbox;
       display: flex;
@@ -1677,9 +1672,6 @@ input[type="submit"], button, a.button {
     content: "";
     display: table; }
   .card-container.flex {
-    display: -webkit-box;
-    display: -moz-box;
-    display: box;
     display: -moz-flex;
     display: -ms-flexbox;
     display: flex;
@@ -2600,9 +2592,6 @@ table {
       background-color: rgba(1, 46, 52, 0.9);
       overflow: hidden;
       z-index: 9999;
-      display: -webkit-box;
-      display: -moz-box;
-      display: box;
       display: -moz-flex;
       display: -ms-flexbox;
       display: flex;
@@ -2858,22 +2847,13 @@ div.line {
     .social-tile.type-text:before {
       display: none; }
     .social-tile.type-text .entry-title {
-      /* Internet Explorer 10 */
+      display: -moz-flex;
       display: -ms-flexbox;
-      -ms-flex-pack: center;
+      display: flex;
       -ms-flex-align: center;
-      /* Firefox */
-      display: -moz-box;
-      -moz-box-pack: center;
-      -moz-box-align: center;
-      /* Safari, Opera, and Chrome */
-      display: -webkit-box;
-      -webkit-box-pack: center;
-      -webkit-box-align: center;
-      /* W3C */
-      display: box;
-      box-pack: center;
-      box-align: center;
+      align-items: center;
+      -ms-flex-pack: center;
+      justify-content: center;
       padding: 20px;
       padding: 1.25rem;
       position: absolute;
@@ -3844,6 +3824,8 @@ div.line {
       background-color: #00aced; }
     .share li.google a {
       background-color: #dd4b39; }
+    .share li.linkedin a {
+      background-color: #007bb6; }
     .share li i, .share li .svg {
       position: absolute;
       top: 50%;
@@ -3868,6 +3850,8 @@ div.line {
       background-color: #21c2ff; }
     .share li.google:hover a {
       background-color: #e47365; }
+    .share li.linkedin a {
+      background-color: #009de9; }
 
 .people-category {
   color: #02444d;
@@ -5893,9 +5877,6 @@ body div#ui-datepicker-div[style] {
         position: relative;
         height: 100%;
         z-index: 1;
-        display: -webkit-box;
-        display: -moz-box;
-        display: box;
         display: -moz-flex;
         display: -ms-flexbox;
         display: flex; } }
@@ -8041,9 +8022,6 @@ body.home.menu-open {
         position: relative;
         height: 100%;
         z-index: 1;
-        display: -webkit-box;
-        display: -moz-box;
-        display: box;
         display: -moz-flex;
         display: -ms-flexbox;
         display: flex; } }
@@ -8254,6 +8232,101 @@ body.home.menu-open {
 
 .single-people .content-container {
   padding-bottom: 0; }
+
+.single-post .content-container .content {
+  display: block;
+  float: none;
+  padding: 0;
+  margin: 0;
+  width: 100%; }
+
+@media screen and (min-width: 960px) {
+  .single-post .hentry {
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    box-align: stretch;
+    -moz-align-items: stretch;
+    -ms-align-items: stretch;
+    -o-align-items: stretch;
+    align-items: stretch;
+    -ms-flex-align: stretch; } }
+
+.single-post .hentry header {
+  background-color: #f2f6f7;
+  clear: both;
+  padding: 20px;
+  padding: 1.25rem;
+  margin: 20px -20px -20px;
+  margin: 1.25rem -1.25rem -1.25rem; }
+  @media screen and (min-width: 640px) {
+    .single-post .hentry header {
+      padding: 40px;
+      padding: 2.5rem;
+      margin: 40px -40px -40px;
+      margin: 2.5rem -2.5rem -2.5rem; } }
+  @media screen and (min-width: 960px) {
+    .single-post .hentry header {
+      margin: 0;
+      clear: none;
+      word-break: break-word;
+      float: left;
+      display: block;
+      margin-right: 2.35765%;
+      width: 40.29137%;
+      padding: 40px;
+      padding: 2.5rem;
+      box-ordinal-group: 1;
+      -moz-order: 1;
+      order: 1;
+      -ms-flex-order: 1; }
+      .single-post .hentry header:last-child {
+        margin-right: 0; } }
+  @media screen and (min-width: 1280px) {
+    .single-post .hentry header {
+      float: left;
+      display: block;
+      margin-right: 1.75788%;
+      width: 23.68159%; }
+      .single-post .hentry header:last-child {
+        margin-right: 0; } }
+  .single-post .hentry header .share {
+    margin: 1rem 0; }
+
+.single-post .hentry .entry-content {
+  overflow: hidden; }
+  @media screen and (min-width: 960px) {
+    .single-post .hentry .entry-content {
+      float: left;
+      display: block;
+      margin-right: 2.35765%;
+      width: 57.35098%;
+      float: right;
+      padding: 40px;
+      padding: 2.5rem;
+      box-ordinal-group: 2;
+      -moz-order: 2;
+      order: 2;
+      -ms-flex-order: 2; }
+      .single-post .hentry .entry-content:last-child {
+        margin-right: 0; } }
+  @media screen and (min-width: 1280px) {
+    .single-post .hentry .entry-content {
+      float: left;
+      display: block;
+      margin-right: 1.75788%;
+      width: 74.56053%;
+      float: right; }
+      .single-post .hentry .entry-content:last-child {
+        margin-right: 0; } }
+
+.single-post .cat-links a {
+  color: #2ebaa5;
+  text-transform: uppercase;
+  margin: 32px 0 0;
+  margin: 2rem 0 0;
+  font-size: 16px;
+  font-size: 1rem; }
 
 @media screen and (min-width: 960px) {
   .stem-header {
@@ -8798,9 +8871,6 @@ body.home.menu-open {
         position: relative;
         height: 100%;
         z-index: 1;
-        display: -webkit-box;
-        display: -moz-box;
-        display: box;
         display: -moz-flex;
         display: -ms-flexbox;
         display: flex; } }
@@ -11676,6 +11746,20 @@ website:    http://www.burocratik.com
     margin: 0;
     width: auto;
     height: auto; }
+
+/* Text meant only for screen readers. */
+.screen-reader-text {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  -webkit-clip-path: inset(50%);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  width: 1px;
+  word-wrap: normal !important; }
 
 .invisible {
   visibility: hidden; }

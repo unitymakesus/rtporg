@@ -116,28 +116,20 @@
 
     &:before { display: none; }
     .entry-title {
+      display: -moz-flex;
+      display: -ms-flexbox; // IE 10
+    	display: -webkit-flex;
+      display: flex;
 
-          /* Internet Explorer 10 */
-          display:-ms-flexbox;
-          -ms-flex-pack:center;
-          -ms-flex-align:center;
+      -webkit-box-align: center;
+      -moz-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
 
-          /* Firefox */
-          display:-moz-box;
-          -moz-box-pack:center;
-          -moz-box-align:center;
+      justify-content: center;
 
-          /* Safari, Opera, and Chrome */
-          display:-webkit-box;
-          -webkit-box-pack:center;
-          -webkit-box-align:center;
-
-          /* W3C */
-          display:box;
-          box-pack:center;
-          box-align:center;
-
-        @include rem(padding, 20px);
+      @include rem(padding, 20px);
 
       position: absolute; height: 100%; margin: 0; font-family: $font_regular; text-align: center; word-break: break-word; z-index: 13;
       @include rem(font-size, 20px);

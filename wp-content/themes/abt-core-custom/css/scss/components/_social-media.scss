@@ -134,6 +134,9 @@
     &.google a {
       background-color: $color_google_red;
     }
+    &.linkedin a {
+      background-color: $color_linkedin_blue;
+    }
     i, .svg {
       position: absolute; top: 50%; left: 50%; display: block; font-size: 100%;
       @include rem(width, 24px);
@@ -156,7 +159,9 @@
     &.google:hover a {
       background-color: lighten($color_google_red, 10%);
     }
-
+    &.linkedin a {
+      background-color: lighten($color_linkedin_blue, 10%);
+    }
   }
 
 }

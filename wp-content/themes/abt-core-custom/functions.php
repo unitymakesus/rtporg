@@ -981,3 +981,12 @@ function get_next_food_truck_event() {
 	$food_truck_event = get_events_by_category('food-trucks');
 	return count($food_truck_event) ? $food_truck_event[0] : false;
 }
+
+// Remove comments feeds
+add_filter( 'feed_links_show_comments_feed', '__return_false' );
+
+// Remove comments feeds for CPTs
+function remove_comments_rss( $for_comments ) {
+    return;
+}
+add_filter('post_comments_feed_link','remove_comments_rss');

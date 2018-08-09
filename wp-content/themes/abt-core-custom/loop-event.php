@@ -93,8 +93,8 @@
 <?php // Calendar / Grid view toggle ?>
 <div id="events-toolbar" class="events-toolbar">
     <div class="events-display-toggle">
-        <button class="active"><img class="svg" src="<?php echo $theme_dir; ?>/img/icons/i_grid.svg" /> <span><?php _e( 'Grid', 'abt-core' ); ?></span></button>
-        <button><img class="svg" src="<?php echo $theme_dir; ?>/img/icons/i_events.svg" /> <span><?php _e( 'Calendar', 'abt-core' ); ?></span></button>
+        <button class="active"><img class="svg" src="<?php echo $theme_dir; ?>/img/icons/i_events.svg" /> <span><?php _e( 'Calendar', 'abt-core' ); ?></span></button>
+        <button><img class="svg" src="<?php echo $theme_dir; ?>/img/icons/i_grid.svg" /> <span><?php _e( 'Grid', 'abt-core' ); ?></span></button>
     </div>
 </div>
 
@@ -227,6 +227,7 @@
             <?php endif; ?>
     <?php endwhile; ?>
 </section>
+
 <?php // Save buffer in case we need it ?>
 <?php $section = ob_get_contents(); ?>
 <?php ob_end_clean(); ?>
@@ -292,7 +293,8 @@
     </script>
 <?php endif; ?>
 
-<?php // Pagination isn't going to work (due to filtering outside of wp_query, but I'll leave this in for shits and giggles ?>
-<?php if (function_exists("pagination")): ?>
+<?php // ABT says: Pagination isn't going to work (due to filtering outside of wp_query, but I'll leave this in for shits and giggles ?>
+<?php // Unity says: Huh? Okay, then we'll comment it out. ?>
+<?php /*if (function_exists("pagination")): ?>
     <?php pagination($additional_loop->max_num_pages); ?>
-<?php endif; ?>
+<?php endif;*/ ?>
