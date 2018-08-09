@@ -6593,12 +6593,23 @@ body div#ui-datepicker-div[style] {
     max-width: 12.5rem; }
 
 .error404 .st-content {
-  background: #f2f6f7 url("../img/bg_error-404.jpg") no-repeat 50% 50%;
+  background: #f2f6f7 url("../img/nasa-63032-unsplash.jpg") no-repeat center;
   background-size: cover; }
 
 .error404 .st-content-inner {
   background: none;
   max-width: none; }
+
+@media screen and (min-width: 960px) {
+  .error404 .content-container {
+    position: relative;
+    height: calc(100vh - 92px);
+    z-index: 1;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center; } }
 
 .error404 .content-container .content {
   background-color: rgba(0, 0, 0, 0.25);
@@ -6619,8 +6630,9 @@ body div#ui-datepicker-div[style] {
       max-width: 64rem;
       padding: 60px;
       padding: 3.75rem;
-      margin-top: 200px;
-      margin-top: 12.5rem; } }
+      -ms-grid-row-align: center;
+      align-self: center;
+      -ms-flex-item-align: center; } }
 
 .error404 .content-container h1 {
   margin: 0;

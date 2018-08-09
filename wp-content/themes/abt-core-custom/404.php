@@ -15,17 +15,13 @@ get_header(); ?>
 
 	<div class="content-container">
 		<div class="content">
-			<h1>404 Error</h1>
-			<h2>You must have been looking for Bubba!</h2>
+			<h2>Lost in Space</h2>
 			<p>
-				But seriously, we can't find the page you're looking for. Try searching for it below.<br>
-				We recently redesigned our website, so please contact us if you need assistance at parkinfo@rtp.org.
-			</p>
+				But seriously, we can't find the page you're looking for. Try searching for it below.</p>
 			<div class="site-search"><?php get_search_form(); ?></div>
-			<p><small><em>And if you're still looking for Bubba...</em></small></p>
-			<a class="button primary" href="https://twitter.com/GoatBubba" target="_blank">
-				<img class="svg" src="<?php echo $theme_dir; ?>/img/icons/i_twitter.svg" />
-				Follow Bubba
+			<p><small><em>And if you're looking for a place to plant your flag...</em></small></p>
+			<a class="button primary" href="/real-estate/" target="_blank">
+				Find Available Space
 			</a>
 		</div>
 	</div>

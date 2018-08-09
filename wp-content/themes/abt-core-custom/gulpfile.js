@@ -8,7 +8,7 @@ var concat      = require('gulp-concat');
 var uglify      = require('gulp-uglify');
 var rename      = require('gulp-rename');
 var gutil       = require('gulp-util');
-var svgo        = require('gulp-svgo');
+// var svgo        = require('gulp-svgo');
 var iconfont    = require('gulp-iconfont');
 var iconfontCss = require('gulp-iconfont-css');
 var livereload  = require('gulp-livereload');
@@ -140,11 +140,11 @@ gulp.task('sircus-scripts', function() {
 });
 
 // Minify SVG images
-gulp.task('svg', function() {
-	return gulp.src('img/**/*.svg')
-	.pipe(svgo())
-	.pipe(gulp.dest('img'));
-});
+// gulp.task('svg', function() {
+// 	return gulp.src('img/**/*.svg')
+// 	.pipe(svgo())
+// 	.pipe(gulp.dest('img'));
+// });
 
 
 // SVG to web font generator
@@ -182,14 +182,14 @@ gulp.task('watch', function() {
 	gulp.watch('js/page-thelab.js', ['scripts-page-thelab']);
 	gulp.watch(path + '/plugin/**/*.js', ['sircus-scripts']);
 	gulp.watch('css/scss/**/*.scss', ['sass', 'minify-css']);
-	gulp.watch('img/**/*.svg', ['svg']);
+	// gulp.watch('img/**/*.svg', ['svg']);
 });
 
 // Default Task
 gulp.task('default', [
 	'sass',
 	'minify-css',
-	'svg',
+	// 'svg',
 	'scripts',
 	'scripts-page-home',
 	'scripts-page-infographics',

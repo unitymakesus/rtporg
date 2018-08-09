@@ -11,7 +11,7 @@
 	// Background
 	// -------------------------------------------------------------
 	.st-content {
-		background: $color_off_white url('../img/bg_error-404.jpg') no-repeat 50% 50%; background-size: cover;
+		background: $color_off_white url('../img/nasa-63032-unsplash.jpg') no-repeat center; background-size: cover;
 	}
 
 	.st-content-inner {
@@ -20,18 +20,30 @@
 	}
 
 	.content-container {
+    @include media($desktop) {
+      position: relative; height: calc(100vh - 92px);
+			z-index: 1;
+      @include display(flex);
+      align-items: center;
+    }
+
 		.content {
-			background-color: rgba(0,0,0,.25); color: #fff; text-align: center;
+			background-color: rgba(0,0,0,.25);
+			color: #fff;
+			text-align: center;
 			@include rem(padding, 20px);
 
 			@include media($tablet) {
 				@include rem(padding, 40px);
 			}
 			@include media($desktop) {
-				float: none; width: 75%; margin: 0 auto;
+				float: none;
+				width: 75%;
+				margin: 0 auto;
 				@include rem(max-width, 1024px);
 				@include rem(padding, 60px);
-				@include rem(margin-top, 200px);
+				@include align-self(center);
+				// @include rem(margin-top, 200px);
 			}
 		}
 		h1 {
