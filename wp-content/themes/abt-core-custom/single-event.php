@@ -84,7 +84,7 @@ get_header(); ?>
 												</a>
 										</li>
 										<li class="twitter">
-												<a href="http://twitter.com/home?status=<?php the_title(); ?>%20<?php the_permalink(); ?>" class="popup" target="_blank" rel="nofollow noopener">
+												<a href="http://twitter.com/home?status=<?php echo urlencode(get_the_title()); ?>%20<?php the_permalink(); ?>" class="popup" target="_blank" rel="nofollow noopener">
 														<img class="svg" src="<?php echo $theme_dir; ?>/img/icons/i_twitter.svg" />
 												</a>
 										</li>
