@@ -27,7 +27,7 @@ get_header(); ?>
     <?php get_template_part('frontier', 'header'); ?>
     <section class="featured-banner theme-arctic frontier-video">
       <div class="overlay">
-        <img src="<?php bloginfo('stylesheet_directory'); ?>/img/l_rtp-frontier-logo.png" />
+        <img src="<?php bloginfo('stylesheet_directory'); ?>/img/frontier-logo-new.png" />
         <?php
         $header = get_field('header');
         if( $header ): ?>

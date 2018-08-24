@@ -7379,7 +7379,7 @@ body div#ui-datepicker-div[style] {
 
 #frontier-homepage .featured-banner {
   height: 550px;
-  padding-top: 5.5em; }
+  padding-top: 8.5em; }
 
 #frontier-homepage .frontier-header, #frontier-homepage .stem-header {
   position: fixed;
@@ -8159,8 +8159,100 @@ body.home.menu-open {
   .program-brand strong, .program-brand b {
     color: #333; }
 
-.single-event .content-container {
-  padding-bottom: 0; }
+.single-event .content-container .content {
+  display: block;
+  float: none;
+  padding: 0;
+  margin: 0;
+  width: 100%; }
+
+@media screen and (min-width: 960px) {
+  .single-event .hentry {
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    box-align: stretch;
+    -moz-align-items: stretch;
+    -ms-align-items: stretch;
+    -o-align-items: stretch;
+    align-items: stretch;
+    -ms-flex-align: stretch; } }
+
+.single-event .hentry header {
+  padding: 20px;
+  padding: 1.25rem;
+  margin: 20px -20px -20px;
+  margin: 1.25rem -1.25rem -1.25rem; }
+  @media screen and (min-width: 640px) {
+    .single-event .hentry header {
+      padding: 40px;
+      padding: 2.5rem;
+      margin: 40px -40px -40px;
+      margin: 2.5rem -2.5rem -2.5rem; } }
+  @media screen and (min-width: 960px) {
+    .single-event .hentry header {
+      background-color: #f2f6f7;
+      clear: both;
+      margin: 0;
+      clear: none;
+      word-break: break-word;
+      float: left;
+      display: block;
+      margin-right: 2.35765%;
+      width: 31.76157%;
+      padding: 40px;
+      padding: 2.5rem;
+      box-ordinal-group: 1;
+      -moz-order: 1;
+      order: 1;
+      -ms-flex-order: 1; }
+      .single-event .hentry header:last-child {
+        margin-right: 0; } }
+  @media screen and (min-width: 1280px) {
+    .single-event .hentry header {
+      float: left;
+      display: block;
+      margin-right: 1.75788%;
+      width: 30.04146%; }
+      .single-event .hentry header:last-child {
+        margin-right: 0; } }
+  .single-event .hentry header .share {
+    margin: 1rem 0; }
+
+.single-event .hentry .entry-content {
+  overflow: hidden; }
+  @media screen and (min-width: 960px) {
+    .single-event .hentry .entry-content {
+      float: left;
+      display: block;
+      margin-right: 2.35765%;
+      width: 65.88078%;
+      float: right;
+      padding: 40px;
+      padding: 2.5rem;
+      box-ordinal-group: 2;
+      -moz-order: 2;
+      order: 2;
+      -ms-flex-order: 2; }
+      .single-event .hentry .entry-content:last-child {
+        margin-right: 0; } }
+  @media screen and (min-width: 1280px) {
+    .single-event .hentry .entry-content {
+      float: left;
+      display: block;
+      margin-right: 1.75788%;
+      width: 74.56053%;
+      float: right; }
+      .single-event .hentry .entry-content:last-child {
+        margin-right: 0; } }
+
+.single-event .cat-links a {
+  color: #2ebaa5;
+  text-transform: uppercase;
+  margin: 32px 0 0;
+  margin: 2rem 0 0;
+  font-size: 16px;
+  font-size: 1rem; }
 
 .single-location .content-container {
   padding-bottom: 0; }

@@ -7,9 +7,64 @@
 // Event Page
 // =================================================================
 .single-event {
+  .content-container {
+    .content {
+      display: block;
+      float: none;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+    }
+  }
 
-	.content-container {
-		padding-bottom: 0;
-	}
+  .hentry {
+    @include media($desktop) {
+			@include display(flex);
+			@include align-items(stretch);
+		}
 
+    header {
+  		@include rem(padding, 20px);
+  		@include rem(margin, 20px -20px -20px);
+
+  		@include media($tablet) {
+  			@include rem(padding, 40px);
+  			@include rem(margin, 40px -40px -40px);
+  		}
+  		@include media($desktop) {
+        background-color: $color_off_white; clear: both;
+  			margin: 0; clear: none; word-break: break-word;
+  			@include span-columns(4);
+  			@include rem(padding, 40px);
+  			@include order(1);
+  		}
+  		@include media($desktop_wide) {
+  			@include span-columns(5);
+  		}
+
+      .share {
+        margin: 1rem 0;
+      }
+    }
+
+    .entry-content {
+      overflow: hidden;
+  		@include media($desktop) {
+  			@include span-columns(8);
+  			float: right;
+  			@include rem(padding, 40px);
+  			@include order(2);
+  		}
+  		@include media($desktop_wide) {
+  			@include span-columns(12);
+  			float: right;
+  		}
+    }
+  }
+
+  .cat-links a {
+    color: $color_turquoise; text-transform: uppercase;
+    @include rem(margin, 32px 0 0);
+    @include rem(font-size, 16px);
+  }
 }

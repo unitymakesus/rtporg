@@ -36,20 +36,60 @@ get_header(); ?>
 			    	bcn_display();
 			    } ?>
 			</div>
-	    	<div class="content-wrapper" itemscope itemtype="http://data-vocabulary.org/Event">
-		    	<div class="content">
-					<article id="post-<?php the_ID(); ?>" class="post">
-						<header>
+    	<div class="content-wrapper" itemscope itemtype="http://data-vocabulary.org/Event">
+	    	<div class="content">
+					<article id="post-<?php the_ID(); ?>" <?php post_class('post'); ?>>
+						<header class="aside">
 							<div class="cat-links" itemprop="eventType"><?php the_category( ', ' ); ?></div>
 							<h1 class="entry-title" itemprop="summary"><?php the_title(); ?></h1>
+							<?php the_post_thumbnail($post->ID, 'medium' ); ?>
+							<div class="meta">
+								<?php if ($logo && $sponsor) : ?>
+									<h3>Event Sponsor</h3>
+									<div class="logo-sponsor"><img src="<?php echo $logo; ?>" alt="<?php echo $sponsor; ?>" /></div>
+								<?php elseif ($sponsor) : ?>
+									<h3>Event Sponsor</h3>
+									<p><?php echo $sponsor; ?></p>
+								<?php endif; ?>
+
+								<?php if ($contact_name) : ?>
+									<h3>Event Contact</h3>
+									<p><?php echo $contact_name; ?><br>
+										<?php if ($contact_email) : ?>
+											<a href="mailto:<?php echo $contact_email; ?>"><?php echo $contact_email; ?></a>
+										<?php endif; ?>
+									</p>
+								<?php endif; ?>
+								<div class="panel">
+									<h3>Share Event</h3>
+										<ul class="share rrssb-buttons">
+												<li class="facebook">
+														<a href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>" class="popup" target="_blank" rel="nofollow noopener">
+																<img class="svg" src="<?php echo $theme_dir; ?>/img/icons/i_facebook.svg" />
+														</a>
+												</li>
+												<li class="twitter">
+														<a href="http://twitter.com/home?status=<?php echo urlencode(get_the_title()); ?>%20<?php the_permalink(); ?>" class="popup" target="_blank" rel="nofollow noopener">
+																<img class="svg" src="<?php echo $theme_dir; ?>/img/icons/i_twitter.svg" />
+														</a>
+												</li>
+												<li class="linkedin">
+														<a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=<?php the_permalink(); ?>" class="popup" target="_blank" rel="nofollow noopener">
+																<img class="svg" src="<?php echo $theme_dir; ?>/img/icons/i_linkedin.svg" />
+														</a>
+												</li>
+										</ul>
+								</div>
+
+							</div>
+						</header>
+						<div class="entry-content">
 							<div class="meta">
 								<span itemprop="location"><?php echo $location; ?></span>
 								<span class="timestamp">
 									<span itemprop="startDate"><?php echo $start_date; ?></span> - <span itemprop="endDate"><?php echo $end_date; ?></span>
 								</span>
 							</div>
-						</header>
-						<div class="entry-content">
 							<div itemprop="description"><?php echo do_shortcode($description); ?></div>
 							<?php if ($website) : ?>
 								<a class="button primary" href="<?php echo $website; ?>" itemprop="url" target="_blank">Visit Event Website</a>
@@ -57,47 +97,6 @@ get_header(); ?>
 						</div>
 					</article>
 				</div>
-		        <aside class="aside">
-					<section class="meta">
-						<?php if ($logo && $sponsor) : ?>
-							<h3>Event Sponsor</h3>
-							<div class="logo-sponsor"><img src="<?php echo $logo; ?>" alt="<?php echo $sponsor; ?>" /></div>
-						<?php elseif ($sponsor) : ?>
-							<h3>Event Sponsor</h3>
-							<p><?php echo $sponsor; ?></p>
-						<?php endif; ?>
-
-						<?php if ($contact_name) : ?>
-							<h3>Event Contact</h3>
-							<p><?php echo $contact_name; ?><br>
-								<?php if ($contact_email) : ?>
-									<a href="mailto:<?php echo $contact_email; ?>"><?php echo $contact_email; ?></a>
-								<?php endif; ?>
-							</p>
-						<?php endif; ?>
-						<div class="panel">
-							<h3>Share Event</h3>
-								<ul class="share rrssb-buttons">
-										<li class="facebook">
-												<a href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>" class="popup" target="_blank" rel="nofollow noopener">
-														<img class="svg" src="<?php echo $theme_dir; ?>/img/icons/i_facebook.svg" />
-												</a>
-										</li>
-										<li class="twitter">
-												<a href="http://twitter.com/home?status=<?php echo urlencode(get_the_title()); ?>%20<?php the_permalink(); ?>" class="popup" target="_blank" rel="nofollow noopener">
-														<img class="svg" src="<?php echo $theme_dir; ?>/img/icons/i_twitter.svg" />
-												</a>
-										</li>
-										<li class="linkedin">
-												<a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=<?php the_permalink(); ?>" class="popup" target="_blank" rel="nofollow noopener">
-														<img class="svg" src="<?php echo $theme_dir; ?>/img/icons/i_linkedin.svg" />
-												</a>
-										</li>
-								</ul>
-						</div>
-
-					</section>
-				</aside>
 			</div>
 		</div>
 	<?php endwhile; endif; ?>
