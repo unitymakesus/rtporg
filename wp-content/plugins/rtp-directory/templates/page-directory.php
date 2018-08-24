@@ -15,7 +15,7 @@ get_header(); ?>
 						<?php the_content(); ?>
 					</div>
 					<div class="col-md-4 text-right">
-						<!-- <a href="#" class="button secondary large top-margin">Get Listed</a> -->
+						<a href="/directory-map/get-listed" target="_blank" class="button secondary large top-margin">Get Listed</a>
 					</div>
 				</div>
 			</div>
