@@ -990,3 +990,66 @@ function remove_comments_rss( $for_comments ) {
     return;
 }
 add_filter('post_comments_feed_link','remove_comments_rss');
+
+/**
+ * Salesforce integration for CF7
+ */
+add_filter( 'wpcf7_before_send_mail', 'unity_wpcf7_salesforce' );
+
+function unity_wpcf7_salesforce( $contact_form ) {
+  global $wpdb;
+
+  if ( ! isset( $contact_form->posted_data ) && class_exists( 'WPCF7_Submission' ) ) {
+    $submission = WPCF7_Submission::get_instance();
+
+    if ( $submission ) {
+      $form_data = $submission->get_posted_data();
+    }
+  } else {
+    return $contact_form;
+  }
+
+  // Set up variables
+  $url = 'https://webto.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8';
+  $org_id = '00D36000001EFrk';
+
+  // Office Space form
+  if ($contact_form->id == "21901") {
+
+    $body = array(
+      'orgid' => $org_id,
+      'recordType' => '012360000012V2C',
+      'retURL' => '/',
+      'first_name' => $form_data['first_name'],
+      'last_name' => $form_data['last_name'],
+      'phone' => $form_data['phone'],
+      'email' => $form_data['email'],
+      'company' => $form_data['company'],
+      'website' => $form_data['website'],
+      'employees' => $form_data['employees'],
+      'description' => $form_data['description'],
+      '00N3600000RssNh' => $form_data['date'],
+      '00N3600000PHmPC' => $form_data['space'],
+    );
+
+    $params = array(
+      'headers' => array(
+        'Content-Type' => 'application/x-www-form-urlencoded'
+      ),
+      'body' => $body
+    );
+
+    $response = wp_remote_post( $url,  $params );
+
+    if ( is_wp_error( $response ) ) {
+      $error_message = $response->get_error_message();
+
+      $to = 'admin@unitymakes.us';
+      $subject = 'CF7 -> Salesforce POST Failed';
+      $body = 'Error message: '.$error_message;
+      $headers = array( 'Content-Type: text/html; charset=UTF-8' );
+
+      wp_mail( $to, $subject, $body, $headers );
+    }
+  }
+}
