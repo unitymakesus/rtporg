@@ -1010,25 +1010,25 @@ function unity_wpcf7_salesforce( $contact_form ) {
   }
 
   // Set up variables
-  $url = 'https://webto.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8';
+  $url = 'https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8';
   $org_id = '00D36000001EFrk';
 
   // Office Space form
   if ($contact_form->id == "21901") {
 
     $body = array(
-      'orgid' => $org_id,
+      'oid' => $org_id,
       'recordType' => '012360000012V2C',
       'retURL' => '/',
-      'first_name' => $form_data['first_name'],
-      'last_name' => $form_data['last_name'],
+      'first_name' => $form_data['first-name'],
+      'last_name' => $form_data['last-name'],
       'phone' => $form_data['phone'],
       'email' => $form_data['email'],
       'company' => $form_data['company'],
-      'website' => $form_data['website'],
+      'URL' => $form_data['website'],
       'employees' => $form_data['employees'],
       'description' => $form_data['description'],
-      '00N3600000RssNh' => $form_data['date'],
+      '00N3600000RssNh' => date('m/d/Y', strtotime($form_data['date'])),
       '00N3600000PHmPC' => $form_data['space'],
     );
 
@@ -1039,13 +1039,64 @@ function unity_wpcf7_salesforce( $contact_form ) {
       'body' => $body
     );
 
+    error_log(print_r($params, true));
+
     $response = wp_remote_post( $url,  $params );
+
+    error_log(print_r($response, true));
 
     if ( is_wp_error( $response ) ) {
       $error_message = $response->get_error_message();
 
       $to = 'admin@unitymakes.us';
-      $subject = 'CF7 -> Salesforce POST Failed';
+      $subject = 'CF7 #21901 -> Salesforce POST Failed';
+      $body = 'Error message: '.$error_message;
+      $headers = array( 'Content-Type: text/html; charset=UTF-8' );
+
+      wp_mail( $to, $subject, $body, $headers );
+    }
+  }
+
+  // Lab Space form
+  if ($contact_form->id == "21978") {
+
+    $body = array(
+      'oid' => $org_id,
+      'recordType' => '012360000012V2H',
+      'retURL' => '/',
+      'first_name' => $form_data['first-name'],
+      'last_name' => $form_data['last-name'],
+      'phone' => $form_data['phone'],
+      'email' => $form_data['email'],
+      'company' => $form_data['company'],
+      'URL' => $form_data['website'],
+      'employees' => $form_data['employees'],
+      'description' => $form_data['description'],
+      '00N3600000RssNh' => date('m/d/Y', strtotime($form_data['date'])),
+      '00N3600000TXRN9' => $form_data['type-of-space'][0],
+      '00N3600000RssNi' => $form_data['lab-space'],
+      '00N3600000PHmPC' => $form_data['office-space'],
+      '00N3600000TXRNE' => $form_data['special-needs'],
+    );
+
+    $params = array(
+      'headers' => array(
+        'Content-Type' => 'application/x-www-form-urlencoded'
+      ),
+      'body' => $body
+    );
+
+    error_log(print_r($params, true));
+
+    $response = wp_remote_post( $url,  $params );
+
+    error_log(print_r($response, true));
+
+    if ( is_wp_error( $response ) ) {
+      $error_message = $response->get_error_message();
+
+      $to = 'admin@unitymakes.us';
+      $subject = 'CF7 #21978 -> Salesforce POST Failed';
       $body = 'Error message: '.$error_message;
       $headers = array( 'Content-Type: text/html; charset=UTF-8' );
 
