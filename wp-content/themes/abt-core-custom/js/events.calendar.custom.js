@@ -24,12 +24,20 @@ var AbtEventsCalendar =
                 // Merge defaults
                 opts = $.extend(defaultOptions, opts);
 
+                // Set up timezone
+                var today = new Date(Date.now()),
+                    zoneH = parseInt(today.getTimezoneOffset() / 60),
+                    zoneM = parseInt(today.getTimezoneOffset() % 60),
+                    zoneS = (zoneH < 0 ? '+' : '-') + (Math.abs(zoneH) < 10 ? '0' + Math.abs(zoneH) : Math.abs(zoneH)) + ':' +
+                    (Math.abs(zoneM) < 10 ? '0' + Math.abs(zoneM) : Math.abs(zoneM));
+
                 // Setup calendar
                 var cal =
                         $('#calendar').calendario({
                             onDayClick : function($el, $contentEl, dateProperties) {},
                             caldata : data,
-                            startIn : 0
+                            startIn : 0,
+                            zone    : zoneS
                         }),
                     $month = opts.monthElem.html(cal.getMonthName()),
                     $year  = opts.yearElem.html(cal.getYear());
