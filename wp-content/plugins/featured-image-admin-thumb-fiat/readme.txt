@@ -4,8 +4,8 @@ Donate link: https://www.seanhayes.biz/
 Tags: post-thumbnail, thumbnail, admin, image, featured, featured image, featured thumbnail, featured admin thumbnail
 Requires at least: 3.5.1
 Requires PHP: 7.0
-Tested up to: 4.9.6
-Stable tag: 1.5.0
+Tested up to: 4.9.8
+Stable tag: 1.5.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -64,6 +64,13 @@ During testing I found that if a post has a featured image assigned but does not
 6. Shows the thumb column when sorted descending
 
 == Changelog ==
+
+1.5.2 (2018-09-26)
+* Addresses an issue where in Excerpt view where the displayed thumbnail did not represent the thumbnail in the post. Switching to List view, however, the thumbnail showed correctly.
+* Fix for support request [odd thumb behavior in excerpt view:](https://wordpress.org/support/topic/odd-thumb-behavior-in-excerpt-view/)
+
+1.5.1 (2018-08-31)
+* Add thumb column to EDD Downloads. Use filter (documented in 1.4.2 release) if you want to exclude thumb column in EDD Downloads. Code linting.
 
 1.5.0 (2018-06-21)
 * Ability to sort featured image thumbnail column. You can easily see the content that has a featured image, displays no featured image or has no featured image assigned to it.

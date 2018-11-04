@@ -3,7 +3,7 @@
 namespace SecuritySafe;
 
 // Prevent Direct Access
-if ( ! defined( 'WPINC' ) ) { die; }
+if ( ! defined( 'ABSPATH' ) ) { die; }
 
 /**
  * Class Plugin - Main class for plugin
@@ -22,7 +22,7 @@ class Plugin {
      * Toggle testing mode on/off.
      * @var boolean
      */
-    protected $debug;
+    protected $debug = false;
 
 
     /**
@@ -58,19 +58,13 @@ class Plugin {
      */
 	function __construct( $plugin = false ) {
 
-        // Testing Plugin
-        $this->debug = false;
-
         // Get value once
         $this->logged_in = is_user_logged_in();
 
         // Set Plugin Information
-        $this->plugin = ( is_array( $plugin ) ) ? $plugin : exit;
+        $this->plugin = $plugin;
 
         $this->log( 'running __construct() plugin.php' );
-
-        // Set Pro Variable
-        $this->pro = ( $this->check_pro() ) ? true : false;
 
         // Add Text Domain For Translations
         load_plugin_textdomain( 'security-safe', false, $this->plugin['dir_lang'] );
@@ -218,75 +212,8 @@ class Plugin {
 
         } // ! $initial
 
-        // Privacy ---------------------------------|
-        $privacy = array();
-        $privacy['on'] = '1';
-        $privacy['wp_generator'] = '1';
-        $privacy['hide_script_versions'] = '0';
-        $privacy['http_headers_useragent'] = '0';
-
-        // Files -----------------------------------|
-        $files = array();
-        $files['on'] = '1';
-        $files['DISALLOW_FILE_EDIT'] = '1';
-        $files['version_files_core'] = '0';
-        $files['version_files_plugins'] = '0';
-        $files['version_files_themes'] = '0';
-        $files['allow_dev_auto_core_updates'] = '0';
-        $files['allow_major_auto_core_updates'] = '0';
-        $files['allow_minor_auto_core_updates'] = '1';
-        $files['auto_update_plugin'] = '0';
-        $files['auto_update_theme'] = '0';
-        $files['version_files_core'] = '0';
-        $files['version_files_plugins'] = '0';
-        $files['version_files_themes'] = '0';
-
-        // Content ---------------------------------|
-        $content = array();
-        $content['on'] = '1';
-        $content['disable_text_highlight'] = '0';
-        $content['disable_right_click'] = '0';
-        $content['hide_password_protected_posts'] = '0';
-
-        // Access ----------------------------------|
-        $access = array();
-        $access['on'] = '1';
-        $access['xml_rpc'] = '0';
-        $access['login_errors'] = '1';
-        $access['login_password_reset'] = '0';
-        $access['login_remember_me'] = '0';
-        $access['login_local'] = '0';
-
-        // Firewall --------------------------------|
-        $firewall = array();
-        $firewall['on'] = '1';
-
-        // Backups ---------------------------------|
-        $backups = array();
-        $backups['on'] = '1';
-
-        // General Settings ------------------------|
-        $general = array();
-        $general['on'] = '1';
-        $general['security_level'] = '1';
-        $general['cleanup'] = '0';
-        $general['cache_busting'] = '1';
-
-        // Plugin Version Tracking -----------------|
-        $plugin = array();
-        $plugin['version'] = $this->plugin['version'];
-        $plugin['version_history'] = $plugin_history;
-
-        // Set everything in the $settings array
-        $settings = array();
-        $settings['privacy'] = $privacy;
-        $settings['files'] = $files;
-        $settings['content'] = $content;
-        $settings['access'] = $access;
-        $settings['firewall'] = $firewall;
-        $settings['backups'] = $backups;
-        $settings['general'] = $general;
-        $settings['plugin'] = $plugin;
+        // Get Minimum Settings
+        $settings = $this->get_settings_min( $plugin_history );
 
         $result = $this->set_settings( $settings );
 
@@ -428,7 +355,7 @@ class Plugin {
 
                     unset( $new_settings[ $label ] );
 
-                } elseif ( !isset( $new_settings[ $label ] ) && $options[ $label ] != '0' ) {
+                } elseif ( ! isset( $new_settings[ $label ] ) && $options[ $label ] != '0' ) {
                     
                     // Set Value To Default
                     $options[ $label ] = '0';
@@ -492,34 +419,95 @@ class Plugin {
     } // post_settings()
 
     /**
-     * Returns status of Pro version
-     * @since  1.1.4
-     * @return boolean
+     * Retrieves the minimun standard settings. Also used as a template for importing settings.
+     * @since  1.2.0
      */ 
-    public function is_pro() {
+    protected function get_settings_min( $plugin_history ) {
 
-        $this->log( 'Running is_pro().' );
+        // Privacy ---------------------------------|
+        $privacy = array(
+                        'on' => '1',                                // Toggle on/off all privacy policies.
+                        'wp_generator' => '1',
+                        'wp_version_admin_footer' => '0',
+                        'hide_script_versions' => '0',
+                        'http_headers_useragent' => '0',
+                    );
 
-        return $this->pro;
+        // Files -----------------------------------|
+        $files = array(
+                        'on' => '1',                                // Toggle on/off all file policies.
+                        'DISALLOW_FILE_EDIT' => '1',
+                        'version_files_core' => '0',
+                        'version_files_plugins' => '0',
+                        'version_files_themes' => '0',
+                        'allow_dev_auto_core_updates' => '0',
+                        'allow_major_auto_core_updates' => '0',
+                        'allow_minor_auto_core_updates' => '1',
+                        'auto_update_plugin' => '0',
+                        'auto_update_theme' => '0',
+                        'version_files_core' => '0',
+                        'version_files_plugins' => '0',
+                        'version_files_themes' => '0',
+                    );
 
-    } // is_pro()
+        // Content ---------------------------------|
+        $content = array(
+                        'on' => '1',                                // Toggle on/off all content policies.
+                        'disable_text_highlight' => '0',
+                        'disable_right_click' => '0',
+                        'hide_password_protected_posts' => '0',
+                    );
 
+        // Access ----------------------------------|
+        $access = array(
+                        'on' => '1',                                // Toggle on/off all access policies.
+                        'xml_rpc' => '0',
+                        'login_errors' => '1',
+                        'login_password_reset' => '0',
+                        'login_remember_me' => '0',
+                        'login_local' => '0',
+                    );
 
-    /**
-     * Detects whether the Pro version is installed
-     * @since  1.1.4
-     * @return boolean
-     */ 
-    private function check_pro() {
+        // Firewall --------------------------------|
+        $firewall = array(
+                        'on' => '1',                                // Toggle on/off all firewall rules.
+                    );
 
-        $this->log( 'Running check_pro().' );
+        // Backups ---------------------------------|
+        $backups = array(
+                        'on' => '1',                                // Toggle on/off all backup features.
+                    );
 
-        $plugin = $this->plugin['slug_pro'] . '/' . $this->plugin['file_pro'];
-        $active = apply_filters( 'active_plugins', get_option('active_plugins') );
+        // General Settings ------------------------|
+        $general = array(
+                        'on' => '1',                                // Toggle on/off all policies in the plugin.
+                        'security_level' => '1',                    // This is not used yet. Intended as preset security levels for faster configurations.
+                        'cleanup' => '0',                           // Remove Settings When Disabled
+                        'cache_busting' => '1',                     // Bust cache when removing versions from JS & CSS files
+                    );
 
-        return in_array( $plugin, $active );
+        // Plugin Version Tracking -----------------|
+        $plugin = array(
+                        'version' => $this->plugin['version'],
+                        'version_history' => $plugin_history,
+                    );
 
-    } // check_pro()
+        // Memory Cleanup
+        unset( $plugin_history );
+
+        // Set everything in the $settings array
+        return array(
+                        'privacy' => $privacy,
+                        'files' => $files,
+                        'content' => $content,
+                        'access' => $access,
+                        'firewall' => $firewall,
+                        'backups' => $backups,
+                        'general' => $general,
+                        'plugin' => $plugin,
+                    );
+
+    } // get_settings_min()
 
 
     /**
@@ -564,12 +552,22 @@ class Plugin {
         // Initialize Plugin
         $init = __NAMESPACE__ . '\\';
         $init .= ( $admin_user ) ? 'Admin' : 'Security';
+
+        // Load Security Policies
+        require_once( __DIR__ . '/Security.php' );
+
+        if ( $admin_user ) {
+
+            // Load Admin
+            require_once( dirname( __DIR__ ) . '/admin/Admin.php' );
+
+        }
         
         // Pass Plugin Variables
         $SecuritySafe = new $init( $SecuritySafe );
 
         // Memory Cleanup
-        unset( $init, $plugin );
+        unset( $init, $admin_user );
 
     } // init()
 
@@ -584,25 +582,22 @@ class Plugin {
 
         if( isset( $this->settings['general']['cleanup'] ) && $this->settings['general']['cleanup'] == '1' ) {
 
-            $delete = $this->delete_settings();
+            $this->delete_settings();
 
         } // isset()
 
     } // disable_plugin()
 
+
     /**
      * Get cache_buster value from database
      * @return int
      */ 
-    function get_cache_busting() {
+    public function get_cache_busting() {
 
         $this->log( 'Running get_cache_busting().' );
 
-        $settings = $this->settings;
-
-        $cache_busting = ( isset( $settings['general']['cache_busting'] ) ) ? (int) $settings['general']['cache_busting'] : $this->increase_cache_busting(true);
-
-        return $cache_busting;
+        return ( isset( $this->settings['general']['cache_busting'] ) ) ? (int) $this->settings['general']['cache_busting'] : $this->increase_cache_busting(true);
 
     } // get_cache_busting()
 
@@ -621,7 +616,7 @@ class Plugin {
         $cache_busting = ( isset( $settings['general']['cache_busting'] ) && $settings['general']['cache_busting'] > 0 ) ? (int) $settings['general']['cache_busting'] : 0;
 
         // Increase Value
-        $settings['general']['cache_busting'] = ( $settings['general']['cache_busting'] > 99 ) ? 1 : $cache_busting + 1; //Increase value
+        $settings['general']['cache_busting'] = ( $cache_busting > 99 ) ? 1 : $cache_busting + 1; //Increase value
 
         $result = $this->set_settings( $settings );
 
@@ -637,6 +632,31 @@ class Plugin {
 
     } // increase_cache_busting()
 
+    
+    /**
+     * Clears Cached PHP Functions 
+     * @since 1.1.13
+     */
+    static function clear_php_cache() {
+        
+        if ( version_compare( PHP_VERSION, '5.5.0', '>=' ) ) {
+
+            if ( function_exists('opcache_reset') ) { 
+
+                opcache_reset(); 
+            }
+
+        } else {
+
+            if ( function_exists('apc_clear_cache') ) { 
+
+                apc_clear_cache();
+            }
+
+        } // PHP_VERSION
+
+    } // clear_php_cache()
+
 
     /**
      * Writes to debug.log for troubleshooting
@@ -646,45 +666,17 @@ class Plugin {
      * @return void
      * @since 0.1.0
      */
-     function log( $message, $file = false, $line = false ) {
+     function log( $message = false, $file = false, $line = false ) {
 
-        // Name of log file
-        $filename = 'debug.log';
+        if ( ! $this->debug ) { return; }
 
-        // Log message in the log file
-        $activity_log_path = $this->plugin['dir'] . '/' . $filename;
+        $message = ( $message ) ? $message : 'Error: Log Message not defined!';
+        $message .= ( $file && $line ) ? ' - ' . 'Occurred on line ' . $line . ' in file ' . $file : '';
 
-        if ( $this->debug ) {
-
-            $datestamp = date( 'Y-M-j h:m:s' );
-            $message = ( $message ) ? $message : 'Error: Log Message not defined!';
-
-            if ( $file && $line ) {
-
-                $message .= ' - ' . 'Occurred on line ' . $line . ' in file ' . $file;
-
-            } // $file
-
-            $activity_log = $datestamp . " - " . $message . "\n";
-
-            error_log( $activity_log, 3, $activity_log_path );
-
-            // Memory Cleanup
-            unset( $activity_log_path, $datestamp, $message, $file, $line, $activity_log );
-
-        } else {
-
-            // Detect File Then Delete It
-            if ( file_exists( $activity_log_path ) ) {
-
-                unlink( $activity_log_path );
-
-            } // file_exists()
-            
-        } // $this->debug
+        error_log( date( 'Y-M-j h:m:s' ) . " - " . $message . "\n", 3, $this->plugin['dir'] . '/debug.log' );
 
         // Memory Cleanup
-        unset( $filename );
+        unset( $message, $file, $line );
 
     } // log()
 

@@ -487,7 +487,7 @@ if ( $custom_taxonomies_terms ) {
 <?php 
 submit_button( __( 'Add rule', 'quick-featured-images' ), 'secondary', 'add_rule_button' );
 submit_button( $button_label );
-wp_nonce_field( 'save_default_images', 'knlk235rf' );
+wp_nonce_field( $this->main_function_name, $this->nonce );
 ?>
 	<input type="hidden" id="placeholder_url" name="placeholder_url" value="<?php echo $no_thumb_url; ?>" />
 	<input type="hidden" id="confirmation_question" name="confirmation_question" value="<?php esc_attr_e( 'Are you sure to remove this rule?', 'quick-featured-images' ); ?>" />

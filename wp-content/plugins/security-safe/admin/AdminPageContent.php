@@ -3,7 +3,7 @@
 namespace SecuritySafe;
 
 // Prevent Direct Access
-if ( ! defined( 'WPINC' ) ) { die; }
+if ( ! defined( 'ABSPATH' ) ) { die; }
 
 /**
  * Class AdminPageContent
@@ -52,9 +52,9 @@ class AdminPageContent extends AdminPage {
         $classes = '';
         
         // Copyright Protection
-        $html .= $this->form_section( 'Copyright Protection', 'Copyright protection is meant deter the majority of users from copying your content. These settings do not affect the admin area.' );
+        $html .= $this->form_section( 'Copyright Protection', 'Copyright protection is meant to deter the majority of users from copying your content. These settings do not affect the admin area.' );
         $rows = $this->form_checkbox( $this->settings, 'Highlight Text', 'disable_text_highlight', 'Disable Text Highlighting', 'Prevent users from highlighting your content text.' );
-        $rows .= $this->form_checkbox( $this->settings, 'Right Click', 'disable_right_click', 'Disable Right Click', 'Prevent users from right clicking on your site to save images or copy text.' );
+        $rows .= $this->form_checkbox( $this->settings, 'Right-Click', 'disable_right_click', 'Disable Right-Click', 'Prevent users from right-clicking on your site to save images or copy text.' );
         $html .= $this->form_table( $rows );
 
         // Password Protection

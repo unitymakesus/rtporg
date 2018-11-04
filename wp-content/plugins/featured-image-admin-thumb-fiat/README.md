@@ -52,6 +52,13 @@ After checking that the plugin is enabled, be sure to click Screen Options if yo
 ### Changelog
 == Changelog ==
 
+#### 1.5.2 (2018-09-26) ####
+* Addresses an issue where in Excerpt view where the displayed thumbnail did not represent the thumbnail in the post. Switching to List view, however, the thumbnail showed correctly.
+* Fix for support request [odd thumb behavior in excerpt view:](https://wordpress.org/support/topic/odd-thumb-behavior-in-excerpt-view/)
+
+#### 1.5.1 (2018-08-31) ####
+* Add thumb column to EDD Downloads. Use filter (documented in 1.4.2 release) if you want to exclude thumb column in EDD Downloads. Code linting.
+
 #### 1.5.0 (2018-06-21) ####
 * Ability to sort thumbnail column. You can easily see the content that has a thumbnail, displays no thumbnail or has no thumbnail assigned to it.
 

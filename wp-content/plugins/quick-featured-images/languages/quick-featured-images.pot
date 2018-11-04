@@ -5,13 +5,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Quick Featured Images\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/plugins/quick-featured-images\n"
-"POT-Creation-Date: 2017-12-07 00:15+0100\n"
+"POT-Creation-Date: 2018-07-23 23:35+0200\n"
 "PO-Revision-Date: 2017-07-06 23:17+0200\n"
 "Language-Team: Martin Stehle <m.stehle@gmx.de>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.4\n"
+"X-Generator: Poedit 2.0.9\n"
 "X-Poedit-KeywordsList: __;_e;_n;_x;esc_html_e;esc_html__;esc_attr_e;"
 "esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_x:1,2c;_n:1,2\n"
 "X-Poedit-Basepath: ..\n"
@@ -57,19 +57,11 @@ msgstr ""
 msgid "Set image for &#8220;%s&#8221;"
 msgstr ""
 
-#: admin/class-quick-featured-images-defaults.php:213
-msgid "Changes saved."
-msgstr ""
-
-#: admin/class-quick-featured-images-defaults.php:216
-msgid "No changes were saved."
-msgstr ""
-
-#: admin/class-quick-featured-images-defaults.php:257
+#: admin/class-quick-featured-images-defaults.php:275
 msgid "Preset Featured Images"
 msgstr ""
 
-#: admin/class-quick-featured-images-defaults.php:268
+#: admin/class-quick-featured-images-defaults.php:286
 msgid "Set default featured images for future posts"
 msgstr ""
 
@@ -502,14 +494,14 @@ msgstr ""
 
 #: admin/views/form_select.php:77 admin/views/form_select.php:115
 #: admin/views/form_select.php:119 admin/views/form_start.php:113
-#: admin/views/section_defaults.php:520 admin/views/section_footer.php:59
+#: admin/views/section_defaults.php:520 admin/views/section_footer.php:58
 #: admin/views/section_overview.php:91
 msgid "Get the premium version"
 msgstr ""
 
 #: admin/views/form_select.php:77 admin/views/form_select.php:115
 #: admin/views/form_select.php:119 admin/views/form_start.php:113
-#: admin/views/section_defaults.php:520 admin/views/section_footer.php:59
+#: admin/views/section_defaults.php:520 admin/views/section_footer.php:58
 #: admin/views/section_overview.php:90 admin/views/section_overview.php:91
 msgid "/"
 msgstr ""
@@ -897,16 +889,12 @@ msgid ""
 msgstr ""
 
 #: admin/views/section_footer.php:57
-msgid "Special thanks for the fine frontend style of the plugin go to"
-msgstr ""
-
-#: admin/views/section_footer.php:58
 msgid ""
 "Let the thumbnails appear in the widget of the most recent posts with this "
 "fast plugin"
 msgstr ""
 
-#: admin/views/section_footer.php:58
+#: admin/views/section_footer.php:57
 #, php-format
 msgid "Download plugin %s at %s!"
 msgstr ""

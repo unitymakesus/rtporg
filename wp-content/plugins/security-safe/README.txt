@@ -1,9 +1,9 @@
 === Security Safe ===
-Contributors: sovstack, cfullsteam
+Contributors: sovstack, freemius
 Tags: security, wp security, privacy, security audit, file permissions, brute force login
-Requires at least: 4
+Requires at least: 3.5
 Requires PHP: 5.3
-Tested up to: 4.9.6
+Tested up to: 4.9.8
 Stable tag: trunk
 
 A plugin to quickly implement WordPress hardening and security techniques.
@@ -46,6 +46,36 @@ Features:
 6. Content Settings
 
 == Changelog ==
+
+= 1.2.1 (Medium Priority) =
+*Release Date - 24 September 2018*
+* Bug Fix: WP-CLI does not properly set variables and causes fatal error when attemptimg to load plugin. Thank you Brian Medlin.
+
+= 1.2.0 (High Priority) =
+*Release Date - 22 September 2018*
+* Improvement: Automatically display file permission issues at the top of the list of files.
+* Improvement: Removed Composer autoloading to increase efficiency
+* Improvement: Reduced PHP memory usage to increase performance
+* Improvement: Added Freemius integration
+* Improvement: Updated PHP version checks
+* Improvement: Minor UI styling
+* Bug Fix: UI Styling issues in WP 3.5
+* Bug Fix: Some WP-CLI commands return blank responses due to plugin killing PHP process. Thank you Brian Medlin for the discovery.
+* Added Feature: Remove WP Version in wp-admin
+* Pro: Added Feature: Import / Export Settings
+* Pro: Added Feature: Automatic fix plugin permissions on plugin updates.
+* Pro: Added Feature: Automatic fix theme permissions on theme updates.
+* Pro: Added Feature: Automatically hide files with permissions that cannot be changed.
+* Compatibility testing with WordPress version 3.5
+* Tested up to: 4.9.8
+
+= 1.1.13 (Low Priority) =
+*Release Date - 17 August 2018*
+
+* Bug Fix: Individual policy disabled notice was visible when all notices were disabled.
+* Added Feature: Clear PHP Cache Before Updates
+* Improvement: Updated descriptions of features in settings.
+* Improvement: Updated PHP version checks.
 
 = 1.1.12 (Low Priority) =
 *Release Date - 4 July 2018*

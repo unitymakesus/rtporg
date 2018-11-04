@@ -3,7 +3,7 @@
 namespace SecuritySafe;
 
 // Prevent Direct Access
-if ( ! defined( 'WPINC' ) ) { die; }
+if ( ! defined( 'ABSPATH' ) ) { die; }
 
 /**
  * Class AdminPagePrivacy
@@ -21,7 +21,7 @@ class AdminPagePrivacy extends AdminPage {
 
         $this->slug = 'security-safe-privacy';
         $this->title = 'Privacy';
-        $this->description = "Anomynity is one of your basic rights. Embody it in principle.";
+        $this->description = "Anonymity is one of your fundamental rights. Embody it in principle.";
 
         $this->tabs[] = array(
             'id' => 'settings',
@@ -53,7 +53,10 @@ class AdminPagePrivacy extends AdminPage {
             
             // WordPress Version
             $classes = '';
-            $rows = $this->form_checkbox( $this->settings, 'WordPress Version', 'wp_generator', 'Hide WordPress Version', 'WordPress leaves a little public footprints on your site in multiple places. This feature removes the WordPress version from the generator tag and RSS feed.', $classes, false );
+            $rows = $this->form_checkbox( $this->settings, 'WordPress Version', 'wp_generator', 'Hide WordPress Version Publicly', 'WordPress leaves little public footprints about the version of your site in multiple places visible to the public. This feature removes the WordPress version from the generator tag and RSS feed.', $classes, false );
+            
+            $classes = '';
+            $rows .= $this->form_checkbox( $this->settings, '', 'wp_version_admin_footer', 'Hide WordPress Version in Admin Footer', 'WordPress places the version number at the bottom of the WP-Admin screen.', $classes, false );
             
             // Script Versions
             $classes = '';
@@ -67,7 +70,7 @@ class AdminPagePrivacy extends AdminPage {
             
             // Website Information
             $classes = '';
-            $rows = $this->form_checkbox( $this->settings, 'Website Information', 'http_headers_useragent', 'Make Website Anonymous', 'When checking for updates, WordPress gets access to your current version and your website url. The default info looks like this: "WordPress/X.X; http://www.example.com" This feature removes your url address from the information sent.', $classes, false );
+            $rows = $this->form_checkbox( $this->settings, 'Website Information', 'http_headers_useragent', 'Make Website Anonymous', 'When checking for updates, WordPress gets access to your current version and your website URL. The default info looks like this: "WordPress/X.X; http://www.example.com" This feature removes your URL address from the information sent.', $classes, false );
         
         $html .= $this->form_table( $rows );
 

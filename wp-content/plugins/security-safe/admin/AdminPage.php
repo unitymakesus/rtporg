@@ -3,7 +3,7 @@
 namespace SecuritySafe;
 
 // Prevent Direct Access
-if ( ! defined( 'WPINC' ) ) { die; }
+if ( ! defined( 'ABSPATH' ) ) { die; }
 
 /**
  * Class AdminPage
@@ -387,18 +387,35 @@ class AdminPage {
 
     } //row_label()
 
+    /** 
+     * Creates a File Upload Field
+     */
+    protected function form_file_upload( $text, $name, $long_desc = '', $classes = '' ) {
+
+        $html = '<tr class="form-file-upload '. $classes .'">';
+        $html .= '<div class="file-upload-wrap cf"><label>' . $text . '</label><input name="' . $name . '" id="' . $name . '" type="file">';
+        $html .= '</div></tr>';
+
+        return $html;
+
+    } // form_file_upload()
+
     /**
      * Creates Table Row For A Button
      * @since  0.3.0
      */ 
-    protected function form_button( $text, $type, $value, $long_desc = false, $classes = '' ) {
+    protected function form_button( $text, $type, $value, $long_desc = false, $classes = '', $label = true, $name = false ) {
 
         $html = '<tr class="form-button '. $classes .'">';
+        
+        if ( $label ) {
+
+            $html .= $this->row_label( $text );
             
-        $html .= $this->row_label( $text );
-            
+        }
+
         $html .= '<td>';
-        $html .= $this->button( $text, $type, $value );
+        $html .= $this->button( $text, $type, $value, $name );
 
         if ( $long_desc ) {
 
@@ -421,11 +438,12 @@ class AdminPage {
      * Return HTML for Submit Button
      * @since  0.3.0
      */ 
-    protected function button( $text = 'Save Changes', $type = 'submit', $value = false ) {
+    protected function button( $text = 'Save Changes', $type = 'submit', $value = false, $name = false ) {
 
         // Default Values
         $text = __( $text, 'security-safe' );
         $value = ( $value ) ? __( $value, 'security-safe' ) : $text;
+        $name = ( $name ) ? __( $name, 'security-safe' ) : $type;
 
         $html = '<p class="' . $type . '">';
         $classes = 'button ';
@@ -433,7 +451,7 @@ class AdminPage {
         if ( $type == 'submit' ) {
 
             $classes .= 'button-primary';
-            $html .= '<input type="' . $type . '" name="' . $type . '" id="' . $type . '" class="' . $classes . '" value="' . $value . '" />';
+            $html .= '<input type="' . $type . '" name="' . $name . '" id="' . $type . '" class="' . $classes . '" value="' . $value . '" />';
         
         } elseif ( $type == 'link' ) {
 
@@ -486,18 +504,6 @@ class AdminPage {
         } // ! empty()
 
     } // display_messages()
-
-    /**
-     * Wrapper for the main object is_pro() function
-     * @return boolean
-     */
-    protected function is_pro() {
-
-        global $SecuritySafe;
-
-        return $SecuritySafe->is_pro();
-
-    } // is_pro()
     
 
 } // Admin()

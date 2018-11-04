@@ -98,7 +98,7 @@ class Quick_Featured_Images_Defaults {
 	 *
 	 * @var      string
 	 */
-	protected $qfip_defaults_db_slug = 'quick-featured-images-defaults';
+	protected $defaults_db_slug = 'quick-featured-images-defaults';
 
 	/**
 	 * Slug of the menu page on which to display the form sections
@@ -114,7 +114,7 @@ class Quick_Featured_Images_Defaults {
 	 * Unique identifier in the WP options table for the plugin's settings
 	 *
 	 *
-	 * @since    5.0 pro
+	 * @since    5.0
 	 *
 	 * @var      string
 	 */
@@ -139,6 +139,24 @@ class Quick_Featured_Images_Defaults {
 	 */
 	protected $selected_rules = null;
 
+	/**
+	 * Value of the nonce
+	 *
+	 * @since     13.4
+	 *
+	 * @var      string
+	 */
+	protected $nonce = 'kds94kek93ks90';
+	
+	/**
+	 * Name of the main function
+	 *
+	 * @since     13.4
+	 *
+	 * @var      string
+	 */
+	protected $main_function_name = 'qfi_main';
+	
 	/**
 	 * Initialize the plugin by loading admin scripts & styles and adding a
 	 * settings page and menu.
@@ -200,23 +218,23 @@ class Quick_Featured_Images_Defaults {
 	 *
 	 * @since    8.0
 	 */
-	public function main() {
+	public function qfi_main() {
 		$this->display_header();
 		// store user selections
 		if ( ! empty( $_POST ) ) {
 			// verify allowed submission
-			check_admin_referer( 'save_default_images', 'knlk235rf' );
+			check_admin_referer( $this->main_function_name, $this->nonce );
 			// sanitze user input
 			$settings = $this->sanitize_options( $_POST );
 			// store in db
-			if ( update_option( $this->qfip_defaults_db_slug, $settings ) ) {
-				$msg = __( 'Changes saved.', 'quick-featured-images' );
+			if ( update_option( $this->defaults_db_slug, $settings ) ) {
+				$msg = 'Changes saved.';
 				$class = 'updated';
 			} else {
-				$msg = __( 'No changes were saved.', 'quick-featured-images' );
+				$msg = 'Error while saving the changes.';
 				$class = 'error';
 			}
-			printf ( '<div class="%s"><p><strong>%s</strong></p></div>', $class, esc_html( $msg ) );
+			printf ( '<div class="%s"><p><strong>%s</strong></p></div>', $class, esc_html__( $msg ) );
 		} // if $_POST
 		// get rules
 		$this->selected_rules = $this->get_stored_settings();
@@ -351,7 +369,7 @@ class Quick_Featured_Images_Defaults {
 			$label, // menu_title
 			$this->required_user_cap, // capability to use the following function
 			$this->page_slug, // menu_slug
-			array( $this, 'main' ) // function to execute when loading this page
+			array( $this, $this->main_function_name ) // function to execute when loading this page
 		);
 
 	}
@@ -602,7 +620,7 @@ class Quick_Featured_Images_Defaults {
 		// store
 		if ( $changed ) {
 			// store in db
-			update_option( $this->qfip_defaults_db_slug, $settings );
+			update_option( $this->defaults_db_slug, $settings );
 		} // if ( changed )
 	}
 	
@@ -647,10 +665,10 @@ class Quick_Featured_Images_Defaults {
 	private function set_default_settings() {
 
 		// check if there are already stored settings under the option's database slug
-		if ( false === get_option( $this->qfip_defaults_db_slug ) ) {
+		if ( false === get_option( $this->defaults_db_slug ) ) {
 			// store default values in the db as a single and serialized entry
 			add_option( 
-				$this->qfip_defaults_db_slug, 
+				$this->defaults_db_slug, 
 				array()
 			);
 		} // if ( false )
@@ -714,12 +732,12 @@ class Quick_Featured_Images_Defaults {
 	 */
 	private function get_stored_settings() {
 		// try to load current settings. If they are not in the DB return set default settings
-		$stored_settings = get_option( $this->qfip_defaults_db_slug, array() );
+		$stored_settings = get_option( $this->defaults_db_slug, array() );
 		// if empty array set and store default values
 		if ( 0 == sizeof( $stored_settings ) ) {
 			$this->set_default_settings();
 			// try to load current settings again. Now there should be the data
-			$stored_settings = get_option( $this->qfip_defaults_db_slug, array() );
+			$stored_settings = get_option( $this->defaults_db_slug, array() );
 		}
 
 		return $this->sanitize_options( $stored_settings );
