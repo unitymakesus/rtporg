@@ -78,7 +78,7 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
                                 <?php next_post_link('%link', 'Next Article &#8594;'); ?>
                             </div>
                             <section class="newsletter-signup">
-                                <?php gravity_form( 16, true, true, false, false, true, 1, true ); ?>
+                                <?php do_shortcode("[mc4wp_form id="17597"]"); ?>
                             </section>
                         </div>
                     <?php endif; ?>
