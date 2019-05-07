@@ -51,7 +51,7 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
                     <?php next_post_link('%link', 'Next Article &#8594;'); ?>
                 </div>
                 <section class="newsletter-signup">
-                    <?php do_shortcode("[mc4wp_form id="17597"]"); ?>
+                    <?php echo do_shortcode('[mc4wp_form id="17597"]'); ?>
                 </section>
             </div>
             <aside class="aside">
