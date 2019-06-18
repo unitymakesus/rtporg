@@ -10,7 +10,7 @@
     <h2>Browse STEM in the Park <img class="svg" src="<?php echo $theme_dir; ?>/img/icons/i_expand.svg" /></h2>
     <?php
     wp_nav_menu(array(
-      'menu' => 'STEM in the Park',
+      'menu' => 'STEM RTP',
       'container'      => false,
       'walker'         => $walker
     ));
