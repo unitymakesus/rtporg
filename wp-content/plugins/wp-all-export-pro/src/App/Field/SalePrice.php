@@ -34,9 +34,14 @@ class SalePrice extends Field
         $rawPrices = false;
         $rawPrices = apply_filters('wp_all_export_raw_prices', $rawPrices);
 
-        if(!$rawPrices) {
-            if ($price) {
-                return number_format($price, 2) . ' ' . $availabilityPriceData['currency'];
+        if(!$rawPrices){
+            if($price) {
+                if(is_numeric($price)){
+                    return number_format($price, 2) .' '.$availabilityPriceData['currency'];
+                } else {
+                    return $price.' '.$availabilityPriceData['currency'];
+                }
+
             } else {
                 return "";
             }

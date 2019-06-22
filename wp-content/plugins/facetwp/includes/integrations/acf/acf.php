@@ -3,8 +3,8 @@
 class FacetWP_Integration_ACF
 {
 
-    public $fields = array();
-    public $parent_type_lookup = array();
+    public $fields = [];
+    public $parent_type_lookup = [];
     public $repeater_row;
     public $acf_version;
 
@@ -12,10 +12,10 @@ class FacetWP_Integration_ACF
     function __construct() {
         $this->acf_version = acf()->settings['version'];
 
-        add_filter( 'facetwp_facet_sources', array( $this, 'facet_sources' ) );
-        add_filter( 'facetwp_indexer_query_args', array( $this, 'lookup_acf_fields' ) );
-        add_filter( 'facetwp_indexer_post_facet', array( $this, 'index_acf_values' ), 1, 2 );
-        add_filter( 'facetwp_acf_display_value', array( $this, 'index_source_other' ), 1, 2 );
+        add_filter( 'facetwp_facet_sources', [ $this, 'facet_sources' ] );
+        add_filter( 'facetwp_indexer_query_args', [ $this, 'lookup_acf_fields' ] );
+        add_filter( 'facetwp_indexer_post_facet', [ $this, 'index_acf_values' ], 1, 2 );
+        add_filter( 'facetwp_acf_display_value', [ $this, 'index_source_other' ], 1, 2 );
     }
 
 
@@ -25,16 +25,20 @@ class FacetWP_Integration_ACF
     function facet_sources( $sources ) {
         $fields = $this->get_fields();
 
-        $sources['acf'] = array(
+        $sources['acf'] = [
             'label' => 'Advanced Custom Fields',
-            'choices' => array(),
+            'choices' => [],
             'weight' => 5
-        );
+        ];
 
         foreach ( $fields as $field ) {
             $field_id = $field['hierarchy'];
+            $field_name = $field['name'];
             $field_label = '[' . $field['group_title'] . '] ' . $field['parents'] . $field['label'];
             $sources['acf']['choices'][ "acf/$field_id" ] = $field_label;
+
+            // Remove "hidden" ACF fields
+            unset( $sources['custom_fields']['choices'][ "cf/_$field_name" ] );
         }
 
         return $sources;
@@ -119,7 +123,7 @@ class FacetWP_Integration_ACF
             return get_field_object( $selector, $post_id, false, false );
         }
         else {
-            return get_field_object( $selector, $post_id, array( 'load_value' => false ) );
+            return get_field_object( $selector, $post_id, [ 'load_value' => false ] );
         }
     }
 
@@ -130,11 +134,11 @@ class FacetWP_Integration_ACF
     function process_field_value( $value, $hierarchy, $parent_field_key ) {
 
         if ( ! is_array( $value ) ) {
-            return array();
+            return [];
         }
 
         // vars
-        $temp_val = array();
+        $temp_val = [];
         $parent_field_type = $this->parent_type_lookup[ $parent_field_key ];
 
         // reduce the hierarchy array
@@ -178,9 +182,10 @@ class FacetWP_Integration_ACF
      */
     function index_field_value( $value, $field, $params ) {
         $value = maybe_unserialize( $value );
+        $type = $field['type'];
 
         // checkboxes
-        if ( 'checkbox' == $field['type'] || 'select' == $field['type'] || 'radio' == $field['type'] ) {
+        if ( 'checkbox' == $type || 'select' == $type || 'radio' == $type ) {
             if ( false !== $value ) {
                 foreach ( (array) $value as $val ) {
                     $display_value = isset( $field['choices'][ $val ] ) ?
@@ -195,21 +200,27 @@ class FacetWP_Integration_ACF
         }
 
         // relationship
-        elseif ( 'relationship' == $field['type'] || 'post_object' == $field['type'] ) {
+        elseif ( 'relationship' == $type || 'post_object' == $type || 'page_link' == $type ) {
             if ( false !== $value ) {
                 foreach ( (array) $value as $val ) {
-                    $params['facet_value'] = $val;
-                    $params['facet_display_value'] = get_the_title( $val );
-                    FWP()->indexer->index_row( $params );
+
+                    // does the post exist?
+                    if ( false !== get_post_type( $val ) ) {
+                        $params['facet_value'] = $val;
+                        $params['facet_display_value'] = get_the_title( $val );
+                        FWP()->indexer->index_row( $params );
+                    }
                 }
             }
         }
 
         // user
-        elseif ( 'user' == $field['type'] ) {
+        elseif ( 'user' == $type ) {
             if ( false !== $value )  {
                 foreach ( (array) $value as $val ) {
                     $user = get_user_by( 'id', $val );
+
+                    // does the user exist?
                     if ( false !== $user ) {
                         $params['facet_value'] = $val;
                         $params['facet_display_value'] = $user->display_name;
@@ -220,13 +231,15 @@ class FacetWP_Integration_ACF
         }
 
         // taxonomy
-        elseif ( 'taxonomy' == $field['type'] ) {
+        elseif ( 'taxonomy' == $type ) {
             if ( ! empty( $value ) ) {
                 foreach ( (array) $value as $val ) {
                     global $wpdb;
 
                     $term_id = (int) $val;
                     $term = $wpdb->get_row( "SELECT name, slug FROM {$wpdb->terms} WHERE term_id = '$term_id' LIMIT 1" );
+
+                    // does the term exist?
                     if ( null !== $term ) {
                         $params['facet_value'] = $term->slug;
                         $params['facet_display_value'] = $term->name;
@@ -238,7 +251,7 @@ class FacetWP_Integration_ACF
         }
 
         // date_picker
-        elseif ( 'date_picker' == $field['type'] ) {
+        elseif ( 'date_picker' == $type ) {
             $formatted = $this->format_date( $value );
             $params['facet_value'] = $formatted;
             $params['facet_display_value'] = apply_filters( 'facetwp_acf_display_value', $formatted, $params );
@@ -246,15 +259,15 @@ class FacetWP_Integration_ACF
         }
 
         // true_false
-        elseif ( 'true_false' == $field['type'] ) {
-            $display_value = ( 0 < (int) $value ) ? __( 'Yes', 'fwp' ) : __( 'No', 'fwp' );
+        elseif ( 'true_false' == $type ) {
+            $display_value = ( 0 < (int) $value ) ? __( 'Yes', 'fwp-front' ) : __( 'No', 'fwp-front' );
             $params['facet_value'] = $value;
             $params['facet_display_value'] = $display_value;
             FWP()->indexer->index_row( $params );
         }
 
         // google_map
-        elseif ( 'google_map' == $field['type'] ) {
+        elseif ( 'google_map' == $type ) {
             if ( isset( $value['lat'] ) && isset( $value['lng'] ) ) {
                 $params['facet_value'] = $value['lat'];
                 $params['facet_display_value'] = $value['lng'];
@@ -328,9 +341,9 @@ class FacetWP_Integration_ACF
      */
     function get_acf_fields_v5() {
 
-        add_action( 'pre_get_posts', array( $this, 'disable_wpml' ) );
+        add_action( 'pre_get_posts', [ $this, 'disable_wpml' ] );
         $field_groups = acf_get_field_groups();
-        remove_action( 'pre_get_posts', array( $this, 'disable_wpml' ) );
+        remove_action( 'pre_get_posts', [ $this, 'disable_wpml' ] );
 
         foreach ( $field_groups as $field_group ) {
             $fields = acf_get_fields( $field_group );
@@ -353,10 +366,10 @@ class FacetWP_Integration_ACF
         include_once( dirname( __FILE__ ) . '/acf-field-group.php' );
         $class = new facetwp_acf_field_group();
 
-        $field_groups = $class->get_field_groups( array() );
+        $field_groups = $class->get_field_groups( [] );
 
         foreach ( $field_groups as $field_group ) {
-            $fields = $class->get_fields( array(), $field_group['id'] );
+            $fields = $class->get_fields( [], $field_group['id'] );
             $this->flatten_fields( $fields, $field_group );
         }
 
@@ -381,14 +394,14 @@ class FacetWP_Integration_ACF
                 $this->flatten_fields( $field['sub_fields'], $field_group, $new_hierarchy, $new_parents );
             }
             else {
-                $this->fields[] = array(
+                $this->fields[] = [
                     'key'           => $field['key'],
                     'name'          => $field['name'],
                     'label'         => $field['label'],
                     'hierarchy'     => trim( $new_hierarchy, '/' ),
                     'parents'       => $parents,
                     'group_title'   => $field_group['title'],
-                );
+                ];
             }
         }
     }

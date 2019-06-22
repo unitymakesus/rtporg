@@ -55,7 +55,7 @@
                 window.$pmxeBackupElement = $element;
 
                 //cc_label
-                $element.find('input[name="cc_label[]"]').val($('input.column_name').val());
+                $element.find('input[name="cc_label[]"]').val($('select[name=column_value_type]').find('option:selected').attr('label'));
                 //cc_php
                 $element.find('input[name="cc_php[]"]').val($('#coperate_php').is(':checked') ? '1' : '0');
                 //cc_code
@@ -179,7 +179,7 @@
                     });
                 }
             }
-            console.log(requestData);
+
             requestData = $.param(requestData);
 
             var request = {
@@ -279,7 +279,6 @@
             });
 
             $('.preview_action').unbind('click').click(function (event) {
-                console.log('Preview action');
                 if($('.column_name').val() == '') {
                     $('.column_name').addClass('error');
                     event.stopPropagation();

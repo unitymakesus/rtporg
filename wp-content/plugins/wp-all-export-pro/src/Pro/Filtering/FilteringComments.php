@@ -71,7 +71,7 @@ class FilteringComments extends FilteringBase
             case 'comment_agent':
             case 'comment_type':
             case 'comment_content':
-                $this->queryWhere .= "{$this->wpdb->users}.$rule->element " . $this->parse_condition($rule);
+                $this->queryWhere .= "{$this->wpdb->comments}.$rule->element " . $this->parse_condition($rule);
                 break;
             default:
                 if (strpos($rule->element, "cf_") === 0)

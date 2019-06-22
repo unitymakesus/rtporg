@@ -58,6 +58,10 @@ abstract class Field
                     $function = $this->quoteParams($function);
                     $functionName = explode("(", $function);
                     $functionName = $functionName[0];
+
+                    global $wpaeGoogleMerchantsFieldName;
+                    $wpaeGoogleMerchantsFieldName = $this->getFieldName();
+
                     if(function_exists($functionName)) {
                         $functionValue = eval('return '.$function.';');
                     } else {

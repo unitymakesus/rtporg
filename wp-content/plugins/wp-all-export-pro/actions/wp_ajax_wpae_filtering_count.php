@@ -60,10 +60,13 @@ function pmxe_wp_ajax_wpae_filtering_count(){
 	XmlExportEngine::$post_types = array($post['cpt']);
 	XmlExportEngine::$exportOptions['export_variations'] = empty($post['export_variations']) ? XmlExportEngine::VARIABLE_PRODUCTS_EXPORT_PARENT_AND_VARIATION : $post['export_variations'];
 
-	$filters = \Wpae\Pro\Filtering\FilteringFactory::getFilterEngine();
-	$filters->init($filter_args);
-	$filters->parse();
-
+	try {
+        $filters = \Wpae\Pro\Filtering\FilteringFactory::getFilterEngine();
+        $filters->init($filter_args);
+        $filters->parse();
+    } catch (\Wpae\App\Service\Addons\AddonNotFoundException $e) {
+	    die($e->getMessage());
+    }
 	PMXE_Plugin::$session->set('whereclause', $filters->get('queryWhere'));
 	PMXE_Plugin::$session->set('joinclause',  $filters->get('queryJoin'));
 	PMXE_Plugin::$session->save_data();		

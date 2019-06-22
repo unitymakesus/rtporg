@@ -28,29 +28,31 @@ class CombineFields
     {
         $combineFields = new CombineFields();
 
-        $quotedFunctions = array();
-
-        foreach ($functions as $function) {
-
-            $function = str_replace("\\", '', $function);
-            $function = str_replace('"', '', $function);
-            $function = str_replace("'", '', $function);
-            $function = str_replace(array('{'), '"{', $function);
-            $function = str_replace(array('}'), '}"', $function);
-
-            $quotedFunctions[] = $function;
-        }
-
-        foreach ($articleData as $key => $vl) {
-            $vl = str_replace("\"", self::DOUBLEQUOTES,$vl);
-            foreach ($quotedFunctions as &$quotedFunction) {
-                $quotedFunction = str_replace('{' . $key . '}', $vl, $quotedFunction);
-            }
-        }
-
         foreach ($functions as $key => $function) {
             if (!empty($function)) {
-                $combineMultipleFieldsValue = str_replace('[' . $function . ']', eval('return ' . $quotedFunctions[$key] . ';'), $combineMultipleFieldsValue);
+
+                $originalFunction = $function;
+
+                $function = str_replace('**OPENARR**', '[', $function);
+                $function = str_replace('**CLOSEARR**', ']', $function);
+
+                // Quick fix for refund id missing and not replaced in functions
+                if(strpos($function, "{Refund ID}") !== false ) {
+                    $function = str_replace("{Refund ID}","null", $function);
+                }
+
+                if(strpos($function, '{Rate Code (per tax)}')) {
+                    $function = str_replace('{Rate Code (per tax)}', '$articleData[\'Rate Code\']', $function);
+                }
+
+                if(strpos($function, '{Term ID}')) {
+                    $function = str_replace('{Term ID}', '$articleData[\'Term ID\']', $function);
+                }
+
+                $function = preg_replace('/\{(.*?)\}/i', "''", $function);
+
+                $combineMultipleFieldsValue = str_replace('[' . $originalFunction. ']', eval('return '.$function.';'), $combineMultipleFieldsValue);
+
             }
         }
 

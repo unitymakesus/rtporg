@@ -1,6 +1,8 @@
 <?php
 
 namespace Wpae\Pro\Filtering;
+use Wpae\App\Service\Addons\AddonNotFoundException;
+use Wpae\App\Service\Addons\AddonService;
 
 /**
  * Class FilteringFactory
@@ -10,14 +12,20 @@ class FilteringFactory
 {
     public static function getFilterEngine()
     {
+        $addonService = new AddonService();
+
         if (\XmlExportEngine::$is_comment_export) {
             return new FilteringComments();
         }
-        if (\XmlExportEngine::$is_user_export){
+        if (\XmlExportEngine::$is_user_export && $addonService->isUserAddonActive()){
             if (! empty(\XmlExportEngine::$post_types) and @in_array("shop_customer", \XmlExportEngine::$post_types)){
-                return new FilteringCustomers();
+                return new \FilteringCustomers();
             }
-            return new FilteringUsers();
+            return new \FilteringUsers();
+        } else if(\XmlExportEngine::$is_user_export && !$addonService->isUserAddonActive()) {
+
+            throw new AddonNotFoundException(\__('The User Export Add-On Pro is required to run this export. You can download the add-on here: <a href="http://www.wpallimport.com/portal/" target="_blank">http://www.wpallimport.com/portal/</a>', \PMXE_Plugin::LANGUAGE_DOMAIN));
+
         }
         if (\XmlExportEngine::$is_taxonomy_export){
             return new FilteringTaxonomies();

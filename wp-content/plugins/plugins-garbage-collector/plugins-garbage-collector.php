@@ -3,7 +3,7 @@
 Plugin Name: Plugins Garbage Collector
 Plugin URI: http://www.shinephp.com/plugins-garbage-collector-wordpress-plugin/
 Description: It scans your WordPress database and shows what various things old plugins which were deactivated, uninstalled) left in it. The list of additional database tables used by plugins with quant of records, size, and plugin name is shown.
-Version: 0.10.3
+Version: 0.10.4
 Author: Vladimir Garagulya
 Author URI: http://www.shinephp.com
 Text Domain: plugins-garbage-collector
@@ -44,7 +44,7 @@ if (version_compare($wp_version,"4.0","<")) {
 	return ($exit_msg);
 }
 
-define('PGC_VERSION', '0.10.3');
+define('PGC_VERSION', '0.10.4');
 define('PGC_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('PGC_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('PGC_PLUGIN_FILE', __FILE__);

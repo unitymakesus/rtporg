@@ -336,21 +336,6 @@ class WpaeXmlProcessor
 
     /**
      * @param $filtered
-     * @param $functionName
-     * @throws WpaeInvalidStringException
-     */
-    private function checkCorrectNumberOfQuotes($filtered, $functionName)
-    {
-        $numberOfSingleQuotes = substr_count($filtered, "'");
-        $numberOfDoubleQuotes = substr_count($filtered, "\"");
-
-        if ($numberOfSingleQuotes % 2 || $numberOfDoubleQuotes % 2) {
-            throw new WpaeInvalidStringException($functionName);
-        }
-    }
-
-    /**
-     * @param $filtered
      * @return mixed
      */
     private function sanitizeAttribute($filtered)
@@ -492,7 +477,6 @@ class WpaeXmlProcessor
         $sanitizedSnippet = str_replace(WpaeXmlProcessor::SNIPPET_DELIMITER, '"', $sanitizedSnippet);
         $functionName = $this->sanitizeFunctionName($sanitizedSnippet);
 
-        $this->checkCorrectNumberOfQuotes($sanitizedSnippet, $functionName);
         $this->checkIfFunctionExists($functionName);
 
         $argsStr = preg_replace("%^".$functionName."\((.*)\)$%", "$1", $sanitizedSnippet);
@@ -505,7 +489,7 @@ class WpaeXmlProcessor
         }
 
         // Clean empty strings
-        $sanitizedSnippet = str_replace(array(', ,',',,'), ',"",', $sanitizedSnippet);
+        $sanitizedSnippet = str_replace(array(', ,',',,'), ',\"\",', $sanitizedSnippet);
 
         $snippetValue = eval('return ' . $sanitizedSnippet . ';');
         $snippetValue = $this->encodeSpecialCharacters($snippetValue);
@@ -629,9 +613,10 @@ class WpaeXmlProcessor
     {
         $xml = str_replace('<!--', '<commentTempNode>', $xml);
         $xml = str_replace('-->', '</commentTempNode>', $xml);
-
         $xml = str_replace("\"{}\"", '""', $xml);
-        $xml = str_replace("{}", '""', $xml);
+
+        preg_replace('%(\[.*)({})(.*\])%', "$1\"\"$2", $xml);
+
         $xml = str_replace(">\"\"<", '><', $xml);
         $xml = str_replace("[implode(',',{})]", "", $xml);
         return $xml;

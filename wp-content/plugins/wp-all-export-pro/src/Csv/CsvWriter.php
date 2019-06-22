@@ -17,6 +17,12 @@ class CsvWriter
 
     public function writeCsv($resource, $value, $delimiter)
     {
+        foreach($value as $key => &$val ) {
+            if(is_object($val)) {
+                $val = '';
+            }
+        }
+
         if($this->csvStrategy == self::CSV_STRATEGY_DEFAULT) {
             fputcsv($resource, $value, $delimiter);
         } else {

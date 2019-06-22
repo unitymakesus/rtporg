@@ -3,7 +3,7 @@ Contributors: wpnook
 Donate link: https://codewrangler.io
 Tags: announcements, news, users, messages
 Requires at least: 4.0
-Tested up to: 4.8.2
+Tested up to: 5.1
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -42,6 +42,9 @@ No, each announcement is hidden based on its ID specifically.
 3. Shows the slide-down modal displaying the announcement content if no URL is specified.
 
 == Changelog ==
+
+= 1.0.4 =
+* Fixes color-picker issue
 
 = 1.0.3 =
 * Fixes custom text color issue when content is empty

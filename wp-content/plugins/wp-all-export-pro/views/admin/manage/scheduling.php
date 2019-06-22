@@ -9,11 +9,11 @@
 <p>
 	<?php _e('Trigger Script URL', 'wp_all_export_plugin');?><br />
 	<small><?php _e('Run the trigger script when you want to update your export. Once per 24 hours is recommended.', 'wp_all_export_plugin'); ?></small><br />
-	<input style='width: 700px;' type='text' value='<?php echo site_url() . '/wp-cron.php?export_key=' . $cron_job_key . '&export_id=' . $id . '&action=trigger'; ?>' />
+	<input style='width: 700px;' type='text' value='<?php echo site_url() . '/wp-load.php?export_key=' . $cron_job_key . '&export_id=' . $id . '&action=trigger'; ?>' />
 	<br /><br />
 	<?php _e('Execution Script URL', 'wp_all_export_plugin');?><br />
 	<small><?php _e('Run the execution script frequently. Once per two minutes is recommended.','wp_all_export_plugin');?></small><br />
-	<input style='width: 700px;' type='text' value='<?php echo site_url() . '/wp-cron.php?export_key=' . $cron_job_key . '&export_id=' . $id . '&action=processing'; ?>' /><br /><br />
+	<input style='width: 700px;' type='text' value='<?php echo site_url() . '/wp-load.php?export_key=' . $cron_job_key . '&export_id=' . $id . '&action=processing'; ?>' /><br /><br />
 	<?php _e('Export File URL', 'wp_all_export_plugin'); ?><br />	
 	<input style='width: 700px;' type='text' value='<?php echo $file_path; ?>' /><br /><br />
 	<?php if (! empty($bundle_url)): ?>			
@@ -30,7 +30,7 @@
 
 <p><i><?php _e('Example:', 'wp_all_export_plugin'); ?></i></p>
 
-<p>wget -q -O /dev/null "<?php echo site_url() . '/wp-cron.php?export_key=' . $cron_job_key . '&export_id=' . $id . '&action=trigger'; ?>"</p>
+<p>wget -q -O /dev/null "<?php echo site_url() . '/wp-load.php?export_key=' . $cron_job_key . '&export_id=' . $id . '&action=trigger'; ?>"</p>
  
 <p><strong><?php _e('Execution Script', 'wp_all_export_plugin'); ?></strong></p>
 
@@ -42,7 +42,7 @@
 
 <p><i><?php _e('Example:', 'wp_all_export_plugin'); ?></i></p>
 
-<p>wget -q -O /dev/null "<?php echo site_url() . '/wp-cron.php?export_key=' . $cron_job_key . '&export_id=' . $id . '&action=processing'; ?>"</p>
+<p>wget -q -O /dev/null "<?php echo site_url() . '/wp-load.php?export_key=' . $cron_job_key . '&export_id=' . $id . '&action=processing'; ?>"</p>
 
 <p><strong><?php _e('Notes', 'wp_all_export_plugin'); ?></strong></p>
  

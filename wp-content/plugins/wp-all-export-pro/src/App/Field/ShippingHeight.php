@@ -17,9 +17,14 @@ class ShippingHeight extends Field
             $toUnit = $shippingData['convertTo'];
 
             $product = $_product = wc_get_product($this->entry->ID);
-            $width = wc_get_dimension($product->height, $currentUnit,  $toUnit);
 
-            return $width . ' '.$toUnit;
+            if($currentUnit !== $toUnit) {
+                $height = wc_get_dimension($product->height, $currentUnit, $toUnit);
+            } else {
+                $height = $product->height;
+            }
+
+            return $height. ' '.$toUnit;
         } else {
             return $this->replaceSnippetsInValue($shippingData['dimensionsCV'], $snippetData);
         }

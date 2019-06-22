@@ -265,9 +265,6 @@ class PMXE_Admin_Export extends PMXE_Controller_Admin
                 // Convert Custom XML template to default
                 if (!empty($post['custom_xml_template'])) {
 
-                    $post['custom_xml_template'] = str_replace('<ID>', '<id>', $post['custom_xml_template']);
-                    $post['custom_xml_template'] = str_replace('</ID>', '</id>', $post['custom_xml_template']);
-
                     $post['custom_xml_template'] = str_replace("<!-- BEGIN POST LOOP -->", "<!-- BEGIN LOOP -->", $post['custom_xml_template']);
                     $post['custom_xml_template'] = str_replace("<!-- END POST LOOP -->", "<!-- END LOOP -->", $post['custom_xml_template']);
 

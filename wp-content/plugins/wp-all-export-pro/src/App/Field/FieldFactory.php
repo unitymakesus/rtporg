@@ -39,7 +39,7 @@ class FieldFactory
 
     /**
      * @param $fieldType
-     * @return array
+     * @return string
      */
     private function getClassName($fieldType)
     {

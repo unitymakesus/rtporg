@@ -3,8 +3,8 @@ Contributors: shinephp
 Donate link: http://www.shinephp.com/donate/
 Tags: garbage, collector, database, clear, unused tables, cleaner
 Requires at least: 4.0
-Tested up to: 4.6
-Stable tag: 0.10.3
+Tested up to: 5.2.1
+Stable tag: 0.10.4
 
 It scans your WordPress database and shows what various things old plugins (which were deactivated or uninstalled) left in it. Cleanup is available.
 
@@ -34,6 +34,11 @@ Comming soon. Just ask it. I will search the answer.
 
 
 == Changelog ==
+= 0.10.4 [20.06.2019] =
+* Marked as compatible with WordPress version 5.2.2
+
+= 0.10.3 [06.04.2018] =
+* Mark as compatible with WordPress version 4.9.5
 
 = 0.10.3 [01.09.2016] =
 * Fix: 1st plugin in the alphabetically ordered plugins list  was always skipped at the scan process.

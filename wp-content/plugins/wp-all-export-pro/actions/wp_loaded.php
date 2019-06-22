@@ -144,7 +144,9 @@ function pmxe_wp_loaded() {
 
 	if ( ! empty($cron_job_key) and ! empty($_GET['export_id']) and ! empty($_GET['export_key']) and $_GET['export_key'] == $cron_job_key and !empty($_GET['action']) and in_array($_GET['action'], array('processing', 'trigger'))) {
 
-		$logger = create_function('$m', 'echo "<p>$m</p>\\n";');
+		$logger = function($m) {
+		    echo "<p>$m</p>\\n";
+		};
 
 		$export = new PMXE_Export_Record();
 
@@ -162,6 +164,20 @@ function pmxe_wp_loaded() {
 			foreach ($ids as $id) { if (empty($id)) continue;
 
 				$export->getById($id);
+
+				$cpt = $export->options['cpt'];
+				if(!is_array($cpt)) {
+				    $cpt = array($cpt);
+                }
+
+                $addons = new \Wpae\App\Service\Addons\AddonService();
+                if(
+                    ((in_array('users', $cpt) || in_array('shop_customer', $cpt)) && !$addons->isUserAddonActive())
+                    ||
+                    ($export->options['export_type'] == 'advanced' && $export->options['wp_query_selector'] == 'wp_user_query' && !$addons->isUserAddonActive())
+                ) {
+                    die(\__('The User Export Add-On Pro is required to run this export. You can download the add-on here: <a href="http://www.wpallimport.com/portal/" target="_blank">http://www.wpallimport.com/portal/</a>', \PMXE_Plugin::LANGUAGE_DOMAIN));
+                }
 
 				if ( ! $export->isEmpty() ){
 
@@ -230,8 +246,11 @@ function pmxe_wp_loaded() {
 							}
 							elseif ( (int) $export->triggered and ! (int) $export->processing )
 							{
-								$export->set(array('canceled' => 0))->execute($logger, true);
-
+							    try {
+                                    $export->set(array('canceled' => 0))->execute($logger, true);
+                                } catch (\Wpae\App\Service\Addons\AddonNotFoundException $e) {
+							        die($e->getMessage());
+                                }
 								if ( ! (int) $export->triggered and ! (int) $export->processing )
 								{
                                     $scheduledExport->process($export);

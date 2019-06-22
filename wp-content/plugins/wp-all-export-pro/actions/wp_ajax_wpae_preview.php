@@ -35,8 +35,6 @@ function pmxe_wp_ajax_wpae_preview(){
 	$exportOptions = $values + (PMXE_Plugin::$session->has_session() ? PMXE_Plugin::$session->get_clear_session_data() : array()) + PMXE_Plugin::get_default_import_options();
 
 	$exportOptions['custom_xml_template'] = (isset($_POST['custom_xml'])) ? stripcslashes($_POST['custom_xml']) : '';
-	$exportOptions['custom_xml_template'] = str_replace('<ID>','<id>', $exportOptions['custom_xml_template'] );
-	$exportOptions['custom_xml_template'] = str_replace('</ID>','</id>', $exportOptions['custom_xml_template'] );
 
 	if ( ! empty($exportOptions['custom_xml_template'])) {
 		$custom_xml_template_line_count = substr_count($exportOptions['custom_xml_template'], "\n");

@@ -5,7 +5,7 @@ namespace Wpae\WordPress;
 
 abstract class AdminNotice
 {
-    private $message;
+    protected $message;
 
     public function __construct($message)
     {

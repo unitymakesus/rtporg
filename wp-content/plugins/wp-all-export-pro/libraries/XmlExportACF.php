@@ -23,7 +23,12 @@ if ( ! class_exists('XmlExportACF') )
 
 				$saved_acfs = get_posts(array('posts_per_page' => -1, 'post_type' => 'acf-field-group'));
 
-				$acfs = acf_local()->groups;
+                if (function_exists('acf_local')) {
+                    $acfs = acf_local()->groups;
+                }
+                if (empty($acfs ) && function_exists('acf_get_local_field_groups')) {
+                    $acfs  = acf_get_local_field_groups();
+                }
 
 				if ( ! empty($acfs) and is_array($acfs)) $this->_acf_groups = $acfs;
 
@@ -96,7 +101,12 @@ if ( ! class_exists('XmlExportACF') )
 						}
 						else
 						{
-							$acf_fields = acf_local()->fields;
+                            if (function_exists('acf_local')) {
+                                $acf_fields = acf_local()->fields;
+                            }
+                            if (empty($acf_fields) && function_exists('acf_get_local_fields')) {
+                                $acf_fields = acf_get_local_fields();
+                            }
 
 							if ( ! empty($acf_fields) )
 							{
@@ -172,8 +182,9 @@ if ( ! class_exists('XmlExportACF') )
 
 							$orderby = "order_no";
 
-							@array_multisort($sortArray[$orderby],SORT_ASC, $fields);
-
+                            if(is_array($sortArray[$orderby])) {
+                                @array_multisort($sortArray[$orderby], SORT_ASC, $fields);
+                            }
 							foreach ($fields as $field){
 								if (in_array($field['type'], array('tab'))) continue;
 								$this->_acf_groups[$key]['fields'][] = $field;
@@ -226,7 +237,7 @@ if ( ! class_exists('XmlExportACF') )
 			}
 
 
-			if ( ! empty($field_value) )
+			if ( ! empty($field_value))
 			{
 				$field_value = maybe_unserialize($field_value);
 
@@ -236,10 +247,11 @@ if ( ! class_exists('XmlExportACF') )
 				{
 					case 'date_time_picker':
 						$format = empty($field_options['return_format']) ? 'Y-m-d H:i:s' : $field_options['return_format'];
-						$field_value = date($format, (is_numeric($field_value) ? $field_value : strtotime($field_value)));
+						$field_value = date($format, (is_numeric($field_value) ? $field_value : (empty($field_options['return_format']))? strtotime($field_value): DateTime::createFromFormat($format, $field_value)->getTimestamp()));
 						break;
 					case 'date_picker':
-						$field_value = date('Ymd', strtotime($field_value));
+						$format = empty($field_options['return_format']) ? 'Y-m-d' : $field_options['return_format'];
+						$field_value = date($format, (empty($field_options['return_format']))? strtotime($field_value): DateTime::createFromFormat($format, $field_value)->getTimestamp());
 						break;
 
 					case 'file':
@@ -621,10 +633,14 @@ if ( ! class_exists('XmlExportACF') )
 
 					case 'checkbox':
 
-						if ( is_array($field_value) )
-						{
-							$field_value = implode($implode_delimiter, $field_value);
-						}
+                        if ( is_array($field_value) ) {
+                            foreach ($field_value as $field_value_key => $field_value_value) {
+                                if (is_array($field_value_value)) {
+                                    $field_value[$field_value_key] = $field_value_value['value'];
+                                }
+                            }
+                            $field_value = implode($implode_delimiter, $field_value);
+                        }
 
 						break;
 
@@ -1068,12 +1084,17 @@ if ( ! class_exists('XmlExportACF') )
 
 				if ($is_xml_export)
 				{
-					$xmlWriter->beginElement($element_name_ns, $element_name, null);
-					$xmlWriter->writeData($val, $element_name);
-					$xmlWriter->closeElement();
+					$elementOpenResponse = $xmlWriter->beginElement($element_name_ns, $element_name, null);
+					if($elementOpenResponse) {
+                        $xmlWriter->writeData($val, $element_name);
+                        $xmlWriter->closeElement();
+                    }
 				}
 				else
 				{
+				    if($field_value === 0 || $field_value === "0") {
+				        $val = 0;
+                    }
 
 					// $article[$element_name] = ($preview) ? trim(preg_replace('~[\r\n]+~', ' ', htmlspecialchars($val))) : $val;
 					wp_all_export_write_article( $article, $element_name, ($preview) ? trim(preg_replace('~[\r\n]+~', ' ', htmlspecialchars($val))) : $val);

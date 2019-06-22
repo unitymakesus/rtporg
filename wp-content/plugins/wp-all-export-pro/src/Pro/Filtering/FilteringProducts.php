@@ -62,7 +62,7 @@ class FilteringProducts extends FilteringCPT
         $join  = implode( ' ', array_unique( $this->queryJoin ) );
 
         if ($this->isLanguageFilterEnabled()){
-            $where .= " AND t.language_code = '".\XmlExportEngine::$exportOptions['wpml_lang']."' ";
+            $where .= " AND ".self::getWpmlAlias().".language_code = '".\XmlExportEngine::$exportOptions['wpml_lang']."' ";
         }
         $this->queryWhere = $tmp_queryWhere;
         $this->queryJoin  = $tmp_queryJoin;
@@ -110,7 +110,7 @@ class FilteringProducts extends FilteringCPT
         $where = $this->queryWhere;
         $join  = implode( ' ', array_unique( $this->queryJoin ) );
         if ($this->isLanguageFilterEnabled()){
-            $where .= " AND t.language_code = '".\XmlExportEngine::$exportOptions['wpml_lang']."' ";
+            $where .= " AND ".self::getWpmlAlias().".language_code = '".\XmlExportEngine::$exportOptions['wpml_lang']."' ";
         }
         $this->queryWhere = $tmp_queryWhere;
         $this->queryJoin  = $tmp_queryJoin;
@@ -130,5 +130,17 @@ class FilteringProducts extends FilteringCPT
         return class_exists('SitePress') &&
         !empty(\XmlExportEngine::$exportOptions['wpml_lang']) &&
         (\XmlExportEngine::$exportOptions['wpml_lang'] !== 'all');
+    }
+
+    public static function getWpmlAlias()
+    {
+        if(!class_exists('SitePress')) {
+            return '';
+        }
+        if(version_compare(ICL_SITEPRESS_VERSION, '4.1.1') >= 0) {
+            return 'wpml_translations';
+        } else {
+            return 't';
+        }
     }
 }

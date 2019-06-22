@@ -76,6 +76,12 @@ class PMXE_Export_Record extends PMXE_Model_Record {
 			
 			if (XmlExportEngine::$is_user_export)
 			{
+			    $addons = new \Wpae\App\Service\Addons\AddonService();
+
+			    if(!$addons->isUserAddonActive()) {
+                    throw new \Wpae\App\Service\Addons\AddonNotFoundException('The User Export Add-On Pro is required to run this export. You can download the add-on here: <a href="http://www.wpallimport.com/portal/" target="_blank">http://www.wpallimport.com/portal</a>');
+                }
+
 				add_action('pre_user_query', 'wp_all_export_pre_user_query', 10, 1);
 				$exportQuery = eval('return new WP_User_Query(array(' . $this->options['wp_query'] . ', \'offset\' => ' . $this->exported . ', \'number\' => ' . $this->options['records_per_iteration'] . '));');			
 				remove_action('pre_user_query', 'wp_all_export_pre_user_query');
@@ -333,7 +339,6 @@ class PMXE_Export_Record extends PMXE_Model_Record {
 				'registered_on' => date('Y-m-d H:i:s'),
 				'iteration' => ++$this->iteration
 			))->update();	
-
 			do_action('pmxe_after_export', $this->id, $this);
 		}
 		elseif ( ! $postCount or $foundPosts == $this->exported )
@@ -346,7 +351,7 @@ class PMXE_Export_Record extends PMXE_Model_Record {
                         case 'XmlGoogleMerchants':
                         case 'custom':
                             require_once PMXE_ROOT_DIR . '/classes/XMLWriter.php';
-                            file_put_contents($file_path, PMXE_XMLWriter::preprocess_xml(XmlExportEngine::$exportOptions['custom_xml_template_footer']), FILE_APPEND);
+                            file_put_contents($file_path, PMXE_XMLWriter::preprocess_xml("\n".XmlExportEngine::$exportOptions['custom_xml_template_footer']), FILE_APPEND);
                         break;
                     }
 
@@ -388,7 +393,9 @@ class PMXE_Export_Record extends PMXE_Model_Record {
 			))->update();	
 
 			do_action('pmxe_after_export', $this->id, $this);
-		}
+		} else {
+		    do_action('pmxe_after_iteration', $this->id, $this);
+        }
 
 		$this->set('registered_on', date('Y-m-d H:i:s'))->save(); // update registered_on to indicated that job has been exectured even if no files are going to be imported by the rest of the method
 		

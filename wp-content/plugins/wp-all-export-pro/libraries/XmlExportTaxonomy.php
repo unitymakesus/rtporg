@@ -234,6 +234,7 @@ if (!class_exists('XmlExportTaxonomy')) {
                     $combineMultipleFieldsValue = stripslashes($combineMultipleFieldsValue);
                     $snippetParser = new \Wpae\App\Service\SnippetParser();
                     $snippets = $snippetParser->parseSnippets($combineMultipleFieldsValue);
+
                     $engine = new XmlExportEngine(XmlExportEngine::$exportOptions);
                     $engine->init_available_data();
                     $engine->init_additional_data();

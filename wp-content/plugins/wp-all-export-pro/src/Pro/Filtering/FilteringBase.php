@@ -126,7 +126,7 @@ abstract class FilteringBase implements FilteringInterface
             $rule->value = "-" . trim(str_replace("ago", "", $rule->value));
         }
 
-        $rule->value = strpos($rule->value, ":") !== false ? date("Y-m-d H:i:s", strtotime($rule->value)) : ( in_array($rule->condition, array('greater', 'equals_or_less')) ? date("Y-m-d", strtotime('+1 day', strtotime($rule->value))) : date("Y-m-d", strtotime($rule->value)));
+        $rule->value = strpos($rule->value, ":") !== false ? date("Y-m-d H:i:s", strtotime($rule->value)) : ( in_array($rule->condition, array('greater')) ? date("Y-m-d", strtotime('+1 day', strtotime($rule->value))) : date("Y-m-d", strtotime($rule->value)));
 
     }
 
@@ -165,7 +165,7 @@ abstract class FilteringBase implements FilteringInterface
                 }
                 else
                 {
-                    $q = "= " . (($is_int or is_numeric($value)) ? $value : "'" . $value . "'");
+                    $q = "= " . (($is_int or is_numeric($value)) ? $value : "'" . addslashes($value) . "'");
                 }
                 break;
             case 'not_equals':
@@ -191,10 +191,10 @@ abstract class FilteringBase implements FilteringInterface
                 $q = "<= " . (($is_int or is_numeric($value)) ? $value : "'" . $value . "'");
                 break;
             case 'contains':
-                $q = "LIKE '%". $value ."%'";
+                $q = "LIKE '%". addslashes($value) ."%'";
                 break;
             case 'not_contains':
-                $q = "NOT LIKE '%". $value ."%'";
+                $q = "NOT LIKE '%". addslashes($value) ."%'";
                 break;
             case 'is_empty':
                 $q = "IS NULL";

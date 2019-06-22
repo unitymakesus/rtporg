@@ -40,9 +40,12 @@ class GoogleMerchantsDataProcessor
         'item_group_id',
         'shipping',
         'shipping_weight',
+        'shipping_height',
+        'shipping_length',
         'size_type',
         'size_system',
         'shipping_label',
+        'shipping_width',
         'adult',
         'multipack',
         'mobile_link',
@@ -150,7 +153,7 @@ class GoogleMerchantsDataProcessor
         XmlExportEngine::$exportOptions['ids'] = $this->exportFieldSlugs;
         XmlExportEngine::$exportOptions['cc_type'] = $this->exportFieldSlugs;
         XmlExportEngine::$exportOptions['cc_name'] = $this->exportFieldSlugs;
-        
+
         foreach (XmlExportEngine::$exportOptions['cc_name'] as $ID => $value) {
 
             $fieldName = XmlExportEngine::$exportOptions['cc_name'][$ID];

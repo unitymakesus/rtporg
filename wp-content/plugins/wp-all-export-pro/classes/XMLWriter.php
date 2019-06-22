@@ -144,6 +144,7 @@ class PMXE_XMLWriter extends XMLWriter
         if (!in_array(XmlExportEngine::$exportOptions['xml_template_type'], array('custom', 'XmlGoogleMerchants'))) return $this->flush(true);
 
         $xml = '';
+
         foreach ($this->articles as $article) {
 
             $founded_values = array_keys($article);
@@ -155,7 +156,7 @@ class PMXE_XMLWriter extends XMLWriter
 
             if (!empty($xpaths)) {
                 foreach ($xpaths as $xpath) {
-                    if (!in_array(preg_replace("%[\{\}]%", "", $xpath), $founded_values)) {
+                    if (!in_array(preg_replace("%[\{\}]%", "", $xpath), $founded_values) && $xpath != '{Downloadable Files}') {
                         $node_tpl = str_replace($xpath, "", $node_tpl);
                     }
                 }
@@ -176,6 +177,10 @@ class PMXE_XMLWriter extends XMLWriter
 
                         $originalValue = $v;
 
+                        if($key == "Downloadable Files Names" || $key == 'Downloadable Files Paths') {
+                            $key = "Downloadable Files";
+                        }
+
                         if (is_array($v)) {
                             foreach($v as &$val) {
                                 $val = str_replace("\"","**DOUBLEQUOT**",$val);
@@ -184,6 +189,7 @@ class PMXE_XMLWriter extends XMLWriter
 
                             $delimiter = uniqid();
                             $node_tpl = preg_replace('%\[(.*)\{'.$key.'\}([^\[]*)\]%', "[$1explode('" . $delimiter . "', '" . implode($delimiter, $v) . "')$2]", $node_tpl);
+
                             $v = "[explode('" . $delimiter . "', '" . implode($delimiter, $v) . "')]";
                             $v = str_replace('<','**LT**', $v);
                             $v = str_replace('>','**GT**', $v);
@@ -192,7 +198,7 @@ class PMXE_XMLWriter extends XMLWriter
                         }
 
                         $arrayTypes = array(
-                            'Product Tags', 'Tags', 'Product Categories', 'Categories', 'Image URL', 'Image Filename', 'Image Path', 'Image ID', 'Image Title', 'Image Caption', 'Image Description', 'Image Alt Text', 'Product Type', 'Categories'
+                            'Product Tags', 'Tags', 'Product Categories', 'Categories', 'Image URL', 'Image Filename', 'Image Path', 'Image ID', 'Image Title', 'Image Caption', 'Image Description', 'Image Alt Text', 'Product Type', 'Categories', 'Downloadable Files'
                         );
 
                         // We have an empty array, which is transformed into {}

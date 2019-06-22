@@ -1,3 +1,6 @@
+<?php
+$addons = new \Wpae\App\Service\Addons\AddonService();
+?>
 <h2 class="wpallexport-wp-notices"></h2>
 <div class="wpallexport-wrapper">
     <div class="wpallexport-header">
@@ -49,7 +52,7 @@
 
 				<?php 
 				$selected_post_type = '';
-				if (XmlExportUser::$is_active):
+				if ($addons->isUserAddonActiveAndIsUserExport()):
 					$selected_post_type = empty($post['cpt'][0]) ? 'users' : $post['cpt'][0];
 				endif;
 				if (XmlExportComment::$is_active):
@@ -110,7 +113,7 @@
 												elseif ($this->isWizard)
 												{
 													$new_export = true;
-													if ( empty($post['cpt']) and ! XmlExportWooCommerceOrder::$is_active and ! XmlExportUser::$is_active and ! XmlExportComment::$is_active ){
+													if ( empty($post['cpt']) and ! XmlExportWooCommerceOrder::$is_active and ! $addons->isUserAddonActiveAndIsUserExport() and ! XmlExportComment::$is_active ){
 														$init_fields[] = 
 															array(
 																'label' => 'post_type',
@@ -178,7 +181,7 @@
 								<input type="hidden" id="is_product_export" value="1"/>													
 								<?php endif; ?>
 
-								<?php if ( empty($post['cpt']) and ! XmlExportWooCommerceOrder::$is_active and ! XmlExportUser::$is_active and ! XmlExportComment::$is_active and ! XmlExportTaxonomy::$is_active ) : ?>
+								<?php if ( empty($post['cpt']) and ! XmlExportWooCommerceOrder::$is_active and ! $addons->isUserAddonActiveAndIsUserExport() and ! XmlExportComment::$is_active and ! XmlExportTaxonomy::$is_active ) : ?>
 								<input type="hidden" id="is_wp_query" value="1"/>								
 								<?php endif; ?>
 																									
@@ -333,7 +336,7 @@
 						/** @var string $random */
 						$random = uniqid();
 						?>
-			            <div class="wpallexport-collapsed-content" style="padding: 0; overflow: hidden; height: 180px;">
+			            <div class="wpallexport-collapsed-content" style="padding: 0; overflow: hidden; min-height: 180px;">
 			                <div class="wpallexport-collapsed-content-inner">               
 			                    <div class="wp-all-export-wpml-options">
 							        <h4><?php _e('Language', 'wp_all_export_plugin'); ?></h4>

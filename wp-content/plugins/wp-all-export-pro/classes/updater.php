@@ -189,6 +189,7 @@ if (!class_exists('PMXE_Updater')) {
                 global $wpdb;
 
                 $cache_key = md5('edd_plugin_' . sanitize_key($this->name) . '_version_info');
+
                 $version_info = get_transient($cache_key);
 
                 if (false === $version_info) {
@@ -277,6 +278,7 @@ if (!class_exists('PMXE_Updater')) {
                         ) . "</span>";
                 }
             }
+
 
             if (empty($new_version)) {
                 return;

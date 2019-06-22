@@ -1,3 +1,6 @@
+<?php
+do_action('pmxe_addons_html');
+?>
 <table class="wpallexport-layout wpallexport-step-1">
 	<tr>
 		<td class="left">
@@ -37,7 +40,8 @@
 								<span class="wpallexport-icon-label"><?php _e('WP_Query Results', 'wp_all_export_plugin'); ?></span>
 							</a>
 						</div>
-						
+
+
 						<input type="hidden" value="<?php echo $post['export_type']; ?>" name="export_type"/>
 						
 						<div class="wpallexport-upload-type-container" rel="specific_type">			
@@ -150,11 +154,29 @@
 									?>
 								</select>
 								<input type="hidden" name="wp_query_selector" value="<?php echo $post['wp_query_selector'];?>">
-								<textarea class="wp_query" rows="10" cols="80" name="wp_query" placeholder="'post_type' => 'post', 'post_status' => array( 'pending', 'draft', 'future' )" style="width: 600px;"><?php echo esc_html($post['wp_query']); ?></textarea>						
+								<textarea class="wp_query" rows="10" cols="80" name="wp_query" placeholder="'post_type' => 'post', 'post_status' => array( 'pending', 'draft', 'future' )" style="width: 600px; margin-bottom: 15px;"><?php echo esc_html($post['wp_query']); ?></textarea>
 								
 							</div>
 							
-						</div>																			
+						</div>
+
+                        <div class="wpallexport-free-edition-notice wpallexport-user-export-notice" >
+                            <p>
+                                <?php _e('The User Export Add-On Pro is required to Export Users', PMXE_Plugin::LANGUAGE_DOMAIN); ?>
+                            </p>
+
+                            <a href="http://www.wpallimport.com/portal/" target="_blank" class="upgrade_link"><?php _e('Click here to download the User Export Add-On', PMXE_Plugin::LANGUAGE_DOMAIN);?></a>
+
+                        </div>
+
+                        <div class="wpallexport-free-edition-notice wpallexport-customer-export-notice" >
+                            <p>
+                                <?php _e('The User Export Add-On Pro is required to Export WooCommerce Customers', PMXE_Plugin::LANGUAGE_DOMAIN); ?>
+                            </p>
+
+                            <a href="http://www.wpallimport.com/portal/" target="_blank" class="upgrade_link"><?php _e('Click here to download the User Export Add-On', PMXE_Plugin::LANGUAGE_DOMAIN);?></a>
+
+                        </div>
 
 						<div class="wp_all_export_preloader"></div>							
 
@@ -166,9 +188,12 @@
 						<div class="ajax-console" id="filtering_result">
 							
 						</div>
-					</div>						
+					</div>
 
-					<div class="wpallexport-upload-resource-step-two rad4 wpallexport-collapsed closed">
+
+
+
+                    <div class="wpallexport-upload-resource-step-two rad4 wpallexport-collapsed closed">
 							
 					</div>
 

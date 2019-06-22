@@ -66,7 +66,7 @@ class FacetWP_Facet_fSelect extends FacetWP_Facet
 
             // Keep the facet placement intact
             if ( FWP()->helper->facet_is( $facet, 'preserve_ghosts', 'yes' ) ) {
-                $tmp = array();
+                $tmp = [];
                 foreach ( $ghost_output as $row ) {
                     $tmp[ $row['facet_value'] . ' ' ] = $row;
                 }
@@ -79,7 +79,7 @@ class FacetWP_Facet_fSelect extends FacetWP_Facet
             }
             else {
                 // Make the array key equal to the facet_value (for easy lookup)
-                $tmp = array();
+                $tmp = [];
                 foreach ( $output as $row ) {
                     $tmp[ $row['facet_value'] . ' ' ] = $row; // Force a string array key
                 }
@@ -116,7 +116,7 @@ class FacetWP_Facet_fSelect extends FacetWP_Facet
         }
 
         $multiple = FWP()->helper->facet_is( $facet, 'multiple', 'yes' ) ? ' multiple="multiple"' : '';
-        $label_any = empty( $facet['label_any'] ) ? __( 'Any', 'fwp' ) : $facet['label_any'];
+        $label_any = empty( $facet['label_any'] ) ? __( 'Any', 'fwp-front' ) : $facet['label_any'];
         $label_any = facetwp_i18n( $label_any );
 
         $output .= '<select class="facetwp-dropdown"' . $multiple . '>';
@@ -126,20 +126,15 @@ class FacetWP_Facet_fSelect extends FacetWP_Facet
             $selected = in_array( $result['facet_value'], $selected_values ) ? ' selected' : '';
             $selected .= ( 0 == $result['counter'] && '' == $selected ) ? ' disabled' : '';
 
-            $display_value = '';
-            for ( $i = 0; $i < (int) $result['depth']; $i++ ) {
-                $display_value .= '&nbsp;&nbsp;';
-            }
-
             // Determine whether to show counts
-            $display_value .= esc_html( $result['facet_display_value'] );
-            $show_counts = apply_filters( 'facetwp_facet_dropdown_show_counts', true, array( 'facet' => $facet ) );
+            $display_value = esc_html( $result['facet_display_value'] );
+            $show_counts = apply_filters( 'facetwp_facet_dropdown_show_counts', true, [ 'facet' => $facet ] );
 
             if ( $show_counts ) {
                 $display_value .= ' {{(' . $result['counter'] . ')}}';
             }
 
-            $output .= '<option value="' . esc_attr( $result['facet_value'] ) . '"' . $selected . '>' . $display_value . '</option>';
+            $output .= '<option value="' . esc_attr( $result['facet_value'] ) . '" class="d' . $result['depth'] . '"' . $selected . '>' . $display_value . '</option>';
         }
 
         $output .= '</select>';
@@ -153,7 +148,7 @@ class FacetWP_Facet_fSelect extends FacetWP_Facet
     function filter_posts( $params ) {
         global $wpdb;
 
-        $output = array();
+        $output = [];
         $facet = $params['facet'];
         $selected_values = $params['selected_values'];
 
@@ -190,15 +185,16 @@ class FacetWP_Facet_fSelect extends FacetWP_Facet
     function settings_js( $params ) {
         $facet = $params['facet'];
 
-        $label_any = empty( $facet['label_any'] ) ? __( 'Any', 'fwp' ) : $facet['label_any'];
+        $label_any = empty( $facet['label_any'] ) ? __( 'Any', 'fwp-front' ) : $facet['label_any'];
         $label_any = facetwp_i18n( $label_any );
 
-        return array(
-            'placeholder'   => $label_any,
-            'overflowText'  => __( '{n} selected', 'fwp' ),
-            'searchText'    => __( 'Search', 'fwp' ),
-            'operator'      => $facet['operator']
-        );
+        return [
+            'placeholder'       => $label_any,
+            'overflowText'      => __( '{n} selected', 'fwp-front' ),
+            'searchText'        => __( 'Search', 'fwp-front' ),
+            'noResultsText'     => __( 'No results found', 'fwp-front' ),
+            'operator'          => $facet['operator']
+        ];
     }
 
 
@@ -216,14 +212,14 @@ class FacetWP_Facet_fSelect extends FacetWP_Facet
      */
     function settings_html() {
 ?>
-        <tr>
-            <td><?php _e( 'Default label', 'fwp' ); ?>:</td>
-            <td>
+        <div class="facetwp-row">
+            <div><?php _e( 'Default label', 'fwp' ); ?>:</div>
+            <div>
                 <input type="text" class="facet-label-any" value="<?php _e( 'Any', 'fwp' ); ?>" />
-            </td>
-        </tr>
-        <tr>
-            <td>
+            </div>
+        </div>
+        <div class="facetwp-row" v-show="facet.source.substr(0, 3) == 'tax'">
+            <div>
                 <?php _e('Parent term', 'fwp'); ?>:
                 <div class="facetwp-tooltip">
                     <span class="icon-question">?</span>
@@ -232,103 +228,103 @@ class FacetWP_Facet_fSelect extends FacetWP_Facet
                         Otherwise, leave blank.
                     </div>
                 </div>
-            </td>
-            <td>
-                <input type="text" class="facet-parent-term" value="" />
-            </td>
-        </tr>
-        <tr>
-            <td>
+            </div>
+            <div>
+                <input type="text" class="facet-parent-term" />
+            </div>
+        </div>
+        <div class="facetwp-row">
+            <div>
                 <?php _e( 'Multi-select?', 'fwp' ); ?>:
-            </td>
-            <td>
+            </div>
+            <div>
                 <label class="facetwp-switch">
-                    <input type="checkbox" class="facet-multiple" />
+                    <input type="checkbox" class="facet-multiple" true-value="yes" false-value="no" />
                     <span class="facetwp-slider"></span>
                 </label>
-            </td>
-        </tr>
-        <tr>
-            <td>
+            </div>
+        </div>
+        <div class="facetwp-row">
+            <div>
                 <?php _e('Hierarchical', 'fwp'); ?>:
                 <div class="facetwp-tooltip">
                     <span class="icon-question">?</span>
                     <div class="facetwp-tooltip-content"><?php _e( 'Is this a hierarchical taxonomy?', 'fwp' ); ?></div>
                 </div>
-            </td>
-            <td>
+            </div>
+            <div>
                 <label class="facetwp-switch">
-                    <input type="checkbox" class="facet-hierarchical" />
+                    <input type="checkbox" class="facet-hierarchical" true-value="yes" false-value="no" />
                     <span class="facetwp-slider"></span>
                 </label>
-            </td>
-        </tr>
-        <tr>
-            <td>
+            </div>
+        </div>
+        <div class="facetwp-row">
+            <div>
                 <?php _e('Show ghosts', 'fwp'); ?>:
                 <div class="facetwp-tooltip">
                     <span class="icon-question">?</span>
                     <div class="facetwp-tooltip-content"><?php _e( 'Show choices that would return zero results?', 'fwp' ); ?></div>
                 </div>
-            </td>
-            <td>
+            </div>
+            <div>
                 <label class="facetwp-switch">
-                    <input type="checkbox" class="facet-ghosts" />
+                    <input type="checkbox" class="facet-ghosts" true-value="yes" false-value="no" />
                     <span class="facetwp-slider"></span>
                 </label>
-            </td>
-        </tr>
-        <tr>
-            <td>
+            </div>
+        </div>
+        <div class="facetwp-row" v-show="facet.ghosts == 'yes'">
+            <div>
                 <?php _e('Preserve ghost order', 'fwp'); ?>:
                 <div class="facetwp-tooltip">
                     <span class="icon-question">?</span>
                     <div class="facetwp-tooltip-content"><?php _e( 'Keep ghost choices in the same order?', 'fwp' ); ?></div>
                 </div>
-            </td>
-            <td>
+            </div>
+            <div>
                 <label class="facetwp-switch">
-                    <input type="checkbox" class="facet-preserve-ghosts" />
+                    <input type="checkbox" class="facet-preserve-ghosts" true-value="yes" false-value="no" />
                     <span class="facetwp-slider"></span>
                 </label>
-            </td>
-        </tr>
-        <tr>
-            <td>
+            </div>
+        </div>
+        <div class="facetwp-row" v-show="facet.multiple == 'yes'">
+            <div>
                 <?php _e('Behavior', 'fwp'); ?>:
                 <div class="facetwp-tooltip">
                     <span class="icon-question">?</span>
                     <div class="facetwp-tooltip-content"><?php _e( 'How should multiple selections affect the results?', 'fwp' ); ?></div>
                 </div>
-            </td>
-            <td>
+            </div>
+            <div>
                 <select class="facet-operator">
                     <option value="and"><?php _e( 'Narrow the result set', 'fwp' ); ?></option>
                     <option value="or"><?php _e( 'Widen the result set', 'fwp' ); ?></option>
                 </select>
-            </td>
-        </tr>
-        <tr>
-            <td><?php _e('Sort by', 'fwp'); ?>:</td>
-            <td>
+            </div>
+        </div>
+        <div class="facetwp-row">
+            <div><?php _e('Sort by', 'fwp'); ?>:</div>
+            <div>
                 <select class="facet-orderby">
                     <option value="count"><?php _e( 'Highest Count', 'fwp' ); ?></option>
                     <option value="display_value"><?php _e( 'Display Value', 'fwp' ); ?></option>
                     <option value="raw_value"><?php _e( 'Raw Value', 'fwp' ); ?></option>
                     <option value="term_order"><?php _e( 'Term Order', 'fwp' ); ?></option>
                 </select>
-            </td>
-        </tr>
-        <tr>
-            <td>
+            </div>
+        </div>
+        <div class="facetwp-row">
+            <div>
                 <?php _e('Count', 'fwp'); ?>:
                 <div class="facetwp-tooltip">
                     <span class="icon-question">?</span>
                     <div class="facetwp-tooltip-content"><?php _e( 'The maximum number of facet choices to show', 'fwp' ); ?></div>
                 </div>
-            </td>
-            <td><input type="text" class="facet-count" value="10" /></td>
-        </tr>
+            </div>
+            <div><input type="text" class="facet-count" value="10" /></div>
+        </div>
 <?php
     }
 }

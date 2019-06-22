@@ -69,7 +69,7 @@ class CW_Site_Announcements {
 	public function __construct() {
 
 		$this->plugin_name = 'cw-site-announcements';
-		$this->version = '1.0.3';
+		$this->version = '1.0.4';
 
 		$this->load_dependencies();
 		$this->set_locale();

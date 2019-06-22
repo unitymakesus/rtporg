@@ -532,11 +532,15 @@ final class PMXE_Wpallimport
 
 				default:
 
+				    $addons = new \Wpae\App\Service\Addons\AddonService();
+
 					XmlExportCpt::prepare_import_template( $options, self::$templateOptions, $cf_list, $attr_list, $taxs_list, $element_name, $ID);
 					
 					XmlExportMediaGallery::prepare_import_template( $options, self::$templateOptions, $element_name, $ID);
 
-					XmlExportUser::prepare_import_template( $options, self::$templateOptions, $element_name, $ID);
+					if($addons->isUserAddonActive()) {
+                        XmlExportUser::prepare_import_template($options, self::$templateOptions, $element_name, $ID);
+                    }
 
                     XmlExportTaxonomy::prepare_import_template( $options, self::$templateOptions, $element_name, $ID);
 

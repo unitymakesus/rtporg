@@ -20,13 +20,13 @@ class FacetWP_Facet_Rating extends FacetWP_Facet
         // Facet in "OR" mode
         $where_clause = $this->get_where_clause( $facet );
 
-        $output = array(
+        $output = [
             1 => 0,
             2 => 0,
             3 => 0,
             4 => 0,
             5 => 0
-        );
+        ];
 
         $sql = "
         SELECT COUNT(*) AS `count`, FLOOR(f.facet_value) AS `rating`
@@ -74,7 +74,7 @@ class FacetWP_Facet_Rating extends FacetWP_Facet
 
             for ( $i = $num_stars; $i >= 1; $i-- ) {
                 $class = in_array( $i, $selected_values ) ? ' selected' : '';
-                $output .= '<span class="facetwp-star' . $class . '" data-value="' . $i . '" data-counter="' . $values[ $i ] . '">★</span>';
+                $output .= '<span class="facetwp-star' . $class . '" data-value="' . $i . '" data-counter="' . $values[ $i ] . '">&#9733;</span>';
             }
 
             $output .= '</span>';
@@ -100,5 +100,14 @@ class FacetWP_Facet_Rating extends FacetWP_Facet
         SELECT DISTINCT post_id FROM {$wpdb->prefix}facetwp_index
         WHERE facet_name = '{$facet['name']}' AND facet_value >= '$selected_values'";
         return $wpdb->get_col( $sql );
+    }
+
+
+    /**
+     * Output front-end scripts
+     */
+    function front_scripts() {
+        FWP()->display->json['rating']['& up'] = __( '& up', 'fwp-front' );
+        FWP()->display->json['rating']['Undo'] = __( 'Undo', 'fwp-front' );
     }
 }

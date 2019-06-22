@@ -5,7 +5,6 @@ if ( ! class_exists('XmlExportEngine') ){
 	require_once dirname(__FILE__) . '/XmlExportACF.php';
 	require_once dirname(__FILE__) . '/XmlExportWooCommerce.php';
 	require_once dirname(__FILE__) . '/XmlExportWooCommerceOrder.php';
-	require_once dirname(__FILE__) . '/XmlExportUser.php';
 	require_once dirname(__FILE__) . '/XmlExportComment.php';
 	require_once dirname(__FILE__) . '/XmlExportTaxonomy.php';
 
@@ -40,7 +39,7 @@ if ( ! class_exists('XmlExportEngine') ){
 		public static $woo_order_export;
 		public static $woo_coupon_export;
 		public static $woo_refund_export;
-		public static $user_export;
+		public static $user_export = false;
 		public static $comment_export;
 		public static $taxonomy_export;
 
@@ -425,9 +424,12 @@ if ( ! class_exists('XmlExportEngine') ){
 					'taxonomy_to_export' => empty($this->post['taxonomy_to_export']) ? '' : $this->post['taxonomy_to_export']
 				);
 
-				$this->filters = \Wpae\Pro\Filtering\FilteringFactory::getFilterEngine();
-				$this->filters->init($filter_args);
-
+				try {
+                    $this->filters = \Wpae\Pro\Filtering\FilteringFactory::getFilterEngine();
+                    $this->filters->init($filter_args);
+                } catch (\Wpae\App\Service\Addons\AddonNotFoundException $e){
+				    die($e->getMessage());
+                }
 				$this->init();						
 			}
 
@@ -441,11 +443,11 @@ if ( ! class_exists('XmlExportEngine') ){
 
 			self::$acf_export  		 = new XmlExportACF();
 			self::$woo_export  		 = new XmlExportWooCommerce();
-			self::$user_export 		 = new XmlExportUser();
 			self::$comment_export    = new XmlExportComment();
 			self::$taxonomy_export   = new XmlExportTaxonomy();
 			self::$woo_order_export  = new XmlExportWooCommerceOrder(); 
-			self::$woo_coupon_export = new XmlExportWooCommerceCoupon(); 			
+			self::$woo_coupon_export = new XmlExportWooCommerceCoupon();
+			do_action('pmxe_init_addons');
 
 		}	
 
@@ -519,7 +521,7 @@ if ( ! class_exists('XmlExportEngine') ){
 			}	
 			if ( 'advanced' == $this->post['export_type'] and ! self::$is_user_export and ! self::$is_comment_export and ! self::$is_taxonomy_export )
 			{
-				$meta_keys = $wpdb->get_results("SELECT DISTINCT meta_key FROM {$table_prefix}postmeta WHERE {$table_prefix}postmeta.meta_key NOT LIKE '_edit%' LIMIT 700");
+				$meta_keys = $wpdb->get_results("SELECT DISTINCT meta_key FROM {$table_prefix}postmeta WHERE {$table_prefix}postmeta.meta_key NOT LIKE '_edit%' LIMIT 1000");
 				if ( ! empty($meta_keys)){
 					$exclude_keys = array('_first_variation_attributes', '_is_first_variation_created');
 					foreach ($meta_keys as $meta_key) {
@@ -553,8 +555,10 @@ if ( ! class_exists('XmlExportEngine') ){
 			// Prepare existing WooCommerce Coupon data
 			self::$woo_coupon_export->init($this->_existing_meta_keys);			
 
-			// Prepare existing Users data
-			self::$user_export->init($this->_existing_meta_keys);
+			if(XmlExportEngine::$user_export) {
+                // Prepare existing Users data
+                self::$user_export->init($this->_existing_meta_keys);
+            }
 
 			// Prepare existing Comments data
 			self::$comment_export->init($this->_existing_meta_keys);

@@ -234,6 +234,13 @@ function pmxe_pmxe_after_export($export_id, $export)
 								$objReader->setDelimiter($export->options['delimiter']);
 								// If the files uses an encoding other than UTF-8 or ASCII, then tell the reader
 								$objPHPExcel = $objReader->load($file);
+                                $enableRtl = apply_filters('wp_all_export_enable_rtl', false, $export->id);
+
+                                if($enableRtl) {
+                                    $objPHPExcel->getActiveSheet()
+                                        ->setRightToLeft(true);
+                                }
+
                                 switch ($export->options['export_to_sheet']){
                                     case 'xls':
                                         $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
@@ -273,6 +280,13 @@ function pmxe_pmxe_after_export($export_id, $export)
 			// If the files uses an encoding other than UTF-8 or ASCII, then tell the reader
 
 			$objPHPExcel = $objReader->load($filepath);
+
+            $enableRtl = apply_filters('wp_all_export_enable_rtl', false, $export->id);
+
+            if($enableRtl) {
+                $objPHPExcel->getActiveSheet()
+                    ->setRightToLeft(true);
+            }
 
             switch ($export->options['export_to_sheet']) {
                 case 'xls':

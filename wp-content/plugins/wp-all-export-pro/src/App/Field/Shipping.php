@@ -22,7 +22,11 @@ class Shipping extends Field
                 $price = $price + $adjustShippingPriceValue;
             }
 
-            return $this->formatPrice($price);
+            if(is_numeric($price)) {
+                return $this->formatPrice($price);
+            } else {
+                return $price;
+            }
         } else {
             return '';
         }
